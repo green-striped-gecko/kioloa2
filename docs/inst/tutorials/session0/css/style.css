@@ -1,0 +1,46 @@
+
+li::marker {
+  color: #E04000;
+  font-weight: bold;
+}
+
+
+h3 {
+  color: #5BC0DE;
+}
+
+
+/*------- code colour --------*/
+
+.hljs {
+    color: black;
+}
+.hljs-string {
+    color: green;
+}
+
+.fu {
+    color: #427479;
+    font-weight: bold;
+}
+
+.ot {
+    color: grey;
+}
+
+.hljs-number {
+    color: blue;
+}
+
+.hljs-literal {
+    color:blue;
+}
+
+.hljs-comment {
+    color:green;
+}
+
+.hljs-keyword {
+  color: blue;
+}
+
