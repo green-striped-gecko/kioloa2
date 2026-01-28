@@ -79,7 +79,7 @@ First let's check populations and sample sizes using
 
 
 ```{r ex1,  exercise = TRUE,}
-table(pop(platypus.gl))
+platypus.gl
 ```
 
 ```{r ex1-solution}
@@ -88,7 +88,7 @@ table(pop(platypus.gl))
 
 To get a spatial overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map, we can do this because we have individual's coordinates. 
 
-```{r}
+```{r ex2, exercise = TRUE}
 gl.map.interactive(platypus.gl)
 ```
 
@@ -96,14 +96,14 @@ gl.map.interactive(platypus.gl)
 Now let's estimate genetic structure using the Weir & Cockerham (1984) F~ST~ statistic, which is a modern standard for SNPs, provides an unbiased estimator, and accounts for sample size and allele frequency variance
 
 
-```{r}
+```{r eval = TRUE}
 gl.fst.pop(platypus.gl)
 ```
 
 We can see severn below and above have less genetic structure. Let's get some confidence intervals around our F~ST~ estimates
 
 
-```{r}
+```{r ex3, exercise = TRUE}
 gl.fst.pop(platypus.gl, nboots = 100)
 ```
 
