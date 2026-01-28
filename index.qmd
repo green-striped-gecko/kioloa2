@@ -1,0 +1,9 @@
+![](inst/tutorials/session0/images/dartR7.png)
+
+# Welcome! {.unnumbered}
+
+Welcome to the second dartR workshop hosted at Kioloa ~ Kioloa2!
+
+## A big thank you to the developers!
+
+DartR published first by Gruber *et al.* ([2018](https://doi.org/10.1111/1755-0998.12745)), and DartR V2 published by Mijangos *et al.* ([2022](https://doi.org/10.1111/2041-210X.13918))
