@@ -15,7 +15,7 @@ format:
     toc-depth: 4
     theme: cosmo
     css:
-    - inst/tutorials/session0/css/style.css
+    - inst/tutorials/session0/css/dartR_style.css
     number-depth: 1
     link-external-icon: true
     link-external-newwindow: true
