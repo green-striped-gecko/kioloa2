@@ -6,7 +6,7 @@ output:
     allow_skip: true
     theme: "united"
     highlight: 'monochrome'
-    css: css/style.css
+    css: css/dartR_style.css
 runtime: shiny_prerendered
 description: "Kioloa2 Day one session 2 on genetic structure"
 ---
@@ -28,7 +28,7 @@ In this session you will learn all about the nuances of genetic structure. We go
 You should have the `dartR.popgen` package installed and have your head around genetic diversity metrics and SNP datasets. 
 
 
-```{r eval = FALSE, echo = TRUE}
+```{r eval = TRUE, echo = TRUE}
 library(dartRverse)
 # dartRverse_install(package = 'dartR.popgen')
 library(dartR.popgen)
@@ -77,13 +77,18 @@ We will start off using a test dataset called `platypus.gl`, it is based on real
 
 First let's check populations and sample sizes using
 
-```{r}
+
+```{r ex1,  exercise = TRUE,}
+platypus.gl
+```
+
+```{r ex1-solution}
 table(pop(platypus.gl))
 ```
 
 To get a spatial overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map, we can do this because we have individual's coordinates. 
 
-```{r}
+```{r ex2, exercise = TRUE}
 gl.map.interactive(platypus.gl)
 ```
 
@@ -91,14 +96,14 @@ gl.map.interactive(platypus.gl)
 Now let's estimate genetic structure using the Weir & Cockerham (1984) F~ST~ statistic, which is a modern standard for SNPs, provides an unbiased estimator, and accounts for sample size and allele frequency variance
 
 
-```{r}
+```{r eval = TRUE}
 gl.fst.pop(platypus.gl)
 ```
 
 We can see severn below and above have less genetic structure. Let's get some confidence intervals around our F~ST~ estimates
 
 
-```{r}
+```{r ex3, exercise = TRUE}
 gl.fst.pop(platypus.gl, nboots = 100)
 ```
 
