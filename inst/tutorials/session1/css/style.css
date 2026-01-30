@@ -1,9 +1,4 @@
 
-/* Change the color of the main tutorial title in the header */
-.tutorial-title {
-  color: #E04000; /* Example color (bright red-orange) */
-}
-
 
 li::marker {
   color: #E04000;
