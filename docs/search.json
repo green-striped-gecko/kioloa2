@@ -188,5 +188,105 @@
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
     ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html",
+    "href": "inst/tutorials/session2_sim/session2_sim.html",
+    "title": "3  dartRverse",
+    "section": "",
+    "text": "Simulations for Conservation\nSession Presenters\nand Luis",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#learning-outcomes",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#learning-outcomes",
+    "title": "3  dartRverse",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\nIn this session we will learn how to run simulations within the dartRverse.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#introduction",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#introduction",
+    "title": "3  dartRverse",
+    "section": "Introduction",
+    "text": "Introduction\n\nUsing simulations in the dartRverse for conservation genetics\nSimulation is one of the most powerful yet underused tools in conservation genetics. While empirical SNP datasets tell us what has happened, simulations allow us to ask what could happen under alternative management scenarios—and to do so quickly, transparently, and reproducibly. Within the dartRverse, simulations are designed as lightweight, modular building blocks that integrate naturally with SNP-based analyses used in applied conservation genetics.\nAt its core, the dartRverse simulation framework is not intended to compete with full forward-time population genetic simulators. Instead, it aims to provide rapid, interpretable simulations that allow conservation practitioners and researchers to explore genetic consequences of simplified demographic and management scenarios using the same data structures and summary statistics they already use for real populations.\n\n\nWhy simulate in a conservation context?\nMany conservation questions are fundamentally dynamic:\n\nHow quickly will a small population lose genetic variation through drift?\nHow many generations does it take to lose 50% of heterozygosity under a given effective population size?\nHow effective is supplementation or translocation at preserving allelic diversity?\nHow fast do populations diverge when connectivity is reduced?\nHow do metapopulation dynamics influence genetic differentiation, inbreeding, or genetic rescue outcomes?\n\nSimulations allow these questions to be explored explicitly, often with simple assumptions, before committing to costly or irreversible management actions.\n\n\n\nA modular, “lego-style” simulation philosophy\nThe dartRverse approaches simulations as a sequence of simple, composable processes. Rather than defining an entire demographic model upfront, users build scenarios by chaining together a small number of intuitive functions—much like assembling lego pieces.\nAt a conceptual level, simulations revolve around four core processes:\n\n1. Population creation\nPopulations can be generated de novo or derived directly from empirical SNP datasets. This allows simulations to begin from realistic allele frequencies, levels of heterozygosity, and population structure, rather than abstract starting conditions.\n\n\n2. Drift and mutation\nAllele frequencies change over generations due to genetic drift, with optional mutation. Even under extremely simple population dynamics, this immediately illustrates how small effective population sizes rapidly erode genetic diversity—often far faster than expected.\n\n\n3. Survival and migration\nIndividuals can survive, be removed, or migrate between populations. This enables exploration of connectivity, fragmentation, and metapopulation dynamics without invoking complex spatially explicit models.\n\n\n4. Reproduction\nReproduction can be modelled through simple cloning or sexual reproduction, allowing users to explore consequences for heterozygosity, inbreeding, and relatedness under different mating systems.\nEach step produces SNP data in familiar dartR objects, making it trivial to calculate standard diversity metrics at any point in the simulation.\n\n\n\n\nBuilding complexity incrementally\nA key strength of this approach is that complex dynamics emerge from simple rules. By combining basic processes, users can rapidly construct realistic conservation scenarios, such as:\n\nPeriodic supplementation (e.g. adding individuals every five generations)\nFounder events followed by isolation\nAsymmetric migration between source and sink populations\nTemporary corridors that restore gene flow for limited time periods\n\nBecause simulations are embedded in R, users can easily extend them further—for example by introducing sex- or age-dependent survival, stochastic catastrophes, or spatial structure linked to resistance surfaces and home ranges.\n\n\n\nTypical conservation genetics use cases\nSome common applications of dartRverse simulations include:\n\nGenetic drift over time\nTracking loss of heterozygosity or allelic richness across generations under different effective population sizes.\nSupplementation and genetic rescue\nEvaluating how many individuals are required, and how often, to maintain genetic diversity or slow inbreeding.\nMetapopulation dynamics\nExploring how migration rates influence differentiation, extinction–recolonisation dynamics, and long-term persistence.\nTemporal change in population structure\nMonitoring trajectories of population differentiation, relatedness, or inbreeding coefficients as populations diverge or reconnect.\n\nBecause simulated datasets are analysed using the same summary statistics as empirical SNP data, results are immediately interpretable and directly comparable to real monitoring data.\n\n\n\nFrom exploration to decision support\nUltimately, simulations in the dartRverse allow conservation geneticists to test assumptions, visualise outcomes, and communicate genetic risks and benefits to managers and stakeholders. Even highly simplified simulations can provide powerful insights into how quickly genetic diversity can be lost—and how strategic interventions can slow, or even reverse, that loss. In this way, simulations become not just a teaching tool, but a practical component of evidence-based conservation decision-making.\nPlease be aware dartRverse is not a fully fledged simulation tool. It allows to do quick and easy simulations, but for a comprehensive simulation framework you should consider using SLIM. By the way there is a cool package called ‘slimR’ which allows to integrate and run simulations from within R (and it talk to the dartRverse for analysis).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#prerequisites-and-background-knowledge",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#prerequisites-and-background-knowledge",
+    "title": "3  dartRverse",
+    "section": "Prerequisites and background knowledge",
+    "text": "Prerequisites and background knowledge\nSimulations in the dartRverse can range from very simple to highly complex. At the simplest level, many conservation scenarios can be explored using built-in dartRverse functions with minimal coding, making simulations accessible to users with basic R skills. More advanced applications, however, require custom workflows written directly in R, where dartRverse functions are combined with user-defined logic to represent realistic demographic, genetic, or management processes.\nAs a result, a working knowledge of R programming and familiarity with dartR data objects (e.g. genlight, `dartR’ and related structures) is essential. Simulations often require small but important data transformations, such as subsetting populations, updating metadata, reshaping outputs, or tracking summary statistics across generations. When individual simulation runs become computationally intensive—particularly when stochasticity is important—it is common to repeat simulations hundreds or thousands of times. In these cases, parallelisation (using standard R tools) becomes critical for keeping runtimes practical.\nFinally, simulations are only as informative as the questions they are designed to address. Users therefore need a solid understanding of population genetic concepts and appropriate metrics for quantifying genetic change. This includes knowing when to track heterozygosity, allelic richness, inbreeding, or population differentiation, and how these measures relate to processes such as drift, migration, and supplementation. Thoughtful choice of summary statistics is key to translating simulation outputs into meaningful conservation insights.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#session-overview",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#session-overview",
+    "title": "3  dartRverse",
+    "section": "Session overview",
+    "text": "Session overview\nThis session introduces simulations in the dartRverse using a step-by-step complexity approach. We begin with very simple simulations and progressively add biological and demographic realism.\n\nStep 1: A minimal simulation\n\nCreate a population from existing SNP data\nSimulate genetic drift over generations\nTrack simple diversity metrics (e.g. heterozygosity over time)\n\nStep 2: Replication and uncertainty\n\nRepeat simulations to capture stochasticity\nVisualise variability among simulation runs\nInterpret expected vs realised genetic trajectories\n\nStep 3: Population divergence\n\nSimulate multiple isolated populations\nExplore how genetic differentiation (e.g. FST) increases over time\nIntroduce migration to illustrate connectivity effects\n\nStep 4: Demography and reproduction\n\nAdd survival and reproduction processes\nExplore population size limits and allele loss\nLink demographic parameters to genetic outcomes\n\nStep 5: Applied conservation questions\n\nSupplementation and genetic rescue scenarios\nMetapopulation dynamics\nPerformance of SNP panels through time\n\nWrap-up\n\nKey insights from simple vs complex simulations\nWhen dartRverse simulations are sufficient\nWhen to move to more detailed forward simulators",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#setup",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#setup",
+    "title": "3  dartRverse",
+    "section": "Setup",
+    "text": "Setup\nTo setup the session, we need to load the necessary libraries. The main one is dartRverse which contains all the functions we will use for simulations and analysis. We also load ggplot2 and tidyr for data manipulation and visualization. Make sure you have these packages installed and loaded before proceeding with the tutorial and also make sure the dartRverse package is up to date, as the simulation functions are relatively new and may have been updated since the last release.\n\nlibrary(dartRverse)\nlibrary(ggplot2)\nlibrary(tidyr)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#tutorial",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#tutorial",
+    "title": "3  dartRverse",
+    "section": "Tutorial",
+    "text": "Tutorial\n\nStep 1: A minimal simulation\nThe dartRverse allows to run time forward simulations. Often you want to run some simulation based on an existing genlight object.\nWe load some example data\n\nrfbe &lt;- readRDS(\"./data/rfbe.rds\")\n\nand then run the gl.report.basics function to check its content. Have a look at the output and feel free to explore the dataset further using other functions. You can for example check the the amount of missing data or the number of individuals in each population.\n\n\n\ngl.report.basics(rfbe)\n\n\n\n\nThe next step is to think about a simulation scenario. Here we come up with a very simple one:\n\n\n\n\n\n\nScenario\n\n\n\nA new population is founded by translocating ten individuals from one of the populations in the data set (PJTub1.2.3). The population evolves for 15 generations under a drift-only Wright–Fisher process with no sexual reproduction, no mutation, and no additional releases, allowing us to examine the loss of heterozygosity through time.\n\n\nSo lets create a new population from the existing one by subsetting the dartR object and then subsample 10 individuals from it.\n\n# copy only the source population int a new dartR object\nsource &lt;- gl.keep.pop(rfbe, pop.list=\"PJTub1.2.3\")\n\nStarting gl.keep.pop \n  Processing genlight object with SNP data\n  Checking for presence of nominated populations\n  Retaining only populations PJTub1.2.3 \n  Warning: Resultant dataset may contain monomorphic loci\n  Locus metrics not recalculated\nCompleted: gl.keep.pop \n\n\nNext, we inspect the source population to determine the number of individuals and the extent of missing data.\n\n\n\n### number of individuals in the source population\n\n### missing data in the genotypes of the source population\n\n\n\n\nAs you can see there is missing data in the source population.\nMissing genotypes are generally undesirable in simulations, as they require explicit assumptions about how missing alleles are handled during reproduction. To avoid introducing additional complexity at this stage, we remove loci with missing data by filtering (an alternative approach would be genotype imputation). In most simulation studies, it is preferable to work with complete datasets; however, there are situations where the effects of missing data are themselves of interest, in which case an explicit strategy for handling missingness is required.\n\n#remove missing data using a strict callrate filter\nsource2 &lt;- gl.filter.callrate(source, method=\"loc\", threshold=1)\n\n\n\n\n#check if there are no missing data in the genotypes of source2\n\n\n\n\nThe next step is to create a new population of 10 individuals using the source2 population\n\n# create a new population of 10 individuals using individuals from source2  \nset.seed(7)\nnewpop &lt;- gl.subsample.ind(source2, n=10, replace = FALSE, verbose = 0)\n\n\n\n\n#check number of individuals and missing data in newpop\n\n\n\n\nAs we want to observe the change in heterozygosity we calculate heterozygosity for this populuation\n\n\n\n#find a way to calculate the mean heterozygosity of the new population\n\n\n\n\nThe next step is then repeat this for 15 generations (assuming an ideal poulation for simplicity)\n\n#we create a vector that holds heterozygosity over generation\nres &lt;- NA\n#He of Generation 1\nres[1] &lt;- mean(gl.He(newpop))\n\nfor (gen in 2:15)\n{\n  #ideal popluation = cloning snails\n  newpop &lt;- gl.sim.ind(newpop, n=10)\n  \n  #He of generation gen\n  res[gen] &lt;- mean(gl.He(newpop))\n  cat(\"Generation\", gen, \"Heterozygosity:\", res[gen], \"\\n\")\n  flush.console()\n}\n#Create a plot\nplot(res, type=\"b\", xlab=\"Generation\", ylab=\"Expected heterozygosity\", \n     main=\"Simulation of expected heterozygosity over time\")\n\nYou can now change setting and play with the simulation. For example increase the number of generations or the number of initial founding individuals. You need to run the golden chunks in order to make sure all the objects are updated.\nHere is the full simulation in one code block. Change to your liking. Eg. run more generations, or how does the simulation change if you sample from less/more individuals from the source, change the source population. Monitor observerd heterozygosity instead of experced.\n\n\n\nrfbe &lt;- readRDS(\"./data/rfbe.rds\")\nsource &lt;- gl.keep.pop(rfbe, pop.list=\"PJTub1.2.3\", verbose=0)\nsource2 &lt;- gl.filter.callrate(source, method=\"loc\", threshold=1, verbose=0)\nset.seed(7)\nnewpop &lt;- gl.subsample.ind(source2, n=10, replace = FALSE, verbose = 0)\nres&lt;-NA\nres[1] &lt;- mean(gl.He(newpop))\n\nfor (gen in 2:15)\n{\n  #ideal popluation = cloning snails\n  newpop &lt;- gl.sim.ind(newpop, n=10)\n  #He of generation gen\n  res[gen] &lt;- mean(gl.He(newpop))\n}\n\nplot(res, type=\"b\", xlab=\"Generation\", ylab=\"Expected heterozygosity\", \n     main=\"Simulation of expected heterozygosity over time\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#additional-reading",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#additional-reading",
+    "title": "3  dartRverse",
+    "section": "Additional reading",
+    "text": "Additional reading\nAnything else you want to add?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#exercises",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#exercises",
+    "title": "3  dartRverse",
+    "section": "Exercises",
+    "text": "Exercises\nExercises where they can use their own data or supplied data to try out what they have learnt in a new context.\n\ndot points\nfor different steps",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session2_sim/session2_sim.html#winding-up",
+    "href": "inst/tutorials/session2_sim/session2_sim.html#winding-up",
+    "title": "3  dartRverse",
+    "section": "Winding up",
+    "text": "Winding up\n###Discussion Time\nAdd some questions to help group discussion.\n\nWhere have we come?\nSummarise what they should have learnt.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
   }
 ]
