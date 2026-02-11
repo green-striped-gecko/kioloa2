@@ -10,6 +10,7 @@ book:
   - schedule.qmd
   - inst/tutorials/session0/session0.rmd
   - inst/tutorials/session1/session1.rmd
+  - inst/tutorials/session2/session2_sim.Rmd
 format:
   html:
     toc: true
