@@ -9,7 +9,7 @@ output:
     allow_skip: true
     theme: "united"
     highlight: 'monochrome'
-    css: css/style.css
+    css: css/dartR_style.css
 runtime: shiny_prerendered
 description: "Kioloa2 Session template"
 ---
@@ -17,10 +17,43 @@ description: "Kioloa2 Session template"
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+#tutorial_options(exercise.eval = FALSE)
+
+x<- 5
 ```
 
 
+
+
 ## Introduction
+
+```{r  ex21d, exercise = TRUE, exercise.eval = FALSE}
+# Numeric scalar
+num <- 6
+num
+class(num)
+```
+
+
+```{r  ex212d, exercise = TRUE, exercise.eval = FALSE, exercise.setup = "ex21d", exercise.eval.setup = TRUE}
+# Numeric scalar
+
+num
+yy <- 43 + num
+
+```
+
+
+```{r  ex212ddd, exercise = TRUE, exercise.eval = FALSE, exercise.setup = "ex212d"}
+# Numeric scalar
+
+num+1
+
+yy
+
+```
+
+
 
 ### Learning outcomes
 
@@ -46,8 +79,10 @@ Brief recap of the topic, relating back to the presentation.
 
 Worked example that everyone steps through together - simple example applying the methods
 
-```{r}
+```{r, eval=TRUE}
 # We show them the code to run
+
+print(x)
 ```
 
 
@@ -60,9 +95,32 @@ Exercises where they can use their own data or supplied data to try out what the
 
 ## Winding up
 
+
+
 ### Discussion Time
 
 Add some questions to help group discussion.
+
+```{r results='markup'}
+# Access multiple specific elements
+width[c(1,3,4)]
+
+# Access consecutive elements using colon
+width[1:4]
+
+# Access all except specified elements (negative indexing)
+width[c(-2,-5)]
+
+# Access first and last elements
+width[c(1,length(width))]
+
+# Access elements greater than 6 
+width[width > 6] 
+
+# Access elements equal to specific values 
+names[names == "Alice"] 
+
+```
 
 ### Where have we come?
 

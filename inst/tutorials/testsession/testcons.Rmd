@@ -1,0 +1,56 @@
+---
+title: "Tutorial"
+output:
+  learnr::tutorial:
+    theme: "united"
+    highlight: 'monochrome'
+    css: css/dartR_style.css
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(exercise.eval=FALSE)
+```
+
+
+```{r a, exercise=TRUE, exercise.cap="sdafsdaf", class.chunk="gold-panel"} 
+x <- 2 + 2
+print(x)
+
+
+#assign only necessary in tutorials
+assign("x", x, envir=globalenv())
+
+```
+
+
+
+```{r b, exercise=TRUE}
+
+x <- x+5
+x
+assign("x", x, envir=globalenv())
+```
+
+```{r c, exercise=TRUE}
+
+
+x+7
+
+```
+
+
+```{r, echo=FALSE}
+sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30)
+plotOutput("distPlot")
+```
+
+```{r, context="server"}
+output$distPlot <- renderPlot({
+  x <- faithful[, 2]  # Old Faithful Geyser data
+  bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  hist(x, breaks = bins, col = 'darkgray', border = 'white')
+})
+```

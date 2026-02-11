@@ -4,111 +4,189 @@
     "href": "index.html",
     "title": "Analysing Genomic Data with dartRverse",
     "section": "",
-    "text": "Welcome!\nWelcome to the second dartR workshop hosted at Kioloa ~ Kioloa2!"
+    "text": "Welcome!\nWelcome to the second dartR workshop hosted at Kioloa ~ Kioloa2!",
+    "crumbs": [
+      "Welcome!"
+    ]
   },
   {
     "objectID": "index.html#a-big-thank-you-to-the-developers",
     "href": "index.html#a-big-thank-you-to-the-developers",
     "title": "Analysing Genomic Data with dartRverse",
     "section": "A big thank you to the developers!",
-    "text": "A big thank you to the developers!\nDartR published first by Gruber et al. (2018), and DartR V2 published by Mijangos et al. (2022)"
+    "text": "A big thank you to the developers!\nDartR published first by Gruber et al. (2018), and DartR V2 published by Mijangos et al. (2022)",
+    "crumbs": [
+      "Welcome!"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Program",
+    "section": "",
+    "text": "for a more detailed program see the More Info section\n\n\n\n\n\n\n\n\n\n\n#\nDay\nTime\nTopic\nPresenters\n\n\n\n\n1\nMon\n2 pm - 4 pm\nWelcome, Intro dartR\nOliver Berry, Andrzej Killian, Arthur Georges, Bernd Gruber, Renee Catullo\n\n\n2\n\n5 pm – 7 pm\nPop Gen In Conservation & Restoration\nBill Sherwin, Carlo Pacioni, Renee Catullo\n\n\n3\nTue\n9 am – 11 am\nSequencing Technologies\nJason Carling, Andrew Kowalczyk, Renee Catullo\n\n\n4\n\n12 pm – 2 pm\nData Management, Reproducibility & Integrity\nJiajia Li\n\n\n5\n\n3 pm – 5 pm\nEffective Population Size\nBernd Gruber, Carlo Pacioni, Bill Sherwin\n\n\n6\nWed\n9 am – 11 am\nManagement Of Small Populations\nCatherine Grueber, Kate Farquharson\n\n\n7\n\n12 pm – 2 pm\nNatural Selection\nLuciano Beheregaray, Chris Brauer, Jonathan Sandoval\n\n\n8\n\n3 pm – 5 pm\nLandscape Genetics\nBernd Gruber, Robyn Shaw\n\n\n9\nThu\n9 am – 11 am\nLineage Divergence\nArthur Georges, Sally Potter, Craig Moritz\n\n\n10\n\n12 pm – 2 pm\nSex Linked Markers\nDiana Robledo, Floriaan Devloo-Delva\n\n\n11\n\n7 pm – 9 pm\nFrom Genes to Kin: Dissecting Relatedness & Kinship\nJinliang Wang, Luis Mijangos, Natasha Marosi\n\n\n12\nFri\n9 am – 11 am\nGenetic Structure\nArthur Georges, Bernd Gruber, Bill Sherwin\n\n\n13\n\n12 pm – 2 pm\nCombining Genomic Resources\nLuis Mijangos, Sally Potter",
+    "crumbs": [
+      "Program"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session0/session0.html",
+    "href": "inst/tutorials/session0/session0.html",
+    "title": "1  dartRverse",
+    "section": "",
+    "text": "Introduction\n# Numeric scalar\nnum &lt;- 6\nnum\nclass(num)\n# Numeric scalar\n\nnum\nyy &lt;- 43 + num\n# Numeric scalar\n\nnum+1\n\nyy",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session0/session0.html#introduction",
     "href": "inst/tutorials/session0/session0.html#introduction",
     "title": "1  dartRverse",
-    "section": "Introduction",
-    "text": "Introduction\n\nLearning outcomes\nWhat is the goal of this session? What will participants learn?\n\n\nPrerquisites\nWhat prior knowledge do they need?\n\n\nWorkflow\nWhat is the structure of the session?\n\n\nAdditional reading\nAnything else you want to add?"
+    "section": "",
+    "text": "Learning outcomes\nWhat is the goal of this session? What will participants learn?\n\n\nPrerquisites\nWhat prior knowledge do they need?\n\n\nWorkflow\nWhat is the structure of the session?\n\n\nAdditional reading\nAnything else you want to add?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session0/session0.html#topic",
     "href": "inst/tutorials/session0/session0.html#topic",
     "title": "1  dartRverse",
     "section": "Topic",
-    "text": "Topic\nBrief recap of the topic, relating back to the presentation."
+    "text": "Topic\nBrief recap of the topic, relating back to the presentation.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session0/session0.html#worked-ex",
     "href": "inst/tutorials/session0/session0.html#worked-ex",
     "title": "1  dartRverse",
     "section": "Worked Ex:",
-    "text": "Worked Ex:\nWorked example that everyone steps through together - simple example applying the methods\n\n# We show them the code to run"
+    "text": "Worked Ex:\nWorked example that everyone steps through together - simple example applying the methods\n\n# We show them the code to run\n\nprint(x)\n\n[1] 5",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session0/session0.html#exercises",
     "href": "inst/tutorials/session0/session0.html#exercises",
     "title": "1  dartRverse",
     "section": "Exercises",
-    "text": "Exercises\nExercises where they can use their own data or supplied data to try out what they have learnt in a new context.\n\ndot points\nfor different steps"
+    "text": "Exercises\nExercises where they can use their own data or supplied data to try out what they have learnt in a new context.\n\ndot points\nfor different steps",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session0/session0.html#winding-up",
     "href": "inst/tutorials/session0/session0.html#winding-up",
     "title": "1  dartRverse",
     "section": "Winding up",
-    "text": "Winding up\n\nDiscussion Time\nAdd some questions to help group discussion.\n\n\nWhere have we come?\nSummarise what they should have learnt."
+    "text": "Winding up\n\nDiscussion Time\nAdd some questions to help group discussion.\n\n# Access multiple specific elements\nwidth[c(1,3,4)]\n\n# Access consecutive elements using colon\nwidth[1:4]\n\n# Access all except specified elements (negative indexing)\nwidth[c(-2,-5)]\n\n# Access first and last elements\nwidth[c(1,length(width))]\n\n# Access elements greater than 6 \nwidth[width &gt; 6] \n\n# Access elements equal to specific values \nnames[names == \"Alice\"] \n\n\n\nWhere have we come?\nSummarise what they should have learnt.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>dartRverse</span>"
+    ]
+  },
+  {
+    "objectID": "inst/tutorials/session1/session1.html",
+    "href": "inst/tutorials/session1/session1.html",
+    "title": "2  EpisodeII: Attack of the Clades",
+    "section": "",
+    "text": "Introduction",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#introduction",
     "href": "inst/tutorials/session1/session1.html#introduction",
     "title": "2  EpisodeII: Attack of the Clades",
-    "section": "Introduction",
-    "text": "Introduction\n\nLearning outcomes\nIn this session you will learn all about the nuances of genetic structure. We go over Fst where a lot of the foundation population genetic theory was developed, PCA used for data exploration, and structure which uses genetic models to detect structure of populations. Although isolation-by-distance is a foundational model of genetic structure, it is not included here as it will be included in a future session.\n\n\nPrerquisites\nYou should have the dartR.popgen package installed and have your head around genetic diversity metrics and SNP datasets.\n\nlibrary(dartRverse)\n\nWarning: package 'dartRverse' was built under R version 4.4.3\n\n\n**********************************************\n**** Welcome to dartRverse [Version 1.0.6] ****\n**********************************************\n\n\n── Core dartRverse packages ────────────────────────────────────── dartRverse ──\n✔ dartR.base 1.0.7     ✔ dartR.data 1.0.8\n── Installed dartRverse packages   ─────────────────────────────── dartRverse ──\n✔ dartR.popgen    1.0.0     ✔ dartR.sim       0.71 \n✔ dartR.sexlinked 1.0.5     \n── Not [yet] installed dartRverse packages ─────────────────────── dartRverse ──\n✖ dartR.captive      ✖ dartR.spatial \n\n# dartRverse_install(package = 'dartR.popgen')\nlibrary(dartR.popgen)\n\n\n\nWorkflow\nFirst there will be a presentation introducing the topic (click to download). There will then be brief introductions into the topics as a refresher of the presentation. Then we will run through the worked examples and finally you will be left to do some exercises on your own, or even try some of what you learnt on your own data. To finish we will wind up the session with a friendly discussion and summarise where we have come.\n\n\nAdditional reading\nGeorges et al.(2023)\nBattey, Ralph, and Kern (2020)"
+    "section": "",
+    "text": "Learning outcomes\nIn this session you will learn all about the nuances of genetic structure. We go over Fst where a lot of the foundation population genetic theory was developed, PCA used for data exploration, and structure which uses genetic models to detect structure of populations. Although isolation-by-distance is a foundational model of genetic structure, it is not included here as it will be included in a future session.\n\n\nPrerquisites\nYou should have the dartR.popgen package installed and have your head around genetic diversity metrics and SNP datasets.\n\nlibrary(dartRverse)\n\n**********************************************\n**** Welcome to dartRverse [Version 1.0.5] ****\n**********************************************\n\n\n── Core dartRverse packages ────────────────────────────────────── dartRverse ──\n✔ dartR.base 1.1.2     ✔ dartR.data 1.0.9\n── Installed dartRverse packages   ─────────────────────────────── dartRverse ──\n✔ dartR.captive   1.0.34     ✔ dartR.sim       0.95  \n✔ dartR.popgen    1.0.6      ✔ dartR.spatial   1.0.1 \n✔ dartR.sexlinked 1.0.5      \n\n# dartRverse_install(package = 'dartR.popgen')\nlibrary(dartR.popgen)\n\n\n\nWorkflow\nFirst there will be a presentation introducing the topic (click to download). There will then be brief introductions into the topics as a refresher of the presentation. Then we will run through the worked examples and finally you will be left to do some exercises on your own, or even try some of what you learnt on your own data. To finish we will wind up the session with a friendly discussion and summarise where we have come.\n\n\nAdditional reading\nGeorges et al.(2023)\nBattey, Ralph, and Kern (2020)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#fst",
     "href": "inst/tutorials/session1/session1.html#fst",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "FST",
-    "text": "FST\nFST quantifies genetic differentiation among populations. It represents the proportion of total genetic variation attributable to allele frequency differences between populations.\n\nFST = 0 → populations have identical allele frequencies.\nFST close to 1 → populations are fixed for different alleles.\nIntermediate values reflect varying levels of differentiation driven by gene flow, drift, selection, and demographic history.\n\n\nFST = between‑population variance / total genetic variance\n\nFST is an essential statistic in population genetics because it helps researchers detect barriers to gene flow, identify population structure, and evaluate how connected or isolated populations are in conservation contexts. It also provides insight into key evolutionary processes—including genetic drift, migration, and natural selection—by quantifying how allele frequencies differ among populations. Beyond this, F_ST offers a baseline expectation for interpreting genome-wide patterns, making it a valuable reference point for outlier detection and landscape genomics analyses.\n\nFST does not directly measure gene flow, though it is strongly influenced by it.\n\n\n\n5. Common Misconceptions\n\nFST equals gene flow → False. FST reflects multiple processes, not only migration.\nLow FST means no structure → False. Subtle structure can exist with low genome-wide differentiation.\nHigh FST means selection → Not necessarily. Drift can also cause high differentiation.\nCompare FST across species → Generally invalid due to differing heterozygosity, genome architecture, and mutation rates."
+    "text": "FST\nFST quantifies genetic differentiation among populations. It represents the proportion of total genetic variation attributable to allele frequency differences between populations.\n\nFST = 0 → populations have identical allele frequencies.\nFST close to 1 → populations are fixed for different alleles.\nIntermediate values reflect varying levels of differentiation driven by gene flow, drift, selection, and demographic history.\n\n\nFST = between‑population variance / total genetic variance\n\nFST is an essential statistic in population genetics because it helps researchers detect barriers to gene flow, identify population structure, and evaluate how connected or isolated populations are in conservation contexts. It also provides insight into key evolutionary processes—including genetic drift, migration, and natural selection—by quantifying how allele frequencies differ among populations. Beyond this, F_ST offers a baseline expectation for interpreting genome-wide patterns, making it a valuable reference point for outlier detection and landscape genomics analyses.\n\nFST does not directly measure gene flow, though it is strongly influenced by it.\n\n\n\n5. Common Misconceptions\n\nFST equals gene flow → False. FST reflects multiple processes, not only migration.\nLow FST means no structure → False. Subtle structure can exist with low genome-wide differentiation.\nHigh FST means selection → Not necessarily. Drift can also cause high differentiation.\nCompare FST across species → Generally invalid due to differing heterozygosity, genome architecture, and mutation rates.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#worked-ex-fst",
     "href": "inst/tutorials/session1/session1.html#worked-ex-fst",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "Worked Ex: FST",
-    "text": "Worked Ex: FST\nWe will start off using a test dataset called platypus.gl, it is based on real data but has been modified for educational purposes.\nFirst let’s check populations and sample sizes using\n\n\nplatypus.gl\n\n\n\n\n\ntable(pop(platypus.gl))\n\n\nTo get a spatial overview of the dataset, we use the function: gl.map.interactive which plots the individuals on a map, we can do this because we have individual’s coordinates.\n\n\ngl.map.interactive(platypus.gl)\n\n\n\nNow let’s estimate genetic structure using the Weir & Cockerham (1984) FST statistic, which is a modern standard for SNPs, provides an unbiased estimator, and accounts for sample size and allele frequency variance\n\ngl.fst.pop(platypus.gl)\n\nStarting gl.fst.pop \n  Processing genlight object with SNP data\n  Warning: data include loci that are scored NA across all individuals.\n  Consider filtering using gl &lt;- gl.filter.allna(gl)\nCompleted: gl.fst.pop \n\n\n             TENTERFIELD SEVERN_BELOW SEVERN_ABOVE\nTENTERFIELD           NA           NA           NA\nSEVERN_BELOW  0.08239721           NA           NA\nSEVERN_ABOVE  0.07457680   0.06004816           NA\n\n\nWe can see severn below and above have less genetic structure. Let’s get some confidence intervals around our FST estimates\n\n\ngl.fst.pop(platypus.gl, nboots = 100)"
+    "text": "Worked Ex: FST\nWe will start off using a test dataset called platypus.gl, it is based on real data but has been modified for educational purposes.\nFirst let’s check populations and sample sizes using\n\n\nplatypus.gl\n\n\n\n\n\ntable(pop(platypus.gl))\n\n\nTo get a spatial overview of the dataset, we use the function: gl.map.interactive which plots the individuals on a map, we can do this because we have individual’s coordinates.\n\n\ngl.map.interactive(platypus.gl)\n\n\n\nNow let’s estimate genetic structure using the Weir & Cockerham (1984) FST statistic, which is a modern standard for SNPs, provides an unbiased estimator, and accounts for sample size and allele frequency variance\n\ngl.fst.pop(platypus.gl)\n\nStarting gl.fst.pop \n  Processing genlight object with SNP data\n  Warning: data include loci that are scored NA across all individuals.\n  Consider filtering using gl &lt;- gl.filter.allna(gl)\nCompleted: gl.fst.pop \n\n\n             TENTERFIELD SEVERN_BELOW SEVERN_ABOVE\nTENTERFIELD           NA           NA           NA\nSEVERN_BELOW  0.08239721           NA           NA\nSEVERN_ABOVE  0.07457680   0.06004816           NA\n\n\nWe can see severn below and above have less genetic structure. Let’s get some confidence intervals around our FST estimates\n\n\ngl.fst.pop(platypus.gl, nboots = 100)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#pca",
     "href": "inst/tutorials/session1/session1.html#pca",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "PCA",
-    "text": "PCA\nPrincipal Component Analysis (PCA) is a powerful statistical technique used for dimensionality reduction, data visualization, and feature extraction. In many real-world datasets, like our SNP datasets, data can have a very high number of features or dimensions. PCA helps by transforming the data into a new coordinate system where most of the variability in the data can be captured in fewer dimensions.\nAt its core, PCA identifies the directions (called principal components) along which the variation in the data is highest. These directions are orthogonal (perpendicular) to each other and are ranked by how much variance they capture from the original data. By projecting data onto the top few principal components, we can often retain the most important information while discarding noise or less useful details."
+    "text": "PCA\nPrincipal Component Analysis (PCA) is a powerful statistical technique used for dimensionality reduction, data visualization, and feature extraction. In many real-world datasets, like our SNP datasets, data can have a very high number of features or dimensions. PCA helps by transforming the data into a new coordinate system where most of the variability in the data can be captured in fewer dimensions.\nAt its core, PCA identifies the directions (called principal components) along which the variation in the data is highest. These directions are orthogonal (perpendicular) to each other and are ranked by how much variance they capture from the original data. By projecting data onto the top few principal components, we can often retain the most important information while discarding noise or less useful details.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#worked-ex-pca",
     "href": "inst/tutorials/session1/session1.html#worked-ex-pca",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "Worked Ex: PCA",
-    "text": "Worked Ex: PCA\nPCA is a good first step for looking into genetic structure. However, be careful with drawing conclusions from this analysis, there are many reasons why it show signs of structure that are not there. Remember PCA is a visualisation tool, reduced representation for the complexity of the SNP data, there are no genetic models underlying this analysis.\nFirst we need to calculate our principle components\n\npc &lt;- gl.pcoa(platypus.gl)\n\nThis can take some time but once it is finished we can now plot our findings\n\ngl.pcoa.plot(pc, platypus.gl)\n\nWe can easily change the colour or labels of the pca plot\n\ngl.pcoa.plot(pc, platypus.gl, as.pop = 'Sex')"
+    "text": "Worked Ex: PCA\nPCA is a good first step for looking into genetic structure. However, be careful with drawing conclusions from this analysis, there are many reasons why it show signs of structure that are not there. Remember PCA is a visualisation tool, reduced representation for the complexity of the SNP data, there are no genetic models underlying this analysis.\nFirst we need to calculate our principle components\n\npc &lt;- gl.pcoa(platypus.gl)\n\nThis can take some time but once it is finished we can now plot our findings\n\ngl.pcoa.plot(pc, platypus.gl)\n\nWe can easily change the colour or labels of the pca plot\n\ngl.pcoa.plot(pc, platypus.gl, as.pop = 'Sex')",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#structure",
     "href": "inst/tutorials/session1/session1.html#structure",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "Structure",
-    "text": "Structure\nStructure attempts to find the number of populations or sources (K) at which population genetics parameters (i.e. Hardy–Weinberg equilibrium within populations and linkage equilibrium between loci) are maximized.\n\nAdmixture Model\n\nDefinition: The admixture model assumes that individuals can have ancestry from multiple populations. This means that the genetic makeup of an individual can be a mixture of two or more populations. This model is particularly useful for analyzing genetic data from populations that are known to have mixed or where there is gene flow between populations.\nApplication: It is applied when there is historical or recent admixture between populations, and it allows for the estimation of individual ancestry proportions from each of the inferred clusters. For example, an individual might be 50% from population A, 30% from population B, and 20% from population C under the admixture model.\nUtility: The admixture model can uncover complex patterns of genetic structure that are not apparent under the assumption of discrete, non-overlapping populations.\n\n\n\nNo-Admixture Model\n\nDefinition: The no-admixture model assumes that individuals have ancestry from only one population. This model is particularly useful for analyzing genetic data from populations that are known to be isolated from one another.\nApplication: This model is used in situations where populations are relatively well-defined and isolated, with little to no gene flow between them. It simplifies the analysis by considering that an individual’s entire genetic information originates from one of the K clusters without any mixture.\nUtility: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.\n\nTo run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system [e.g windows, mac or linux]. You can download STRUCTURE for your OS from web.stanford.edu."
+    "text": "Structure\nStructure attempts to find the number of populations or sources (K) at which population genetics parameters (i.e. Hardy–Weinberg equilibrium within populations and linkage equilibrium between loci) are maximized.\n\nAdmixture Model\n\nDefinition: The admixture model assumes that individuals can have ancestry from multiple populations. This means that the genetic makeup of an individual can be a mixture of two or more populations. This model is particularly useful for analyzing genetic data from populations that are known to have mixed or where there is gene flow between populations.\nApplication: It is applied when there is historical or recent admixture between populations, and it allows for the estimation of individual ancestry proportions from each of the inferred clusters. For example, an individual might be 50% from population A, 30% from population B, and 20% from population C under the admixture model.\nUtility: The admixture model can uncover complex patterns of genetic structure that are not apparent under the assumption of discrete, non-overlapping populations.\n\n\n\nNo-Admixture Model\n\nDefinition: The no-admixture model assumes that individuals have ancestry from only one population. This model is particularly useful for analyzing genetic data from populations that are known to be isolated from one another.\nApplication: This model is used in situations where populations are relatively well-defined and isolated, with little to no gene flow between them. It simplifies the analysis by considering that an individual’s entire genetic information originates from one of the K clusters without any mixture.\nUtility: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.\n\nTo run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system [e.g windows, mac or linux]. You can download STRUCTURE for your OS from web.stanford.edu.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#worked-ex-structure",
     "href": "inst/tutorials/session1/session1.html#worked-ex-structure",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "Worked Ex: Structure",
-    "text": "Worked Ex: Structure\nNow lets try structure, first we need to download the binary for structure, we can do this in our temporary directory, structure creates a lot of extra folders that we don’t want in our working directory.\n\ngl.download.binary('structure', out.dir = tempdir())\n\nfor windows\n\nresult &lt;- gl.run.structure(platypus.gl, \n                           exec =paste0(tempdir(),\n                                        '/structure/structure.exe'))\n\nlets plot the results\n\ngl.plot.structure(result)"
+    "text": "Worked Ex: Structure\nNow lets try structure, first we need to download the binary for structure, we can do this in our temporary directory, structure creates a lot of extra folders that we don’t want in our working directory.\n\ngl.download.binary('structure', out.dir = tempdir())\n\nfor windows\n\nresult &lt;- gl.run.structure(platypus.gl, \n                           exec =paste0(tempdir(),\n                                        '/structure/structure.exe'))\n\nlets plot the results\n\ngl.plot.structure(result)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#exercises",
     "href": "inst/tutorials/session1/session1.html#exercises",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "Exercises",
-    "text": "Exercises\nNow it is your turn. Either use your data or the possum.gl dataset.\n\nFilter the data appropriately\nRun a PCA\nFollw up with calculating FST for all the populations\nDecide whether a structure analysis is appropriate for your data, if so run a structure analysis."
+    "text": "Exercises\nNow it is your turn. Either use your data or the possum.gl dataset.\n\nFilter the data appropriately\nRun a PCA\nFollw up with calculating FST for all the populations\nDecide whether a structure analysis is appropriate for your data, if so run a structure analysis.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   },
   {
     "objectID": "inst/tutorials/session1/session1.html#winding-up",
     "href": "inst/tutorials/session1/session1.html#winding-up",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "Winding up",
-    "text": "Winding up\n\nDiscussion Time\n\nWhat is your understanding of population genetic theory?\nHow have you used PCA?\nDoes STRUCTURE actually just take too long?\n\n\n\nWhere have we come?\nYou should now be confident to investigate genetic structure in your own data, starting off exploratory, using PCA, and then using FST and STRUCTURE to further determine the structure in your system."
+    "text": "Winding up\n\nDiscussion Time\n\nWhat is your understanding of population genetic theory?\nHow have you used PCA?\nDoes STRUCTURE actually just take too long?\n\n\n\nWhere have we come?\nYou should now be confident to investigate genetic structure in your own data, starting off exploratory, using PCA, and then using FST and STRUCTURE to further determine the structure in your system.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
+    ]
   }
 ]

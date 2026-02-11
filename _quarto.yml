@@ -7,6 +7,7 @@ book:
   date: January 2026
   chapters:
   - index.qmd
+  - schedule.qmd
   - inst/tutorials/session0/session0.rmd
   - inst/tutorials/session1/session1.rmd
 format:
