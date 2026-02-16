@@ -60,3 +60,5 @@ rsconnect/
 /inst/tutorials/**/*.html
 
 /.quarto/
+
+**/*.quarto_ipynb
