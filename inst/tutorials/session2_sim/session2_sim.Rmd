@@ -19,7 +19,7 @@ description: "Kioloa2 Simuations"
 klippy::klippy(position="right", color="black")
 ```
 
-## Simulations for Conservation
+## Simulations for Conservation Genetics
 
 *Session Presenters*
 
@@ -27,7 +27,7 @@ klippy::klippy(position="right", color="black")
 
 ## Learning outcomes
 
-In this session we will learn how to run simulations within the dartRverse.
+In this session we will learn how to run simulations within the dartRverse. We will start with very simple simulations and then add complexity to them. By the end of the session you should be able to run simple simulations of genetic drift, population divergence, and demographic processes using dartR functions, and understand how to interpret the results in a conservation context.
 
 ## Introduction
 
