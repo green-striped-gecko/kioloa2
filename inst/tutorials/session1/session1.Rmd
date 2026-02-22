@@ -16,24 +16,21 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-
 ## Introduction
 
 ### Learning outcomes
 
-In this session you will learn all about the nuances of genetic structure. We go over Fst where a lot of the foundation population genetic theory was developed, PCA used for data exploration, and structure which uses genetic models to detect structure of populations. Although isolation-by-distance is a foundational model of genetic structure, it is not included here as it will be included in a future session. 
+In this session you will learn all about the nuances of genetic structure. We go over Fst where a lot of the foundation population genetic theory was developed, PCA used for data exploration, and structure which uses genetic models to detect structure of populations. Although isolation-by-distance is a foundational model of genetic structure, it is not included here as it will be included in a future session.
 
 ### Prerquisites
 
-You should have the `dartR.popgen` package installed and have your head around genetic diversity metrics and SNP datasets. 
-
+You should have the `dartR.popgen` package installed and have your head around genetic diversity metrics and SNP datasets.
 
 ```{r eval = TRUE, echo = TRUE}
 library(dartRverse)
 # dartRverse_install(package = 'dartR.popgen')
 library(dartR.popgen)
 ```
-
 
 ### Workflow
 
@@ -47,36 +44,32 @@ Battey, Ralph, and Kern ([2020](https://doi.org/10.1534/genetics.120.303143))
 
 ## F~ST~
 
-
 F~ST~ quantifies **genetic differentiation among populations**. It represents the proportion of total genetic variation attributable to allele frequency differences between populations.
 
-- **F~ST~ = 0** → populations have identical allele frequencies.
-- **F~ST~ close to 1** → populations are fixed for different alleles.
-- **Intermediate values** reflect varying levels of differentiation driven by gene flow, drift, selection, and demographic history.
+-   **F~ST~ = 0** → populations have identical allele frequencies.
+-   **F~ST~ close to 1** → populations are fixed for different alleles.
+-   **Intermediate values** reflect varying levels of differentiation driven by gene flow, drift, selection, and demographic history.
 
 > **F~ST~ = between‑population variance / total genetic variance**
 
 F~ST~ is an essential statistic in population genetics because it helps researchers detect barriers to gene flow, identify population structure, and evaluate how connected or isolated populations are in conservation contexts. It also provides insight into key evolutionary processes—including genetic drift, migration, and natural selection—by quantifying how allele frequencies differ among populations. Beyond this, F_ST offers a baseline expectation for interpreting genome-wide patterns, making it a valuable reference point for outlier detection and landscape genomics analyses.
 
-
 > F~ST~ does not directly measure gene flow, though it is strongly influenced by it.
 
----
+------------------------------------------------------------------------
 
 ### 5. Common Misconceptions
 
-- **F~ST~ equals gene flow** → False. F~ST~ reflects multiple processes, not only migration.
-- **Low F~ST~ means no structure** → False. Subtle structure can exist with low genome-wide differentiation.
-- **High F~ST~ means selection** → Not necessarily. Drift can also cause high differentiation.
-- **Compare F~ST~ across species** → Generally invalid due to differing heterozygosity, genome architecture, and mutation rates.
-
+-   **F~ST~ equals gene flow** → False. F~ST~ reflects multiple processes, not only migration.
+-   **Low F~ST~ means no structure** → False. Subtle structure can exist with low genome-wide differentiation.
+-   **High F~ST~ means selection** → Not necessarily. Drift can also cause high differentiation.
+-   **Compare F~ST~ across species** → Generally invalid due to differing heterozygosity, genome architecture, and mutation rates.
 
 ## Worked Ex: **F~ST~**
 
 We will start off using a test dataset called `platypus.gl`, it is based on real data but has been modified for educational purposes.
 
 First let's check populations and sample sizes using
-
 
 ```{r ex1,  exercise = TRUE,}
 platypus.gl
@@ -86,15 +79,13 @@ platypus.gl
 table(pop(platypus.gl))
 ```
 
-To get a spatial overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map, we can do this because we have individual's coordinates. 
+To get a spatial overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map, we can do this because we have individual's coordinates.
 
 ```{r ex2, exercise = TRUE}
 gl.map.interactive(platypus.gl)
 ```
 
-
 Now let's estimate genetic structure using the Weir & Cockerham (1984) F~ST~ statistic, which is a modern standard for SNPs, provides an unbiased estimator, and accounts for sample size and allele frequency variance
-
 
 ```{r eval = TRUE}
 gl.fst.pop(platypus.gl)
@@ -102,11 +93,9 @@ gl.fst.pop(platypus.gl)
 
 We can see severn below and above have less genetic structure. Let's get some confidence intervals around our F~ST~ estimates
 
-
 ```{r ex3, exercise = TRUE}
 gl.fst.pop(platypus.gl, nboots = 100)
 ```
-
 
 ## PCA
 
@@ -138,30 +127,27 @@ We can easily change the colour or labels of the pca plot
 gl.pcoa.plot(pc, platypus.gl, as.pop = 'Sex')
 ```
 
-
 ## Structure
 
 Structure attempts to find the number of populations or sources (K) at which population genetics parameters (i.e. Hardy–Weinberg equilibrium within populations and linkage equilibrium between loci) are maximized.
 
 ### Admixture Model
 
-- **Definition**: The admixture model assumes that individuals can have ancestry from multiple populations. This means that the genetic makeup of an individual can be a mixture of two or more populations. This model is particularly useful for analyzing genetic data from populations that are known to have mixed or where there is gene flow between populations.
+-   **Definition**: The admixture model assumes that individuals can have ancestry from multiple populations. This means that the genetic makeup of an individual can be a mixture of two or more populations. This model is particularly useful for analyzing genetic data from populations that are known to have mixed or where there is gene flow between populations.
 
-- **Application**: It is applied when there is historical or recent admixture between populations, and it allows for the estimation of individual ancestry proportions from each of the inferred clusters. For example, an individual might be 50% from population A, 30% from population B, and 20% from population C under the admixture model.
+-   **Application**: It is applied when there is historical or recent admixture between populations, and it allows for the estimation of individual ancestry proportions from each of the inferred clusters. For example, an individual might be 50% from population A, 30% from population B, and 20% from population C under the admixture model.
 
-- **Utility**: The admixture model can uncover complex patterns of genetic structure that are not apparent under the assumption of discrete, non-overlapping populations.
+-   **Utility**: The admixture model can uncover complex patterns of genetic structure that are not apparent under the assumption of discrete, non-overlapping populations.
 
 ### No-Admixture Model
 
-- **Definition**: The no-admixture model assumes that individuals have ancestry from only one population. This model is particularly useful for analyzing genetic data from populations that are known to be isolated from one another.
+-   **Definition**: The no-admixture model assumes that individuals have ancestry from only one population. This model is particularly useful for analyzing genetic data from populations that are known to be isolated from one another.
 
-- **Application**: This model is used in situations where populations are relatively well-defined and isolated, with little to no gene flow between them. It simplifies the analysis by considering that an individual’s entire genetic information originates from one of the K clusters without any mixture.
+-   **Application**: This model is used in situations where populations are relatively well-defined and isolated, with little to no gene flow between them. It simplifies the analysis by considering that an individual’s entire genetic information originates from one of the K clusters without any mixture.
 
-- **Utility**: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.
-
+-   **Utility**: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.
 
 To run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system [e.g windows, mac or linux]. You can download STRUCTURE for your OS from [web.stanford.edu](http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html).
-
 
 ## Worked Ex: **Structure**
 
@@ -171,7 +157,7 @@ Now lets try structure, first we need to download the binary for structure, we c
 gl.download.binary('structure', out.dir = tempdir())
 ```
 
-for windows 
+for windows
 
 ```{r}
 result <- gl.run.structure(platypus.gl, 
@@ -185,26 +171,25 @@ lets plot the results
 gl.plot.structure(result)
 ```
 
-
 ## Exercises
 
 Now it is your turn. Either use your data or the `possum.gl` dataset.
 
-- Filter the data appropriately
-- Run a PCA
-- Follw up with calculating F~ST~ for all the populations
-- Decide whether a structure analysis is appropriate for your data, if so run a structure analysis.
+-   Filter the data appropriately
+-   Run a PCA
+-   Follw up with calculating F~ST~ for all the populations
+-   Decide whether a structure analysis is appropriate for your data, if so run a structure analysis.
 
 ## Winding up
 
 ### Discussion Time
 
-- What is your understanding of population genetic theory?
+-   What is your understanding of population genetic theory?
 
-- How have you used PCA?
+-   How have you used PCA?
 
-- Does STRUCTURE actually just take too long?
+-   Does STRUCTURE actually just take too long?
 
 ### Where have we come?
 
-You should now be confident to investigate genetic structure in your own data, starting off exploratory, using PCA, and then using F~ST~ and STRUCTURE to further determine the structure in your system. 
+You should now be confident to investigate genetic structure in your own data, starting off exploratory, using PCA, and then using F~ST~ and STRUCTURE to further determine the structure in your system.

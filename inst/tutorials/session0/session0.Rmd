@@ -22,9 +22,6 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 x<- 5
 ```
 
-
-
-
 ## Introduction
 
 ```{r  ex21d, exercise = TRUE, exercise.eval = FALSE}
@@ -85,13 +82,12 @@ Worked example that everyone steps through together - simple example applying th
 print(x)
 ```
 
-
 ## Exercises
 
 Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
 
-- dot points 
-- for different steps
+-   dot points
+-   for different steps
 
 ## Winding up
 
