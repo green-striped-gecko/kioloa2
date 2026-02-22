@@ -104,7 +104,7 @@
     "href": "inst/tutorials/session1/session1.html#introduction",
     "title": "2  EpisodeII: Attack of the Clades",
     "section": "",
-    "text": "Learning outcomes\nIn this session you will learn all about the nuances of genetic structure. We go over Fst where a lot of the foundation population genetic theory was developed, PCA used for data exploration, and structure which uses genetic models to detect structure of populations. Although isolation-by-distance is a foundational model of genetic structure, it is not included here as it will be included in a future session.\n\n\nPrerquisites\nYou should have the dartR.popgen package installed and have your head around genetic diversity metrics and SNP datasets.\n\nlibrary(dartRverse)\n\n**********************************************\n**** Welcome to dartRverse [Version 1.0.5] ****\n**********************************************\n\n\n── Core dartRverse packages ────────────────────────────────────── dartRverse ──\n✔ dartR.base 1.1.2     ✔ dartR.data 1.0.9\n── Installed dartRverse packages   ─────────────────────────────── dartRverse ──\n✔ dartR.captive   1.0.34     ✔ dartR.sim       0.95  \n✔ dartR.popgen    1.0.6      ✔ dartR.spatial   1.0.1 \n✔ dartR.sexlinked 1.0.5      \n\n# dartRverse_install(package = 'dartR.popgen')\nlibrary(dartR.popgen)\n\n\n\nWorkflow\nFirst there will be a presentation introducing the topic (click to download). There will then be brief introductions into the topics as a refresher of the presentation. Then we will run through the worked examples and finally you will be left to do some exercises on your own, or even try some of what you learnt on your own data. To finish we will wind up the session with a friendly discussion and summarise where we have come.\n\n\nAdditional reading\nGeorges et al.(2023)\nBattey, Ralph, and Kern (2020)",
+    "text": "Learning outcomes\nIn this session you will learn all about the nuances of genetic structure. We go over Fst where a lot of the foundation population genetic theory was developed, PCA used for data exploration, and structure which uses genetic models to detect structure of populations. Although isolation-by-distance is a foundational model of genetic structure, it is not included here as it will be included in a future session.\n\n\nPrerquisites\nYou should have the dartR.popgen package installed and have your head around genetic diversity metrics and SNP datasets.\n\nlibrary(dartRverse)\n\n***********************************************\n**** Welcome to dartRverse [Version 1.2.2] ****\n***********************************************\n\n\n── Core dartRverse packages ────────────────────────────────────── dartRverse ──\n✔ dartR.base 1.2.2     ✔ dartR.data 1.2.2\n── Installed dartRverse packages   ─────────────────────────────── dartRverse ──\n✔ dartR.captive   1.2.2     ✔ dartR.sim       1.2.2\n✔ dartR.popgen    1.2.2     ✔ dartR.spatial   1.2.2\n✔ dartR.sexlinked 1.2.2     \n\n# dartRverse_install(package = 'dartR.popgen')\nlibrary(dartR.popgen)\n\n\n\nWorkflow\nFirst there will be a presentation introducing the topic (click to download). There will then be brief introductions into the topics as a refresher of the presentation. Then we will run through the worked examples and finally you will be left to do some exercises on your own, or even try some of what you learnt on your own data. To finish we will wind up the session with a friendly discussion and summarise where we have come.\n\n\nAdditional reading\nGeorges et al.(2023)\nBattey, Ralph, and Kern (2020)",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>EpisodeII: Attack of the Clades</span>"
     ]
@@ -194,7 +194,7 @@
     "href": "inst/tutorials/session2_sim/session2_sim.html",
     "title": "3  Simulations",
     "section": "",
-    "text": "Simulations for Conservation\nSession Presenters\nand Luis",
+    "text": "Simulations for Conservation Genetics\nSession Presenters\nand Luis",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simulations</span>"
     ]
@@ -204,7 +204,7 @@
     "href": "inst/tutorials/session2_sim/session2_sim.html#learning-outcomes",
     "title": "3  Simulations",
     "section": "Learning outcomes",
-    "text": "Learning outcomes\nIn this session we will learn how to run simulations within the dartRverse.",
+    "text": "Learning outcomes\nIn this session we will learn how to run simulations within the dartRverse. We will start with very simple simulations and then add complexity to them. By the end of the session you should be able to run simple simulations of genetic drift, population divergence, and demographic processes using dartR functions, and understand how to interpret the results in a conservation context.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Simulations</span>"
     ]
