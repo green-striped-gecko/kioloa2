@@ -19,7 +19,6 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-
 ## Introduction
 
 ### Learning outcomes
@@ -50,13 +49,12 @@ Worked example that everyone steps through together - simple example applying th
 # We show them the code to run
 ```
 
-
 ## Exercises
 
 Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
 
-- dot points 
-- for different steps
+-   dot points
+-   for different steps
 
 ## Winding up
 
