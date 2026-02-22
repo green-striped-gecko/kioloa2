@@ -1,0 +1,24 @@
+---
+title: "Simulations"
+author: "Bernd Gruber & Luis Mijangos"
+date: | 
+    ![](images/dartR7.png){width=5cm}
+output:
+  learnr::tutorial:
+    progressive: false
+    allow_skip: true
+    theme: "united"
+    highlight: 'monochrome'
+    css: css/dartR_style.css
+runtime: shiny_prerendered
+
+description: "Kioloa2 Simuations"
+---
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position="right", color="black")
+```
+
+## Landscape genetics for Conservation Genetics
+
+some blurb
