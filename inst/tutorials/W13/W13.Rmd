@@ -1,5 +1,5 @@
 ---
-title: "Simulations"
+title: "W13 Simulations"
 author: "Bernd Gruber & Luis Mijangos"
 date: | 
     ![](images/dartR7.png){width=5cm}
@@ -19,7 +19,7 @@ description: "Kioloa2 Simulations"
 klippy::klippy(position="right", color="black")
 ```
 
-## W13 Simulations for Conservation Genetics
+## W13 Simulations for Conservation Genetics 
 
 *Session Presenters*
 
