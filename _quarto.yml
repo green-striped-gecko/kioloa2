@@ -8,8 +8,22 @@ book:
   chapters:
   - index.qmd
   - schedule.qmd
+  - inst/tutorials/W01/W01.rmd
+  - inst/tutorials/W02/W02.rmd
+  - inst/tutorials/W03/W03.rmd
+  - inst/tutorials/W04/W04.rmd
+  - inst/tutorials/W05/W05.rmd
+  - inst/tutorials/W06/W06.rmd
+  - inst/tutorials/W07/W07.rmd
+  - inst/tutorials/W08/W08.rmd
+  - inst/tutorials/W09/W09.rmd
+  - inst/tutorials/W10/W10.rmd
   - inst/tutorials/W11/W11.rmd
+  - inst/tutorials/W12/W12.rmd
   - inst/tutorials/W13/W13.rmd
+  - inst/tutorials/W14/W14.rmd
+  - inst/tutorials/W15/W15.rmd
+  - inst/tutorials/W16/W16.rmd
 format:
   html:
     toc: true
