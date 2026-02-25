@@ -1,0 +1,70 @@
+---
+title: "W10 Natural Selection & Adaptation"
+author: "Luciano Beheregaray & Chris Brauer"
+date: | 
+    ![](images/dartR7.png){width=5cm}
+output:
+  learnr::tutorial:
+    progressive: false
+    allow_skip: true
+    theme: "united"
+    highlight: 'monochrome'
+    css: css/dartR_style.css
+runtime: shiny_prerendered
+
+description: "Natural Selection & Adaptation"
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+## W10 Natural Selection & Adaptation
+
+## Introduction
+
+### Learning outcomes
+
+What is the goal of this session? What will participants learn?
+
+### Prerquisites
+
+What prior knowledge do they need?
+
+### Workflow
+
+What is the structure of the session?
+
+### Additional reading
+
+Anything else you want to add?
+
+## Topic
+
+Brief recap of the topic, relating back to the presentation.
+
+## Worked Ex:
+
+Worked example that everyone steps through together - simple example applying the methods
+
+```{r}
+# We show them the code to run
+```
+
+## Exercises
+
+Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+
+-   dot points
+-   for different steps
+
+## Winding up
+
+### Discussion Time
+
+Add some questions to help group discussion.
+
+### Where have we come?
+
+Summarise what they should have learnt.
