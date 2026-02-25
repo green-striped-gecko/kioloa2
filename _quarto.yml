@@ -8,10 +8,8 @@ book:
   chapters:
   - index.qmd
   - schedule.qmd
-  - inst/tutorials/session0/session0.rmd
-  - inst/tutorials/session1/session1.rmd
-  - inst/tutorials/session2_sim/session2_sim.rmd
-  - inst/tutorials/session3/session3.rmd
+  - inst/tutorials/W11/W11.rmd
+  - inst/tutorials/W13/W13.rmd
 format:
   html:
     toc: true
