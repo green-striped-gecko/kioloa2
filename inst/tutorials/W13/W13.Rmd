@@ -1,5 +1,5 @@
 ---
-title: "Simulations"
+title: "W13 Simulations"
 author: "Bernd Gruber & Luis Mijangos"
 date: | 
     ![](images/dartR7.png){width=5cm}
@@ -19,7 +19,7 @@ description: "Kioloa2 Simulations"
 klippy::klippy(position="right", color="black")
 ```
 
-## W13 Simulations for Conservation Genetics
+## W13 Simulations for Conservation Genetics 
 
 *Session Presenters*
 
@@ -468,7 +468,7 @@ Two useful helper functions are:
 -   `gl.sim.ind()`: creates individuals based on the **current allele frequencies** in a `genlight`/dartR object (good when allele frequencies are well-estimated) and you want to simulate a sampled populations' fate into the future.
 -   `gl.sim.Neconst()`: creates individuals based on a **constant Ne** and mutation rate (useful as a generic starting point; often followed by additional generations to reach realistic genotype structure). A good way to visualise the allele frequencies is a site-frequency spectrum (SFS) plot, which shows the distribution of allele frequencies across loci. This can help you understand the starting conditions of your simulation and how they might influence the outcomes.
 
-### A) `gl.sim.ind`: scaling up a well-sampled population
+#### A) `gl.sim.ind`: scaling up a well-sampled population
 
 ```{r ex72_1}
 # (speed) use only 1000 loci
@@ -498,9 +498,9 @@ gl.sfs(start_pop)
 ```
 ::: callout
 #### Exercise
-# DISCUSSION EXERCISE (no coding required):
-# When would you prefer gl.sim.ind() over gl.sim.Neconst() as a starting point?
-# Think: allele frequencies, realism, availability of data.
+DISCUSSION EXERCISE (no coding required):
+- When would you prefer gl.sim.ind() over gl.sim.Neconst() as a starting point?
+- Think: allele frequencies, realism, availability of data.
 
 :::
 ```{r ex72_4, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
@@ -610,6 +610,7 @@ A note to gl.sim.offspring: this function simulates sexual reproduction by rando
 For example if you specify `noffpermother = 3`, each mother will produce three offspring, and the function will randomly select fathers for each offspring from the pool of males.
 
 Our famous hermaphrodite implementation, would state:
+
 ``` {r ex73_3a, eval=FALSE}
 gl.sim.offsprings(fathers = pop1, mothers = pop1, noffpermother = 1)
 ```
@@ -617,6 +618,7 @@ This would allow each individual to be both a mother and a father, and each indi
 
 If you have another situation of say polygyny, where one male mates with multiple females, you could specify the fathers and mothers separately. For example if you have a "seal-situation" that there is a single dominant male you would specify the fathers as a single individual and the mothers as the rest of the population. For example: 
 the dom
+
 
 ``` {r ex73_3b, eval=FALSE}
 dommale <- gl.keep.ind(gl, ind.list = "dommmale")  #we keep track via the individual name
