@@ -468,7 +468,7 @@ Two useful helper functions are:
 -   `gl.sim.ind()`: creates individuals based on the **current allele frequencies** in a `genlight`/dartR object (good when allele frequencies are well-estimated) and you want to simulate a sampled populations' fate into the future.
 -   `gl.sim.Neconst()`: creates individuals based on a **constant Ne** and mutation rate (useful as a generic starting point; often followed by additional generations to reach realistic genotype structure). A good way to visualise the allele frequencies is a site-frequency spectrum (SFS) plot, which shows the distribution of allele frequencies across loci. This can help you understand the starting conditions of your simulation and how they might influence the outcomes.
 
-### A) `gl.sim.ind`: scaling up a well-sampled population
+#### A) `gl.sim.ind`: scaling up a well-sampled population
 
 ```{r ex72_1}
 # (speed) use only 1000 loci
@@ -498,9 +498,9 @@ gl.sfs(start_pop)
 ```
 ::: callout
 #### Exercise
-# DISCUSSION EXERCISE (no coding required):
-# When would you prefer gl.sim.ind() over gl.sim.Neconst() as a starting point?
-# Think: allele frequencies, realism, availability of data.
+DISCUSSION EXERCISE (no coding required):
+- When would you prefer gl.sim.ind() over gl.sim.Neconst() as a starting point?
+- Think: allele frequencies, realism, availability of data.
 
 :::
 ```{r ex72_4, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}

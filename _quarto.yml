@@ -4,7 +4,7 @@ project:
 book:
   title: Analysing Genomic Data with dartRverse
   author: Bernd Gruber, Diana Robledo-Ruiz, Arthur Georges, Elise Furlan, Luis Mijangos, Emily Stringer, Laura Bertola, Kate Rick, Ching Ching Lau, Diana Robledo, Floriaan Devloo-Delva, Bill Sherwin, Renee Catullo, Peter Unmack, Robin Waples, Luis Mijangos, Craig Moritz, Ethan Halford, Luciano Beheregaray, Chris Brauer, Robyn Shaw, Cynthia Riginos, Zoe Meziere, Jonathan Ting, Darya Vanichkina, Celine Frere, Elise Furlan, Andrzej Killian
-  date: January 2026
+  date: February 2026
   chapters:
   - index.qmd
   - schedule.qmd
