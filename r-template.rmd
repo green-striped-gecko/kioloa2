@@ -1,0 +1,120 @@
+---
+title: "R_template"
+output: html_document
+date: "2026-02-23"
+---
+
+## Setup 
+- Which packages need to be installed ie:
+  - library(tidyverse)
+  - library(dartRverse)  #we use version 1.2.2 for kioloa
+- Data to be readin/included for testing etc:
+  - use a data folder within your documents to store any data you want to use for testing/working through examples etc. - then you can read in using relative paths ie:
+  - test1 <- read.csv("./data/file.csv")
+  - 
+- Any other additions - ie 3rd party binaries (co-ancestry etc.)
+  - put those into a binary folder within you documents
+
+```{r setup, include=FALSE}
+# Include packages/setup here 
+```
+
+## Introduction
+### Learning outcomes
+- Outcomes for the tutorial/presentation
+  - Takeaways for participants
+
+# What is the goal of this session? What will participants learn?
+### Pre-requisites
+# What prior knowledge do they need?
+- Any prior knowledge required - whether it be R packages/other languages (C++? example)
+
+### Workflow
+# What is the structure of the session?
+- Rough flow of the session ie:
+    1. Introduction to topic
+      1.1 Rough overview for layman
+      1.2 In depth overview for specific use/case
+    2. Maybe introduction to dataset being used
+      2.1 Anything interesting about dataset - high levels of inbreeding/genetic structure
+    3. Data wrangling
+      3.1 Reading in data - ie if special format (tsv,bed,fasta etc)
+        3.1.1 Anything special to be done to read in
+      3.2 Any processing needs to be done after read in - index bam files etc.
+    4. Basic example
+      4.1 Walkthrough - basic example - setup background etc.
+      4.2 Workthrough example
+      4.3 Pose questions for participants to do
+    5. More advanced example
+      5.1 Background
+      5.2 Walkthrough
+    6. Wrap up/conclusion
+    7. More reading/references
+    
+### Additional reading
+#Anything else you want to add?
+- References etc maybe papers for the writers - Ching Ching and Ethan to read if need be.
+
+
+## Topic
+# Brief recap of the topic, relating back to the presentation.
+
+
+
+## Worked Ex:
+# Worked example that everyone steps through together - simple example applying the methods
+- Provide outline of examples to be written up
+    - Ie datasets required
+    - How to read them in
+    - How you want them presented
+    - Code of analysis to be done on them etc. etc.
+    - even potential output you would like to see - (also allows us to know if weve done smoething wrong)
+
+```{r example_template01, include=FALSE}
+# Include code for examples here (01)
+```
+
+```{r example_template02, include=FALSE}
+# Include code for examples here (02)
+```
+
+```{r example_template03, include=FALSE}
+# Include code for examples here (03 etc...)
+```
+
+
+## Exercises
+#Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+- Exercises - fairly straightforward maybe just provide code to be inserted for writing up
+
+-   dot points
+-   for different steps
+
+
+```{r exercises_template01, include=FALSE}
+# Include code for exercises here 
+```
+
+```{r exercises_template02, include=FALSE}
+# Include code for exercises here 
+```
+
+```{r exercises_template03, include=FALSE}
+# Include code for exercises here 
+```
+
+## Winding up
+### Discussion Time
+- Brief recap of what has been learnt/ground that has been covered.
+    - Provide new directions for further reading - (ie if you liked this how about?)
+
+
+#Add some questions to help group discussion.
+### Where have we come?
+
+
+#Summarise what they should have learnt.
+- Final complete summary of whats been learnt/taught over the course of the tutorial
+
+
+

@@ -1,2 +1,4 @@
 ^kioloa2\.Rproj$
 ^\.Rproj\.user$
+^howto\.txt$
+^r-template\.*$

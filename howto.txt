@@ -1,0 +1,23 @@
+
+
+
+For qmd files
+
+on the ghpage branch
+- change the qmd files (add to yaml)
+- render: quarto::quarto_render()
+- commit
+- push
+
+
+
+For sessions (rmd files)
+
+on the main branch
+- change the rmd files (test here)
+- commit
+- go to ghpages
+- git merge main
+- render: quarto::quarto_render()
+- commit
+- push

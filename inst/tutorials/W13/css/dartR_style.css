@@ -661,7 +661,7 @@ a:hover, a:focus {
 /* gold / bonus exercise start */
 .gold-panel .panel-heading::before {
   content: "\f005";   /* star */
-  color: #ff5bff;
+  color: #1156ee;
 }
 
 

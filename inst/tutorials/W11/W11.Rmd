@@ -1,6 +1,6 @@
 ---
-title: "Landscape Genetics"
-author: "Bernd Gruber & Luis Mijangos"
+title: "W11 Landscape Genetics"
+author: "Robyn Shaw, Cynthia Riginos, Zoe Meziere"
 date: | 
     ![](images/dartR7.png){width=5cm}
 output:
@@ -12,13 +12,15 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "Kioloa2 Landscape Genetics"
+description: "W11 Landscape Genetics"
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
+
+## W11 Landscape genetics
 
 ## Introduction
 
