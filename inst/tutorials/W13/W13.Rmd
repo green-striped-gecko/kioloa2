@@ -610,7 +610,8 @@ A note to gl.sim.offspring: this function simulates sexual reproduction by rando
 For example if you specify `noffpermother = 3`, each mother will produce three offspring, and the function will randomly select fathers for each offspring from the pool of males.
 
 Our famous hermaphrodite implementation, would state:
-``` {r ex73_3b, eval=FALSE}
+
+``` {r ex73_3a, eval=FALSE}
 gl.sim.offsprings(fathers = pop1, mothers = pop1, noffpermother = 1)
 ```
 This would allow each individual to be both a mother and a father, and each individual would produce one offspring on average. This is a simple way to simulate a Wright-Fisher simulation, because every individual can reproduce with any other individual (no sexes) and even reproduce with itself (selfing). This is a common assumption in many population genetics models, and it allows us to focus on the effects of genetic drift without the added complexity of sexual reproduction.
@@ -618,7 +619,8 @@ This would allow each individual to be both a mother and a father, and each indi
 If you have another situation of say polygyny, where one male mates with multiple females, you could specify the fathers and mothers separately. For example if you have a "seal-situation" that there is a single dominant male you would specify the fathers as a single individual and the mothers as the rest of the population. For example: 
 the dom
 
-``` {r ex73_3c, eval=FALSE}
+
+``` {r ex73_3b, eval=FALSE}
 dommale <- gl.keep.ind(gl, ind.list = "dommmale")  #we keep track via the individual name
 mothers <- pop1[pop(gl) == "F",] #pop has information on male and females
 gl.sim.offsprings(fathers = dommale, mothers = mothers, noffpermother = 3)
