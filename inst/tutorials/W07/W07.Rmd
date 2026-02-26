@@ -1,5 +1,5 @@
 ---
-title: "W07 Effective Population Size"
+title: "Effective Population Size"
 author: "Robin Waples, Luis Mijangos & Bernd Gruber"
 date: | 
     ![](images/dartR7.png){width=5cm}
@@ -17,54 +17,790 @@ description: "W07 Effective Population Size"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
 ## W07 Effective Population Size 
 
-## Introduction
-
-### Learning outcomes
-
-What is the goal of this session? What will participants learn?
-
-### Prerquisites
-
-What prior knowledge do they need?
-
-### Workflow
-
-What is the structure of the session?
-
-### Additional reading
-
-Anything else you want to add?
-
-## Topic
-
-Brief recap of the topic, relating back to the presentation.
-
-## Worked Ex:
-
-Worked example that everyone steps through together - simple example applying the methods
-
-```{r}
-# We show them the code to run
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position="right", color="black")
 ```
 
-## Exercises
+## Effective Population Size
 
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+*Session Presenters*
+  
+  ![](images/Presenters5.png)
 
--   dot points
--   for different steps
+## Learning Outcomes
 
-## Winding up
+In this session we will learn how to estimate effective population size (*Ne*) using genomic SNP data. We start with the theoretical background, then move to two practical approaches: (1) the linkage disequilibrium method for contemporary *Ne*, and (2) the Site Frequency Spectrum (SFS) / coalescent approach for historical *Ne*. By the end of this tutorial you should be able to:
+  
+  - Explain the concept of *Ne* and why it differs from census size (*Nc*)
+- Distinguish between drift, LD-based, and coalescent *Ne* estimators
+- Run a linkage disequilibrium *Ne* estimate using `gl.LDNe` in the dartRverse, and understand the role of MAF filtering
+- Compute a Site Frequency Spectrum (SFS) from SNP data and interpret its shape
+- Estimate historical *Ne* trajectories using EPOS, and understand the role of *L* and *mu*
+  - Appreciate the differences and complementarity of EPOS and Stairways2
 
-### Discussion Time
+---
+  
+## Introduction: What is Effective Population Size?
+  
+### The concept of *Ne*
+  
+  Effective population size (*Ne*) is one of the most fundamental concepts in conservation genetics. It represents the size of an **idealised population** that would experience genetic drift, accumulate inbreeding, or generate linkage disequilibrium at the **same rate as the real population under study**.
 
-Add some questions to help group discussion.
+An idealised population has: equal sex ratio, random mating (panmixia), non-overlapping generations, constant population size over time, and no selection, mutation, or migration.
 
-### Where have we come?
+The actual census size (*Nc*) — the number of individuals you count in the field — is almost always **larger** than *Ne*, often dramatically so. The ratio *Ne*/*Nc* is typically 0.1–0.5 for vertebrates but can be far smaller in species with highly skewed reproductive success.
 
-Summarise what they should have learnt.
+**Why is *Ne* < *Nc*?**
+  
+- Unequal sex ratios (e.g. polygynous mating systems where few males do most of the breeding)
+- High variance in reproductive success (some individuals contribute many offspring, others none)
+- Population size fluctuations over time (the harmonic mean penalises bottlenecks severely)
+- Overlapping generations
+- Population subdivision and restricted gene flow
+
+### Why does *Ne* matter for conservation?
+
+The rate at which a population loses genetic diversity through drift is governed directly by *Ne*:
+  
+  $$H_t = H_0 \left(1 - \frac{1}{2N_e} \right)^t$$
+  
+  where *H₀* is initial heterozygosity and *H_t* is heterozygosity after *t* generations. The practical implications are stark:
+  
+- A population with *Ne* = 50 loses ~1% of its heterozygosity **per generation**
+- A population with *Ne* = 500 loses only ~0.1% per generation
+- A population with *Ne* = 10 loses nearly 5% per generation — catastrophically fast
+
+This is the basis of the **50/500 rule** (Franklin 1980, Soule 1986): a minimum *Ne* of 50 is needed to avoid severe short-term inbreeding depression, and *Ne* ≥ 500 (more recently revised upward to ~1000) to maintain long-term evolutionary potential. This is a rule of thumb, not a rigid target — it should be applied alongside species-specific biological knowledge.
+
+---
+  
+### The many versions of *Ne*: which one are you estimating?
+  
+  A critical and often overlooked point is that **different methods estimate different things**. The term "effective population size" covers several conceptually distinct quantities:
+  
+  **Drift *Ne*** is estimated from the change in allele frequencies between two time points (the temporal method). It reflects the rate of allelic drift between samples. Requires sampling the population at two or more time points.
+
+**Inbreeding *Ne*** is estimated from pedigrees or genomic excess homozygosity. It reflects the rate at which individuals become more related to each other over time.
+
+**Linkage Disequilibrium *Ne* (LD *Ne*)** is estimated from the extent of background LD among loci in a single sample. In a finite population, drift creates associations between alleles at unlinked loci — the smaller *Ne*, the stronger this background LD. This gives a **contemporary** *Ne*, reflecting the effective size over the past few generations. This is what `NeEstimator` / `gl.LDNe` calculates.
+
+**Coalescent *Ne*** is estimated from the genealogical history of alleles using the Site Frequency Spectrum (SFS). Different lineages coalesce at rates that depend on *Ne*, so the distribution of allele frequencies carries a signal of **historical** *Ne* over hundreds to thousands of generations. EPOS and Stairways2 use this approach.
+
+> **Key message:** All *Ne* estimators compare the observed population to an idealised population, but at different timescales and using different signals. Do not directly compare a contemporary LD *Ne* to a coalescent *Ne* without careful consideration — they are measuring related but distinct quantities.
+
+---
+  
+  ## Setup
+  
+```{r start, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE}
+library(learnr)
+library(dartRverse)
+library(ggplot2)
+library(tidyr)
+library(patchwork)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+tutorial_options(exercise.eval = FALSE)
+
+path.binaries <- "./binaries"
+path.data     <- "./data/"
+```
+
+```{r, warning=FALSE, message=FALSE}
+library(dartRverse)  #version 1.1.2 or higher
+library(ggplot2) #for plotting
+library(tidyr)
+library(patchwork)
+```
+
+---
+  
+## Part 1: Contemporary *Ne* — The Linkage Disequilibrium Method
+  
+### The LD approach
+  
+  The LD method estimates *Ne* from a **single sample** by measuring background linkage disequilibrium among loci. In an infinitely large population, unlinked loci should be in linkage equilibrium. In a finite population, drift generates LD even among physically unlinked loci. The smaller *Ne*, the stronger this background LD. The expected squared correlation between alleles at two unlinked loci is approximately (Waples 2006):
+  
+  $$E[\hat{r}^2] \approx \frac{1}{3 N_e} + \frac{1}{S}$$
+  
+  where *S* is the sample size. The 1/*S* term is sampling noise and is added (subtracted) to isolate the drift-induced LD. This is implemented in the `NeEstimator` software, accessed via `gl.LDNe` in the dartRverse.
+
+**Key assumptions:**
+  
+  - Loci are in approximate Hardy–Weinberg equilibrium
+- No strong selection at the measured loci
+- The sample is representative of a single well-mixed population
+
+### The critical role of MAF filtering
+
+One of the most important quality choices for LD *Ne* is the **minor allele frequency (MAF) threshold**, set with the `critical` argument. Rare alleles (very low MAF) are problematic because:
+  
+  1. Their frequencies are estimated with high uncertainty, especially in small samples
+2. They tend to inflate $\hat{r}^2$ (apparent LD), which biases *Ne* downward
+3. They may reflect genotyping errors more than true biological signal
+
+The standard recommendation is **MAF ≥ 0.05** (`critical = 0.05`), removing loci where the minor allele occurs in fewer than 5% of gene copies. This balances accuracy (higher threshold is better) against precision (more loci retained means more precise estimates).
+
+> Standard practice: use `critical = c(0, 0.05)` to compare the unfiltered and MAF-filtered estimates simultaneously. If the two estimates differ markedly, the unfiltered estimate is likely biased by rare alleles.
+
+### Running LD *Ne* with `gl.LDNe`
+
+
+  
+```{r neest-download, eval=FALSE}
+
+```
+
+Simulate a population with a known *Ne* of 50 and estimate it:
+  
+```{r ldne-simulate, eval=TRUE}
+# First, download the NeEstimator binary (only necessary once)
+dir_ne <- gl.download.binary("neestimator", out.dir = tempdir())
+# Simulate 50 individuals with 3000 loci
+sim50 <- gl.sim.Neconst(ninds = 50, nlocs = 3000)
+
+# Run a few generations of random mating to approach HWE
+for (i in 1:5) {
+  sim50 <- gl.sim.offspring(sim50, sim50, noffpermother = 1)
+}
+
+
+
+
+# Estimate Ne using LD method
+# critical = c(0, 0.05): once without MAF filter, once with MAF >= 5%
+ne_result <- gl.LDNe(sim50,
+                     outfile      = "sim50LD.txt",
+                     neest.path   = dir_ne,
+                     critical     = c(0, 0.05),
+                     singleton.rm = TRUE,
+                     mating       = "random")
+```
+
+The output shows two rows — one for each `critical` value. The estimate with `critical = 0.05` should be closer to the true *Ne* of 50.
+
+---
+  
+  ### Exercise 1: Effect of MAF threshold on *Ne* estimates
+  
+```{r ex1-setup, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dartRverse)
+library(dartR.popgen)
+library(ggplot2)
+```
+
+
+:::callout
+#### Exercise: gl.LDNe and MAF filtering
+Rerun the example above for different simulated datasets (or your own)
+Be aware that filtering your dataset is important You want to have high quality data with minimal missingness, and a good number of loci after filtering. Also you would like to have a reasonable sample size (S >= 30) to avoid technical artefacts. Finally maf filtering is critical for accurate estimates, so you should run with a range of thresholds to see how it affects the estimate. For example, you could run with critical = c(0, 0.02, 0.05, 0.10) to see how the estimate changes as you increase the MAF threshold. Definitely remove singletons in most cases.
+
+QUESTIONS:
+- How does the Ne estimate change as you increase the MAF threshold?
+- At which threshold does the estimate stabilise?
+- What are the trade-offs of using very high vs very low MAF thresholds?
+- What happens if you do not use the HWE simulation step?
+
+:::
+
+```{r ex1, exercise=TRUE, exercise.setup="ex1-setup", class.chunk="gold-panel", exercise.timelimit = 120}
+
+dir_ne <- gl.download.binary("neestimator", out.dir = tempdir())
+
+# Simulate 50 individuals with 3000 loci
+sim50 <- gl.sim.Neconst(ninds = 50, nlocs = 3000)
+
+# Run a few generations of random mating to approach HWE
+for (i in 1:5) {
+  sim50 <- gl.sim.offspring(sim50, sim50, noffpermother = 1)
+}
+
+
+
+
+# Estimate Ne using LD method
+# critical = c(0, 0.05): once without MAF filter, once with MAF >= 5%
+ne_result <- gl.LDNe(sim50,
+                     outfile      = "sim50LD.txt",
+                     neest.path   = dir_ne,
+                     critical     = c(0, 0.05),
+                     singleton.rm = TRUE,
+                     mating       = "random")
+```
+
+---
+  
+### The Waples correction for genomic data
+  
+  When thousands of SNPs are available and a genome map exists, physically linked loci on the **same chromosome** show LD due to recombination — not just drift. This inflates apparent LD and biases *Ne* downward. Waples et al. (2016) showed that restricting analysis to **inter-chromosomal locus pairs** (`pairing = "separate"`) corrects for physical linkage and produces improved estimates.
+
+```{r ldne-waples, eval=TRUE}
+pops <- possums.gl[1:60, 1:100]
+# Assign chromosome information (illustrative — use real data in practice)
+pops@chromosome <- as.factor(sample(1:10, size = nLoc(pops), replace = TRUE))
+
+ne_separate <- gl.LDNe(pops,
+                       outfile      = "popsLD_sep.txt",
+                       pairing      = "separate",
+                       neest.path   = dir_ne,
+                       critical     = c(0, 0.05),
+                       singleton.rm = TRUE,
+                       mating       = "random")
+
+```
+
+If chromosome data is unavailable but the number of chromosomes (or genome length) is known, apply a numerical correction from Waples et al. (2016):
+  
+```{r ldne-correction, eval=TRUE}
+ne_corrected <- gl.LDNe(pops,
+                        outfile                 = "popsLD_corr.txt",
+                        neest.path              = dir_ne,
+                        critical                = c(0, 0.05),
+                        singleton.rm            = TRUE,
+                        mating                  = "random",
+                        Waples.correction       = 'nChromosomes',
+                        Waples.correction.value = 22)
+
+```
+
+### Understanding *Inf* estimates
+
+Sometimes `gl.LDNe` returns *Ne* = Inf. This typically means the population is very large (negligible drift-induced LD), but it can also arise as a technical artefact. For random mating with S >= 30 individuals, the bias-corrected formula is:
+  
+  $$N_e = \frac{1/3 + \sqrt{1/9 - 2.76\hat{r}^{2\prime}}}{2\hat{r}^{2\prime}}$$
+  
+  When the corrected $\hat{r}^{2\prime}$ is very small or negative (which can happen with small samples and rare alleles), the square root becomes undefined and *Ne* is reported as Inf. The `naive = TRUE` option skips the bias correction and helps diagnose the source:
+  
+```{r ldne-naive}
+ne_naive <- gl.LDNe(pops,
+                    outfile      = "popsLD_naive.txt",
+                    neest.path   = dir_ne,
+                    critical     = c(0, 0.05),
+                    singleton.rm = TRUE,
+                    mating       = "random",
+                    naive        = TRUE)
+```
+
+**Practical remedies for Inf estimates:**
+  
+- Increase the MAF threshold to remove rare, noisy alleles
+- Check whether sample size is very small (S < 20 is problematic)
+- If *Inf* persists across thresholds and with `naive = TRUE`, it likely reflects a genuinely large population, but be cautious about over-interpreting *Inf* as "very large" — it may simply mean "too large to estimate with this method and data quality".
+
+---
+
+:::callout
+### Exercise 2: Diagnosing *Ne* with different population sizes
+  
+
+Simulate two populations:
+-   (a) ninds = 200, nlocs = 1000  — a large population
+-   (b) ninds = 20,  nlocs = 1000  — a small population
+- For each, run 3 generations of random mating, then estimate Ne with gl.LDNe.
+- Use critical = c(0, 0.05).
+
+Questions:
+- Do you get Inf estimates for the larger population?
+- Does the MAF filter help?
+- How close are the estimates to the true Ne?  
+
+Please note the estimates are pretty good because those are simulated data sets, hence the assumptions of the method are met. In real data, estimates can be more biased and imprecise due to violations of assumptions, genotyping errors, and other complexities. The key is to understand the limitations and interpret results in context.
+
+:::
+  
+  
+```{r ex2, exercise=TRUE, exercise.setup="ex1-setup", class.chunk="gold-panel", exercise.timelimit=120}
+# EXERCISE:
+# Simulate two populations:
+#   (a) ninds = 200, nlocs = 1000  — a large population
+#   (b) ninds = 20,  nlocs = 1000  — a small population
+#
+# For each, run 3 generations of random mating, then estimate Ne with gl.LDNe.
+# Use critical = c(0, 0.05).
+#
+# QUESTIONS:
+# - Do you get Inf estimates for the larger population?
+# - Does the MAF filter help?
+# - How close are the estimates to the true Ne?
+
+dir_ne <- gl.download.binary("neestimator", out.dir = tempdir())
+
+# Large population (true Ne ~ 200)
+sim200 <- gl.sim.Neconst(ninds = 200, nlocs = 1000)
+for (i in 1:3) sim200 <- gl.sim.offspring(sim200, sim200, noffpermother = 1)
+
+# Small population (true Ne ~ 20)
+sim20 <- gl.sim.Neconst(ninds = 20, nlocs = 1000)
+for (i in 1:3) sim20 <- gl.sim.offspring(sim20, sim20, noffpermother = 1)
+
+# Run gl.LDNe for both and compare:
+
+```
+
+---
+  
+## Part 2: Historical *Ne* — The Site Frequency Spectrum Approach
+
+### What is the Site Frequency Spectrum?
+  
+  The **Site Frequency Spectrum (SFS)** — also called the allele frequency spectrum — counts how many SNPs in your dataset carry their minor allele at each possible frequency. For a sample of *n* diploid individuals (2*n* gene copies), the folded SFS tabulates SNPs from minor allele frequency (MAF) = 1/(2*n*) up to 0.5.
+
+The shape of the SFS carries a **demographic signal**:
+  
+  | Demographic event | Effect on SFS |
+  |:---|:---|
+  | Constant population | Exponential decay (many rare, few common alleles) |
+  | Recent population decline | Excess of intermediate-frequency alleles |
+  | Recent population expansion | Excess of rare alleles (singletons) relative to intermediate frequencies |
+  | Severe bottleneck | Strong excess of singletons |
+  
+  **Coalescent theory** provides the mathematical link between the SFS and historical *Ne*: the rate at which lineages coalesce in the past depends on *Ne* at that time. By fitting a model to the observed SFS, we can infer how *Ne* has changed over time. This is what EPOS and Stairways2 do.
+
+### 2.1 Computing the SFS in the dartRverse
+
+The `gl.sfs` function computes the SFS from a genlight/dartR object. Before computing the SFS, filter your data carefully:
+  
+  - Minimal missing data (the SFS is sensitive to missingness, which distorts allele frequencies)
+- Monomorphic loci removed
+- Good call rates per locus and per individual
+
+```{r sfs-filters, eval=TRUE}
+# Example filtering workflow for real data
+north  <- readRDS(file.path(path.data, "TympoNorth.rds"))
+north2 <- gl.filter.callrate(north,  method = "loc", threshold = 0.95)
+north3 <- gl.filter.rdepth(north2,   lower = 10, upper = 40)
+north4 <- gl.filter.monomorphs(north3)
+north5 <- gl.filter.callrate(north4, threshold = 0.9, method = "ind")
+
+nInd(north5)
+nLoc(north5)
+```
+
+Now compute the SFS from a simulated dataset:
+  
+```{r sfs-compute}
+# Load a simulated dataset with constant Ne = 100
+gl100 <- readRDS(file.path(path.data, "slim_100.rds"))
+
+nInd(gl100)
+nLoc(gl100)
+
+# Folded SFS (default — use when ancestral allele state is unknown)
+sfs_const <- gl.sfs(gl100, folded = TRUE)
+sfs_const
+
+# Unfolded SFS (requires knowledge of the ancestral allele)
+sfs_unfolded <- gl.sfs(gl100, folded = FALSE)
+sfs_unfolded
+```
+
+The `minbinsize` argument controls whether the lowest-frequency bins are included. `minbinsize = 1` retains singletons. In real data, singletons can be inflated by sequencing errors, so `minbinsize = 2` or higher is common for empirical datasets. However, removing too many bins loses demographic information — the lowest bins carry the strongest signal about recent events.
+
+---
+  
+  ### Exercise 3: Exploring the SFS
+  
+```{r ex3-setup, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dartRverse)
+library(ggplot2)
+```
+
+```{r ex3, exercise=TRUE, exercise.setup="ex3-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Using an example data set 
+# Steps:
+#   1. gl.filter.callrate(method = "loc", threshold = 0.95) to filter missing data
+#   2. gl.filter.monomorphs() to remove invariant loci
+#   3. gl.sfs(folded = TRUE) with minbinsize = 1 and then minbinsize = 5
+#
+# QUESTIONS:
+# - What does the SFS look like? Does it suggest recent expansion or contraction?
+# - How does changing minbinsize affect the number of SNPs in the spectrum?
+# - When would you use a higher minbinsize in real data?
+
+glex    <- readRDS(file.path(path.data, "slim_ex.rds"))
+
+
+```
+
+---
+  
+### 2.2 Comparing SFS shapes across demographic scenarios
+  
+Let us compare four simulated datasets to build intuition about SFS shapes under different demographic histories.
+
+```{r sfs-comparison}
+# Load four simulated datasets with known demographic histories
+gl100    <- readRDS(file.path(path.data, "slim_100.rds"))
+gldec    <- readRDS(file.path(path.data, "slim_100_50_50yago.rds"))
+glinc    <- readRDS(file.path(path.data, "slim_100_200_50yago.rds"))
+glbottle <- readRDS(file.path(path.data, "slim_100_10_50_50yago_10year.rds"))
+
+# Compute SFS for each scenario
+sfs_const  <- gl.sfs(gl100,    folded = TRUE)
+sfs_dec    <- gl.sfs(gldec,    folded = TRUE)
+sfs_inc    <- gl.sfs(glinc,    folded = TRUE)
+sfs_bottle <- gl.sfs(glbottle, folded = TRUE)
+
+# Combine into a single data frame and plot
+df <- data.frame(
+  x          = 0:50,
+  Constant   = as.numeric(sfs_const),
+  Decline    = as.numeric(sfs_dec),
+  Increase   = as.numeric(sfs_inc),
+  Bottleneck = as.numeric(sfs_bottle)
+)
+
+df_long <- tidyr::pivot_longer(df, -x, names_to = "Scenario", values_to = "Count")
+
+ggplot(df_long, aes(x = x, y = Count)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  facet_wrap(~Scenario, scales = "free_y") +
+  labs(x     = "Minor allele frequency class",
+       y     = "Number of SNPs",
+       title = "SFS shapes under different demographic histories") + ylim(c(0,4000))
+  theme_bw()
+```
+
+Once you can see four different sfs within a panel you can clearly see the effect of historic population sizes. Mind you those data sets 
+
+Differences between SFS shapes can be subtle visually. This is why formal inference methods are needed — human visual comparison of SFS plots is unreliable, especially for mild or recent demographic events. If you have a real dataset it might be a good idea to simulate data for a certain trajectory using your sample sizes and number of SNPs and then compare this to your sfs.
+
+---
+  
+### 2.3 Estimating historical *Ne* with EPOS
+  
+  **EPOS** (Lynch et al. 2019) estimates the historical *Ne* trajectory using a fast semi-analytical optimisation applied to the SFS. We use EPOS in this tutorial because it runs in seconds to minutes rather than the hours required by Stairways2, while producing broadly comparable results.
+
+#### The key parameters: *L* and *mu*
+
+EPOS requires two parameters to place the inferred trajectory on an absolute scale:
+  
+- **L** — the total length of the genome region that was sequenced (base pairs). This is not the number of SNPs, but the total sequence length surveyed — the "opportunity" for mutations to occur.
+- **mu** — the per-site per-generation mutation rate.
+
+These together determine the expected number of mutations per generation:
+  
+  $$x = \mu \times L \times 2 \times N_e$$
+  
+  If *L* or *mu* is wrong, the **shape** of the trajectory is usually preserved but the **absolute axis values** (Ne and generations) will be off. For within-dataset comparisons, the trajectory shape is more robust. For comparing absolute *Ne* across datasets or species, getting *L* and *mu* right is essential.
+
+**For simulated data:** *L* and *mu* are known exactly.
+
+**For DArTseq data:** A common approximation is `L = nLoc * 75 * 200` (loci × tag length ~75 bp × ~200 to account for sampling fraction). Alternatively, *L* can be estimated using Watterson's formula (see Exercise B). Species-specific mutation rates should be used where available; a vertebrate default is often `mu = 1e-8`.
+
+First, download EPOS:
+
+```{r epos-download}
+dir_epos <- gl.download.binary("epos", out.dir = tempdir())
+```
+
+Run EPOS on the constant *Ne* = 100 simulation:
+
+```{r epos-constant}
+L  <- 5e8   # total genome length from simulation (known)
+mu <- 1e-8  # mutation rate from simulation (known)
+
+Ne_epos <- gl.epos(gl100,
+                   epos.path  = path.binaries,
+                   l          = L,
+                   u          = mu,
+                   boot       = 10,
+                   minbinsize = 1)
+
+colnames(Ne_epos) <- c("generation", "low", "Ne_median", "high")
+
+ggplot(Ne_epos, aes(x = generation, y = Ne_median)) +
+  geom_line(colour = "steelblue", linewidth = 1) +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = 0.2, fill = "steelblue") +
+  labs(x     = "Generations ago",
+       y     = "Effective population size (Ne)",
+       title = "EPOS estimate: constant Ne = 100") +
+  theme_bw()
+```
+
+The median should hover around *Ne* = 100 throughout. Confidence intervals widen in the most recent time periods (too few mutations have accumulated for precise estimation) and in the deepest past (the coalescent is poorly resolved by a finite sample).
+
+#### What happens with a wrong *L*?
+
+```{r epos-wrong-L}
+# Common but incorrect approximation: nLoc * 69 bp
+L_wrong <- 69 * nLoc(gl100)
+
+Ne_epos_wrong <- gl.epos(gl100,
+                         epos.path  = path.binaries,
+                         l          = L_wrong,
+                         u          = mu,
+                         boot       = 10,
+                         minbinsize = 1)
+
+colnames(Ne_epos_wrong) <- c("generation", "low", "Ne_median", "high")
+
+ggplot(Ne_epos_wrong, aes(x = generation, y = Ne_median)) +
+  geom_line(colour = "tomato", linewidth = 1) +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = 0.2, fill = "tomato") +
+  labs(x     = "Generations ago",
+       y     = "Ne",
+       title = paste0("EPOS with L = nLoc x 69 = ", L_wrong, " (incorrect)")) +
+  theme_bw()
+```
+
+The trajectory **shape** is preserved, but absolute axis values are badly wrong. Setting *L* too low inflates the inferred *Ne* — the same number of observed mutations must be explained by a smaller genome, implying a larger population. Importantly, the relative pattern of increases and decreases remains informative even when *L* is misspecified.
+
+---
+
+### Exercise 4: Run EPOS on all demographic scenarios
+
+```{r ex4-setup, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dartRverse)
+library(dartR.popgen)
+library(ggplot2)
+library(patchwork)
+```
+
+```{r ex4, exercise=TRUE, exercise.setup="ex4-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Run EPOS on all four simulated datasets (gl100, glinc, gldec, glbottle).
+# Use L = 5e8 and mu = 1e-8 for all four.
+# Plot the four Ne trajectories side by side.
+#
+# QUESTIONS:
+# - Can EPOS correctly identify the direction of demographic change?
+# - How well does it recover the timing of the change?
+# - Which scenario is hardest to recover? Why?
+
+L  <- 5e8
+mu <- 1e-8
+
+gl100    <- readRDS(file.path(path.data, "slim_100.rds"))
+gldec    <- readRDS(file.path(path.data, "slim_100_50_50yago.rds"))
+glinc    <- readRDS(file.path(path.data, "slim_100_200_50yago.rds"))
+glbottle <- readRDS(file.path(path.data, "slim_100_10_50_50yago_10year.rds"))
+
+# Tip: run gl.epos() on each, then use patchwork to plot them together:
+# p1 + p2 + p3 + p4
+
+```
+
+---
+
+### 2.4 A real-data example
+
+Here we apply the full workflow to a real SNP dataset from northern brush-tailed possums (*Trichosurus vulpecula*, Tympo North population). The main difference from simulated data is that *L* must be approximated.
+
+```{r epos-real}
+# Load and filter real data
+north  <- readRDS(file.path(path.data, "TympoNorth.rds"))
+north2 <- gl.filter.callrate(north,  method = "loc", threshold = 0.95)
+north3 <- gl.filter.rdepth(north2,   lower = 10, upper = 40)
+north4 <- gl.filter.monomorphs(north3)
+north5 <- gl.filter.callrate(north4, threshold = 0.9, method = "ind")
+
+nInd(north5)
+nLoc(north5)
+
+# For DArT data: L ~ nLoc * 75 bp * 200
+L_real  <- nLoc(north5) * 75 * 200
+mu_real <- 16.17e-9     # possum-specific estimate
+
+# Run EPOS
+Ne_north <- gl.run.epos(north5,
+                        epos.path  = path.binaries,
+                        L          = L_real,
+                        u          = mu_real,
+                        method     = "greedy",
+                        depth      = 2,
+                        boot       = 5)
+Ne_north$plot
+```
+
+---
+
+### 2.5 Stairways2 — an alternative coalescent method
+
+**Stairways2** (Liu & Fu 2020) is the most widely used method for historical *Ne* inference from the SFS. It uses a machine learning approach to explore the demographic parameter space more thoroughly than EPOS's semi-analytical optimisation, which may give an advantage for complex multi-epoch histories.
+
+The key trade-off is **computational time**: a Stairways2 run that takes 5–60 minutes can be accomplished in seconds with EPOS, and results are often broadly similar. Our recommended workflow is:
+  
+  1. Use **EPOS** for rapid exploration and quality checking
+2. Use **Stairways2** for final publishable results when time allows
+
+Both methods use the **same inputs** (*L*, *mu*, `minbinsize`), so the discussion above applies equally to both, and results are directly comparable.
+
+```{r stairways-run}
+# Stairways2 is slow (5+ minutes) — run and save, then load results
+# Un-comment to actually run:
+# Ne_sw <- gl.stairway2(gl100,
+#                       stairway.path = path.binaries,
+#                       mu            = 1e-8,
+#                       gentime       = 1,
+#                       run           = TRUE,
+#                       nreps         = 30,
+#                       parallel      = 4,
+#                       L             = 5e8,
+#                       minbinsize    = 1)
+# saveRDS(Ne_sw, file.path(path.data, "Ne_sw_gl100.rds"))
+
+# Load pre-computed result
+Ne_sw <- readRDS(file.path(path.data, "Ne_sw_gl100.rds"))
+
+ggplot(Ne_sw, aes(x = year, y = Ne_median)) +
+  geom_line(colour = "steelblue", linewidth = 1) +
+  geom_ribbon(aes(ymin = Ne_2.5., ymax = Ne_97.5.),
+              alpha = 0.2, fill = "steelblue") +
+  labs(x     = "Years ago",
+       y     = "Effective population size (Ne)",
+       title = "Stairways2: constant Ne = 100") +
+  theme_bw()
+```
+
+---
+  
+### Exercise 5: Compare EPOS and Stairways2
+  
+```{r ex5, exercise=TRUE, exercise.setup="ex4-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Load the pre-computed Stairways2 result:
+#   Ne_sw <- readRDS(file.path(path.data, "Ne_sw_gl100.rds"))
+#
+# Run EPOS on the same dataset (gl100, L = 5e8, mu = 1e-8).
+# Plot both trajectories on the same graph for direct comparison.
+#
+# HINT: Stairways2 returns "year" on the x-axis; EPOS returns "generation".
+# If generation time = 1 year they are equivalent.
+#
+# QUESTIONS:
+# - Do EPOS and Stairways2 agree on the general trajectory?
+# - Do the confidence intervals differ in width?
+# - In what circumstances would you prefer Stairways2 over EPOS?
+
+gl100 <- readRDS(file.path(path.data, "slim_100.rds"))
+Ne_sw <- readRDS(file.path(path.data, "Ne_sw_gl100.rds"))
+
+L  <- 5e8
+mu <- 1e-8
+
+# Your code here:
+
+```
+
+---
+  
+## Additional Exercises
+  
+### Exercise A: Apply the full LD *Ne* workflow to a real dataset
+  
+```{r exA-setup, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dartRverse)
+library(dartR.popgen)
+library(ggplot2)
+```
+
+```{r exA, exercise=TRUE, exercise.setup="exA-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Using possums.gl, choose two populations of contrasting size or history.
+# Run the full LD Ne workflow:
+#   1. gl.keep.pop() to keep each population separately
+#   2. gl.LDNe() with critical = c(0, 0.05)
+# Compare the Ne estimates for the two populations.
+#
+# QUESTIONS:
+# - Which population has the lower Ne?
+# - What does a low Ne imply for conservation management of that population?
+# - Do the Ne estimates change notably between critical = 0 and critical = 0.05?
+
+dir_ne <- gl.download.binary("neestimator", out.dir = tempdir())
+
+# Your code here:
+
+```
+
+---
+  
+### Exercise B: Estimating *L* from Watterson's estimator
+  
+```{r exB-setup, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dartRverse)
+library(dartR.popgen)
+```
+
+```{r exB, exercise=TRUE, exercise.setup="exB-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# When L is unknown, it can be estimated from Watterson's theta.
+# The formula is:
+#   L = sum(sfs[-1]) / (4 * n * mu * a_n)
+# where a_n = sum(1/i for i = 1 to 2n-1) is the Watterson normalisation constant,
+# n is the number of individuals, and mu is the mutation rate.
+#
+# Use this formula to estimate L for the sim50 dataset (true L = 5e8),
+# then run EPOS with L_est and compare to the result with the true L.
+
+sim50 <- gl.sim.Neconst(ninds = 50, nlocs = 3000)
+for (i in 1:5) sim50 <- gl.sim.offspring(sim50, sim50, noffpermother = 1)
+
+mu <- 1e-8
+n  <- nInd(sim50)
+
+sfs <- gl.sfs(sim50)
+
+# Watterson normalisation constant
+a_n <- sum(1 / (1:(2*n - 1)))
+a_n
+
+# Estimate L using Watterson's formula
+L_est <- sum(sfs[-1]) / (4 * n * mu * a_n)
+L_est  # how close is this to the true L = 5e8?
+
+# Now run EPOS with L_est and compare to the true-L run
+# dir_epos <- gl.download.binary("epos", out.dir = tempdir())
+# Ne_est  <- gl.run.epos(sim50, epos.path = dir_epos, L = L_est,   u = mu, boot = 10)
+# Ne_true <- gl.run.epos(sim50, epos.path = dir_epos, L = 5e8,     u = mu, boot = 10)
+
+# QUESTIONS:
+# - How accurate is the Watterson estimate of L?
+# - How much does the resulting Ne trajectory differ between L_est and the true L?
+
+```
+
+---
+  
+## Winding Up
+  
+### Discussion Questions
+  
+  1. You have a threatened frog species with *Nc* = 2000 adults and an LD *Ne* estimate of 80. What does the large *Nc*/*Ne* ratio imply about the species' biology? What management actions might you consider?
+
+2. A coalescent *Ne* analysis shows a wolf population had *Ne* ~ 10,000 during the Pleistocene, declining to ~500 in the last 200 years. An LD *Ne* estimate from current samples gives *Ne* = 40. Are these estimates contradictory? What is each capturing?
+
+3. You run EPOS on two populations of the same species. Both show similar trajectory shapes but the axis values differ by a factor of three. Before concluding the populations have genuinely different histories, what alternative explanations should you rule out?
+
+4. Why might singletons be removed (`minbinsize = 2` or higher) in empirical SFS-based analyses of real data? What biological information do you lose by removing them?
+
+5. A colleague argues that Stairways2 is always preferable to EPOS because it uses a more sophisticated optimisation. When would you disagree, and why?
+
+### Where Have We Come?
+
+In this session we have covered:
+
+- The definition of *Ne* and why *Ne* < *Nc* in real populations — and why this matters for conservation
+- The three major classes of *Ne* estimator: drift *Ne*, LD *Ne*, and coalescent *Ne*, each measuring the same underlying concept at different timescales
+- The LD-based contemporary *Ne* using `gl.LDNe`, with emphasis on MAF filtering (`critical`), the Waples correction for genomic data, and the interpretation of *Inf* estimates
+- The Site Frequency Spectrum (SFS): what it is, how to compute it with `gl.sfs`, and what demographic signals its shape contains
+- Historical *Ne* inference using **EPOS** — fast and practical for exploratory work — including the critical role of *L* and *mu* in determining absolute versus relative trajectory estimates
+- The relationship between EPOS and **Stairways2**, and when each is appropriate
+
+---
+
+## Further Reading
+
+- Franklin, I. R. (1980). Evolutionary change in small populations. In: Soule, M. E. & Wilcox, B. A. (eds) *Conservation Biology: An Evolutionary-Ecological Perspective*. Sinauer, Sunderland.
+- Waples, R. S. (2006). A bias correction for estimates of effective population size based on linkage disequilibrium at unlinked gene loci. *Conservation Genetics* 7: 167–184.
+- Waples, R. K. et al. (2016). Estimating contemporary effective population size in non-model species using linkage disequilibrium across thousands of loci. *Heredity* 117: 233–240.
+- Lynch, M. et al. (2019). Inference of historical population-size changes with allele-frequency data. *G3: Genes, Genomes, Genetics* 9: 2501–2512. [EPOS]
+- Liu, X. & Fu, Y.-X. (2020). Stairway Plot 2: demographic history inference with folded SNP frequency spectra. *Genome Biology* 21: 280. [Stairways2]
+- Frankham, R. (1995). Effective population size/adult population size ratios in wildlife: a review. *Genetics Research* 66: 95–107.
+- Hoban, S. et al. (2022). Global genetic diversity status and trends: towards a suite of essential biodiversity variables (EBVs) for genetic composition. *Biological Reviews* 97: 1511–1538.
