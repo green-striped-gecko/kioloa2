@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Elise Furlan">
-<meta name="description" content="W14 SNP panels">
+<meta name="author" content="Elise Furlan, Bernd Gruber &amp; collaborators">
+<meta name="description" content="W14 SNP panel selection for conservation genetics">
 
-<title>14&nbsp; W14 SNP panels – Analysing Genomic Data with dartRverse</title>
+<title>14&nbsp; W14 SNP that Matter – Analysing Genomic Data with dartRverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../inst/tutorials/W14/W14.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP panels</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../inst/tutorials/W14/W14.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP that Matter</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -241,7 +241,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../inst/tutorials/W14/W14.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP panels</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP that Matter</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -266,22 +266,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#w14-snp-panels" id="toc-w14-snp-panels" class="nav-link active" data-scroll-target="#w14-snp-panels">W14 SNP panels</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
-  <ul>
+  <li><a href="#w14-snp-that-matter" id="toc-w14-snp-that-matter" class="nav-link active" data-scroll-target="#w14-snp-that-matter">W14 SNP that Matter</a></li>
+  <li><a href="#session-presenters" id="toc-session-presenters" class="nav-link" data-scroll-target="#session-presenters">Session presenters</a></li>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
-  <li><a href="#prerquisites" id="toc-prerquisites" class="nav-link" data-scroll-target="#prerquisites">Prerquisites</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading">Additional reading</a></li>
-  </ul></li>
-  <li><a href="#topic" id="toc-topic" class="nav-link" data-scroll-target="#topic">Topic</a></li>
-  <li><a href="#worked-ex" id="toc-worked-ex" class="nav-link" data-scroll-target="#worked-ex">Worked Ex:</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#winding-up" id="toc-winding-up" class="nav-link" data-scroll-target="#winding-up">Winding up</a>
+  <li><a href="#context-why-snp-panels" id="toc-context-why-snp-panels" class="nav-link" data-scroll-target="#context-why-snp-panels">Context: Why SNP panels?</a>
   <ul>
-  <li><a href="#discussion-time" id="toc-discussion-time" class="nav-link" data-scroll-target="#discussion-time">Discussion Time</a></li>
-  <li><a href="#where-have-we-come" id="toc-where-have-we-come" class="nav-link" data-scroll-target="#where-have-we-come">Where have we come?</a></li>
+  <li><a href="#typical-conservation-use-cases" id="toc-typical-conservation-use-cases" class="nav-link" data-scroll-target="#typical-conservation-use-cases">Typical conservation use-cases</a></li>
   </ul></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#data-for-this-tutorial" id="toc-data-for-this-tutorial" class="nav-link" data-scroll-target="#data-for-this-tutorial">Data for this tutorial</a></li>
+  <li><a href="#part-1-decide-what-the-panel-is-for" id="toc-part-1-decide-what-the-panel-is-for" class="nav-link" data-scroll-target="#part-1-decide-what-the-panel-is-for">Part 1 — Decide what the panel is for</a>
+  <ul>
+  <li><a href="#panel-goal-design-choices" id="toc-panel-goal-design-choices" class="nav-link" data-scroll-target="#panel-goal-design-choices">Panel goal → design choices</a></li>
+  </ul></li>
+  <li><a href="#part-2-quality-filtering-workflow-worked-example" id="toc-part-2-quality-filtering-workflow-worked-example" class="nav-link" data-scroll-target="#part-2-quality-filtering-workflow-worked-example">Part 2 — Quality filtering workflow (worked example)</a>
+  <ul>
+  <li><a href="#step-1-ensure-adequate-sample-sizes-per-population" id="toc-step-1-ensure-adequate-sample-sizes-per-population" class="nav-link" data-scroll-target="#step-1-ensure-adequate-sample-sizes-per-population">Step 1 — Ensure adequate sample sizes per population</a></li>
+  <li><a href="#step-2-remove-loci-with-population-specific-all-na" id="toc-step-2-remove-loci-with-population-specific-all-na" class="nav-link" data-scroll-target="#step-2-remove-loci-with-population-specific-all-na">Step 2 — Remove loci with population-specific all-NA</a></li>
+  <li><a href="#step-3-call-rate-filtering" id="toc-step-3-call-rate-filtering" class="nav-link" data-scroll-target="#step-3-call-rate-filtering">Step 3 — Call-rate filtering</a></li>
+  <li><a href="#step-4-minor-allele-count-frequency-filtering" id="toc-step-4-minor-allele-count-frequency-filtering" class="nav-link" data-scroll-target="#step-4-minor-allele-count-frequency-filtering">Step 4 — Minor allele count / frequency filtering</a></li>
+  <li><a href="#step-5-optional-but-recommended-sequence-length" id="toc-step-5-optional-but-recommended-sequence-length" class="nav-link" data-scroll-target="#step-5-optional-but-recommended-sequence-length">Step 5 (optional but recommended) — Sequence length</a></li>
+  <li><a href="#step-6-optional-alignment-quality-to-a-reference-genome" id="toc-step-6-optional-alignment-quality-to-a-reference-genome" class="nav-link" data-scroll-target="#step-6-optional-alignment-quality-to-a-reference-genome">Step 6 (optional) — Alignment quality to a reference genome</a></li>
+  <li><a href="#exercise-2-explore-the-impact-of-qc-thresholds" id="toc-exercise-2-explore-the-impact-of-qc-thresholds" class="nav-link" data-scroll-target="#exercise-2-explore-the-impact-of-qc-thresholds">Exercise 2 — Explore the impact of QC thresholds</a></li>
+  </ul></li>
+  <li><a href="#part-3-selecting-informative-snps" id="toc-part-3-selecting-informative-snps" class="nav-link" data-scroll-target="#part-3-selecting-informative-snps">Part 3 — Selecting informative SNPs</a>
+  <ul>
+  <li><a href="#panel-selection-strategies-in-gl.select.panel" id="toc-panel-selection-strategies-in-gl.select.panel" class="nav-link" data-scroll-target="#panel-selection-strategies-in-gl.select.panel">Panel selection strategies in <code>gl.select.panel()</code></a></li>
+  <li><a href="#worked-example-select-a-50-snp-panel-using-dapc" id="toc-worked-example-select-a-50-snp-panel-using-dapc" class="nav-link" data-scroll-target="#worked-example-select-a-50-snp-panel-using-dapc">Worked example — Select a 50 SNP panel using DAPC</a></li>
+  <li><a href="#evaluate-the-panel-does-it-recover-fst" id="toc-evaluate-the-panel-does-it-recover-fst" class="nav-link" data-scroll-target="#evaluate-the-panel-does-it-recover-fst">Evaluate the panel — does it recover FST?</a></li>
+  <li><a href="#exercise-3-build-your-own-snp-panel-and-evaluate-it" id="toc-exercise-3-build-your-own-snp-panel-and-evaluate-it" class="nav-link" data-scroll-target="#exercise-3-build-your-own-snp-panel-and-evaluate-it">Exercise 3 — Build <em>your own</em> SNP panel and evaluate it</a></li>
+  </ul></li>
+  <li><a href="#part-4-replicate-panels-and-robustness" id="toc-part-4-replicate-panels-and-robustness" class="nav-link" data-scroll-target="#part-4-replicate-panels-and-robustness">Part 4 — Replicate panels and robustness</a>
+  <ul>
+  <li><a href="#why-replicate" id="toc-why-replicate" class="nav-link" data-scroll-target="#why-replicate">Why replicate?</a>
+  <ul class="collapse">
+  <li><a href="#a-simple-replicate-loop-example" id="toc-a-simple-replicate-loop-example" class="nav-link" data-scroll-target="#a-simple-replicate-loop-example">A simple replicate loop (example)</a></li>
+  </ul></li>
+  <li><a href="#exercise-4-panel-stability" id="toc-exercise-4-panel-stability" class="nav-link" data-scroll-target="#exercise-4-panel-stability">Exercise 4 — Panel stability</a></li>
+  </ul></li>
+  <li><a href="#part-5-wrap-up-practical-checklist" id="toc-part-5-wrap-up-practical-checklist" class="nav-link" data-scroll-target="#part-5-wrap-up-practical-checklist">Part 5 — Wrap-up: practical checklist</a>
+  <ul>
+  <li><a href="#a-pragmatic-snp-panel-checklist" id="toc-a-pragmatic-snp-panel-checklist" class="nav-link" data-scroll-target="#a-pragmatic-snp-panel-checklist">A pragmatic SNP panel checklist</a></li>
+  </ul></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -290,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP panels</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP that Matter</span></h1>
 </div>
 
 
@@ -300,7 +328,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Elise Furlan </p>
+             <p>Elise Furlan, Bernd Gruber &amp; collaborators </p>
           </div>
   </div>
     
@@ -319,56 +347,421 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="w14-snp-panels" class="level2">
-<h2 class="anchored" data-anchor-id="w14-snp-panels">W14 SNP panels</h2>
+<section id="w14-snp-that-matter" class="level2">
+<h2 class="anchored" data-anchor-id="w14-snp-that-matter">W14 SNP that Matter</h2>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="learning-outcomes" class="level3">
-<h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
-<p>What is the goal of this session? What will participants learn?</p>
+<section id="session-presenters" class="level2">
+<h2 class="anchored" data-anchor-id="session-presenters">Session presenters</h2>
+<p><img src="images/Presenters5.png" class="img-fluid"></p>
+<hr>
 </section>
-<section id="prerquisites" class="level3">
-<h3 class="anchored" data-anchor-id="prerquisites">Prerquisites</h3>
-<p>What prior knowledge do they need?</p>
-</section>
-<section id="workflow" class="level3">
-<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
-<p>What is the structure of the session?</p>
-</section>
-<section id="additional-reading" class="level3">
-<h3 class="anchored" data-anchor-id="additional-reading">Additional reading</h3>
-<p>Anything else you want to add?</p>
-</section>
-</section>
-<section id="topic" class="level2">
-<h2 class="anchored" data-anchor-id="topic">Topic</h2>
-<p>Brief recap of the topic, relating back to the presentation.</p>
-</section>
-<section id="worked-ex" class="level2">
-<h2 class="anchored" data-anchor-id="worked-ex">Worked Ex:</h2>
-<p>Worked example that everyone steps through together - simple example applying the methods</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We show them the code to run</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>Throughout this session, we will discuss the utility and functionality of SNP panels and when they offer a practical alternative to genome wide SNP datasets. We will discuss how SNP panel selection can target SNPs based on different criteria, which will impact the utility of the SNP panel to identify various population genetic metrics and consequently, their utility to address different conservation questions.</p>
+<p>By the end of this session you should be able to:</p>
 <ul>
-<li>dot points</li>
-<li>for different steps</li>
+<li>Explain <strong>why</strong> we use reduced SNP panels in conservation genetics (cost, logistics, speed, monitoring)</li>
+<li>Define a panel goal (e.g.&nbsp;<strong>population assignment / structure</strong>, <strong>relatedness / parentage</strong>, <strong>individual ID</strong>, <strong>sex-linked</strong>, <strong>hybrid detection</strong>, <strong>adaptive markers</strong>)</li>
+<li>Apply a <strong>quality-control workflow</strong> for panel design (missingness, call rate, MAF, sequence length, alignment quality)</li>
+<li>Use <code>gl.select.panel()</code> to create panels using alternative strategies (e.g.&nbsp;<code>dapc</code>, <code>random</code>, <code>pic</code>)</li>
+<li>Use <code>gl.check.panel()</code> to evaluate how well a panel recovers a target parameter (e.g.&nbsp;<strong>FST</strong>)</li>
+<li>Design and compare <strong>replicate panels</strong> (stability / robustness)</li>
 </ul>
+<hr>
 </section>
-<section id="winding-up" class="level2">
-<h2 class="anchored" data-anchor-id="winding-up">Winding up</h2>
-<section id="discussion-time" class="level3">
-<h3 class="anchored" data-anchor-id="discussion-time">Discussion Time</h3>
-<p>Add some questions to help group discussion.</p>
+<section id="context-why-snp-panels" class="level2">
+<h2 class="anchored" data-anchor-id="context-why-snp-panels">Context: Why SNP panels?</h2>
+<p>Genome-wide SNP datasets are fantastic for discovery and deep inference, but monitoring programs often need something else:</p>
+<ul>
+<li>cheaper per sample</li>
+<li>robust on low-quality DNA (sometimes)</li>
+<li>repeatable across years</li>
+<li>scalable (lots of samples, many timepoints)</li>
+<li>quick turnaround for management decisions</li>
+</ul>
+<section id="typical-conservation-use-cases" class="level3">
+<h3 class="anchored" data-anchor-id="typical-conservation-use-cases">Typical conservation use-cases</h3>
+<ul>
+<li>assigning individuals to management units</li>
+<li>detecting illegal translocations / admixture</li>
+<li>parentage and pedigree tracking (captive or reintroduction programs)</li>
+<li>long-term genetic monitoring (He, FIS, FST trends)</li>
+<li>hybridisation detection</li>
+<li>sex-linked markers for skewed sex ratios / demographic monitoring</li>
+</ul>
+<hr>
 </section>
-<section id="where-have-we-come" class="level3">
-<h3 class="anchored" data-anchor-id="where-have-we-come">Where have we come?</h3>
-<p>Summarise what they should have learnt.</p>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>You should be comfortable with: - reading a <code>genlight</code> object - basic filtering in the dartRverse (<code>gl.filter.*</code>) - interpreting simple reports (call rate, missingness, MAF)</p>
+<p>No prior experience with panel design is assumed.</p>
+<hr>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpmisc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="data-for-this-tutorial" class="level2">
+<h2 class="anchored" data-anchor-id="data-for-this-tutorial">Data for this tutorial</h2>
+<p>We use an example SNP dataset (pre-filtered genome-wide SNPs), plus a version that already includes BLAST alignment metrics.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rfbe      <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(path.data, <span class="st">"rfbe.rds"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rfbe20_5  <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(path.data, <span class="st">"rfbe20_5_blast.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Interpretation questions</strong> - How many loci / individuals do we start with? - How many populations? - Are some populations very small? (this matters for the panel goal)</p>
+<hr>
+</section>
+<section id="part-1-decide-what-the-panel-is-for" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-decide-what-the-panel-is-for">Part 1 — Decide what the panel is for</h2>
+<section id="panel-goal-design-choices" class="level3">
+<h3 class="anchored" data-anchor-id="panel-goal-design-choices">Panel goal → design choices</h3>
+<p>A panel for <strong>population structure (FST / assignment)</strong> often benefits from: - loci that <em>differentiate</em> populations (high between-pop variance) - moderate allele frequencies (informative, not singletons) - broad coverage across the genome (avoid tight linkage when possible)</p>
+<p>A panel for <strong>relatedness / parentage</strong> often benefits from: - high heterozygosity loci (high information per locus) - more loci than structure panels (often) - careful QC to minimise genotyping error</p>
+<p>A panel for <strong>sex-linked SNPs</strong> benefits from: - strong sex association - robust genotype calls - validation on independent samples</p>
+<blockquote class="blockquote">
+<p>In this hands-on we focus on a <strong>structure / assignment</strong> panel of <strong>50 SNPs</strong>, and evaluate it via how well it recovers <strong>pairwise FST</strong>.</p>
+</blockquote>
+<hr>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Exercise 1 (discussion)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pick <strong>one</strong> purpose for your panel. Write down:</p>
+<ol type="1">
+<li>Purpose (choose one): structure / assignment, relatedness, individual ID, hybridisation, sex-linked, adaptive, other</li>
+<li>What is the key output you care about? (e.g.&nbsp;FST matrix, assignment accuracy, PID, relatedness error)</li>
+<li>What is a realistic budgeted panel size? (e.g.&nbsp;50, 96, 192, 384 loci)</li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-2-quality-filtering-workflow-worked-example" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-quality-filtering-workflow-worked-example">Part 2 — Quality filtering workflow (worked example)</h2>
+<section id="step-1-ensure-adequate-sample-sizes-per-population" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-ensure-adequate-sample-sizes-per-population">Step 1 — Ensure adequate sample sizes per population</h3>
+<p>Many panel methods implicitly assume you have enough individuals in each population to estimate allele frequencies reliably.</p>
+<p>We keep populations with <strong>&gt; 10 individuals</strong>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tt     <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">pop</span>(rfbe))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pop20  <span class="ot">&lt;-</span> <span class="fu">names</span>(tt)[tt <span class="sc">&gt;</span> <span class="dv">10</span>]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>rfbe20 <span class="ot">&lt;-</span> <span class="fu">gl.keep.pop</span>(rfbe, <span class="at">pop.list =</span> pop20)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(rfbe20))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="step-2-remove-loci-with-population-specific-all-na" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-remove-loci-with-population-specific-all-na">Step 2 — Remove loci with population-specific all-NA</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rfbe20_1 <span class="ot">&lt;-</span> <span class="fu">gl.filter.allna</span>(rfbe20, <span class="at">by.pop =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="step-3-call-rate-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-call-rate-filtering">Step 3 — Call-rate filtering</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rfbe20_2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(rfbe20_1, <span class="at">threshold =</span> <span class="fl">0.99</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="step-4-minor-allele-count-frequency-filtering" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-minor-allele-count-frequency-filtering">Step 4 — Minor allele count / frequency filtering</h3>
+<p>For panel design, rare alleles can be: - uninformative for many tasks - more sensitive to genotyping error - unstable across timepoints</p>
+<p>Here we use a <strong>minor allele count</strong> threshold of 5:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rfbe20_3 <span class="ot">&lt;-</span> <span class="fu">gl.filter.maf</span>(rfbe20_2, <span class="at">threshold =</span> <span class="dv">5</span>, <span class="at">by.pop =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(rfbe20_3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="step-5-optional-but-recommended-sequence-length" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-optional-but-recommended-sequence-length">Step 5 (optional but recommended) — Sequence length</h3>
+<p>Panel development often requires flanking sequence (primer/probe design).<br>
+We keep loci with trimmed sequences of length <strong>≥ 30</strong>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>index    <span class="ot">&lt;-</span> <span class="fu">nchar</span>(<span class="fu">as.character</span>(rfbe20_3<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>TrimmedSequence)) <span class="sc">&gt;</span> <span class="dv">29</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rfbe20_4 <span class="ot">&lt;-</span> rfbe20_3[, index]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(rfbe20_4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="step-6-optional-alignment-quality-to-a-reference-genome" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-optional-alignment-quality-to-a-reference-genome">Step 6 (optional) — Alignment quality to a reference genome</h3>
+<p>If you have a reference genome, you can BLAST trimmed sequences to check for: - strong matches (bitscore) - uniqueness (avoid multi-mapping) - alignment length / mismatches</p>
+<p>In this tutorial we load a pre-computed BLAST-annotated dataset:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>rfbe20_5 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">file.path</span>(path.data, <span class="st">"rfbe20_5_blast.rds"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Filter by a bitscore threshold (example: <strong>≥ 100</strong>):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>index <span class="ot">&lt;-</span> rfbe20_5<span class="sc">@</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>bitscore <span class="sc">&gt;=</span> <span class="dv">100</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>index <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(index), <span class="cn">FALSE</span>, index)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>rfbe20_6 <span class="ot">&lt;-</span> rfbe20_5[, index]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(rfbe20_6)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Order individuals by population (some panel methods benefit from this)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>rfbe20_6 <span class="ot">&lt;-</span> rfbe20_6[<span class="fu">order</span>(<span class="fu">pop</span>(rfbe20_6)), ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="exercise-2-explore-the-impact-of-qc-thresholds" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-explore-the-impact-of-qc-thresholds">Exercise 2 — Explore the impact of QC thresholds</h3>
+<div class="cell" data-exercise="true" data-exercise.cap="Exercise 2: QC thresholds (call rate and MAF)">
+<div class="tutorial-exercise" data-label="ex2" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0" data-pipe="|>">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Goal: Explore how QC thresholds change the number of loci you have available for panel design.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Try call-rate thresholds of 0.95, 0.98, 0.99.</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Try minor allele count thresholds of 2, 5, 10.</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Record how many loci remain after each combination.</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Tip: Start from rfbe20_1 each time so comparisons are fair.</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Example template:</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># cr &lt;- 0.99</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># mac &lt;- 5</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tmp &lt;- gl.filter.callrate(rfbe20_1, threshold = cr)</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tmp &lt;- gl.filter.maf(tmp, threshold = mac, by.pop = FALSE)</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># nLoc(tmp)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"Exercise 2: QC thresholds (call rate and MAF)"}</script>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Reflection
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>When you increase call-rate or MAF thresholds, what happens to locus count?</li>
+<li>Why might stricter QC improve panel robustness (even if you lose loci)?</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-3-selecting-informative-snps" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-selecting-informative-snps">Part 3 — Selecting informative SNPs</h2>
+<section id="panel-selection-strategies-in-gl.select.panel" class="level3">
+<h3 class="anchored" data-anchor-id="panel-selection-strategies-in-gl.select.panel">Panel selection strategies in <code>gl.select.panel()</code></h3>
+<p>Different methods target different signals. For example:</p>
+<ul>
+<li><code>dapc</code>: picks loci most informative for discriminating groups (good for structure / assignment)</li>
+<li><code>pic</code> / <code>picdart</code>: picks loci with high information content (often useful broadly)</li>
+<li><code>hafall</code> / <code>hafpop</code>: targets high allele frequency loci (sometimes helps genotyping stability)</li>
+<li><code>pahigh</code>: private allele patterns</li>
+<li><code>random</code>: a baseline comparison</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>methods <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dapc"</span>, <span class="st">"random"</span>, <span class="st">"pahigh"</span>, <span class="st">"monopop"</span>, <span class="st">"stratified"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"hafall"</span>, <span class="st">"hafpop"</span>, <span class="st">"pic"</span>, <span class="st">"picdart"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>methods</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="worked-example-select-a-50-snp-panel-using-dapc" class="level3">
+<h3 class="anchored" data-anchor-id="worked-example-select-a-50-snp-panel-using-dapc">Worked example — Select a 50 SNP panel using DAPC</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>panel_dapc <span class="ot">&lt;-</span> <span class="fu">gl.select.panel</span>(rfbe20_6, <span class="at">method =</span> <span class="st">"dapc"</span>, <span class="at">nl =</span> <span class="dv">50</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(panel_dapc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="evaluate-the-panel-does-it-recover-fst" class="level3">
+<h3 class="anchored" data-anchor-id="evaluate-the-panel-does-it-recover-fst">Evaluate the panel — does it recover FST?</h3>
+<p>We compare the panel-derived FST to the full dataset FST.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>out_dapc <span class="ot">&lt;-</span> <span class="fu">gl.check.panel</span>(panel_dapc, rfbe20_6, <span class="at">parameter =</span> <span class="st">"Fst"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>out_dapc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now compare to a random panel:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>panel_random <span class="ot">&lt;-</span> <span class="fu">gl.select.panel</span>(rfbe20_6, <span class="at">method =</span> <span class="st">"random"</span>, <span class="at">nl =</span> <span class="dv">50</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>out_random   <span class="ot">&lt;-</span> <span class="fu">gl.check.panel</span>(panel_random, rfbe20_6, <span class="at">parameter =</span> <span class="st">"Fst"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>out_random</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Interpretation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A good structure panel should: - preserve the <em>ranking</em> of pairwise FST values - keep values close to the full dataset (small error) - be stable across replicate panels (not overly “lucky”)</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercise-3-build-your-own-snp-panel-and-evaluate-it" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-build-your-own-snp-panel-and-evaluate-it">Exercise 3 — Build <em>your own</em> SNP panel and evaluate it</h3>
+<div class="cell" data-exercise="true" data-exercise.cap="Exercise 3: Select your own SNP panel (method + size)">
+<div class="tutorial-exercise" data-label="ex3" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0" data-pipe="|>">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your task:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Choose a panel method (e.g. "dapc", "pic", "picdart", "hafpop", "random")</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Choose a panel size (nl), e.g. 25, 50, 100</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Create the panel</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Check how well it recovers FST relative to the full dataset</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Record:</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># - method</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># - nl</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># - your interpretation of the output (good / ok / poor)</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>my_method <span class="ot">&lt;-</span> <span class="st">"pic"</span>   <span class="co"># change me</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>my_nl     <span class="ot">&lt;-</span> <span class="dv">50</span>      <span class="co"># change me</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>my_panel <span class="ot">&lt;-</span> <span class="fu">gl.select.panel</span>(rfbe20_6, <span class="at">method =</span> my_method, <span class="at">nl =</span> my_nl)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="fu">nLoc</span>(my_panel)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>my_eval <span class="ot">&lt;-</span> <span class="fu">gl.check.panel</span>(my_panel, rfbe20_6, <span class="at">parameter =</span> <span class="st">"Fst"</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>my_eval</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"Exercise 3: Select your own SNP panel (method + size)"}</script>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Challenge
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Try the same method at nl = 25, 50, 100. How many loci do you need before the panel becomes “good enough” for your management question?</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-4-replicate-panels-and-robustness" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-replicate-panels-and-robustness">Part 4 — Replicate panels and robustness</h2>
+<section id="why-replicate" class="level3">
+<h3 class="anchored" data-anchor-id="why-replicate">Why replicate?</h3>
+<p>Some selection methods can be sensitive to randomness and sampling variation.<br>
+To avoid overconfidence from a single “lucky” panel, we generate replicate panels and compare performance.</p>
+<section id="a-simple-replicate-loop-example" class="level4">
+<h4 class="anchored" data-anchor-id="a-simple-replicate-loop-example">A simple replicate loop (example)</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">20</span>                <span class="co"># number of replicate panels</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>nl <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>method <span class="ot">&lt;-</span> <span class="st">"dapc"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>evals <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">"list"</span>, B)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  p   <span class="ot">&lt;-</span> <span class="fu">gl.select.panel</span>(rfbe20_6, <span class="at">method =</span> method, <span class="at">nl =</span> nl)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  ev  <span class="ot">&lt;-</span> <span class="fu">gl.check.panel</span>(p, rfbe20_6, <span class="at">parameter =</span> <span class="st">"Fst"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  evals[[b]] <span class="ot">&lt;-</span> ev</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># You can now summarise evals (depends on what gl.check.panel returns in your version)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="exercise-4-panel-stability" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4-panel-stability">Exercise 4 — Panel stability</h3>
+<div class="cell" data-exercise="true" data-exercise.cap="Exercise 4: Replicate panels and compare stability">
+<div class="tutorial-exercise" data-label="ex4" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0" data-pipe="|>">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Goal: Compare stability of TWO methods.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Pick two methods (e.g. "dapc" vs "pic" OR "dapc" vs "random")</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2) Generate B replicate panels for each method</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3) Evaluate each with gl.check.panel(parameter="Fst")</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 4) Decide: which method is more stable and why?</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>B  <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>nl <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="st">"dapc"</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="st">"random"</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your replicate code here (use the template above).</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Tip: store results in a data.frame with columns: method, replicate, metric(s)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"Exercise 4: Replicate panels and compare stability"}</script>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">None</span>Discussion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a monitoring program, robustness matters. A method that is <em>slightly</em> worse on average but <em>more stable</em> may be preferable.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="part-5-wrap-up-practical-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-wrap-up-practical-checklist">Part 5 — Wrap-up: practical checklist</h2>
+<section id="a-pragmatic-snp-panel-checklist" class="level3">
+<h3 class="anchored" data-anchor-id="a-pragmatic-snp-panel-checklist">A pragmatic SNP panel checklist</h3>
+<ol type="1">
+<li><strong>Define the primary purpose</strong> (structure vs parentage vs ID vs sex-linked…)</li>
+<li><strong>QC hard</strong> (missingness, call rate, MAC/MAF)</li>
+<li><strong>Ensure adequate sample sizes</strong> for allele frequency estimation</li>
+<li><strong>Consider lab constraints</strong> (sequence length, alignment uniqueness, flanking sequence)</li>
+<li><strong>Select candidate panels</strong> (multiple methods + sizes)</li>
+<li><strong>Evaluate against the full dataset</strong> (target parameter)</li>
+<li><strong>Test stability</strong> (replicate panels)</li>
+<li><strong>Validate on independent samples</strong> (ideally)</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="further-reading" class="level2">
+<h2 class="anchored" data-anchor-id="further-reading">Further reading</h2>
+<p>Armstrong, E. E., Li, C., Campana, M. G., Ferrari, T., Kelley, J. L., Petrov, D. A., . . . Mooney, J. A. (2025). A Pipeline and Recommendations for Population and Individual Diagnostic SNP Selection in Non-Model Species. Molecular Ecology Resources, 25, e14048. https://doi.org/10.1111/1755-0998.14048.</p>
+<p>Beacham T.D., Wallace C., MacConnachie C., Jonsen K., McIntosh B., Candy J.R., and Withler R.E. (2018). Population and individual identification of Chinook salmon in British Columbia through parentage-based tagging and genetic stock identification with single nucleotide polymorphisms. Canadian Journal of Fisheries and Aquatic Sciences 75: 1096–1105</p>
+<p>Bertola, L. D., Vermaat, M., Lesilau, F., Chege, M., Tumenta, P. N., Sogbohossou, E. A., . . . Vrieling, K. (2022). Whole genome sequencing and the application of a SNP panel reveal primary evolutionary lineages and genomic variation in the lion (Panthera leo). BMC Genomics, 23, 321. 10.1186/s12864-022-08510-y</p>
+<p>Furlan, E. M., Gruber, B., Attard, C. R. M., Wager, R. N. E., Kerezsy, A., Faulks, L. K., . . . Unmack, P. J. (2020). Assessing the benefits and risks of translocations in depauperate species: A theoretical framework with an empirical validation. Journal of Applied Ecology, 57, 831-841. https://doi.org/10.1111/1365-2664.13581</p>
+<p>Jasielczuk, I., Gurgul, A., Szmatoła, T., Radko, A., Majewska, A., Sosin, E., . . . Ząbek, T. (2024). The use of SNP markers for cattle breed identification. Journal of Applied Genetics, 65, 575-589. 10.1007/s13353-024-00857-0</p>
+<p>Kerezsy, A. &amp; Fensham, R. (2013). Conservation of the endangered red-finned blue-eye, Scaturiginichthys vermeilipinnis, and control of alien eastern gambusia, Gambusia holbrooki, in a spring wetland complex. Marine and Freshwater Research, 64, 851–863.</p>
+<p>Magliolo, M., Prost, S., Orozco-Terwengel, P., Burger, P., Kropff, A. S., Kotze, A., . . . Dalton, D. L. (2021). Unlocking the potential of a validated single nucleotide polymorphism array for genomic monitoring of trade in cheetahs (Acinonyx jubatus). Molecular Biology Reports, 48, 171-181. 10.1007/s11033-020-06030-0.</p>
+<p>Ohm, H., Åstrand, J., Ceplitis, A., Bengtsson, D., Hammenhag, C., Chawade, A. &amp; Grimberg, Å. (2024). Novel SNP markers for flowering and seed quality traits in faba bean (Vicia faba L.): characterization and GWAS of a diversity panel. Frontiers in Plant Science, 15, 1348014.</p>
+<p>Quinto-Cortés, C. D., Woerner, A. E., Watkins, J. C. &amp; Hammer, M. F. (2018). Modeling SNP array ascertainment with Approximate Bayesian Computation for demographic inference. Scientific Reports, 8, 10209. 10.1038/s41598-018-28539-y</p>
+<p>Stronen, A. V., Mattucci, F., Fabbri, E., Galaverni, M., Cocchiararo, B., Nowak, C., . . . Caniglia, R. (2022). A reduced SNP panel to trace gene flow across southern European wolf populations and detect hybridization with other Canis taxa. Scientific Reports, 12, 4195. 10.1038/s41598-022-08132-0</p>
+<p>Terrado-Ortuño, N. &amp; May, P. (2025). Forensic DNA phenotyping: a review on SNP panels, genotyping techniques, and prediction models. Forensic Sciences Research, 10, owae013. 10.1093/fsr/owae013</p>
+<p>Von Thaden, A., Nowak, C., Tiesmeyer, A., Reiners, T. E., Alves, P. C., Lyons, L. A., . . . Galián, J. (2020). Applying genomic data in wildlife monitoring: Development guidelines for genotyping degraded samples with reduced single nucleotide polymorphism panels. Molecular ecology resources, 20, 662-680.</p>
+<p>Wehrenberg, G., Tokarska, M., Cocchiararo, B. &amp; Nowak, C. (2024). A reduced SNP panel optimised for non-invasive genetic assessment of a genetically impoverished conservation icon, the European bison. Scientific Reports, 14, 1875. 10.1038/s41598-024-51495-9</p>
+<p>Zenato-Lazzari, G., Figueiró, H. V., Sartor, C. C., Donadio, E., Di Martino, S., Draheim, H. M. &amp; Eizirik, E. (2025). Development of a SNP Panel for Geographic Assignment and Population Monitoring of Jaguars (Panthera onca). Ecology and Evolution, 15, e71465. https://doi.org/10.1002/ece3.71465</p>
+<hr>
 <p>
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::register_http_handlers(session, metadata = NULL)
@@ -386,6 +779,158 @@ learnr:::i18n_observe_tutorial_language(input, session)
 session$onSessionEnded(function() {
         learnr:::event_trigger(session, "session_stop")
       })
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server-start">
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex2-code-editor`)), session)
+output$`tutorial-exercise-ex2-output` <- renderUI({
+  `tutorial-exercise-ex2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex2", global_setup = structure(c("library(learnr)", 
+"knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)"
+), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
+    chunks = list(list(label = "ex2", code = "# Goal: Explore how QC thresholds change the number of loci you have available for panel design.\n#\n# 1) Try call-rate thresholds of 0.95, 0.98, 0.99.\n# 2) Try minor allele count thresholds of 2, 5, 10.\n# 3) Record how many loci remain after each combination.\n#\n# Tip: Start from rfbe20_1 each time so comparisons are fair.\n\n# Example template:\n# cr <- 0.99\n# mac <- 5\n# tmp <- gl.filter.callrate(rfbe20_1, threshold = cr)\n# tmp <- gl.filter.maf(tmp, threshold = mac, by.pop = FALSE)\n# nLoc(tmp)", 
+        opts = list(label = "\"ex2\"", exercise = "TRUE", exercise.cap = "\"Exercise 2: QC thresholds (call rate and MAF)\"", 
+            eval = "FALSE"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 3, 
+        cache.path = "W14_cache/html/", cache.vars = NULL, cache.lazy = TRUE, 
+        dependson = NULL, autodep = FALSE, cache.rebuild = FALSE, 
+        fig.keep = "high", fig.show = "asis", fig.align = "default", 
+        fig.path = "W14_files/figure-html/", dev = "png", dev.args = NULL, 
+        dpi = 192, fig.ext = "png", fig.width = 7L, fig.height = 5L, 
+        fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 672L, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = TRUE, error = FALSE, message = TRUE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, fig.asp = NULL, fenced.echo = FALSE, 
+        ft.shadow = FALSE, exercise.eval = FALSE, label = "ex2", 
+        exercise = TRUE, exercise.cap = "Exercise 2: QC thresholds (call rate and MAF)", 
+        original.params.src = "r ex2, exercise=TRUE, exercise.cap=\"Exercise 2: QC thresholds (call rate and MAF)\", eval=FALSE", 
+        chunk.echo = FALSE, code = c("# Goal: Explore how QC thresholds change the number of loci you have available for panel design.", 
+        "#", "# 1) Try call-rate thresholds of 0.95, 0.98, 0.99.", 
+        "# 2) Try minor allele count thresholds of 2, 5, 10.", 
+        "# 3) Record how many loci remain after each combination.", 
+        "#", "# Tip: Start from rfbe20_1 each time so comparisons are fair.", 
+        "", "# Example template:", "# cr <- 0.99", "# mac <- 5", 
+        "# tmp <- gl.filter.callrate(rfbe20_1, threshold = cr)", 
+        "# tmp <- gl.filter.maf(tmp, threshold = mac, by.pop = FALSE)", 
+        "# nLoc(tmp)"), out.width.px = 672L, out.height.px = 480L, 
+        hash = "W14_cache/html/ex2_f54044958d5b00d60e4f9eb16b5d0a28", 
+        params.src = "r ex2, exercise=TRUE, exercise.cap=\"Exercise 2: QC thresholds (call rate and MAF)\", eval=FALSE", 
+        fig.num = 0, exercise.df_print = "default", exercise.checker = "NULL"), 
+    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
+)))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex3-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex3-code-editor`)), session)
+output$`tutorial-exercise-ex3-output` <- renderUI({
+  `tutorial-exercise-ex3-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex3", global_setup = structure(c("library(learnr)", 
+"knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)"
+), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
+    chunks = list(list(label = "ex3", code = "# Your task:\n# 1) Choose a panel method (e.g. \"dapc\", \"pic\", \"picdart\", \"hafpop\", \"random\")\n# 2) Choose a panel size (nl), e.g. 25, 50, 100\n# 3) Create the panel\n# 4) Check how well it recovers FST relative to the full dataset\n#\n# Record:\n# - method\n# - nl\n# - your interpretation of the output (good / ok / poor)\n\nmy_method <- \"pic\"   # change me\nmy_nl     <- 50      # change me\n\nmy_panel <- gl.select.panel(rfbe20_6, method = my_method, nl = my_nl)\nnLoc(my_panel)\n\nmy_eval <- gl.check.panel(my_panel, rfbe20_6, parameter = \"Fst\")\nmy_eval", 
+        opts = list(label = "\"ex3\"", exercise = "TRUE", exercise.cap = "\"Exercise 3: Select your own SNP panel (method + size)\"", 
+            eval = "FALSE"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 3, 
+        cache.path = "W14_cache/html/", cache.vars = NULL, cache.lazy = TRUE, 
+        dependson = NULL, autodep = FALSE, cache.rebuild = FALSE, 
+        fig.keep = "high", fig.show = "asis", fig.align = "default", 
+        fig.path = "W14_files/figure-html/", dev = "png", dev.args = NULL, 
+        dpi = 192, fig.ext = "png", fig.width = 7L, fig.height = 5L, 
+        fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 672L, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = TRUE, error = FALSE, message = TRUE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, fig.asp = NULL, fenced.echo = FALSE, 
+        ft.shadow = FALSE, exercise.eval = FALSE, label = "ex3", 
+        exercise = TRUE, exercise.cap = "Exercise 3: Select your own SNP panel (method + size)", 
+        original.params.src = "r ex3, exercise=TRUE, exercise.cap=\"Exercise 3: Select your own SNP panel (method + size)\", eval=FALSE", 
+        chunk.echo = FALSE, code = c("# Your task:", "# 1) Choose a panel method (e.g. \"dapc\", \"pic\", \"picdart\", \"hafpop\", \"random\")", 
+        "# 2) Choose a panel size (nl), e.g. 25, 50, 100", "# 3) Create the panel", 
+        "# 4) Check how well it recovers FST relative to the full dataset", 
+        "#", "# Record:", "# - method", "# - nl", "# - your interpretation of the output (good / ok / poor)", 
+        "", "my_method <- \"pic\"   # change me", "my_nl     <- 50      # change me", 
+        "", "my_panel <- gl.select.panel(rfbe20_6, method = my_method, nl = my_nl)", 
+        "nLoc(my_panel)", "", "my_eval <- gl.check.panel(my_panel, rfbe20_6, parameter = \"Fst\")", 
+        "my_eval"), out.width.px = 672L, out.height.px = 480L, 
+        hash = "W14_cache/html/ex3_908134e1df88507986e6f24a070adf29", 
+        params.src = "r ex3, exercise=TRUE, exercise.cap=\"Exercise 3: Select your own SNP panel (method + size)\", eval=FALSE", 
+        fig.num = 0, exercise.df_print = "default", exercise.checker = "NULL"), 
+    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
+)))
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex4-code-editor`)), session)
+output$`tutorial-exercise-ex4-output` <- renderUI({
+  `tutorial-exercise-ex4-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex4", global_setup = structure(c("library(learnr)", 
+"knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)"
+), chunk_opts = list(label = "setup", include = FALSE)), setup = NULL, 
+    chunks = list(list(label = "ex4", code = "# Goal: Compare stability of TWO methods.\n#\n# 1) Pick two methods (e.g. \"dapc\" vs \"pic\" OR \"dapc\" vs \"random\")\n# 2) Generate B replicate panels for each method\n# 3) Evaluate each with gl.check.panel(parameter=\"Fst\")\n# 4) Decide: which method is more stable and why?\n\nset.seed(1)\n\nB  <- 10\nnl <- 50\n\nm1 <- \"dapc\"\nm2 <- \"random\"\n\n# Write your replicate code here (use the template above).\n# Tip: store results in a data.frame with columns: method, replicate, metric(s)", 
+        opts = list(label = "\"ex4\"", exercise = "TRUE", exercise.cap = "\"Exercise 4: Replicate panels and compare stability\"", 
+            eval = "FALSE"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = NULL, solution = NULL, tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 3, 
+        cache.path = "W14_cache/html/", cache.vars = NULL, cache.lazy = TRUE, 
+        dependson = NULL, autodep = FALSE, cache.rebuild = FALSE, 
+        fig.keep = "high", fig.show = "asis", fig.align = "default", 
+        fig.path = "W14_files/figure-html/", dev = "png", dev.args = NULL, 
+        dpi = 192, fig.ext = "png", fig.width = 7L, fig.height = 5L, 
+        fig.env = "figure", fig.cap = NULL, fig.scap = NULL, 
+        fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", out.width = 672L, 
+        out.height = NULL, out.extra = NULL, fig.retina = 2, 
+        external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
+        warning = TRUE, error = FALSE, message = TRUE, render = NULL, 
+        ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
+        include = TRUE, purl = TRUE, fig.asp = NULL, fenced.echo = FALSE, 
+        ft.shadow = FALSE, exercise.eval = FALSE, label = "ex4", 
+        exercise = TRUE, exercise.cap = "Exercise 4: Replicate panels and compare stability", 
+        original.params.src = "r ex4, exercise=TRUE, exercise.cap=\"Exercise 4: Replicate panels and compare stability\", eval=FALSE", 
+        chunk.echo = FALSE, code = c("# Goal: Compare stability of TWO methods.", 
+        "#", "# 1) Pick two methods (e.g. \"dapc\" vs \"pic\" OR \"dapc\" vs \"random\")", 
+        "# 2) Generate B replicate panels for each method", "# 3) Evaluate each with gl.check.panel(parameter=\"Fst\")", 
+        "# 4) Decide: which method is more stable and why?", 
+        "", "set.seed(1)", "", "B  <- 10", "nl <- 50", "", "m1 <- \"dapc\"", 
+        "m2 <- \"random\"", "", "# Write your replicate code here (use the template above).", 
+        "# Tip: store results in a data.frame with columns: method, replicate, metric(s)"
+        ), out.width.px = 672L, out.height.px = 480L, hash = "W14_cache/html/ex4_0509dfb4e539ad159c01ed39354fd8f5", 
+        params.src = "r ex4, exercise=TRUE, exercise.cap=\"Exercise 4: Replicate panels and compare stability\", eval=FALSE", 
+        fig.num = 0, exercise.df_print = "default", exercise.checker = "NULL"), 
+    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
+)))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server-extras">
@@ -430,17 +975,16 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 </p>
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
-{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["5.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["idb-keyvalue"]},{"type":"character","attributes":{},"value":["3.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/idb-keyval"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["idb-keyval-iife-compat.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]}]}
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["5.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["idb-keyvalue"]},{"type":"character","attributes":{},"value":["3.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/idb-keyval"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["idb-keyval-iife-compat.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]}]}
 </script>
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38]}},"value":[{"type":"character","attributes":{},"value":["base","cli","codetools","compiler","datasets","digest","evaluate","fastmap","fontawesome","graphics","grDevices","htmltools","htmlwidgets","httpuv","jquerylib","jsonlite","knitr","later","learnr","lifecycle","magrittr","methods","mime","promises","R6","Rcpp","rlang","rmarkdown","rprojroot","rstudioapi","shiny","stats","tools","utils","withr","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["4.4.1","3.6.3","0.2-20","4.4.1","4.4.1","0.6.37","1.0.1","1.2.0","0.5.3","4.4.1","4.4.1","0.5.8.1","1.6.4","1.6.15","0.1.4","1.8.9","1.49","1.3.2","0.11.5","1.0.4","2.0.3","4.4.1","0.12","1.3.0","2.5.1","1.0.13","1.1.4","2.29","2.0.4","0.17.1","1.9.1","4.4.1","4.4.1","4.4.1","3.0.2","0.49","1.8-4","2.3.10"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171]}},"value":[{"type":"character","attributes":{},"value":["ade4","adegenet","ape","arsenal","backports","base","base64enc","bigassertr","bigparallelr","bigsnpr","bigsparser","bigstatsr","BiocGenerics","bitops","cachem","checkmate","cli","cluster","codetools","colorspace","compiler","cowplot","crayon","dartR.base","dartR.captive","dartR.data","dartR.popgen","dartR.sexlinked","dartR.sim","dartR.spatial","dartRverse","data.table","datasets","devtools","dichromat","digest","dismo","doParallel","doRNG","dotCall64","dplyr","ellipsis","evaluate","fansi","farver","fastmap","fields","flock","fontawesome","foreach","foreign","Formula","fs","furrr","future","gdsfmt","generics","ggdendro","ggplot2","ggpmisc","ggpp","ggrepel","globals","glue","graphics","grDevices","grid","gridExtra","gtable","gtools","haplo.stats","Hmisc","htmlTable","htmltools","htmlwidgets","httpuv","httr","igraph","iterators","jquerylib","jsonlite","knitr","later","lattice","LEA","learnr","lifecycle","listenv","magrittr","maps","MASS","Matrix","MatrixModels","memoise","methods","mgcv","mime","miniUI","multcomp","mvtnorm","nlme","nnet","parallel","parallelly","patchwork","pegas","permute","pillar","pkgbuild","pkgconfig","pkgload","plyr","poisbinom","polspline","polynom","profvis","promises","purrr","quantreg","R6","raster","RColorBrewer","Rcpp","RCurl","remotes","reshape2","rlang","rmarkdown","rmio","rms","rngtools","rpart","rprojroot","rstudioapi","S7","sandwich","scales","seqinr","sessioninfo","shiny","SNPassoc","SNPRelate","snpStats","sp","spam","SparseM","splines","StAMPP","stats","stringi","stringr","survival","terra","TH.data","tibble","tidyr","tidyselect","tools","urlchecker","usethis","utf8","utils","vctrs","vegan","viridisLite","withr","xfun","xtable","yaml","zlibbioc","zoo"]},{"type":"character","attributes":{},"value":["1.7-22","2.1.10","5.8","3.6.3","1.5.0","4.4.1","0.1-3","0.1.7","0.3.2","1.12.18","0.7.3","1.6.2","0.52.0","1.0-9","1.1.0","2.3.2","3.6.3","2.1.6","0.2-20","2.1-1","4.4.1","1.1.3","1.5.3","1.2.2","1.2.2","1.2.2","1.2.2","1.2.2","1.2.2","1.2.2","1.2.2","1.16.2","4.4.1","2.4.5","2.0-0.1","0.6.37","1.3-14","1.0.17","1.8.6.2","1.2","1.1.4","0.3.2","1.0.1","1.0.6","2.1.2","1.2.0","16.3","0.7","0.5.3","1.5.2","0.8-87","1.2-5","1.6.5","0.3.1","1.34.0","1.42.0","0.1.3","0.2.0","4.0.0","0.6.1","0.5.8-1","0.9.6","0.16.3","1.7.0","4.4.1","4.4.1","4.4.1","2.3","0.3.6","3.9.5","1.9.7","5.2-0","2.4.3","0.5.8.1","1.6.4","1.6.15","1.4.7","2.1.1","1.0.14","0.1.4","1.8.9","1.49","1.3.2","0.22-6","3.18.0","0.11.5","1.0.4","0.9.1","2.0.3","3.4.2.1","7.3-61","1.7-1","0.5-3","2.0.1","4.4.1","1.9-1","0.12","0.1.1.1","1.4-26","1.3-1","3.1-166","7.3-19","4.4.1","1.38.0","1.3.2","1.3","0.9-7","1.9.0","1.4.5","2.0.3","1.4.0","1.8.9","1.0.1","1.1.25","1.4-1","0.4.0","1.3.0","1.0.2","5.99","2.5.1","3.6-30","1.1-3","1.0.13","1.98-1.16","2.5.0","1.4.4","1.1.4","2.29","0.4.0","6.8-2","1.5.2","4.1.23","2.0.4","0.17.1","0.2.0","3.1-1","1.4.0","4.2-36","1.2.2","1.9.1","2.1-2","1.40.0","1.56.0","2.1-4","2.11-0","1.84-2","4.4.1","1.6.3","4.4.1","1.8.4","1.5.1","3.7-0","1.7-83","1.1-2","3.2.1","1.3.1","1.2.1","4.4.1","1.0.1","3.1.0","1.2.4","4.4.1","0.6.5","2.6-8","0.4.2","3.0.2","0.49","1.8-4","2.3.10","1.52.0","1.8-12"]}]}]}
 </script>
 <!--/html_preserve-->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

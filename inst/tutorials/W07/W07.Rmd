@@ -505,22 +505,15 @@ Run EPOS on the constant *Ne* = 100 simulation:
 L  <- 5e8   # total genome length from simulation (known)
 mu <- 1e-8  # mutation rate from simulation (known)
 
-Ne_epos <- gl.epos(gl100,
-                   epos.path  = path.binaries,
-                   l          = L,
+Ne_epos <- gl.run.epos(gl100,
+                   epos.path  = dir_epos,
+                   L          = L,
                    u          = mu,
                    boot       = 10,
                    minbinsize = 1)
 
-colnames(Ne_epos) <- c("generation", "low", "Ne_median", "high")
 
-ggplot(Ne_epos, aes(x = generation, y = Ne_median)) +
-  geom_line(colour = "steelblue", linewidth = 1) +
-  geom_ribbon(aes(ymin = low, ymax = high), alpha = 0.2, fill = "steelblue") +
-  labs(x     = "Generations ago",
-       y     = "Effective population size (Ne)",
-       title = "EPOS estimate: constant Ne = 100") +
-  theme_bw()
+
 ```
 
 The median should hover around *Ne* = 100 throughout. Confidence intervals widen in the most recent time periods (too few mutations have accumulated for precise estimation) and in the deepest past (the coalescent is poorly resolved by a finite sample).
@@ -531,22 +524,14 @@ The median should hover around *Ne* = 100 throughout. Confidence intervals widen
 # Common but incorrect approximation: nLoc * 69 bp
 L_wrong <- 69 * nLoc(gl100)
 
-Ne_epos_wrong <- gl.epos(gl100,
-                         epos.path  = path.binaries,
-                         l          = L_wrong,
+Ne_epos_wrong <- gl.run.epos(gl100,
+                         epos.path  = dir_epos,
+                         L          = L_wrong,
                          u          = mu,
                          boot       = 10,
                          minbinsize = 1)
 
-colnames(Ne_epos_wrong) <- c("generation", "low", "Ne_median", "high")
 
-ggplot(Ne_epos_wrong, aes(x = generation, y = Ne_median)) +
-  geom_line(colour = "tomato", linewidth = 1) +
-  geom_ribbon(aes(ymin = low, ymax = high), alpha = 0.2, fill = "tomato") +
-  labs(x     = "Generations ago",
-       y     = "Ne",
-       title = paste0("EPOS with L = nLoc x 69 = ", L_wrong, " (incorrect)")) +
-  theme_bw()
 ```
 
 The trajectory **shape** is preserved, but absolute axis values are badly wrong. Setting *L* too low inflates the inferred *Ne* — the same number of observed mutations must be explained by a smaller genome, implying a larger population. Importantly, the relative pattern of increases and decreases remains informative even when *L* is misspecified.
@@ -560,6 +545,9 @@ library(dartRverse)
 library(dartR.popgen)
 library(ggplot2)
 library(patchwork)
+dir_epos <- gl.download.binary("epos", out.dir = tempdir())
+path.data="./data"
+
 ```
 
 ```{r ex4, exercise=TRUE, exercise.setup="ex4-setup", class.chunk="gold-panel"}
@@ -605,17 +593,17 @@ nLoc(north5)
 
 # For DArT data: L ~ nLoc * 75 bp * 200
 L_real  <- nLoc(north5) * 75 * 200
-mu_real <- 16.17e-9     # possum-specific estimate
+mu_real <- 16.17e-9     # pogona-specific estimate
 
 # Run EPOS
 Ne_north <- gl.run.epos(north5,
-                        epos.path  = path.binaries,
+                        epos.path  = dir_epos,
                         L          = L_real,
                         u          = mu_real,
                         method     = "greedy",
                         depth      = 2,
                         boot       = 5)
-Ne_north$plot
+
 ```
 
 ---
