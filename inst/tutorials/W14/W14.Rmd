@@ -1,6 +1,6 @@
 ---
-title: "W14 SNP panels"
-author: "Elise Furlan"
+title: "W14 SNP that Matter"
+author: "Elise Furlan, Bernd Gruber & collaborators"
 date: | 
     ![](images/dartR7.png){width=5cm}
 output:
@@ -12,59 +12,459 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W14 SNP panels"
+description: "W14 SNP panel selection for conservation genetics"
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ```
 
-## W14 SNP panels
+## W14 SNP that Matter
 
-## Introduction
-
-### Learning outcomes
-
-What is the goal of this session? What will participants learn?
-
-### Prerquisites
-
-What prior knowledge do they need?
-
-### Workflow
-
-What is the structure of the session?
-
-### Additional reading
-
-Anything else you want to add?
-
-## Topic
-
-Brief recap of the topic, relating back to the presentation.
-
-## Worked Ex:
-
-Worked example that everyone steps through together - simple example applying the methods
-
-```{r}
-# We show them the code to run
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position="right", color="black")
 ```
 
-## Exercises
+## Session presenters
 
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+![](images/Presenters5.png)
 
--   dot points
--   for different steps
+---
 
-## Winding up
+## Learning outcomes
 
-### Discussion Time
+Throughout this session, we will discuss the utility and functionality of SNP panels and when they offer a practical alternative to genome wide SNP datasets.
+We will discuss how SNP panel selection can target SNPs based on different criteria, which will impact the utility of the SNP panel to identify various population genetic metrics and consequently, their utility to address different conservation questions.
 
-Add some questions to help group discussion.
+By the end of this session you should be able to:
 
-### Where have we come?
+- Explain **why** we use reduced SNP panels in conservation genetics (cost, logistics, speed, monitoring)
+- Define a panel goal (e.g. **population assignment / structure**, **relatedness / parentage**, **individual ID**, **sex-linked**, **hybrid detection**, **adaptive markers**)
+- Apply a **quality-control workflow** for panel design (missingness, call rate, MAF, sequence length, alignment quality)
+- Use `gl.select.panel()` to create panels using alternative strategies (e.g. `dapc`, `random`, `pic`)
+- Use `gl.check.panel()` to evaluate how well a panel recovers a target parameter (e.g. **FST**)
+- Design and compare **replicate panels** (stability / robustness)
 
-Summarise what they should have learnt.
+---
+
+## Context: Why SNP panels?
+
+Genome-wide SNP datasets are fantastic for discovery and deep inference, but monitoring programs often need something else:
+
+- cheaper per sample
+- robust on low-quality DNA (sometimes)
+- repeatable across years
+- scalable (lots of samples, many timepoints)
+- quick turnaround for management decisions
+
+### Typical conservation use-cases
+- assigning individuals to management units
+- detecting illegal translocations / admixture
+- parentage and pedigree tracking (captive or reintroduction programs)
+- long-term genetic monitoring (He, FIS, FST trends)
+- hybridisation detection
+- sex-linked markers for skewed sex ratios / demographic monitoring
+
+---
+
+## Prerequisites
+
+You should be comfortable with:
+- reading a `genlight` object
+- basic filtering in the dartRverse (`gl.filter.*`)
+- interpreting simple reports (call rate, missingness, MAF)
+
+No prior experience with panel design is assumed.
+
+---
+
+## Setup
+
+```{r start, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE}
+library(learnr)
+library(dartRverse)
+library(ggplot2)
+library(knitr)
+library(ggpmisc)
+
+tutorial_options(exercise.eval = FALSE)
+
+path.data <- "./data/"
+```
+
+```{r packages, warning=FALSE, message=FALSE}
+library(dartRverse)
+library(ggplot2)
+library(knitr)
+library(ggpmisc)
+```
+
+---
+
+## Data for this tutorial
+
+We use an example SNP dataset (pre-filtered genome-wide SNPs), plus a version that already includes BLAST alignment metrics.
+
+```{r load-data, eval=FALSE}
+rfbe      <- readRDS(file.path(path.data, "rfbe.rds"))
+rfbe20_5  <- readRDS(file.path(path.data, "rfbe20_5_blast.rds"))
+```
+
+**Interpretation questions**
+- How many loci / individuals do we start with?
+- How many populations?
+- Are some populations very small? (this matters for the panel goal)
+
+---
+
+## Part 1 — Decide what the panel is for
+
+### Panel goal → design choices
+
+A panel for **population structure (FST / assignment)** often benefits from:
+- loci that *differentiate* populations (high between-pop variance)
+- moderate allele frequencies (informative, not singletons)
+- broad coverage across the genome (avoid tight linkage when possible)
+
+A panel for **relatedness / parentage** often benefits from:
+- high heterozygosity loci (high information per locus)
+- more loci than structure panels (often)
+- careful QC to minimise genotyping error
+
+A panel for **sex-linked SNPs** benefits from:
+- strong sex association
+- robust genotype calls
+- validation on independent samples
+
+> In this hands-on we focus on a **structure / assignment** panel of **50 SNPs**, and evaluate it via how well it recovers **pairwise FST**.
+
+---
+
+:::callout
+#### Exercise 1 (discussion)
+Pick **one** purpose for your panel. Write down:
+
+1. Purpose (choose one): structure / assignment, relatedness, individual ID, hybridisation, sex-linked, adaptive, other
+2. What is the key output you care about? (e.g. FST matrix, assignment accuracy, PID, relatedness error)
+3. What is a realistic budgeted panel size? (e.g. 50, 96, 192, 384 loci)
+:::
+
+---
+
+## Part 2 — Quality filtering workflow (worked example)
+
+### Step 1 — Ensure adequate sample sizes per population
+
+Many panel methods implicitly assume you have enough individuals in each population to estimate allele frequencies reliably.
+
+We keep populations with **> 10 individuals**:
+
+```{r pop-filter, eval=FALSE}
+tt     <- table(pop(rfbe))
+pop20  <- names(tt)[tt > 10]
+
+rfbe20 <- gl.keep.pop(rfbe, pop.list = pop20)
+
+table(pop(rfbe20))
+```
+
+---
+
+### Step 2 — Remove loci with population-specific all-NA
+
+```{r filter-allna, eval=FALSE}
+rfbe20_1 <- gl.filter.allna(rfbe20, by.pop = TRUE)
+```
+
+---
+
+### Step 3 — Call-rate filtering
+
+```{r filter-callrate, eval=FALSE}
+rfbe20_2 <- gl.filter.callrate(rfbe20_1, threshold = 0.99)
+```
+
+---
+
+### Step 4 — Minor allele count / frequency filtering
+
+For panel design, rare alleles can be:
+- uninformative for many tasks
+- more sensitive to genotyping error
+- unstable across timepoints
+
+Here we use a **minor allele count** threshold of 5:
+
+```{r filter-maf, eval=FALSE}
+rfbe20_3 <- gl.filter.maf(rfbe20_2, threshold = 5, by.pop = FALSE)
+nLoc(rfbe20_3)
+```
+
+---
+
+### Step 5 (optional but recommended) — Sequence length
+
+Panel development often requires flanking sequence (primer/probe design).  
+We keep loci with trimmed sequences of length **≥ 30**.
+
+```{r filter-seq-length, eval=FALSE}
+index    <- nchar(as.character(rfbe20_3@other$loc.metrics$TrimmedSequence)) > 29
+rfbe20_4 <- rfbe20_3[, index]
+nLoc(rfbe20_4)
+```
+
+---
+
+### Step 6 (optional) — Alignment quality to a reference genome
+
+If you have a reference genome, you can BLAST trimmed sequences to check for:
+- strong matches (bitscore)
+- uniqueness (avoid multi-mapping)
+- alignment length / mismatches
+
+In this tutorial we load a pre-computed BLAST-annotated dataset:
+
+```{r load-blast, eval=FALSE}
+rfbe20_5 <- readRDS(file.path(path.data, "rfbe20_5_blast.rds"))
+```
+
+Filter by a bitscore threshold (example: **≥ 100**):
+
+```{r filter-bitscore, eval=FALSE}
+index <- rfbe20_5@other$loc.metrics$bitscore >= 100
+index <- ifelse(is.na(index), FALSE, index)
+
+rfbe20_6 <- rfbe20_5[, index]
+nLoc(rfbe20_6)
+
+# Order individuals by population (some panel methods benefit from this)
+rfbe20_6 <- rfbe20_6[order(pop(rfbe20_6)), ]
+```
+
+---
+
+### Exercise 2 — Explore the impact of QC thresholds
+
+```{r ex2, exercise=TRUE, exercise.cap="Exercise 2: QC thresholds (call rate and MAF)", eval=FALSE}
+# Goal: Explore how QC thresholds change the number of loci you have available for panel design.
+#
+# 1) Try call-rate thresholds of 0.95, 0.98, 0.99.
+# 2) Try minor allele count thresholds of 2, 5, 10.
+# 3) Record how many loci remain after each combination.
+#
+# Tip: Start from rfbe20_1 each time so comparisons are fair.
+
+# Example template:
+# cr <- 0.99
+# mac <- 5
+# tmp <- gl.filter.callrate(rfbe20_1, threshold = cr)
+# tmp <- gl.filter.maf(tmp, threshold = mac, by.pop = FALSE)
+# nLoc(tmp)
+```
+
+:::callout
+#### Reflection
+- When you increase call-rate or MAF thresholds, what happens to locus count?
+- Why might stricter QC improve panel robustness (even if you lose loci)?
+:::
+
+---
+
+## Part 3 — Selecting informative SNPs
+
+### Panel selection strategies in `gl.select.panel()`
+
+Different methods target different signals. For example:
+
+- `dapc`: picks loci most informative for discriminating groups (good for structure / assignment)
+- `pic` / `picdart`: picks loci with high information content (often useful broadly)
+- `hafall` / `hafpop`: targets high allele frequency loci (sometimes helps genotyping stability)
+- `pahigh`: private allele patterns
+- `random`: a baseline comparison
+
+```{r list-methods, eval=FALSE}
+methods <- c(
+  "dapc", "random", "pahigh", "monopop", "stratified",
+  "hafall", "hafpop", "pic", "picdart"
+)
+methods
+```
+
+---
+
+### Worked example — Select a 50 SNP panel using DAPC
+
+```{r select-dapc, eval=FALSE}
+panel_dapc <- gl.select.panel(rfbe20_6, method = "dapc", nl = 50)
+nLoc(panel_dapc)
+```
+
+---
+
+### Evaluate the panel — does it recover FST?
+
+We compare the panel-derived FST to the full dataset FST.
+
+```{r check-dapc, eval=FALSE}
+out_dapc <- gl.check.panel(panel_dapc, rfbe20_6, parameter = "Fst")
+out_dapc
+```
+
+Now compare to a random panel:
+
+```{r check-random, eval=FALSE}
+panel_random <- gl.select.panel(rfbe20_6, method = "random", nl = 50)
+out_random   <- gl.check.panel(panel_random, rfbe20_6, parameter = "Fst")
+out_random
+```
+
+:::callout
+#### Interpretation
+A good structure panel should:
+- preserve the *ranking* of pairwise FST values
+- keep values close to the full dataset (small error)
+- be stable across replicate panels (not overly “lucky”)
+:::
+
+---
+
+### Exercise 3 — Build *your own* SNP panel and evaluate it
+
+```{r ex3, exercise=TRUE, exercise.cap="Exercise 3: Select your own SNP panel (method + size)", eval=FALSE}
+# Your task:
+# 1) Choose a panel method (e.g. "dapc", "pic", "picdart", "hafpop", "random")
+# 2) Choose a panel size (nl), e.g. 25, 50, 100
+# 3) Create the panel
+# 4) Check how well it recovers FST relative to the full dataset
+#
+# Record:
+# - method
+# - nl
+# - your interpretation of the output (good / ok / poor)
+
+my_method <- "pic"   # change me
+my_nl     <- 50      # change me
+
+my_panel <- gl.select.panel(rfbe20_6, method = my_method, nl = my_nl)
+nLoc(my_panel)
+
+my_eval <- gl.check.panel(my_panel, rfbe20_6, parameter = "Fst")
+my_eval
+```
+
+:::callout
+#### Challenge
+Try the same method at nl = 25, 50, 100.
+How many loci do you need before the panel becomes “good enough” for your management question?
+:::
+
+---
+
+## Part 4 — Replicate panels and robustness
+
+### Why replicate?
+
+Some selection methods can be sensitive to randomness and sampling variation.  
+To avoid overconfidence from a single “lucky” panel, we generate replicate panels and compare performance.
+
+#### A simple replicate loop (example)
+
+```{r replicate-panels, eval=FALSE}
+set.seed(42)
+
+B <- 20                # number of replicate panels
+nl <- 50
+method <- "dapc"
+
+evals <- vector("list", B)
+
+for (b in 1:B) {
+  p   <- gl.select.panel(rfbe20_6, method = method, nl = nl)
+  ev  <- gl.check.panel(p, rfbe20_6, parameter = "Fst")
+  evals[[b]] <- ev
+}
+
+# You can now summarise evals (depends on what gl.check.panel returns in your version)
+```
+
+---
+
+### Exercise 4 — Panel stability
+
+```{r ex4, exercise=TRUE, exercise.cap="Exercise 4: Replicate panels and compare stability", eval=FALSE}
+# Goal: Compare stability of TWO methods.
+#
+# 1) Pick two methods (e.g. "dapc" vs "pic" OR "dapc" vs "random")
+# 2) Generate B replicate panels for each method
+# 3) Evaluate each with gl.check.panel(parameter="Fst")
+# 4) Decide: which method is more stable and why?
+
+set.seed(1)
+
+B  <- 10
+nl <- 50
+
+m1 <- "dapc"
+m2 <- "random"
+
+# Write your replicate code here (use the template above).
+# Tip: store results in a data.frame with columns: method, replicate, metric(s)
+```
+
+:::callout
+#### Discussion
+In a monitoring program, robustness matters.
+A method that is *slightly* worse on average but *more stable* may be preferable.
+:::
+
+---
+
+## Part 5 — Wrap-up: practical checklist
+
+### A pragmatic SNP panel checklist
+
+1. **Define the primary purpose** (structure vs parentage vs ID vs sex-linked…)
+2. **QC hard** (missingness, call rate, MAC/MAF)
+3. **Ensure adequate sample sizes** for allele frequency estimation
+4. **Consider lab constraints** (sequence length, alignment uniqueness, flanking sequence)
+5. **Select candidate panels** (multiple methods + sizes)
+6. **Evaluate against the full dataset** (target parameter)
+7. **Test stability** (replicate panels)
+8. **Validate on independent samples** (ideally)
+
+---
+
+## Further reading
+
+
+Armstrong, E. E., Li, C., Campana, M. G., Ferrari, T., Kelley, J. L., Petrov, D. A., . . . Mooney, J. A. (2025). A Pipeline and Recommendations for Population and Individual Diagnostic SNP Selection in Non-Model Species. Molecular Ecology Resources, 25, e14048. https://doi.org/10.1111/1755-0998.14048.    
+
+Beacham T.D., Wallace C., MacConnachie C., Jonsen K., McIntosh B., Candy J.R., and Withler R.E. (2018). Population and individual identification of Chinook salmon in British Columbia through parentage-based tagging and genetic stock identification with single nucleotide polymorphisms. Canadian Journal of Fisheries and Aquatic Sciences 75: 1096–1105
+
+Bertola, L. D., Vermaat, M., Lesilau, F., Chege, M., Tumenta, P. N., Sogbohossou, E. A., . . . Vrieling, K. (2022). Whole genome sequencing and the application of a SNP panel reveal primary evolutionary lineages and genomic variation in the lion (Panthera leo). BMC Genomics, 23, 321. 10.1186/s12864-022-08510-y
+
+Furlan, E. M., Gruber, B., Attard, C. R. M., Wager, R. N. E., Kerezsy, A., Faulks, L. K., . . . Unmack, P. J. (2020). Assessing the benefits and risks of translocations in depauperate species: A theoretical framework with an empirical validation. Journal of Applied Ecology, 57, 831-841. https://doi.org/10.1111/1365-2664.13581
+
+Jasielczuk, I., Gurgul, A., Szmatoła, T., Radko, A., Majewska, A., Sosin, E., . . . Ząbek, T. (2024). The use of SNP markers for cattle breed identification. Journal of Applied Genetics, 65, 575-589. 10.1007/s13353-024-00857-0
+
+Kerezsy, A. & Fensham, R. (2013). Conservation of the endangered red-finned blue-eye, Scaturiginichthys vermeilipinnis, and control of alien eastern gambusia, Gambusia holbrooki, in a spring wetland complex. Marine and Freshwater Research, 64, 851–863.
+
+Magliolo, M., Prost, S., Orozco-Terwengel, P., Burger, P., Kropff, A. S., Kotze, A., . . . Dalton, D. L. (2021). Unlocking the potential of a validated single nucleotide polymorphism array for genomic monitoring of trade in cheetahs (Acinonyx jubatus). Molecular Biology Reports, 48, 171-181. 10.1007/s11033-020-06030-0.
+
+Ohm, H., Åstrand, J., Ceplitis, A., Bengtsson, D., Hammenhag, C., Chawade, A. & Grimberg, Å. (2024). Novel SNP markers for flowering and seed quality traits in faba bean (Vicia faba L.): characterization and GWAS of a diversity panel. Frontiers in Plant Science, 15, 1348014.
+
+Quinto-Cortés, C. D., Woerner, A. E., Watkins, J. C. & Hammer, M. F. (2018). Modeling SNP array ascertainment with Approximate Bayesian Computation for demographic inference. Scientific Reports, 8, 10209. 10.1038/s41598-018-28539-y
+
+Stronen, A. V., Mattucci, F., Fabbri, E., Galaverni, M., Cocchiararo, B., Nowak, C., . . . Caniglia, R. (2022). A reduced SNP panel to trace gene flow across southern European wolf populations and detect hybridization with other Canis taxa. Scientific Reports, 12, 4195. 10.1038/s41598-022-08132-0
+
+Terrado-Ortuño, N. & May, P. (2025). Forensic DNA phenotyping: a review on SNP panels, genotyping techniques, and prediction models. Forensic Sciences Research, 10, owae013. 10.1093/fsr/owae013
+
+Von Thaden, A., Nowak, C., Tiesmeyer, A., Reiners, T. E., Alves, P. C., Lyons, L. A., . . . Galián, J. (2020). Applying genomic data in wildlife monitoring: Development guidelines for genotyping degraded samples with reduced single nucleotide polymorphism panels. Molecular ecology resources, 20, 662-680.
+
+Wehrenberg, G., Tokarska, M., Cocchiararo, B. & Nowak, C. (2024). A reduced SNP panel optimised for non-invasive genetic assessment of a genetically impoverished conservation icon, the European bison. Scientific Reports, 14, 1875. 10.1038/s41598-024-51495-9
+
+Zenato-Lazzari, G., Figueiró, H. V., Sartor, C. C., Donadio, E., Di Martino, S., Draheim, H. M. & Eizirik, E. (2025). Development of a SNP Panel for Geographic Assignment and Population Monitoring of Jaguars (Panthera onca). Ecology and Evolution, 15, e71465. https://doi.org/10.1002/ece3.71465
+
+
+---
