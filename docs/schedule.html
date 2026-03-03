@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="dartR_style.css">
 </head>
@@ -97,9 +126,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Analysing Genomic Data with dartRverse</a> 
     </div>
@@ -161,62 +188,56 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./inst/tutorials/W07/W07.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Effective Population Size</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W08/W08.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W09/W09.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">W09 dartR developer</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W09 dartR developer</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W10/W10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W10 Natural Selection &amp; Adaptation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">W10 Natural Selection &amp; Adaptation</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W11/W11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">W11 Landscape Genetics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W11 Landscape Genetics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W12/W12.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W12 AI in PopGen &amp; Research</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">W12 AI in PopGen &amp; Research</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W13/W13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">W13 Simulations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W13 Simulations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W14/W14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP that Matter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">W14 SNP that Matter</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W15/W15.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">W15 Relatedness</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W15 Relatedness</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./inst/tutorials/W16/W16.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">W16 Sequencing Technologies</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">W16 Sequencing Technologies</span></span></a>
   </div>
 </li>
     </ul>
@@ -260,8 +281,8 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: center;">#</th>
-<th>Day</th>
+<th></th>
+<th style="text-align: center;">SESSION</th>
 <th style="text-align: center;">Time</th>
 <th style="text-align: center;"><strong>Topic</strong></th>
 <th style="text-align: center;">Presenters</th>
@@ -269,95 +290,131 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">1</td>
-<td>Mon</td>
-<td style="text-align: center;">2 pm - 4 pm</td>
-<td style="text-align: center;"><a href="session01.qmd"><strong>Welcome, Intro dartR</strong></a></td>
-<td style="text-align: center;">Oliver Berry, Andrzej Killian, Arthur Georges, Bernd Gruber, Renee Catullo</td>
+<td><p>EPISODE I</p>
+<p>THE DIVERSITY AWAKENS</p>
+<p>Monday</p>
+<p>09/03/26</p></td>
+<td style="text-align: center;">W1</td>
+<td style="text-align: center;">9am -11am</td>
+<td style="text-align: center;"><strong>Harnessing genomic resources for conservation of biodiversity</strong></td>
+<td style="text-align: center;">Laura Bertola &amp; Kate Rick</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">2</td>
 <td></td>
-<td style="text-align: center;">5 pm – 7 pm</td>
-<td style="text-align: center;"><a href="session02.qmd"><strong>Pop Gen In Conservation &amp; Restoration</strong></a></td>
-<td style="text-align: center;">Bill Sherwin, Carlo Pacioni, Renee Catullo</td>
+<td style="text-align: center;">W2</td>
+<td style="text-align: center;">11:30am-1pm</td>
+<td style="text-align: center;"><strong>dartR Intro, Data Manipulation &amp; Filtering</strong></td>
+<td style="text-align: center;">Arthur Georges &amp; Ching Ching Lau</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">3</td>
-<td>Tue</td>
-<td style="text-align: center;">9 am – 11 am</td>
+<td></td>
+<td style="text-align: center;">W3</td>
+<td style="text-align: center;">2pm-3:30pm</td>
+<td style="text-align: center;"><strong>Sex-Linked Markers</strong></td>
+<td style="text-align: center;">Diana Robledo &amp; Floriaan Devloo-Delva</td>
+</tr>
+<tr class="even">
+<td><p>EPISODE II</p>
+<p>THE BOTTLENECK STRIKES BACK</p>
+<p>Tuesday</p>
+<p>10/03/26</p></td>
+<td style="text-align: center;">W4</td>
+<td style="text-align: center;">9am -11am</td>
+<td style="text-align: center;"><strong>Subdivisions, biological and administrative: their importance for management</strong></td>
+<td style="text-align: center;">Bill Sherwin, Floriaan Devloo-Delva and Laura Bertola</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: center;">W5</td>
+<td style="text-align: center;">11:30am-1pm</td>
+<td style="text-align: center;"><strong>These are not the SNP you’re looking for: how study design impacts population genetic assessments</strong></td>
+<td style="text-align: center;">Renee Catullo</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: center;">W6</td>
+<td style="text-align: center;">2pm-3:30pm</td>
+<td style="text-align: center;"><strong>Management of Small Populations</strong></td>
+<td style="text-align: center;">Diana Robledo</td>
+</tr>
+<tr class="odd">
+<td><p>EPISODE III</p>
+<p>THE ATTACK OF THE CLADES</p>
+<p>Wednesday</p>
+<p>11/03/26</p></td>
+<td style="text-align: center;">W7</td>
+<td style="text-align: center;">9am -11am</td>
+<td style="text-align: center;"><strong>Effective Population Size &amp; Historical</strong> <span class="math inline">\(N_e\)</span></td>
+<td style="text-align: center;">Robin Waples, Luis Mijangos &amp; Bernd Gruber</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: center;">W8</td>
+<td style="text-align: center;">11:30am-1pm</td>
+<td style="text-align: center;"><strong>Genetic Divergence &amp; Phylogenetics</strong></td>
+<td style="text-align: center;">Craig Moritz &amp; Arthur Georges</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: center;">W9</td>
+<td style="text-align: center;">2pm-3:30pm</td>
+<td style="text-align: center;"><strong>dartR developer/new &amp; hidden features/manipulate plots/eBooks</strong></td>
+<td style="text-align: center;">Bernd Gruber, Arthur Georges, Luis Mijangos &amp; Ethan Halford</td>
+</tr>
+<tr class="even">
+<td><p>EPISODE IV</p>
+<p>A NEW FLOW</p>
+<p>Thursday</p>
+<p>12/03/26</p></td>
+<td style="text-align: center;">W10</td>
+<td style="text-align: center;">9am -11am</td>
+<td style="text-align: center;"><strong>Natural Selection and Adaption</strong></td>
+<td style="text-align: center;">Luciano Beheregaray &amp; Chris Brauer</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: center;">W11</td>
+<td style="text-align: center;">11:30am-1pm</td>
+<td style="text-align: center;"><strong>Landscape Genetics</strong></td>
+<td style="text-align: center;">Robyn Shaw, Cynthia Riginos &amp; Zoe Meziere</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: center;">W12</td>
+<td style="text-align: center;">2pm-3:30pm</td>
+<td style="text-align: center;"><strong>AI in PopGen &amp; Research</strong></td>
+<td style="text-align: center;">Jonathan Ting, Darya Vanichkina &amp; Celine Frere</td>
+</tr>
+<tr class="odd">
+<td><p>EPISODE V</p>
+<p>THE RETURN OF THE SCIENTIST</p>
+<p>Friday</p>
+<p>13/03/26</p></td>
+<td style="text-align: center;">W13</td>
+<td style="text-align: center;">9am -11am</td>
+<td style="text-align: center;"><strong>Computer Simulations</strong></td>
+<td style="text-align: center;">Bernd Gruber &amp; Luis Mijangos</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: center;">W14</td>
+<td style="text-align: center;">11:30am-1pm</td>
+<td style="text-align: center;"><strong>SNPs that Matter</strong></td>
+<td style="text-align: center;">Elise Furlan</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td style="text-align: center;">W15</td>
+<td style="text-align: center;">2pm-3:30pm</td>
+<td style="text-align: center;"><strong>Relatedness</strong></td>
+<td style="text-align: center;">Ethan Halford &amp; Luis Mijangos</td>
+</tr>
+<tr class="even">
+<td></td>
+<td style="text-align: center;">W16</td>
+<td style="text-align: center;">9am -11am</td>
 <td style="text-align: center;"><strong>Sequencing Technologies</strong></td>
-<td style="text-align: center;">Jason Carling, Andrew Kowalczyk, Renee Catullo</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">4</td>
-<td></td>
-<td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><strong>Data Management, Reproducibility &amp; Integrity</strong></td>
-<td style="text-align: center;">Jiajia Li</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">5</td>
-<td></td>
-<td style="text-align: center;">3 pm – 5 pm</td>
-<td style="text-align: center;"><a href="session05.qmd"><strong>Effective Population Size</strong></a></td>
-<td style="text-align: center;">Bernd Gruber, Carlo Pacioni, Bill Sherwin</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">6</td>
-<td>Wed</td>
-<td style="text-align: center;">9 am – 11 am</td>
-<td style="text-align: center;"><a href="session06.qmd"><strong>Management Of Small Populations</strong></a></td>
-<td style="text-align: center;">Catherine Grueber, Kate Farquharson</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">7</td>
-<td></td>
-<td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><strong>Natural Selection</strong></td>
-<td style="text-align: center;">Luciano Beheregaray, Chris Brauer, Jonathan Sandoval</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">8</td>
-<td></td>
-<td style="text-align: center;">3 pm – 5 pm</td>
-<td style="text-align: center;"><a href="session08.qmd"><strong>Landscape Genetics</strong></a></td>
-<td style="text-align: center;">Bernd Gruber, Robyn Shaw</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">9</td>
-<td>Thu</td>
-<td style="text-align: center;">9 am – 11 am</td>
-<td style="text-align: center;"><strong>Lineage Divergence</strong></td>
-<td style="text-align: center;">Arthur Georges, Sally Potter, Craig Moritz</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">10</td>
-<td></td>
-<td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><a href="session10.qmd"><strong>Sex Linked Markers</strong></a></td>
-<td style="text-align: center;">Diana Robledo, Floriaan Devloo-Delva</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">11</td>
-<td></td>
-<td style="text-align: center;">7 pm – 9 pm</td>
-<td style="text-align: center;"><strong>From Genes to Kin: Dissecting Relatedness &amp; Kinship</strong></td>
-<td style="text-align: center;">Jinliang Wang, Luis Mijangos, Natasha Marosi</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">12</td>
-<td>Fri</td>
-<td style="text-align: center;">9 am – 11 am</td>
-<td style="text-align: center;"><strong>Genetic Structure</strong></td>
-<td style="text-align: center;">Arthur Georges, Bernd Gruber, Bill Sherwin</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">13</td>
-<td></td>
-<td style="text-align: center;">12 pm – 2 pm</td>
-<td style="text-align: center;"><strong>Combining Genomic Resources</strong></td>
-<td style="text-align: center;">Luis Mijangos, Sally Potter</td>
+<td style="text-align: center;">Andrzej Kilian</td>
 </tr>
 </tbody>
 </table>
