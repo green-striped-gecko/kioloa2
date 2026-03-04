@@ -26,6 +26,7 @@ book:
   - inst/tutorials/W15/W15.rmd
   - inst/tutorials/W16/W16.rmd
   - references.qmd
+bibliography: references.bib
 format:
   html:
     toc: true
