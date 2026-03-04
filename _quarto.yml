@@ -8,6 +8,7 @@ book:
   chapters:
   - index.qmd
   - schedule.qmd
+  - install.qmd
   - inst/tutorials/W01/W01.rmd
   - inst/tutorials/W02/W02.rmd
   - inst/tutorials/W03/W03.rmd
@@ -24,6 +25,7 @@ book:
   - inst/tutorials/W14/W14.rmd
   - inst/tutorials/W15/W15.rmd
   - inst/tutorials/W16/W16.rmd
+  - references.qmd
 format:
   html:
     toc: true
