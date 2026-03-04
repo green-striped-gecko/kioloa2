@@ -1,0 +1,11 @@
+![](inst/tutorials/session0/images/dartR7.png)
+
+# Presenters {.unnumbered}
+
+## name
+
+Bild 1\n Bio
+
+## name
+
+Bild 2\n Bio
