@@ -1,6 +1,6 @@
 ![](inst/tutorials/session0/images/dartR7.png)
 
-\# Install dartRverse {.unnumbered}
+# Install dartRverse {.unnumbered}
 
 ## Rationale
 
