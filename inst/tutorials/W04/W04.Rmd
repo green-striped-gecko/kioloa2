@@ -19,20 +19,18 @@ description: "W04 Genetic Structure"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
-
-
 *Session Presenters*
 
 ![](images/bill.png){.class width="100" height="100"} ![](images/flo.png){.class width="100" height="100"} ![](images/laura.png){.class width="100"}
 
-## *Required packages*
+## Required packages
 
 As always we need to have dartRverse installed and loaded. In addition you need to have dartR.popgen installed.
 
@@ -93,7 +91,7 @@ In this tutorial you will learn about genetic structure analyses. We will go ove
 | **sNMF** | Sparse non-negative matrix factorisation | `gl.run.snmf()`, `gl.plot.snmf()`, `gl.map.snmf()` |
 | **POPCLUSTER** | Ultra-fast admixture inference | `gl.run.popcluster()`, `gl.plot.popcluster()`, `gl.map.popcluster()` |
 
-## Example
+### Example
 
 To help us understand our analytical toolkit better let's start with a simple example using a simulated dataset.
 
@@ -183,7 +181,7 @@ Structure attempts to find the number of populations or sources (K ) at which po
 
 -   **Utility**: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.
 
-To run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system \[e.g windows, mac or linux\]. You can download STRUCTURE for your OS from <http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html>.
+To run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system $$e.g windows, mac or linux$$. You can download STRUCTURE for your OS from <http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html>.
 
 The possible arguments are listed below:
 
@@ -301,12 +299,14 @@ gl.plot.snmf(snmf.result = my_snmf, plot.K = 3, border.ind = 0)
 
 PopCluster assumes the mixture model and adopts a simulated annealing algorithm to make a maximum likelihood clustering analysis, partitioning the sampled individuals into a predefined number of clusters.
 
-```{r}
-popcluster_path <- if (Sys.info()[["sysname"]] == "Windows") {
-  "./binaries/winbinaries/"
-} else if (Sys.info()[["sysname"]] == "Darwin") {
-  "./binaries/macbinaries/"
-} else {"./binaries/"}
+```{r, message=FALSE}
+#popcluster_path <- if (Sys.info()[["sysname"]] == "Windows") {
+#  "./binaries/winbinaries/"
+#} else if (Sys.info()[["sysname"]] == "Darwin") {
+#  "./binaries/macbinaries/"
+#} else {"./binaries/"}
+
+popcluster_path <- gl.download.binary("popcluster")
 
 my_popcluster <- gl.run.popcluster(x = possums.gl, minK = 2, maxK = 7, rep = 2, popcluster.path = popcluster_path)
 

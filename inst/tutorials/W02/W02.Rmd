@@ -17,7 +17,7 @@ description: "dartR Intro, Data Manipulation & Filtering "
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ```
 
 ## W02 dartR Intro, Data Manipulation & Filtering
@@ -295,38 +295,38 @@ Below are two tables with a number of report and filter functions you can try.
 
 ### Report functions
 
-| Report functions          | description                                                                                         |
-|-----------------|-------------------------------------------------------|
-| gl.report.callrate        | *summarises CallRate values*                                                                        |
-| gl.report.reproducibility | *summarises repAvg (SNP) or reproducibility (SilicoDArT) values.*                                   |
-| gl. report.monomorphs     | *provides a count of polymorphic and monomorphic loci*                                              |
-| gl.report.secondaries     | *provides a count of loci that are secondaries, that is, loci that reside on the one sequence tag.* |
-| gl.report.rdepth          | *reports the estimate of average read depth for each locus*                                         |
-| gl.report.hamming         | *reports on Hamming distances between sequence tags*                                                |
-| gl.report.overshoot       | *reports loci for which the SNP has been trimmed along with the adaptor sequence*                   |
-| gl.report.taglength       | *reports a frequency tabulation of sequence tag lengths*                                            |
-| gl.report.sexlinked       | *reports the number and type of loci likely to be in sex chromosomes*                               |
+| Report functions | description |
+|------------------------------------|------------------------------------|
+| gl.report.callrate | *summarises CallRate values* |
+| gl.report.reproducibility | *summarises repAvg (SNP) or reproducibility (SilicoDArT) values.* |
+| gl. report.monomorphs | *provides a count of polymorphic and monomorphic loci* |
+| gl.report.secondaries | *provides a count of loci that are secondaries, that is, loci that reside on the one sequence tag.* |
+| gl.report.rdepth | *reports the estimate of average read depth for each locus* |
+| gl.report.hamming | *reports on Hamming distances between sequence tags* |
+| gl.report.overshoot | *reports loci for which the SNP has been trimmed along with the adaptor sequence* |
+| gl.report.taglength | *reports a frequency tabulation of sequence tag lengths* |
+| gl.report.sexlinked | *reports the number and type of loci likely to be in sex chromosomes* |
 
 : {.striped .bordered}
 
 ### Filtering functions
 
-| Filter functions          | description                                                                                                                                                    |
-|---------------|---------------------------------------------------------|
-| gl.filter.callrate        | *filter out loci or individuals for which the call rate (rate of non-missing values) is less than a specified threshold, say threshold = 0.95*                 |
-| gl.filter.reproducibility | *filter out loci for which the reproducibility (strictly repeatability) is less than a specified threshold, say threshold = 0.99*                              |
-| gl. filter.monomorphs     | *provides a count of polymorphic and monomorphic loci*                                                                                                         |
-| gl.filter.allna           | *filter out loci that are all missing values (NA)*                                                                                                             |
-| gl.filter.secondaries     | *filter out SNPs that share a sequence tag, except one retained at random* $$or the best based on reproducibility (RepAvg) and information content (AvgPIC)$$. |
-| gl.filter.rdepth          | *filter out loci with exceptionally low or high read depth (coverage)*                                                                                         |
-| gl.filter.hamming         | *filter out loci that differ from each other by less than a specified number of base pairs*                                                                    |
-| gl.filter.overshoot       | *filter out loci where the SNP location lies outside the trimmed sequence tag*                                                                                 |
-| gl.filter.taglength       | *filter out loci for which the tag length is less that a threshold*                                                                                            |
-| gl.filter.sexlinked       | *filter out loci that are likely to be in sex chromosomes*                                                                                                     |
+| Filter functions | description |
+|------------------------------------|------------------------------------|
+| gl.filter.callrate | *filter out loci or individuals for which the call rate (rate of non-missing values) is less than a specified threshold, say threshold = 0.95* |
+| gl.filter.reproducibility | *filter out loci for which the reproducibility (strictly repeatability) is less than a specified threshold, say threshold = 0.99* |
+| gl. filter.monomorphs | *provides a count of polymorphic and monomorphic loci* |
+| gl.filter.allna | *filter out loci that are all missing values (NA)* |
+| gl.filter.secondaries | *filter out SNPs that share a sequence tag, except one retained at random* $$or the best based on reproducibility (RepAvg) and information content (AvgPIC)$$. |
+| gl.filter.rdepth | *filter out loci with exceptionally low or high read depth (coverage)* |
+| gl.filter.hamming | *filter out loci that differ from each other by less than a specified number of base pairs* |
+| gl.filter.overshoot | *filter out loci where the SNP location lies outside the trimmed sequence tag* |
+| gl.filter.taglength | *filter out loci for which the tag length is less that a threshold* |
+| gl.filter.sexlinked | *filter out loci that are likely to be in sex chromosomes* |
 
 : {.striped .bordered}
 
-::: callout-note
+::::: callout-note
 ### Exercise
 
 How about trying it with a different dataset?
@@ -372,7 +372,7 @@ gl <- gl.read.dart(filename="./data/sample_data_2row.csv",
 ```
 
 You can even try it with your own data.
-:::
+:::::
 
 ## *Further Study*
 
