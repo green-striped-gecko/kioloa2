@@ -26,10 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 klippy::klippy(position="right", color="black")
 ```
 
-## Session presenters
-
-![](images/Presenters5.png)
-
+![](images/elise.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"} 
 ---
 
 ## Learning outcomes

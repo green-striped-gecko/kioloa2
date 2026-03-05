@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W10 Natural Selection & Adaptation
 
+![](images/chris.png){.class width="200" height="200"} ![](images/luciano.png){.class width="200" height="200"} 
+
 ## Introduction
 
 ### Learning outcomes
