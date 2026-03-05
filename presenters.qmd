@@ -1,4 +1,4 @@
-![](inst/tutorials/session0/images/dartR7.png)
+
 
 # Presenters {.unnumbered}
 
