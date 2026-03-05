@@ -15,7 +15,6 @@ runtime: shiny_prerendered
 description: "W03 Sex-Linked Markers"
 ---
 
-
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
@@ -26,7 +25,6 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
-
 
 *Session Presenters*
 
@@ -296,7 +294,6 @@ gl.fst.pop(EYR.correct, verbose = 0)
 ## Exercises
 
 ::: callout-note
-
 ![](./images/task.png){.class width="48" height="48"}
 
 Imagine you are analyzing the genetic data of a population and you want to look at its genetic structure and genetic diversity. You get to work by filtering your beautiful set of SNPs. Because you are a rigorous, you want to test whether using function `gl.keep.sexlinked` to properly filter out sex-linked loci changes the results of the populations analyses. So you: (1) process your SNP dataset by applying standard filters and run analyses, and (2) process the dataset by filtering out sex-linked loci first, applying standard filters second, and then run analyses.

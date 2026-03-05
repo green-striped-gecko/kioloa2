@@ -1,5 +1,5 @@
 ---
-title: "Effective Population Size"
+title: "W07 Effective Population Size"
 author: "Robin Waples, Luis Mijangos & Bernd Gruber"
 date: | 
     ![](images/dartR7.png){width=5cm}
@@ -768,7 +768,7 @@ comparable.
 ```{r stairways-run}
 # Stairways2 is slow (5+ minutes) — run and save, then load results
 # Un-comment to actually run:
-# Ne_sw <- gl.stairway2(gl100,
+# Ne_sw <- gl.run.stairway2(gl100,
 #                       stairway.path = path.binaries,
 #                       mu            = 1e-8,
 #                       gentime       = 1,
