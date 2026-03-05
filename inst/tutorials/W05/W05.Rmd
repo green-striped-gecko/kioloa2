@@ -119,9 +119,7 @@ tutorial_options(exercise.eval = FALSE)
 
 To run this pipeline on your own data, you will need the following packages installed and loaded. The `SNPfiltR` package provides the core filtering functions, `vcfR` handles VCF file input/output, and `dartRverse` provides the genlight object framework and downstream analysis tools.
 
-```{r loadlibs, warning=FALSE, message=FALSE}
-library(SNPfiltR)
-library(vcfR)
+```{r loadlibs, warning=FALSE, message=FALSE, eval=FALSE}
 library(rdiversity)
 library(dartRverse)
 library(dplyr)
@@ -133,7 +131,7 @@ library(dplyr)
 
 The first step is to set your working directory and define paths to your input files. You need two files: the VCF file containing your SNP calls, and a metadata CSV file (often called a strata file) that contains at minimum the columns: `id`, `pop`, `lat`, `lon`, and `genotype`.
 
-```{r step1_1}
+```{r step1_1, eval=FALSE}
 setwd("~")
 
 # path to your VCF file
@@ -146,7 +144,7 @@ head(meta)
 
 Now read in the VCF file using `read.vcfR`. This creates a vcfR object containing three slots: `@meta` (header information), `@fix` (fixed variant information such as chromosome, position, and alleles), and `@gt` (the genotype matrix).
 
-```{r step1_2}
+```{r step1_2, eval=FALSE}
 # read in the VCF file
 data <- read.vcfR(input)
 
@@ -156,7 +154,7 @@ data
 
 It is always worth inspecting the fixed fields and the genotype matrix to understand what your data looks like before filtering.
 
-```{r step1_3}
+```{r step1_3, eval=FALSE}
 # look at the first 10 rows of fixed variant information
 data@fix[1:10, 1:8]
 
@@ -173,7 +171,7 @@ The first quality filter converts genotypes to NA if they fall below minimum thr
 
 Here we set a minimum read depth of 8 and a minimum genotype quality of 20. These are relatively standard thresholds, but you may need to adjust them depending on your sequencing platform and expected coverage.
 
-```{r step2}
+```{r step2, eval=FALSE}
 # hard filter: minimum depth of 8, minimum genotype quality of 20
 data.1 <- hard_filter(vcfR = data, depth = 8, gq = 20)
 
@@ -190,7 +188,7 @@ We calculate the proportion of heterozygous genotype calls at each locus and rem
 
 **Note:** If you have already filtered for observed heterozygosity in Stacks, this step may not be necessary. It is particularly important for VCF files produced by AGRF or similar service providers where paralog filtering has not been performed upstream.
 
-```{r step3_1}
+```{r step3_1, eval=FALSE}
 # extract the genotype matrix
 geno_matrix <- extract.gt(data.1, element = "GT")
 
