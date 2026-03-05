@@ -19,7 +19,7 @@ description: "W04 Genetic Structure"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval =TRUE, cache=TRUE)
 ```
 
 ```{r klippy, echo=FALSE, include=TRUE}
@@ -34,7 +34,7 @@ klippy::klippy(position="right", color="black")
 
 As always we need to have dartRverse installed and loaded. In addition you need to have dartR.popgen installed.
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE,eval=TRUE}
 # install.packages("leaflet.minicharts")
 # install.packages("iterpc")
 library(dartRverse)
@@ -99,7 +99,7 @@ The dataset contains 10 populations of 30 individuals each and 1000 loci and is 
 
 To get an overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map. Please note the genlight/dartR object needs to have valid lat long coordinates for each individual to be able to do so.
 
-```{r}
+```{r, eval=FALSE}
 table(pop(possums.gl)) #check the individuals and the populations
 
 gl.map.interactive(possums.gl)
@@ -207,7 +207,7 @@ The possible arguments are listed below:
 
 ### Running STRUCTURE
 
-```{r}
+```{r, eval=FALSE}
 structure_file <- if (Sys.info()[["sysname"]] == "Windows") {
   "./binaries/winbinaries/structure.exe"
 } else if (Sys.info()[["sysname"]] == "Darwin") {
@@ -230,7 +230,7 @@ The Evanno method is a statistical approach used to determine the most likely nu
 
 The Evanno method is a method to determine the most likely number of populations. It is based on the second order rate of change of the likelihood function with respect to K. The method is implemented in the `gl.evanno` function.
 
-```{r}
+```{r, eval=FALSE}
 ev <- gl.evanno(srnoad)
 ```
 
@@ -244,14 +244,14 @@ The values in the Q matrix can be interpreted as the fraction of an individual's
 
 To get a plot for a certain level you need to specify K or at least a range of K.
 
-```{r}
+```{r, eval=FALSE}
 qmatnoad <- gl.plot.structure(srnoad, K = 3:5)
 head(qmatnoad[[1]])
 ```
 
 #### A "spatial" structure plot
 
-```{r structure map}
+```{r structure map, eval=FALSE}
 gm <- gl.map.structure(qmat = qmatnoad, x = possums.gl, K = 5, scalex = 1, scaley = 0.5 )
 ```
 
@@ -344,6 +344,8 @@ Lets take at a look at the pca.
 
 ```{r}
 # Undertake a PCA on the raw data
+class(schoolshark.gl)<- "dartR"
+schoolshark.gl <- gl.gen2fbm(schoolshark.gl)
 pc <- gl.pcoa(schoolshark.gl, verbose = 3)
 ```
 
@@ -382,7 +384,7 @@ Data from @nikolic_stepping_2023.
 
 ![The Blue Shark](./images/Blue_shark.jpg)
 
-```{r}
+```{r, eval=FALSE}
 blueshark.gl <- readRDS("data/blue_shark.rds")
 
 table(pop(blueshark.gl))
@@ -392,12 +394,14 @@ table(pop(blueshark.gl))
 
 Lets take at a look at the pca
 
-```{r}
+```{r, eval=FALSE}
 # Undertake a PCA on the raw data
+class(blueshark.gl)<- "dartR"
+blueshark.gl <- gl.gen2fbm(blueshark.gl)
 pc <- gl.pcoa(blueshark.gl, verbose = 3)
 ```
 
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide', , eval=FALSE}
 # Plot the first two dimensions of the PCA
 pc_a1a2 <- gl.pcoa.plot(glPca = pc, x = blueshark.gl)
 
@@ -450,12 +454,14 @@ table(pop(bullshark.gl))
 
 Lets take at a look at the PCA
 
-```{r}
+```{r, eval=FALSE}
+class(bullshark.gl)<- "dartR"
+bullshark.gl <- gl.gen2fbm(bullshark.gl)
 # Undertake a PCA on the raw data
 pc <- gl.pcoa(bullshark.gl, verbose = 3)
 ```
 
-```{r, message=FALSE, results='hide'}
+```{r, message=FALSE, results='hide', eval=FALSE}
 # Plot the first two dimensions of the PCA
 pc_a1a2 <- gl.pcoa.plot(glPca = pc, x = bullshark.gl)
 
