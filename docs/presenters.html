@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Presenters – Analysing Genomic Data with dartRverse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./install.html" rel="next">
+<link href="./schedule.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="dartR_style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./presenters.html">Presenters</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Analysing Genomic Data with dartRverse</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Program</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./presenters.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Presenters</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Install dartRverse</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W01/W01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">W01 Pop Gen in Conservation and Restoration</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W02/W02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">W02 dartR Intro</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W03/W03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">W03 SexLinked Markers</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W04/W04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">W04 Genetic Structure</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W05/W05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">W05 Calling SNPs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W06/W06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">W06 Small Populations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W07/W07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">W07 Effective Population Size</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W08/W08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W09/W09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">W09 dartR developer</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W10/W10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">W10 Natural Selection &amp; Adaptation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W11/W11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">W11 Landscape Genetics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W12/W12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">W12 AI in PopGen &amp; Research</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W13/W13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">W13 Simulations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W14/W14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">W14 SNP that Matter</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W15/W15.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">W15 Relatedness</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./inst/tutorials/W16/W16.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">W16 Sequencing Technologies</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#luciano-beheregaray" id="toc-luciano-beheregaray" class="nav-link active" data-scroll-target="#luciano-beheregaray">Luciano Beheregaray</a></li>
+  <li><a href="#laura-bertola" id="toc-laura-bertola" class="nav-link" data-scroll-target="#laura-bertola">Laura Bertola</a></li>
+  <li><a href="#chris-brauer" id="toc-chris-brauer" class="nav-link" data-scroll-target="#chris-brauer">Chris Brauer</a></li>
+  <li><a href="#renee-catullo" id="toc-renee-catullo" class="nav-link" data-scroll-target="#renee-catullo">Renee Catullo</a></li>
+  <li><a href="#floriaan-devloo-delva" id="toc-floriaan-devloo-delva" class="nav-link" data-scroll-target="#floriaan-devloo-delva">Floriaan Devloo-Delva</a></li>
+  <li><a href="#celine-frere" id="toc-celine-frere" class="nav-link" data-scroll-target="#celine-frere">Celine Frere</a></li>
+  <li><a href="#elise-furlan" id="toc-elise-furlan" class="nav-link" data-scroll-target="#elise-furlan">Elise Furlan</a></li>
+  <li><a href="#arthur-georges" id="toc-arthur-georges" class="nav-link" data-scroll-target="#arthur-georges">Arthur Georges</a></li>
+  <li><a href="#bernd-gruber" id="toc-bernd-gruber" class="nav-link" data-scroll-target="#bernd-gruber">Bernd Gruber</a></li>
+  <li><a href="#ethan-halford" id="toc-ethan-halford" class="nav-link" data-scroll-target="#ethan-halford">Ethan Halford</a></li>
+  <li><a href="#andrzej-kilian" id="toc-andrzej-kilian" class="nav-link" data-scroll-target="#andrzej-kilian">Andrzej Kilian</a></li>
+  <li><a href="#ching-ching-lau" id="toc-ching-ching-lau" class="nav-link" data-scroll-target="#ching-ching-lau">Ching Ching Lau</a></li>
+  <li><a href="#zoe-mézière" id="toc-zoe-mézière" class="nav-link" data-scroll-target="#zoe-mézière">Zoe Mézière</a></li>
+  <li><a href="#luis-mijangos" id="toc-luis-mijangos" class="nav-link" data-scroll-target="#luis-mijangos">Luis Mijangos</a></li>
+  <li><a href="#craig-moritz" id="toc-craig-moritz" class="nav-link" data-scroll-target="#craig-moritz">Craig Moritz</a></li>
+  <li><a href="#kate-rick" id="toc-kate-rick" class="nav-link" data-scroll-target="#kate-rick">Kate Rick</a></li>
+  <li><a href="#cynthia-riginos" id="toc-cynthia-riginos" class="nav-link" data-scroll-target="#cynthia-riginos">Cynthia Riginos</a></li>
+  <li><a href="#diana-robledo-ruiz" id="toc-diana-robledo-ruiz" class="nav-link" data-scroll-target="#diana-robledo-ruiz">Diana Robledo Ruiz</a></li>
+  <li><a href="#robyn-shaw" id="toc-robyn-shaw" class="nav-link" data-scroll-target="#robyn-shaw">Robyn Shaw</a></li>
+  <li><a href="#bill-sherwin" id="toc-bill-sherwin" class="nav-link" data-scroll-target="#bill-sherwin">Bill Sherwin</a></li>
+  <li><a href="#jonathan-ting" id="toc-jonathan-ting" class="nav-link" data-scroll-target="#jonathan-ting">Jonathan Ting</a></li>
+  <li><a href="#peter-unmack" id="toc-peter-unmack" class="nav-link" data-scroll-target="#peter-unmack">Peter Unmack</a></li>
+  <li><a href="#darya-vanichkina" id="toc-darya-vanichkina" class="nav-link" data-scroll-target="#darya-vanichkina">Darya Vanichkina</a></li>
+  <li><a href="#robin-waples" id="toc-robin-waples" class="nav-link" data-scroll-target="#robin-waples">Robin Waples</a></li>
+  <li><a href="#claire-stephens" id="toc-claire-stephens" class="nav-link" data-scroll-target="#claire-stephens">Claire Stephens</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Presenters</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><img src="inst/tutorials/session0/images/dartR7.png" class="img-fluid"></p>
+<section id="luciano-beheregaray" class="level2">
+<h2 class="anchored" data-anchor-id="luciano-beheregaray">Luciano Beheregaray</h2>
+<p><img src="images/presenters/luciano.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Luciano Beheregaray</strong> of <strong>Flinders University</strong> channels the Force through conservation genomics and molecular ecology. Armed with next-generation sequencing rather than a lightsaber, he maps hidden population structures, gene flow, and adaptation across marine and freshwater realms to safeguard biodiversity in a changing galaxy. His mission: decode evolutionary resilience, lead interdisciplinary teams, and mentor new Padawans of population genetics. By blending natural history with genomics, Luciano investigates how aquatic life adapts to human impacts, ensuring endangered species do not slip toward the Dark Side of extinction. Trained across the stars—from Brazil (University of Rio Grande) to Sydney (Macquarie University) and Yale (Gaylord Donnelley Environmental Research Fellow)—he moved to Adelaide and established the Molecular Ecology Lab (MELFU) in 2009. A former ARC Future Fellow, his research now shapes government policy, providing a defensive shield for the galaxy’s most vulnerable native species.</p>
+</section>
+<section id="laura-bertola" class="level2">
+<h2 class="anchored" data-anchor-id="laura-bertola">Laura Bertola</h2>
+<p><img src="images/presenters/laura.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the galactic quest to defend biodiversity, <strong>Laura Bertola</strong> of <strong>India’s National Centre for Biological Sciences</strong> rises as a Jedi Master of Conservation Genomics. During her PhD at Leiden University, she decoded the Force within lions—sequencing DNA from tissue, hair, and even scat, blending ancient and modern samples like a true archivist of the Jedi Order. As a postdoc at City College of New York, she merged genomic and environmental holocrons to detect local adaptation in Brazil’s Atlantic Forest, later expanding her population genomics missions at Copenhagen University across Africa and Asia. Now at NCBS, she protects large carnivores, while leading the Leo Foundation to turn science into real-world conservation action.</p>
+</section>
+<section id="chris-brauer" class="level2">
+<h2 class="anchored" data-anchor-id="chris-brauer">Chris Brauer</h2>
+<p><img src="images/presenters/chris.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the vast Galactic Republic of Conservation Genomics, <strong>Chris Brauer</strong> of <strong>Flinders University</strong> stands as a Jedi Master of population genetics, wielding SNPs like a finely tuned lightsaber. Trained in the ancient arts of evolutionary biology, he charts genetic constellations across fishes and wildlife, revealing structure, gene flow, and adaptive signals hidden deep within the Force of DNA. From mentoring Padawans to co-piloting large-scale genomics missions, he links cutting-edge science to real-world conservation strategy. Calm in statistical hyperspace and precise with every dataset, Chris proves that balance in the Force begins with protecting biodiversity.</p>
+</section>
+<section id="renee-catullo" class="level2">
+<h2 class="anchored" data-anchor-id="renee-catullo">Renee Catullo</h2>
+<p><img src="images/presenters/renee.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Knight <strong>Renee Catullo</strong> of <strong>University of Western Australia</strong> wields the Force of conservation and landscape genomics to safeguard Australia’s biodiversity. Armed with SNP arrays instead of a lightsaber, she maps gene flow across fragmented habitats, revealing adaptive potential and hidden population structure in threatened fauna. Rising through the ranks of evolutionary biology, she has led applied genomic programs that translate sequencing data into real-world management strategy. Mentoring a new generation of Padawans in molecular ecology, her mission is clear: strengthen genetic resilience, reconnect populations, and prevent species from slipping to the Dark Side of extinction.</p>
+</section>
+<section id="floriaan-devloo-delva" class="level2">
+<h2 class="anchored" data-anchor-id="floriaan-devloo-delva">Floriaan Devloo-Delva</h2>
+<p><img src="images/presenters/flo.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the Republic of Conservation Genomics, <strong>Floriaan Devloo-Delva</strong> of <strong>CSIRO</strong> serves as a resourceful Jedi Sentinel, equally fluent in the languages of fieldwork and code. Armed with the twin lightsabers of population genetics and bioinformatics, he navigates vast SNP starfields to uncover structure, gene flow, and evolutionary history in threatened taxa. From assembling robust analytical pipelines to guiding collaborators through the asteroid belts of messy data, he ensures the Force of reproducible science remains strong. Calm, pragmatic, and technically sharp, Jedi Devloo-Delva reminds the Council that true balance lies not only in the Force—but in well-curated datasets and scripts that actually run.</p>
+</section>
+<section id="celine-frere" class="level2">
+<h2 class="anchored" data-anchor-id="celine-frere">Celine Frere</h2>
+<p><img src="images/presenters/celine.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Celine Frere</strong> of <strong>University of Queensland</strong> channels the Force through marine molecular ecology. With microsatellites and SNPs as her twin lightsabers, she deciphers kinship, social structure, and dispersal in dolphins and other marine fauna, mapping invisible alliances across oceanic star systems. Rising to Professor through pioneering work on population connectivity and behavioural genetics, she leads interdisciplinary crews blending fieldwork and genomics. Her quest: reveal the hidden family trees of the sea and ensure marine species resist the Dark Side of fragmentation and decline.</p>
+</section>
+<section id="elise-furlan" class="level2">
+<h2 class="anchored" data-anchor-id="elise-furlan">Elise Furlan</h2>
+<p><img src="images/presenters/elise.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Elise Furlan</strong> of the <strong>University of Canberra</strong>, ARC DECRA Fellow and molecular ecologist, harnesses the Force of genetics to reveal hidden life across Earth’s ecosystems. A pioneer of environmental DNA (eDNA) research in Australia, she helped forge the early methods that allow scientists to detect species from the faintest traces of DNA left in water, soil, and air. Her expertise helped establish the University of Canberra’s trace DNA laboratories, where rigorous methods guide the analysis of even the most elusive molecular signals. Through her research she has developed frameworks for quantifying eDNA detection sensitivity and advanced metabarcoding approaches that reveal entire biological communities from a single sample. Continuously exploring new frontiers, her work now pushes eDNA beyond detection, extracting population genetic insights from environmental samples, ensuring the Force of population genetic evidence guides conservation across Australia.</p>
+</section>
+<section id="arthur-georges" class="level2">
+<h2 class="anchored" data-anchor-id="arthur-georges">Arthur Georges</h2>
+<p><img src="images/presenters/arthur.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Arthur Georges</strong> of the <strong>University of Canberra</strong> blends Force-like fieldwork with lab-side lore to decode the evolutionary “Force” behind Australia’s reptiles. His primary mission focuses on the genetics of sex determination, revealing how complex thermal nest environments influence sexual outcomes in unexpected ways.<br>
+A veteran of remote worlds and scientific councils alike, Arthur’s foray into SNP-based genomics has reshaped our understanding of phylogeography and species delimitation. As a lead developer of dartR and a joint recipient of the 2025 Eureka Prize for Research Software, his digital holocrons empower the global scientific community.<br>
+A Fellow of the Australian Academy of Science and Behler Turtle Conservation Award winner, he champions species protection with Jedi wisdom and a twinkle in his eye. His work bridges the gap between ancient survival and future climate challenges, ensuring genetics can inform management at the grassroots level to protect our scaled allies. Mission Intel: <a href="http://georges.biomatix.org">georges.biomatix.org</a></p>
+</section>
+<section id="bernd-gruber" class="level2">
+<h2 class="anchored" data-anchor-id="bernd-gruber">Bernd Gruber</h2>
+<p><img src="images/presenters/bernd.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Bernd Gruber</strong> of the <strong>University of Canberra</strong> steers his starship through the cosmos of spatial ecology and population genetics, crafting force-sensitive models that predict how wildlife populations move and survive across galactic landscapes for conservation management. He’s trained across distant research systems and now leads missions to safeguard endangered species, decode demographic signals, and deploy ecological simulations faster than an X-wing in hyperspace. Whether optimising monitoring tools or revealing boom-and-bust genetic shifts, his work proves that even the trickiest spatial puzzles can be cracked with a bit of Jedi modelling mastery.</p>
+</section>
+<section id="ethan-halford" class="level2">
+<h2 class="anchored" data-anchor-id="ethan-halford">Ethan Halford</h2>
+<p><img src="images/presenters/ethan.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the bustling shipyards of the dartRverse, Master <strong>Ethan Halford</strong> of <strong>DArT</strong> serves as a vital Chief Engineer for the Genomic Rebellion. Armed with a “High-Throughput Lightsaber,” he specialises in the sacred art of R-programming, helping Padawans and Masters alike navigate the hyperspace of complex biological data. As a key guardian at DArT, Ethan deciphers the ancient holocrons of biodiversity, ensuring that the Force of Open-Source software remains strong across the Australian bush. Whether he’s patching a thermal exhaust port in a data pipeline or shielding vulnerable species from the “Dark Side” of extinction, his technical mastery keeps the entire fleet on course.</p>
+</section>
+<section id="andrzej-kilian" class="level2">
+<h2 class="anchored" data-anchor-id="andrzej-kilian">Andrzej Kilian</h2>
+<p><img src="images/presenters/andrzej.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Grand Master <strong>Andrzej Kilian</strong>, founder of the <strong>DArT</strong> Order, forged a revolutionary kyber crystal: a high-throughput genotyping method that decodes the midi-chlorians of any species without prior sequence maps. A true champion of the Light Side, he sought to democratize the Force of genomics, bringing vital DNA profiling to the “orphan crops” and forgotten species of the Outer Rim to ensure galaxy-wide food security. Under his wise leadership for over two decades, the DArT Holocron has amassed over 2.5 million genome profiles, empowering farmers and conservationists to bring balance to ecosystems everywhere!</p>
+</section>
+<section id="ching-ching-lau" class="level2">
+<h2 class="anchored" data-anchor-id="ching-ching-lau">Ching Ching Lau</h2>
+<p><img src="images/presenters/chingching.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the hallowed halls of the <strong>Australian National University</strong> Jedi Temple, Master <strong>Ching Ching Lau</strong> serves as a legendary Guardian of the Genomic Archives. A true master of the Molecular Lightsaber, she deciphers the ancient riddles of the wheat pathogen lineage, wielding the profound Force of bioinformatics. She is filtering through the Dark Side, the parasitic blights that threaten to consume entire harvests and shields the galaxy’s food supply. From her early Padawan days to her rise as a High-Throughput Hero, she remains the premier protector of the golden wheat fields, ensuring that the hunger of the Empire is forever kept at bay.</p>
+</section>
+<section id="zoe-mézière" class="level2">
+<h2 class="anchored" data-anchor-id="zoe-mézière">Zoe Mézière</h2>
+<p><img src="images/presenters/zoe.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the galaxy of conservation genomics, <strong>Zoe Mézière</strong> of the <strong>University of Queensland</strong> rises as a Jedi Knight of the dartRverse Order. Trained in the ways of population genetics, she channels the Force through SNP datasets, guiding endangered species away from the dark side of genetic erosion. From refining analytical workflows in R to mentoring young Padawans at workshops across Australia, she has mastered the lightsaber of reproducible science. Her research bridges field ecology and high-throughput genomics, forging alliances between data and conservation action. Calm, precise, and occasionally amused by messy VCFs, Jedi Mézière proves that balance in the Force—and in allele frequencies—must be maintained.</p>
+</section>
+<section id="luis-mijangos" class="level2">
+<h2 class="anchored" data-anchor-id="luis-mijangos">Luis Mijangos</h2>
+<p><img src="images/presenters/luis.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In a galaxy not so far away, Jedi Master <strong>Luis Mijangos</strong> of <strong>DArT</strong> wields a high-throughput sequencer like a lightsaber, slicing through the “Dark Side” of genomic noise. A legendary Guardian of the Population Genetics Temple, he has mastered the art of “WGS filtering,” using the Force to identify loci under selection across diverse biomes. From his early Padawan days to his breakthrough career milestones, Luis has decoded the ancient holocrons of biodiversity. When he isn’t calibrating the Millennium Falcon’s sensors for genome scans, he’s ensuring his fleet of collaborators thrives in the light of scientific discovery.</p>
+</section>
+<section id="craig-moritz" class="level2">
+<h2 class="anchored" data-anchor-id="craig-moritz">Craig Moritz</h2>
+<p><img src="images/presenters/craig.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the halls of the <strong>Australian National University</strong>, Jedi Master <strong>Craig Moritz</strong> wields the Force of phylogeography like a finely tuned lightsaber. Trained across distant star systems (including leadership roles at Berkeley’s Museum of Vertebrate Zoology), he returned to ANU to guide young Padawans through the mysteries of biodiversity, climate change refugia, and conservation genomics. Decoding the midi-chlorians of mitochondrial DNA, he mapped Australia’s evolutionary lineages long before hyperspace travel was cool. A Fellow of the Australian Academy of Science, Moritz has balanced the galaxy of research leadership while reminding us: in conservation, the Force is strong—but only if you sample broadly.</p>
+</section>
+<section id="kate-rick" class="level2">
+<h2 class="anchored" data-anchor-id="kate-rick">Kate Rick</h2>
+<p><img src="images/presenters/kate.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the conservation galaxy, <strong>Kate Rick</strong> of <strong>Department of Biodiversity, Conservation and Attractions, Western Australia</strong> stands as a wise Jedi Consular of applied genomics, wielding R scripts like finely tuned lightsabers. Trained in the arts of population genetics and biodiversity stewardship, she navigates complex SNP constellations to reveal patterns of connectivity, adaptation, and resilience. A steady presence in collaborative research and training missions, she helps translate genomic intelligence into real-world conservation strategy—because what good is the Force if it doesn’t guide management action? Calm under computational pressure and unafraid of daunting datasets, Jedi Rick keeps both ecosystems and analyses in balance across the Republic of Science.</p>
+</section>
+<section id="cynthia-riginos" class="level2">
+<h2 class="anchored" data-anchor-id="cynthia-riginos">Cynthia Riginos</h2>
+<p><img src="images/presenters/cynthia.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Cynthia Riginos</strong> of the <strong>Australian Institute of Marine Science</strong> and the <strong>University of Queensland</strong> channels the Force through marine evolutionary genomics. With population genetics as her lightsaber, she deciphers connectivity, adaptation, and speciation across coral reef galaxies, revealing how marine species persist in warming seas. Rising to Professor through pioneering work on reef biodiversity and climate resilience, she leads interdisciplinary crews of genomic Padawans armed with next-generation sequencing. Her quest: map invisible dispersal routes, forecast evolutionary futures, and keep reef ecosystems from drifting to the Dark Side of collapse.</p>
+</section>
+<section id="diana-robledo-ruiz" class="level2">
+<h2 class="anchored" data-anchor-id="diana-robledo-ruiz">Diana Robledo Ruiz</h2>
+<p><img src="images/presenters/diana.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Diana Robledo Ruiz</strong> of <strong>Monash University</strong> wields her genomics Force to save endangered species like the Helmeted Honeyeater and Leadbeater’s Possum from the Dark Side of extinction, pioneering genetic rescue strategies and crafting bioinformatic tools to decode wild DNA faster than a speeder bike chase. A decorated conservation genomicist and Eureka Prize finalist, she balances field quests with lightspeed data wizardry, showing the galaxy that even tiny genomes can have epic destinies.</p>
+</section>
+<section id="robyn-shaw" class="level2">
+<h2 class="anchored" data-anchor-id="robyn-shaw">Robyn Shaw</h2>
+<p><img src="images/presenters/robyn.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Master <strong>Robyn Shaw</strong>, stationed at the <strong>University of Canberra’s Centre for Conservation Ecology and Genomics</strong>, wields the Force of genetics to protect Australia’s unique fauna. By decoding the “midi-chlorians” of small mammals and arid-zone species, she defends them against the Dark Side of environmental change, invasive species, and climate shifts. Her academic mastery recently culminated in a landmark Nature publication—a true Jedi Council global meta-analysis—proving that swift conservation action is our only hope to halt genetic diversity loss. Through her research, she continues to bring balance to the ecosystem!</p>
+</section>
+<section id="bill-sherwin" class="level2">
+<h2 class="anchored" data-anchor-id="bill-sherwin">Bill Sherwin</h2>
+<p><img src="images/presenters/bill.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the galactic halls of the <strong>University of New South Wales</strong>, Jedi Master <strong>Bill Sherwin</strong> wields the Force of conservation genetics with precision worthy of the High Council. A guardian of biodiversity across Australia, he has decoded the midi-chlorians of koalas, flying foxes, and endangered marsupials—using population genomics to sense disturbances in their genetic fields. Renowned for advancing wildlife forensics and evidence-based conservation policy, he trains young Padawans in the arts of molecular ecology and statistical sorcery. Calm, incisive, and ever strategic, Master Sherwin ensures that balance is restored to ecosystems long before the Empire of extinction strikes.</p>
+</section>
+<section id="jonathan-ting" class="level2">
+<h2 class="anchored" data-anchor-id="jonathan-ting">Jonathan Ting</h2>
+<p><img src="images/presenters/jonathan.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the Techno-Genomic Outer Rim, <strong>Jonathan Ting</strong> operates as a Jedi Architect in the AI/ML Order at <strong>DArT</strong>. Forged at the University of Queensland in computational chemistry—where he simulated proteins like midichlorians in motion—and later knighted with a PhD in Computer Science from ANU, he mastered applied machine learning for nanomaterials, wielding sampling, labelling, and causal inference like precision lightsabers. Now stationed at the crossroads of software engineering, genomics, and AI, he forges practical tools that power bioinformatics research and breeding programs—proving that in this galaxy, elegant code is the true path to the Force.</p>
+</section>
+<section id="peter-unmack" class="level2">
+<h2 class="anchored" data-anchor-id="peter-unmack">Peter Unmack</h2>
+<p><img src="images/presenters/peter.png" class="img-fluid" style="float: left" width="200"></p>
+<p>At the <strong>University of Canberra</strong>, Jedi Master <strong>Peter Unmack</strong> commands the currents of evolutionary ichthyology like a true guardian of the Outer Rim. Specialising in freshwater fishes of Australia and beyond, he traces ancient lineages as if reading the Jedi Archives—revealing hidden speciation events and cryptic diversity in desert springs and river systems. Armed with phylogeography and molecular systematics, he maps how tectonics, climate, and time have shaped aquatic life across the continent. A seasoned field explorer and mentor of rising Padawans, Master Unmack ensures that no endangered fish vanishes unnoticed into the dark side of extinction.</p>
+</section>
+<section id="darya-vanichkina" class="level2">
+<h2 class="anchored" data-anchor-id="darya-vanichkina">Darya Vanichkina</h2>
+<p><img src="images/presenters/darya.png" class="img-fluid" style="float: left" width="200"></p>
+<p>Jedi Knight <strong>Darya Vanichkina</strong> of the <strong>University of Sydney</strong> channels the Force through code, algorithms, and high-performance computing. A Master of Bioinformatics and computational genomics, she forges reproducible workflows from raw sequencing reads as if assembling starships from scattered parts. Rising through academia and research leadership, she has championed open science, research software engineering, and rigorous data stewardship across large genomic consortia. With pipelines as precise as a lightsaber strike, she trains Padawans in version control, FAIR data, and scalable analysis—ensuring that complex biological data never drift to the Dark Side of irreproducibility.</p>
+</section>
+<section id="robin-waples" class="level2">
+<h2 class="anchored" data-anchor-id="robin-waples">Robin Waples</h2>
+<p><img src="images/presenters/robin.png" class="img-fluid" style="float: left" width="200"></p>
+<p>In the Pacific Sector of the Conservation Galaxy, <strong>Robin Waples</strong> stands as a retired Jedi Master of NOAA Fisheries and Affiliate Professor at the <strong>University of Washington</strong>. After early quests in marine shorefish taxonomy, he turned his lightsaber toward salmon, leading the charge to define conservation units and recovery strategies under the U.S. Endangered Species Act. A master of effective population size and high-gene-flow enigmas, he reshaped classic population genetics models to fit real-world life histories. Guiding young Padawans through innovation grants and bridging evolution with management, Robin proves the Force is strongest where science meets stewardship.</p>
+</section>
+<section id="claire-stephens" class="level2">
+<h2 class="anchored" data-anchor-id="claire-stephens">Claire Stephens</h2>
+<p>image needed<br>
+<strong>Claire Stephens</strong> is a Jedi Master of collaboration at the <strong>Australian National University</strong>, serving as Guardian of the Centre for Biodiversity Analysis. She forges powerful alliances across ANU, CSIRO, and the University of Canberra, strengthening the Force of ecological and evolutionary science. With the strategic clarity of a Jedi Council leader, she aligns diverse research talents into a unified mission for biodiversity conservation. Where others see distant star systems of expertise, Claire charts hyperspace routes between them, ensuring knowledge flows, partnerships thrive, and the Republic of conservation science grows ever stronger.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./schedule.html" class="pagination-link" aria-label="Program">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Program</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./install.html" class="pagination-link" aria-label="Install dartRverse">
+        <span class="nav-page-text">Install dartRverse</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

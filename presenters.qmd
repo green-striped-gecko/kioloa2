@@ -4,7 +4,7 @@
 
 ## Luciano Beheregaray
 
-![](images/presenters/Luciano.png){style="float: left" width="200"}
+![](images/presenters/luciano.png){style="float: left" width="200"}
 
 Jedi Master **Luciano Beheregaray** of **Flinders University** channels the Force through conservation genomics and molecular ecology. Armed with next-generation sequencing rather than a lightsaber, he maps hidden population structures, gene flow, and adaptation across marine and freshwater realms to safeguard biodiversity in a changing galaxy. His mission: decode evolutionary resilience, lead interdisciplinary teams, and mentor new Padawans of population genetics. By blending natural history with genomics, Luciano investigates how aquatic life adapts to human impacts, ensuring endangered species do not slip toward the Dark Side of extinction. Trained across the stars—from Brazil (University of Rio Grande) to Sydney (Macquarie University) and Yale (Gaylord Donnelley Environmental Research Fellow)—he moved to Adelaide and established the Molecular Ecology Lab (MELFU) in 2009. A former ARC Future Fellow, his research now shapes government policy, providing a defensive shield for the galaxy’s most vulnerable native species.
 
@@ -28,7 +28,7 @@ Jedi Knight **Renee Catullo** of **University of Western Australia** wields the 
 
 ## Floriaan Devloo-Delva
 
-![](images/presenters/Flo.png){style="float: left" width="200"}
+![](images/presenters/flo.png){style="float: left" width="200"}
 
 In the Republic of Conservation Genomics, **Floriaan Devloo-Delva** of **CSIRO** serves as a resourceful Jedi Sentinel, equally fluent in the languages of fieldwork and code. Armed with the twin lightsabers of population genetics and bioinformatics, he navigates vast SNP starfields to uncover structure, gene flow, and evolutionary history in threatened taxa. From assembling robust analytical pipelines to guiding collaborators through the asteroid belts of messy data, he ensures the Force of reproducible science remains strong. Calm, pragmatic, and technically sharp, Jedi Devloo-Delva reminds the Council that true balance lies not only in the Force—but in well-curated datasets and scripts that actually run.
 
@@ -66,13 +66,13 @@ In the bustling shipyards of the dartRverse, Master **Ethan Halford** of **DArT*
 
 ## Andrzej Kilian
 
-![](images/presenters/Andrzej.png){style="float: left" width="200"}
+![](images/presenters/andrzej.png){style="float: left" width="200"}
 
 Jedi Grand Master **Andrzej Kilian**, founder of the **DArT** Order, forged a revolutionary kyber crystal: a high-throughput genotyping method that decodes the midi-chlorians of any species without prior sequence maps. A true champion of the Light Side, he sought to democratize the Force of genomics, bringing vital DNA profiling to the “orphan crops” and forgotten species of the Outer Rim to ensure galaxy-wide food security. Under his wise leadership for over two decades, the DArT Holocron has amassed over 2.5 million genome profiles, empowering farmers and conservationists to bring balance to ecosystems everywhere!
 
 ## Ching Ching Lau
 
-![](images/presenters/Ching-Ching.png){style="float: left" width="200"}
+![](images/presenters/chingching.png){style="float: left" width="200"}
 
 In the hallowed halls of the **Australian National University** Jedi Temple, Master **Ching Ching Lau** serves as a legendary Guardian of the Genomic Archives. A true master of the Molecular Lightsaber, she deciphers the ancient riddles of the wheat pathogen lineage, wielding the profound Force of bioinformatics. She is filtering through the Dark Side, the parasitic blights that threaten to consume entire harvests and shields the galaxy's food supply. From her early Padawan days to her rise as a High-Throughput Hero, she remains the premier protector of the golden wheat fields, ensuring that the hunger of the Empire is forever kept at bay.
 
@@ -114,7 +114,7 @@ Jedi Master **Diana Robledo Ruiz** of **Monash University** wields her genomics 
 
 ## Robyn Shaw
 
-![](images/presenters/Robyn.png){style="float: left" width="200"}
+![](images/presenters/robyn.png){style="float: left" width="200"}
 
 Jedi Master **Robyn Shaw**, stationed at the **University of Canberra’s Centre for Conservation Ecology and Genomics**, wields the Force of genetics to protect Australia’s unique fauna. By decoding the “midi-chlorians” of small mammals and arid-zone species, she defends them against the Dark Side of environmental change, invasive species, and climate shifts. Her academic mastery recently culminated in a landmark Nature publication—a true Jedi Council global meta-analysis—proving that swift conservation action is our only hope to halt genetic diversity loss. Through her research, she continues to bring balance to the ecosystem!
 
@@ -138,13 +138,13 @@ At the **University of Canberra**, Jedi Master **Peter Unmack** commands the cur
 
 ## Darya Vanichkina
 
-![](images/presenters/Darya.png){style="float: left" width="200"}
+![](images/presenters/darya.png){style="float: left" width="200"}
 
 Jedi Knight **Darya Vanichkina** of the **University of Sydney** channels the Force through code, algorithms, and high-performance computing. A Master of Bioinformatics and computational genomics, she forges reproducible workflows from raw sequencing reads as if assembling starships from scattered parts. Rising through academia and research leadership, she has championed open science, research software engineering, and rigorous data stewardship across large genomic consortia. With pipelines as precise as a lightsaber strike, she trains Padawans in version control, FAIR data, and scalable analysis—ensuring that complex biological data never drift to the Dark Side of irreproducibility.
 
 ## Robin Waples
 
-![](images/presenters/Robin.png){style="float: left" width="200"}
+![](images/presenters/robin.png){style="float: left" width="200"}
 
 In the Pacific Sector of the Conservation Galaxy, **Robin Waples** stands as a retired Jedi Master of NOAA Fisheries and Affiliate Professor at the **University of Washington**. After early quests in marine shorefish taxonomy, he turned his lightsaber toward salmon, leading the charge to define conservation units and recovery strategies under the U.S. Endangered Species Act. A master of effective population size and high-gene-flow enigmas, he reshaped classic population genetics models to fit real-world life histories. Guiding young Padawans through innovation grants and bridging evolution with management, Robin proves the Force is strongest where science meets stewardship.
 
