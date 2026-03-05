@@ -22,9 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W01 Pop Gen in Conservation and Restoration
 
-
-![](images/laura.png){.class width="200" height="200"} ![](images/kate.png){.class width="200" height="200"} 
-
+![](images/laura.png){.class width="200" height="200"} ![](images/kate.png){.class width="200" height="200"}
 
 ## Introduction
 
