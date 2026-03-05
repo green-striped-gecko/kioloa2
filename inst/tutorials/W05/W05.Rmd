@@ -213,6 +213,7 @@ hist(heterozygosity_rates)
 Examine the histogram to understand the distribution of heterozygosity across loci. You should see a peak at low to moderate values, with a tail extending towards 1.0 that represents likely paralogs.
 
 ```{r step3_2}
+#| eval: false
 # set threshold and filter
 threshold <- 0.6
 loci_to_keep <- which(heterozygosity_rates < threshold)
@@ -233,7 +234,7 @@ The `filter_allele_balance` function converts heterozygous genotypes to NA if th
 
 **Note on AGRF data:** If your VCF uses the `BSDP` tag instead of `AD` for allele depth, you will need to rename it before running this filter. The commented-out code below shows how to do this. Stacks data typically uses `AD` already.
 
-```{r step4_1}
+```{r step4_1, eval=FALSE}
 # uncomment the following if your VCF uses BSDP instead of AD (e.g. AGRF data)
 # gt_data <- data.1@gt
 # gt_data_modified <- apply(gt_data, 2, function(x) gsub(":BSDP:", ":AD:", x))
@@ -250,7 +251,7 @@ Loci with unusually high read depth are often paralogs or repetitive regions whe
 
 First, run the function without a cutoff to visualise the depth distribution, then apply a cutoff to remove the high-depth tail.
 
-```{r step5}
+```{r step5, eval=FALSE}
 # visualise depth distribution to choose a cutoff
 max_depth(data.2)
 
@@ -267,7 +268,7 @@ The appropriate cutoff will depend on your sequencing depth and organism. Look a
 
 After genotype-level filtering, some individuals may now have a very high proportion of missing data. These individuals contribute little useful information and can distort downstream analyses. We identify and remove them.
 
-```{r step6_1}
+```{r step6_1, eval=FALSE}
 # visualise missing data by sample
 miss <- missing_by_sample(vcfR = data.4)
 
@@ -277,7 +278,7 @@ data.5 <- missing_by_sample(vcfR = data.4, cutoff = 0.60)
 
 After removing individuals from the VCF, we must also update the metadata file to keep it in sync.
 
-```{r step6_2}
+```{r step6_2, eval=FALSE}
 # identify which samples were removed
 names1 <- colnames(extract.gt(data.4))
 names2 <- colnames(extract.gt(data.5))
@@ -292,7 +293,7 @@ rm(names1, names2, lost)
 
 Many downstream analyses assume biallelic loci. We remove any multiallelic sites (this will have no effect on Stacks data, which only calls biallelic SNPs). We also remove invariant sites — loci that have become monomorphic after the sample and genotype filtering above.
 
-```{r step7}
+```{r step7, eval=FALSE}
 # remove non-biallelic sites
 data.5a <- filter_biallelic(data.5)
 
@@ -306,7 +307,7 @@ Now we examine missing data from the perspective of each SNP. Loci with too much
 
 First, visualise the distribution to choose an appropriate threshold, then optionally assess how different missingness cutoffs affect PCA-based clustering.
 
-```{r step8_1}
+```{r step8_1, eval=FALSE}
 # visualise missing data per SNP
 missing_by_snp(data.6)
 
@@ -315,7 +316,7 @@ assess_missing_data_pca(vcfR = data.6, popmap = meta[, c(1, 2)],
                         thresholds = c(0.8), clustering = FALSE)
 ```
 
-```{r step8_2}
+```{r step8_2, eval=FALSE}
 # apply the chosen missing data threshold
 data.7 <- missing_by_snp(data.6, cutoff = 0.6)
 
@@ -324,7 +325,7 @@ data.7
 
 At this point it is good practice to save the filtered VCF as a checkpoint.
 
-```{r step8_3}
+```{r step8_3, eval=FALSE}
 # save filtered VCF
 write.vcf(data.7, file = "data7.vcf")
 ```
@@ -335,7 +336,7 @@ The filtered VCF is now ready to be converted into a genlight object, which is t
 
 #### Save allele information
 
-```{r step9_1}
+```{r step9_1, eval=FALSE}
 # save allele information before conversion
 alleles_info <- data.frame(
   CHROM = data.7@fix[, "CHROM"],
@@ -353,7 +354,7 @@ When multiple SNPs occur on the same short DNA fragment (e.g. within a 63 bp rea
 
 The following code creates a fragment identifier for each locus by examining the chromosome, the SNP ID prefix (which encodes the fragment group in Stacks output), and the physical position.
 
-```{r step9_2}
+```{r step9_2, eval=FALSE}
 # extract fragment group from the SNP ID
 alleles_info$frag_group <- as.integer(sub(":.*", "", alleles_info$ID))
 alleles_info$POS <- as.numeric(alleles_info$POS)
@@ -369,7 +370,7 @@ alleles_info$fragment_id <- NA
 
 The `assign_fragments` function checks whether SNPs share the same chromosome and SNP ID prefix, and whether they are within 63 bp of each other (i.e. on the same sequenced fragment).
 
-```{r step9_3}
+```{r step9_3, eval=FALSE}
 assign_fragments <- function(subdf, keys) {
   if (nrow(subdf) == 0) return(subdf)
   
@@ -421,7 +422,7 @@ alleles_info$SNP <- paste0(alleles_info$POS, ":", alleles_info$REF, ">", alleles
 
 #### Convert to genlight
 
-```{r step9_4}
+```{r step9_4, eval=FALSE}
 # convert VCF to genlight
 gl.1 <- vcfR2genlight(data.7)
 
@@ -433,7 +434,7 @@ indNames(gl.1) <- meta$id
 
 Before proceeding, it is useful to check that technical replicates cluster together, which confirms that the genotyping is consistent.
 
-```{r step9_5}
+```{r step9_5, eval=FALSE}
 # assess dendrogram-based clustering
 dist <- gl.dist.ind(gl.1)
 hc <- hclust(dist)
@@ -442,7 +443,7 @@ plot(hc)
 
 #### Attach metadata to the genlight object
 
-```{r step9_6}
+```{r step9_6, eval=FALSE}
 # set ploidy
 ploidy(gl.1) <- 2
 
@@ -477,7 +478,7 @@ Technical replicates (the same individual genotyped more than once) allow us to 
 
 You need a CSV file (`techreps.csv`) with no header, where the first column is the sample name as it appears in the genlight, and the second column is an identifier that links replicates of the same individual.
 
-```{r step10_1}
+```{r step10_1, eval=FALSE}
 # read technical replicate information
 reps <- as.data.frame(read.csv(file = "techreps.csv", header = FALSE))
 
@@ -489,7 +490,7 @@ reps <- reps[reps$V1 %in% indNames(gl.1), ]
 
 The following code compares genotype calls between pairs of technical replicates at every locus, counting mismatches as errors.
 
-```{r step10_2}
+```{r step10_2, eval=FALSE}
 # extract genotype matrix and transpose
 geno <- as.data.frame(t(as.matrix(gl.1[, ])))
 geno[1:10, 1:10]
@@ -528,7 +529,7 @@ snp.tech.match.rd <- as.data.frame(snp.tech.match.rd)
 
 #### Calculate and visualise reproducibility scores
 
-```{r step10_3}
+```{r step10_3, eval=FALSE}
 # count errors per SNP
 snp.tech.match.rd$error <- apply(snp.tech.match.rd[, -1], 1, function(row) {
   sum(row == "ERROR", na.rm = TRUE) / 2
@@ -547,7 +548,7 @@ hist(snp.tech.match.rd$reproducibility,
 
 #### Attach reproducibility to genlight and filter
 
-```{r step10_4}
+```{r step10_4, eval=FALSE}
 # verify locus name order matches between VCF and genlight
 fix <- as.data.frame(data.7@fix)
 LOC_Names <- as.data.frame(paste(fix$CHROM, fix$POS, sep = "_"))
@@ -582,7 +583,7 @@ min(gl.1@other$loc.metrics$Reproducibility)
 
 After reproducibility filtering, it is good practice to run a quick PCA to see how the data is looking.
 
-```{r step10_5}
+```{r step10_5, eval=FALSE}
 pc <- gl.pcoa(gl.1)
 barplot(pc$eig / sum(pc$eig) * 100)
 gl.pcoa.plot(pc, gl.1, pop.labels = "pop", xaxis = 1, yaxis = 2)
@@ -592,7 +593,7 @@ gl.pcoa.plot(pc, gl.1, pop.labels = "pop", xaxis = 1, yaxis = 2)
 
 Technical replicates were needed to assess reproducibility, but they must be removed before analysis to avoid pseudoreplication. We keep only one representative per unique genotype.
 
-```{r step11}
+```{r step11, eval=FALSE}
 # identify unique individuals
 df <- as.data.frame(gl.1@other$ind.metrics)
 unique <- df[!duplicated(df$genotype), ]
@@ -612,7 +613,7 @@ The final step is to ensure that only one SNP per fragment is retained. Multiple
 
 We use the fragment IDs assigned earlier to identify groups of linked SNPs and keep only the first SNP from each group.
 
-```{r step12_1}
+```{r step12_1, eval=FALSE}
 # get fragment IDs
 clone_ids <- gl.1@other$loc.metrics$CloneID
 
@@ -625,7 +626,7 @@ gl.1@other$loc.metrics <- gl.1@other$loc.metrics[keep_loci, ]
 
 #### Final PCA check
 
-```{r step12_2}
+```{r step12_2, eval=FALSE}
 pc <- gl.pcoa(gl.1)
 barplot(pc$eig / sum(pc$eig) * 100)
 gl.pcoa.plot(pc, gl.1, pop.labels = "pop", xaxis = 1, yaxis = 2)
@@ -635,7 +636,7 @@ gl.pcoa.plot(pc, gl.1, pop.labels = "pop", xaxis = 1, yaxis = 2)
 
 The filtered genlight object now contains depth-filtered, reproducibility-checked, independent SNP loci scored across unique individuals with all relevant metadata attached. This object can be used directly for phylogenetic or population genetic analyses.
 
-```{r step13}
+```{r step13, eval=FALSE}
 # clean up intermediate objects
 rm(data, data.1, data.2, data.3, data.4, data.5, data.6, data.7, 
    geno, gl_store, gt_reps, hc, loc.metrics, meta, miss, pc, reps, 
