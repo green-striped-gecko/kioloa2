@@ -28,7 +28,7 @@ klippy::klippy(position="right", color="black")
 
 *Session Presenters*
 
-![](./images/diana.png)![](./images/flo.png)
+![](images/diana.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"} 
 
 ## Required packages
 

@@ -28,7 +28,7 @@ klippy::klippy(position="right", color="black")
 
 *Session Presenters*
 
-![](images/bill.png){.class width="100" height="100"} ![](images/flo.png){.class width="100" height="100"} ![](images/laura.png){.class width="100"}
+![](images/bill.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"} ![](images/laura.png){.class width="200"}
 
 ## Required packages
 

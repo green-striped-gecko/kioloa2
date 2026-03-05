@@ -22,7 +22,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 
 ## W02 dartR Intro, Data Manipulation & Filtering
 
-![](images/W2_all_speakers.png)
+
+![](images/arthur.png){.class width="200" height="200"} ![](images/chingching.png){.class width="200" height="200"} ![](images/diana.png){.class width="200" height="200"} 
 
 ## Introduction
 
@@ -296,7 +297,11 @@ Below are two tables with a number of report and filter functions you can try.
 ### Report functions
 
 | Report functions | description |
+<<<<<<< HEAD
 |------------------------------------|------------------------------------|
+=======
+|----|----|
+>>>>>>> main
 | gl.report.callrate | *summarises CallRate values* |
 | gl.report.reproducibility | *summarises repAvg (SNP) or reproducibility (SilicoDArT) values.* |
 | gl. report.monomorphs | *provides a count of polymorphic and monomorphic loci* |
@@ -312,7 +317,11 @@ Below are two tables with a number of report and filter functions you can try.
 ### Filtering functions
 
 | Filter functions | description |
+<<<<<<< HEAD
 |------------------------------------|------------------------------------|
+=======
+|----|----|
+>>>>>>> main
 | gl.filter.callrate | *filter out loci or individuals for which the call rate (rate of non-missing values) is less than a specified threshold, say threshold = 0.95* |
 | gl.filter.reproducibility | *filter out loci for which the reproducibility (strictly repeatability) is less than a specified threshold, say threshold = 0.99* |
 | gl. filter.monomorphs | *provides a count of polymorphic and monomorphic loci* |

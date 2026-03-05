@@ -30,9 +30,7 @@ klippy::klippy(position="right", color="black")
 
 ## Effective Population Size
 
-*Session Presenters*
-
-![](images/Presenters5.png)
+![](images/robin.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"} 
 
 ## Learning Outcomes
 

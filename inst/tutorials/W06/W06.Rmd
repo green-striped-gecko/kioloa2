@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W06 Management of Small Populations
 
+![](images/diana.png){.class width="200" height="200"} ![](images/peter.png){.class width="200" height="200"} 
+
 ## Introduction
 
 ### Learning outcomes

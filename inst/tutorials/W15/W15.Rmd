@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W15 Relatedness
 
+![](images/ethan.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"} 
+
 ## Introduction
 
 ### Learning outcomes
