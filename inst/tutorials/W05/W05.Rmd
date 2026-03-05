@@ -12,59 +12,660 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W05 W05 Calling SNPs"
+description: "W05 Calling SNPs"
 ---
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
-## W05 W05 Calling SNPs 
+## W05 VCF Filtering for SNP Quality Control
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position="right", color="black")
+```
+
+*Session Presenters*
+
+![](images/renee.png)
+
+## Learning outcomes
+
+In this session we will learn how to take a VCF file produced by a SNP calling pipeline (e.g. from Galaxy or Stacks) and process it through a series of quality control and filtering steps to produce a clean, reliable set of SNPs stored in a genlight/dartR object. By the end of the session you should understand the rationale behind each filtering step, the order in which filters should be applied, and how to convert the final filtered dataset into a format suitable for downstream population genetic analyses.
 
 ## Introduction
 
-### Learning outcomes
+### From raw SNP calls to analysis-ready data
 
-What is the goal of this session? What will participants learn?
+SNP calling pipelines such as Stacks, GATK, or FreeBayes produce output in Variant Call Format (VCF). While VCF files contain all the information about every variant site detected, the raw output is rarely suitable for direct analysis. Many called genotypes will be of low quality due to insufficient sequencing depth, poor genotype quality scores, paralogous loci, or allele balance issues. Individuals may have excessive missing data, and the dataset may contain non-biallelic sites, invariant loci, or secondary SNPs on the same fragment that violate assumptions of independence.
 
-### Prerquisites
+The goal of this session is to walk through a systematic filtering pipeline that addresses each of these issues. The pipeline takes a VCF file as input, applies a series of increasingly targeted filters, and ultimately produces a genlight object ready for use with dartR and related tools.
 
-What prior knowledge do they need?
+------------------------------------------------------------------------
 
-### Workflow
+#### Why is filtering so important?
 
-What is the structure of the session?
+Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.
 
-### Additional reading
+A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.
 
-Anything else you want to add?
+------------------------------------------------------------------------
 
-## Topic
+#### Overview of the filtering pipeline
 
-Brief recap of the topic, relating back to the presentation.
+The pipeline follows a logical sequence of steps:
 
-## Worked Ex:
+1.  **Read and inspect the VCF file** — Load the VCF and examine its structure, including the number of loci, individuals, and the format of genotype fields.
 
-Worked example that everyone steps through together - simple example applying the methods
+2.  **Hard filtering** — Remove genotypes with insufficient read depth or low genotype quality scores by converting them to missing data (NA).
 
-```{r}
-# We show them the code to run
+3.  **Heterozygosity filtering** — Identify and remove loci with excessively high observed heterozygosity, which are likely paralogs rather than true polymorphic sites.
+
+4.  **Allele balance filtering** — Remove heterozygous genotype calls where the ratio of reference to alternate allele reads falls outside an acceptable range.
+
+5.  **Maximum depth filtering** — Remove loci where read depth is suspiciously high, again indicative of paralogous mapping.
+
+6.  **Missing data filtering by sample** — Remove individuals with too much missing data.
+
+7.  **Biallelic and minor allele count filtering** — Retain only biallelic sites and remove invariant loci.
+
+8.  **Missing data filtering by SNP** — Remove loci with excessive missing data across samples.
+
+9.  **Conversion to genlight** — Convert the filtered VCF to a genlight object and attach metadata including population assignments, coordinates, and allele information.
+
+10. **Fragment identification and secondary SNP removal** — Identify SNPs that fall on the same fragment and retain only one SNP per fragment.
+
+11. **Reproducibility assessment** — Use technical replicates to estimate genotyping error rates and filter loci with poor reproducibility.
+
+12. **Duplicate removal** — Remove technical replicate individuals, keeping only unique genotypes.
+
+------------------------------------------------------------------------
+
+#### A note on this session
+
+This session is different from others in the course. Because the pipeline begins with a VCF file output from Galaxy (or similar), and requires specific input files (VCF, metadata, technical replicate information), the code presented here **will not run interactively**. Instead, the session serves as a detailed, annotated walkthrough of each step. You should follow along with the code and commentary, understanding the purpose and logic of each filter, so that you can adapt the pipeline to your own data.
+
+## Prerequisites and background knowledge
+
+To follow this session you should be familiar with the VCF file format and understand the basic structure of genotype calls, including fields such as read depth (DP), genotype quality (GQ), and allele depth (AD). You should also have a working knowledge of R and be comfortable with the dartRverse, particularly the genlight object structure and common dartR functions.
+
+An understanding of common SNP quality issues — such as paralogy, allele dropout, and genotyping error — will help you appreciate why each filtering step is necessary and how the threshold values are chosen.
+
+## Session overview
+
+This session walks through the complete VCF filtering pipeline in a series of annotated steps. There are no interactive exercises, but you should study each step carefully and consider how you would adapt the thresholds and decisions for your own dataset.
+
+-   **Step 1:** Load the VCF and inspect its structure
+-   **Step 2:** Hard filter on read depth and genotype quality
+-   **Step 3:** Remove loci with excessive heterozygosity
+-   **Step 4:** Apply allele balance filter
+-   **Step 5:** Filter on maximum read depth
+-   **Step 6:** Remove samples with excessive missing data
+-   **Step 7:** Filter for biallelic sites and minor allele count
+-   **Step 8:** Filter SNPs by missing data
+-   **Step 9:** Convert to genlight and attach metadata
+-   **Step 10:** Identify fragments and remove secondary SNPs
+-   **Step 11:** Assess reproducibility using technical replicates
+-   **Step 12:** Remove duplicate individuals and finalise the dataset
+
+## Setup
+
+```{r start, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+tutorial_options(exercise.eval = FALSE)
 ```
 
-## Exercises
+To run this pipeline on your own data, you will need the following packages installed and loaded. The `SNPfiltR` package provides the core filtering functions, `vcfR` handles VCF file input/output, and `dartRverse` provides the genlight object framework and downstream analysis tools.
 
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+```{r loadlibs, warning=FALSE, message=FALSE}
+library(SNPfiltR)
+library(vcfR)
+library(rdiversity)
+library(dartRverse)
+library(dplyr)
+```
 
--   dot points
--   for different steps
+## Tutorial
+
+### Step 1: Load and inspect the VCF file
+
+The first step is to set your working directory and define paths to your input files. You need two files: the VCF file containing your SNP calls, and a metadata CSV file (often called a strata file) that contains at minimum the columns: `id`, `pop`, `lat`, `lon`, and `genotype`.
+
+```{r step1_1}
+setwd("~")
+
+# path to your VCF file
+input <- ".vcf"
+
+# read in the metadata file
+meta <- read.csv("strata.csv")
+head(meta)
+```
+
+Now read in the VCF file using `read.vcfR`. This creates a vcfR object containing three slots: `@meta` (header information), `@fix` (fixed variant information such as chromosome, position, and alleles), and `@gt` (the genotype matrix).
+
+```{r step1_2}
+# read in the VCF file
+data <- read.vcfR(input)
+
+# inspect the object
+data
+```
+
+It is always worth inspecting the fixed fields and the genotype matrix to understand what your data looks like before filtering.
+
+```{r step1_3}
+# look at the first 10 rows of fixed variant information
+data@fix[1:10, 1:8]
+
+# look at genotype fields for the first 10 loci and first 2 samples
+data@gt[1:10, 1:2]
+
+# check sample names
+colnames(data@gt)
+```
+
+### Step 2: Hard filtering on depth and genotype quality
+
+The first quality filter converts genotypes to NA if they fall below minimum thresholds for read depth and genotype quality. Genotypes supported by very few reads are unreliable, and low genotype quality scores indicate uncertainty in the genotype call.
+
+Here we set a minimum read depth of 8 and a minimum genotype quality of 20. These are relatively standard thresholds, but you may need to adjust them depending on your sequencing platform and expected coverage.
+
+```{r step2}
+# hard filter: minimum depth of 8, minimum genotype quality of 20
+data.1 <- hard_filter(vcfR = data, depth = 8, gq = 20)
+
+data.1
+```
+
+The function reports the percentage of genotypes converted to NA for each criterion. If a very large proportion of genotypes fail these filters, it may indicate a problem with the sequencing run or the SNP calling parameters.
+
+### Step 3: Remove loci with excessive heterozygosity
+
+Loci with very high observed heterozygosity across all samples are almost certainly not true single-copy polymorphic loci. Instead, they are likely the result of reads from paralogous regions being mapped to the same reference position. These loci need to be identified and removed.
+
+We calculate the proportion of heterozygous genotype calls at each locus and remove any locus where heterozygosity exceeds a threshold (here set at 60%).
+
+**Note:** If you have already filtered for observed heterozygosity in Stacks, this step may not be necessary. It is particularly important for VCF files produced by AGRF or similar service providers where paralog filtering has not been performed upstream.
+
+```{r step3_1}
+# extract the genotype matrix
+geno_matrix <- extract.gt(data.1, element = "GT")
+
+# function to calculate heterozygosity per locus
+calculate_heterozygosity_per_locus <- function(geno_vector) {
+  valid_calls <- geno_vector[!is.na(geno_vector) & geno_vector != ""]
+  heterozygous_calls <- sum(valid_calls == "0/1" | valid_calls == "1/0")
+  total_calls <- length(valid_calls)
+  
+  if (total_calls > 0) {
+    return(heterozygous_calls / total_calls)
+  } else {
+    return(NA)
+  }
+}
+
+# apply across all loci
+heterozygosity_rates <- apply(geno_matrix, 1, calculate_heterozygosity_per_locus)
+hist(heterozygosity_rates)
+```
+
+Examine the histogram to understand the distribution of heterozygosity across loci. You should see a peak at low to moderate values, with a tail extending towards 1.0 that represents likely paralogs.
+
+```{r step3_2}
+# set threshold and filter
+threshold <- 0.6
+loci_to_keep <- which(heterozygosity_rates < threshold)
+
+data.1 <- data.1[loci_to_keep, ]
+data.1
+
+# clean up
+rm(geno_matrix, heterozygosity_rates, loci_to_keep, threshold, 
+   calculate_heterozygosity_per_locus)
+```
+
+### Step 4: Allele balance filtering
+
+For heterozygous genotype calls, we expect roughly equal numbers of reads supporting the reference and alternate alleles. If the allele balance is strongly skewed (e.g. 95% reference, 5% alternate), the heterozygous call is unreliable and may reflect sequencing error or mapping artefacts.
+
+The `filter_allele_balance` function converts heterozygous genotypes to NA if the allele ratio falls outside the specified range.
+
+**Note on AGRF data:** If your VCF uses the `BSDP` tag instead of `AD` for allele depth, you will need to rename it before running this filter. The commented-out code below shows how to do this. Stacks data typically uses `AD` already.
+
+```{r step4_1}
+# uncomment the following if your VCF uses BSDP instead of AD (e.g. AGRF data)
+# gt_data <- data.1@gt
+# gt_data_modified <- apply(gt_data, 2, function(x) gsub(":BSDP:", ":AD:", x))
+# data.1@gt <- gt_data_modified
+# rm(gt_data, gt_data_modified)
+
+# apply allele balance filter
+data.2 <- filter_allele_balance(data.1, min.ratio = 0.15, max.ratio = 0.85)
+```
+
+### Step 5: Maximum depth filtering
+
+Loci with unusually high read depth are often paralogs or repetitive regions where reads from multiple genomic locations pile up at a single reference position. The `max_depth` function helps identify an appropriate cutoff.
+
+First, run the function without a cutoff to visualise the depth distribution, then apply a cutoff to remove the high-depth tail.
+
+```{r step5}
+# visualise depth distribution to choose a cutoff
+max_depth(data.2)
+
+# apply maximum depth filter (may need to be done iteratively)
+data.3 <- max_depth(data.2, maxdepth = 250)
+data.4 <- max_depth(data.3, maxdepth = 150)
+
+data.4
+```
+
+The appropriate cutoff will depend on your sequencing depth and organism. Look at the distribution and choose a value that removes the obvious high-depth tail without discarding too many loci.
+
+### Step 6: Remove samples with excessive missing data
+
+After genotype-level filtering, some individuals may now have a very high proportion of missing data. These individuals contribute little useful information and can distort downstream analyses. We identify and remove them.
+
+```{r step6_1}
+# visualise missing data by sample
+miss <- missing_by_sample(vcfR = data.4)
+
+# remove samples above the missing data cutoff
+data.5 <- missing_by_sample(vcfR = data.4, cutoff = 0.60)
+```
+
+After removing individuals from the VCF, we must also update the metadata file to keep it in sync.
+
+```{r step6_2}
+# identify which samples were removed
+names1 <- colnames(extract.gt(data.4))
+names2 <- colnames(extract.gt(data.5))
+lost <- setdiff(names1, names2)
+
+# remove them from the metadata
+meta <- meta[!(meta$id %in% lost), ]
+rm(names1, names2, lost)
+```
+
+### Step 7: Biallelic sites and minor allele count filtering
+
+Many downstream analyses assume biallelic loci. We remove any multiallelic sites (this will have no effect on Stacks data, which only calls biallelic SNPs). We also remove invariant sites — loci that have become monomorphic after the sample and genotype filtering above.
+
+```{r step7}
+# remove non-biallelic sites
+data.5a <- filter_biallelic(data.5)
+
+# remove invariant sites (minor allele count < 1)
+data.6 <- min_mac(data.5a, min.mac = 1)
+```
+
+### Step 8: Filter SNPs by missing data
+
+Now we examine missing data from the perspective of each SNP. Loci with too much missing data across samples should be removed.
+
+First, visualise the distribution to choose an appropriate threshold, then optionally assess how different missingness cutoffs affect PCA-based clustering.
+
+```{r step8_1}
+# visualise missing data per SNP
+missing_by_snp(data.6)
+
+# assess effect of missingness thresholds on PCA clustering
+assess_missing_data_pca(vcfR = data.6, popmap = meta[, c(1, 2)], 
+                        thresholds = c(0.8), clustering = FALSE)
+```
+
+```{r step8_2}
+# apply the chosen missing data threshold
+data.7 <- missing_by_snp(data.6, cutoff = 0.6)
+
+data.7
+```
+
+At this point it is good practice to save the filtered VCF as a checkpoint.
+
+```{r step8_3}
+# save filtered VCF
+write.vcf(data.7, file = "data7.vcf")
+```
+
+### Step 9: Convert to genlight and attach metadata
+
+The filtered VCF is now ready to be converted into a genlight object, which is the standard format used by dartR. During conversion, allele identity information (REF/ALT) is lost, so we save it beforehand and re-attach it afterwards.
+
+#### Save allele information
+
+```{r step9_1}
+# save allele information before conversion
+alleles_info <- data.frame(
+  CHROM = data.7@fix[, "CHROM"],
+  POS   = data.7@fix[, "POS"],
+  ID    = data.7@fix[, "ID"],
+  REF   = data.7@fix[, "REF"],
+  ALT   = data.7@fix[, "ALT"],
+  row.names = NULL
+)
+```
+
+#### Identify fragments for secondary SNP removal
+
+When multiple SNPs occur on the same short DNA fragment (e.g. within a 63 bp read), they are not independent. We need to identify which SNPs belong to the same fragment so we can later retain only one SNP per fragment.
+
+The following code creates a fragment identifier for each locus by examining the chromosome, the SNP ID prefix (which encodes the fragment group in Stacks output), and the physical position.
+
+```{r step9_2}
+# extract fragment group from the SNP ID
+alleles_info$frag_group <- as.integer(sub(":.*", "", alleles_info$ID))
+alleles_info$POS <- as.numeric(alleles_info$POS)
+
+# sort by chromosome, fragment group, and position
+alleles_info <- alleles_info[order(alleles_info$CHROM, 
+                                    alleles_info$frag_group, 
+                                    alleles_info$POS), ]
+
+# create an empty column for fragment ID
+alleles_info$fragment_id <- NA
+```
+
+The `assign_fragments` function checks whether SNPs share the same chromosome and SNP ID prefix, and whether they are within 63 bp of each other (i.e. on the same sequenced fragment).
+
+```{r step9_3}
+assign_fragments <- function(subdf, keys) {
+  if (nrow(subdf) == 0) return(subdf)
+  
+  subdf$POS <- as.numeric(subdf$POS)
+  n <- nrow(subdf)
+  
+  if (n == 1) {
+    frag_id <- paste0(keys$CHROM, "_", subdf$POS[1], "_", keys$frag_group)
+    subdf$fragment_id <- frag_id
+    return(subdf)
+  }
+  
+  positions <- subdf$POS
+  group_ids <- integer(n)
+  group_id <- 1
+  current_group <- c(1)
+  
+  for (i in 2:n) {
+    if (any(abs(positions[i] - positions[current_group]) <= 63)) {
+      current_group <- c(current_group, i)
+    } else {
+      group_ids[current_group] <- group_id
+      group_id <- group_id + 1
+      current_group <- c(i)
+    }
+  }
+  group_ids[current_group] <- group_id
+  
+  subdf$fragment_id <- NA_character_
+  for (gid in unique(group_ids)) {
+    idx <- which(group_ids == gid)
+    min_pos <- min(subdf$POS[idx])
+    frag_id <- paste0(keys$CHROM, "_", min_pos, "_", keys$frag_group)
+    subdf$fragment_id[idx] <- frag_id
+  }
+  
+  return(subdf)
+}
+
+# apply fragment assignment
+alleles_info <- alleles_info %>%
+  group_by(CHROM, frag_group) %>%
+  group_modify(~ assign_fragments(.x, .y)) %>%
+  ungroup()
+
+# create a SNP label for later use
+alleles_info$SNP <- paste0(alleles_info$POS, ":", alleles_info$REF, ">", alleles_info$ALT)
+```
+
+#### Convert to genlight
+
+```{r step9_4}
+# convert VCF to genlight
+gl.1 <- vcfR2genlight(data.7)
+
+# assign individual names from metadata
+indNames(gl.1) <- meta$id
+```
+
+#### Inspect clustering with a dendrogram
+
+Before proceeding, it is useful to check that technical replicates cluster together, which confirms that the genotyping is consistent.
+
+```{r step9_5}
+# assess dendrogram-based clustering
+dist <- gl.dist.ind(gl.1)
+hc <- hclust(dist)
+plot(hc)
+```
+
+#### Attach metadata to the genlight object
+
+```{r step9_6}
+# set ploidy
+ploidy(gl.1) <- 2
+
+# attach individual metadata
+gl.1@other$ind.metrics <- meta[, c(1:ncol(meta))]
+
+# assign populations
+gl.1 <- gl.reassign.pop(gl.1, as.pop = "pop")
+table(pop(gl.1))
+
+# run compliance check and recalculate locus metrics
+gl.1 <- gl.compliance.check(gl.1)
+gl.1 <- gl.recalc.metrics(gl.1)
+head(gl.1@other$loc.metrics)
+
+# add allele information back to locus metrics
+gl.1@other$loc.metrics$SNP <- alleles_info$SNP
+gl.1@other$loc.metrics$CloneID <- alleles_info$fragment_id
+
+# assign lat/long coordinates
+gl.1@other$latlong <- gl.1@other$ind.metrics[, c(3:4)]
+
+# check the mapping
+gl.map.interactive(gl.1)
+```
+
+### Step 10: Assess reproducibility using technical replicates
+
+Technical replicates (the same individual genotyped more than once) allow us to estimate the genotyping error rate at each locus. Loci with poor reproducibility between replicates should be removed, as genotyping errors at these loci will introduce noise into any analysis.
+
+#### Load replicate information
+
+You need a CSV file (`techreps.csv`) with no header, where the first column is the sample name as it appears in the genlight, and the second column is an identifier that links replicates of the same individual.
+
+```{r step10_1}
+# read technical replicate information
+reps <- as.data.frame(read.csv(file = "techreps.csv", header = FALSE))
+
+# subset to replicates present in the genlight
+reps <- reps[reps$V1 %in% indNames(gl.1), ]
+```
+
+#### Calculate reproducibility
+
+The following code compares genotype calls between pairs of technical replicates at every locus, counting mismatches as errors.
+
+```{r step10_2}
+# extract genotype matrix and transpose
+geno <- as.data.frame(t(as.matrix(gl.1[, ])))
+geno[1:10, 1:10]
+
+# subset to replicate samples only
+gt_reps <- as.data.frame(geno[, colnames(geno) %in% reps$V1])
+
+# initialise mismatch tracking matrix
+snp.tech.match.rd <- matrix(NA, nrow = nrow(gt_reps), ncol = ncol(gt_reps))
+colnames(snp.tech.match.rd) <- colnames(gt_reps)
+
+# get unique duplicate groups
+duplicate_groups <- unique(reps$V2)
+
+# compare replicates within each group
+for (group in duplicate_groups) {
+  cols <- which(colnames(gt_reps) %in% reps$V1[reps$V2 == group])
+  
+  if (length(cols) == 2) {
+    for (r in 1:nrow(gt_reps)) {
+      if (!is.na(gt_reps[r, cols[1]]) && !is.na(gt_reps[r, cols[2]])) {
+        if (gt_reps[r, cols[1]] != gt_reps[r, cols[2]]) {
+          snp.tech.match.rd[r, cols[1]] <- "ERROR"
+          snp.tech.match.rd[r, cols[2]] <- "ERROR"
+        } else {
+          snp.tech.match.rd[r, cols[1]] <- "MATCH"
+          snp.tech.match.rd[r, cols[2]] <- "MATCH"
+        }
+      }
+    }
+  }
+}
+
+snp.tech.match.rd <- as.data.frame(snp.tech.match.rd)
+```
+
+#### Calculate and visualise reproducibility scores
+
+```{r step10_3}
+# count errors per SNP
+snp.tech.match.rd$error <- apply(snp.tech.match.rd[, -1], 1, function(row) {
+  sum(row == "ERROR", na.rm = TRUE) / 2
+})
+
+# calculate reproducibility as a proportion
+snp.tech.match.rd$reproducibility <- 100 - 
+  ((snp.tech.match.rd$error / ((ncol(snp.tech.match.rd) - 1) / 2)) * 100)
+snp.tech.match.rd$reproducibility <- snp.tech.match.rd$reproducibility / 100
+
+# plot reproducibility distribution
+hist(snp.tech.match.rd$reproducibility, 
+     main = "Reproducibility between technical replicates (pairs)",
+     cex.main = 0.8, xlab = "Reproducibility %")
+```
+
+#### Attach reproducibility to genlight and filter
+
+```{r step10_4}
+# verify locus name order matches between VCF and genlight
+fix <- as.data.frame(data.7@fix)
+LOC_Names <- as.data.frame(paste(fix$CHROM, fix$POS, sep = "_"))
+all(fix$ID == gl.1@loc.names)  # should be TRUE
+
+# save a backup
+gl_store <- gl.1
+
+# attach reproducibility to loc.metrics
+loc.metrics <- as.data.frame(cbind(data.7@fix[, c(1:8)], 
+                                    snp.tech.match.rd$reproducibility))
+names(loc.metrics)[9] <- "Reproducibility"
+gl.1@other$loc.metrics <- cbind(gl.1@other$loc.metrics, loc.metrics)
+
+gl.1@other$loc.metrics$Reproducibility <- 
+  as.numeric(gl.1@other$loc.metrics$Reproducibility)
+
+# visualise and filter on reproducibility
+hist(gl.1@other$loc.metrics$Reproducibility,
+     col = 'skyblue3', breaks = 20, xlab = NULL,
+     main = "Locus Reproducibility PREFILT")
+
+rp <- 0.97
+gl.1 <- gl.1[, which(gl.1@other$loc.metrics$Reproducibility > rp)]
+gl.1@other$loc.metrics <- 
+  gl.1@other$loc.metrics[which(gl.1@other$loc.metrics$Reproducibility > rp), ]
+gl.1 <- gl.recalc.metrics(gl.1, verbose = 0)
+min(gl.1@other$loc.metrics$Reproducibility)
+```
+
+#### Quick PCA check
+
+After reproducibility filtering, it is good practice to run a quick PCA to see how the data is looking.
+
+```{r step10_5}
+pc <- gl.pcoa(gl.1)
+barplot(pc$eig / sum(pc$eig) * 100)
+gl.pcoa.plot(pc, gl.1, pop.labels = "pop", xaxis = 1, yaxis = 2)
+```
+
+### Step 11: Remove duplicate individuals
+
+Technical replicates were needed to assess reproducibility, but they must be removed before analysis to avoid pseudoreplication. We keep only one representative per unique genotype.
+
+```{r step11}
+# identify unique individuals
+df <- as.data.frame(gl.1@other$ind.metrics)
+unique <- df[!duplicated(df$genotype), ]
+unique_names <- unique$id
+
+# keep only unique individuals
+gl.1 <- gl.keep.ind(gl.1, unique_names, recalc = TRUE, mono.rm = TRUE)
+dim(gl.1)
+
+# rename individuals to their genotype ID
+indNames(gl.1) <- gl.1@other$ind.metrics$genotype
+```
+
+### Step 12: Remove secondary SNPs
+
+The final step is to ensure that only one SNP per fragment is retained. Multiple SNPs on the same fragment are not independent and can bias analyses that assume linkage equilibrium among loci.
+
+We use the fragment IDs assigned earlier to identify groups of linked SNPs and keep only the first SNP from each group.
+
+```{r step12_1}
+# get fragment IDs
+clone_ids <- gl.1@other$loc.metrics$CloneID
+
+# keep only the first SNP per fragment
+keep_loci <- !duplicated(clone_ids)
+
+gl.1 <- gl.1[, keep_loci]
+gl.1@other$loc.metrics <- gl.1@other$loc.metrics[keep_loci, ]
+```
+
+#### Final PCA check
+
+```{r step12_2}
+pc <- gl.pcoa(gl.1)
+barplot(pc$eig / sum(pc$eig) * 100)
+gl.pcoa.plot(pc, gl.1, pop.labels = "pop", xaxis = 1, yaxis = 2)
+```
+
+### Step 13: Save the final genlight object
+
+The filtered genlight object now contains depth-filtered, reproducibility-checked, independent SNP loci scored across unique individuals with all relevant metadata attached. This object can be used directly for phylogenetic or population genetic analyses.
+
+```{r step13}
+# clean up intermediate objects
+rm(data, data.1, data.2, data.3, data.4, data.5, data.6, data.7, 
+   geno, gl_store, gt_reps, hc, loc.metrics, meta, miss, pc, reps, 
+   snp.tech.match.rd, dist, input, rp, unique_names, fix, LOC_Names, 
+   data.5a, alleles_info, df, unique, duplicate_groups, group, 
+   assign_fragments, clone_ids, keep_loci)
+
+# save the final workspace
+save.image("gl_1.Rdata")
+```
+
+## Additional reading
+
+-   O'Leary, S. J., et al. (2018). These aren't the loci you're looking for: Principles of effective SNP filtering for molecular ecologists. *Molecular Ecology*, 27(16), 3193–3206.
+-   The SNPfiltR package documentation and vignettes.
+-   The dartRverse website and tutorials for downstream analysis options.
 
 ## Winding up
 
 ### Discussion Time
 
-Add some questions to help group discussion.
+Consider the following questions for group discussion:
+
+-   How would you decide on appropriate threshold values for each filter step when working with a new dataset?
+-   What are the consequences of filtering too aggressively versus too leniently?
+-   How does the order of filtering steps matter? Would the results change if you applied the filters in a different sequence?
+-   What would you do differently if you did not have technical replicates available?
 
 ### Where have we come?
 
-Summarise what they should have learnt.
+In this session we have walked through a complete pipeline for converting raw VCF output into a clean, analysis-ready genlight object. You have seen how to apply hard filters on depth and genotype quality, remove paralogous loci using heterozygosity and depth filters, apply allele balance checks, handle missing data at both the sample and locus level, assess and filter on reproducibility using technical replicates, remove duplicate individuals, and retain only independent SNPs by filtering secondary SNPs on the same fragment. This filtered dataset forms the foundation for all subsequent population genetic and phylogenetic analyses in the dartRverse.
