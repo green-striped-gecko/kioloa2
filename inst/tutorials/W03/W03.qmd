@@ -1,5 +1,5 @@
 ---
-title: "W03 Sex-Linked Markers"
+title: "W03 SexLinked Markers"
 author: "Diana Robledo & Floriaan Devloo-Delva"
 date: | 
     ![](images/dartR7.png){width=5cm}
@@ -12,7 +12,7 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W03 Sex-Linked Markers"
+description: "W03 SexLinked Markers"
 ---
 
 ```{r setup, include=FALSE}
