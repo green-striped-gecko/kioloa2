@@ -11,7 +11,7 @@ book:
   - install.qmd
   - inst/tutorials/W01/W01.rmd
   - inst/tutorials/W02/W02.rmd
-  - inst/tutorials/W03/W03.rmd
+  - inst/tutorials/W03/W03.qmd
   - inst/tutorials/W04/W04.rmd
   - inst/tutorials/W05/W05.rmd
   - inst/tutorials/W06/W06.rmd
