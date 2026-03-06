@@ -22,7 +22,7 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
-## W07 Effective Population Size
+## W07 Effective Population Size {.unnumbered}
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
@@ -30,7 +30,11 @@ klippy::klippy(position="right", color="black")
 
 ## Effective Population Size
 
-![](images/robin.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<img src="images/robin.png" width="200" />
+<img src="images/luis.png" width="200" />
+<img src="images/bernd.png" width="200" />
+</div>
 
 ## Learning Outcomes
 

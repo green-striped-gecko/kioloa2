@@ -15,7 +15,7 @@ runtime: shiny_prerendered
 description: "W04 Genetic Structure"
 ---
 
-## W04 Genetic Structure
+## W04 Genetic Structure {.unnumbered}
 
 ```{r setup, include=FALSE}
 library(learnr)
@@ -28,7 +28,11 @@ klippy::klippy(position="right", color="black")
 
 *Session Presenters*
 
-![](images/bill.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"} ![](images/laura.png){.class width="200"}
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<img src="images/bill.png" width="200" />
+<img src="images/flo.png" width="200" />
+<img src="images/laura.png" width="200" />
+</div>
 
 ## Required packages
 
@@ -40,7 +44,7 @@ As always we need to have dartRverse installed and loaded. In addition you need 
 library(dartRverse)
 ```
 
-## W04 Genetic Structure
+## W04 Genetic Structure {.unnumbered}
 
 ### Workflow
 

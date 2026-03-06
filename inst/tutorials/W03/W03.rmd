@@ -20,7 +20,7 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ```
 
-## W03 Sex-Linked Markers
+## W03 Sex-Linked Markers {.unnumbered}
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
@@ -28,7 +28,10 @@ klippy::klippy(position="right", color="black")
 
 *Session Presenters*
 
-![](images/diana.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<img src="images/diana.png" width="200" />
+<img src="images/flo.png" width="200" />
+</div>
 
 ## Required packages
 

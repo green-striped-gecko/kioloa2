@@ -20,9 +20,12 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W15 Relatedness
+## W15 Relatedness {.unnumbered}
 
-![](images/ethan.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<img src="images/ethan.png" width="200" />
+<img src="images/luis.png" width="200" />
+</div>
 
 ## Introduction
 

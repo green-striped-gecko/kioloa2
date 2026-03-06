@@ -20,9 +20,12 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W01 Pop Gen in Conservation and Restoration
+## W01 Pop Gen in Conservation and Restoration {.unnumbered}
 
-![](images/laura.png){.class width="200" height="200"} ![](images/kate.png){.class width="200" height="200"}
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<img src="images/laura.png" width="200" />
+<img src="images/kate.png" width="200" />
+</div>
 
 ## Introduction
 

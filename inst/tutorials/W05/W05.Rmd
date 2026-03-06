@@ -20,13 +20,15 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
-## W05 VCF Filtering for SNP Quality Control
+## W05 VCF Filtering for SNP Quality Control {.unnumbered}
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
-![](images/renee.png){.class width="200" height="200"}
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<img src="images/renee.png" width="200" />
+</div>
 
 ## Learning outcomes
 

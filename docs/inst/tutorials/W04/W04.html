@@ -436,8 +436,8 @@ window.Quarto = {
 </header>
 
 
-<section id="w04-genetic-structure" class="level2">
-<h2 class="anchored" data-anchor-id="w04-genetic-structure">W04 Genetic Structure</h2>
+<section id="w04-genetic-structure" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="w04-genetic-structure">W04 Genetic Structure</h2>
 <div class="cell">
 <div class="cell-output-display">
 <script>
@@ -447,7 +447,9 @@ window.Quarto = {
 </div>
 </div>
 <p><em>Session Presenters</em></p>
-<p><img src="images/bill.png" class="class" width="200" height="200"> <img src="images/flo.png" class="class" width="200" height="200"> <img src="images/laura.png" class="class img-fluid" width="200"></p>
+<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<p><img src="images/bill.png" width="200"> <img src="images/flo.png" width="200"> <img src="images/laura.png" width="200"></p>
+</div>
 </section>
 <section id="required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="required-packages">Required packages</h2>
@@ -458,8 +460,8 @@ window.Quarto = {
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="w04-genetic-structure-1" class="level2">
-<h2 class="anchored" data-anchor-id="w04-genetic-structure-1">W04 Genetic Structure</h2>
+<section id="w04-genetic-structure-1" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="w04-genetic-structure-1">W04 Genetic Structure</h2>
 <section id="workflow" class="level3">
 <h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
 <p>In this tutorial you will learn about genetic structure analyses. We will go over several analytical techniques with one example dataset and you will complete one exercise afterwards. Here you will learn differences between the analytical techniques and how to identify bias in your data.</p>
@@ -927,7 +929,7 @@ Completed: gl.colors </code></pre>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>popcluster_path <span class="ot">&lt;-</span> <span class="fu">gl.download.binary</span>(<span class="st">"popcluster"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Unzipped binary to /var/folders/gp/_vh7q5qs5qdckqqpqfx9y4lm0000gn/T//RtmpMSSAlI/popcluster</code></pre>
+<pre><code>Unzipped binary to /var/folders/gp/_vh7q5qs5qdckqqpqfx9y4lm0000gn/T//RtmpnEWnRM/popcluster</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>my_popcluster <span class="ot">&lt;-</span> <span class="fu">gl.run.popcluster</span>(<span class="at">x =</span> possums.gl, <span class="at">minK =</span> <span class="dv">2</span>, <span class="at">maxK =</span> <span class="dv">7</span>, <span class="at">rep =</span> <span class="dv">2</span>, <span class="at">popcluster.path =</span> popcluster_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
