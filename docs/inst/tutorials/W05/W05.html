@@ -292,13 +292,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#why-is-filtering-so-important" id="toc-why-is-filtering-so-important" class="nav-link" data-scroll-target="#why-is-filtering-so-important">Why is filtering so important?</a></li>
   <li><a href="#introduction-to-galaxy-australia" id="toc-introduction-to-galaxy-australia" class="nav-link" data-scroll-target="#introduction-to-galaxy-australia">Introduction to Galaxy Australia</a></li>
   <li><a href="#introduction-to-stacks" id="toc-introduction-to-stacks" class="nav-link" data-scroll-target="#introduction-to-stacks">Introduction to STACKS</a></li>
-  <li><a href="#why-is-filtering-so-important-1" id="toc-why-is-filtering-so-important-1" class="nav-link" data-scroll-target="#why-is-filtering-so-important-1">Why is filtering so important?</a></li>
   <li><a href="#from-vcf-to-genlight-a-stepwise-filtering-pipeline-for-snp-quality-control" id="toc-from-vcf-to-genlight-a-stepwise-filtering-pipeline-for-snp-quality-control" class="nav-link" data-scroll-target="#from-vcf-to-genlight-a-stepwise-filtering-pipeline-for-snp-quality-control">From VCF to genlight: a stepwise filtering pipeline for SNP quality control</a>
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
   <li><a href="#from-raw-snp-calls-to-analysis-ready-data" id="toc-from-raw-snp-calls-to-analysis-ready-data" class="nav-link" data-scroll-target="#from-raw-snp-calls-to-analysis-ready-data">From raw SNP calls to analysis-ready data</a></li>
-  <li><a href="#why-is-filtering-so-important-2" id="toc-why-is-filtering-so-important-2" class="nav-link" data-scroll-target="#why-is-filtering-so-important-2">Why is filtering so important?</a></li>
   <li><a href="#overview-of-the-filtering-pipeline" id="toc-overview-of-the-filtering-pipeline" class="nav-link" data-scroll-target="#overview-of-the-filtering-pipeline">Overview of the filtering pipeline</a></li>
   <li><a href="#a-note-on-this-session" id="toc-a-note-on-this-session" class="nav-link" data-scroll-target="#a-note-on-this-session">A note on this session</a></li>
   </ul></li>
@@ -430,13 +428,8 @@ Calculates population genetic statistics and exports data in formats such as VCF
 <p>Understanding these steps is important because several of them interact directly with study design. In particular, the catalogue-building stage (cstacks) determines which loci are considered homologous across individuals. The individuals included in this step therefore influence which loci enter the final dataset. Sampling decisions such as how many individuals to include from each population can affect locus sharing, SNP discovery, and downstream population genetic inference.</p>
 <p>Students should therefore familiarise themselves with the structure of the Stacks pipeline and the purpose of each stage before working with SNP datasets generated from RADseq data.</p>
 <p>Full documentation for the pipeline is available in the Stacks manual:</p>
-<p>https://catchenlab.life.illinois.edu/stacks/manual/</p>
+<p><a href="https://catchenlab.life.illinois.edu/stacks/manual/" class="uri">https://catchenlab.life.illinois.edu/stacks/manual/</a></p>
 <p>The manual provides detailed explanations of each component of the workflow, the parameters used during locus assembly and catalogue construction, and the outputs generated at each stage.</p>
-</section>
-<section id="why-is-filtering-so-important-1" class="level2">
-<h2 class="anchored" data-anchor-id="why-is-filtering-so-important-1">Why is filtering so important?</h2>
-<p>Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.</p>
-<p>A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.</p>
 </section>
 <section id="from-vcf-to-genlight-a-stepwise-filtering-pipeline-for-snp-quality-control" class="level2">
 <h2 class="anchored" data-anchor-id="from-vcf-to-genlight-a-stepwise-filtering-pipeline-for-snp-quality-control">From VCF to genlight: a stepwise filtering pipeline for SNP quality control</h2>
@@ -447,12 +440,6 @@ Calculates population genetic statistics and exports data in formats such as VCF
 <h4 class="anchored" data-anchor-id="from-raw-snp-calls-to-analysis-ready-data">From raw SNP calls to analysis-ready data</h4>
 <p>SNP calling pipelines such as Stacks, GATK, or FreeBayes produce output in Variant Call Format (VCF). While VCF files contain all the information about every variant site detected, the raw output is rarely suitable for direct analysis. Many called genotypes will be of low quality due to insufficient sequencing depth, poor genotype quality scores, paralogous loci, or allele balance issues. Individuals may have excessive missing data, and the dataset may contain non-biallelic sites, invariant loci, or secondary SNPs on the same fragment that violate assumptions of independence.</p>
 <p>The goal of this session is to walk through a systematic filtering pipeline that addresses each of these issues. The pipeline takes a VCF file as input, applies a series of increasingly targeted filters, and ultimately produces a genlight object ready for use with dartR and related tools.</p>
-<hr>
-</section>
-<section id="why-is-filtering-so-important-2" class="level4">
-<h4 class="anchored" data-anchor-id="why-is-filtering-so-important-2">Why is filtering so important?</h4>
-<p>Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.</p>
-<p>A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.</p>
 <hr>
 </section>
 <section id="overview-of-the-filtering-pipeline" class="level4">

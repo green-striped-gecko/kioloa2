@@ -516,7 +516,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, download the NeEstimator binary (only necessary once)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dir_ne <span class="ot">&lt;-</span> <span class="fu">gl.download.binary</span>(<span class="st">"neestimator"</span>, <span class="at">out.dir =</span> <span class="fu">tempdir</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Unzipped binary to C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/neestimator</code></pre>
+<pre><code>Unzipped binary to C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/neestimator</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate 50 individuals with 3000 loci</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sim50 <span class="ot">&lt;-</span> <span class="fu">gl.sim.Neconst</span>(<span class="at">ninds =</span> <span class="dv">50</span>, <span class="at">nlocs =</span> <span class="dv">3000</span>)</span>
@@ -542,7 +542,7 @@ window.Quarto = {
   Processing genlight object with SNP data
 Starting gl2genepop 
   Processing genlight object with SNP data
-  The genepop file is saved as:  C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/dummy.gen/
+  The genepop file is saved as:  C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/dummy.gen/
 Completed: gl2genepop 
   Processing genlight object with SNP data</code></pre>
 </div>
@@ -558,16 +558,16 @@ Completed: gl2genepop
                     Statistic Frequency 1 Frequency 2 Frequency 3
  Lowest Allele Frequency Used       0.050          0+       No S*
     Harmonic Mean Sample Size          50          50          50
-      Independent Comparisons     1171215     1937496     1732591
-                  OverAll r^2    0.027885    0.026563    0.027147
+      Independent Comparisons     1116765     1915903     1682695
+                  OverAll r^2    0.027823    0.026483    0.027147
           Expected r^2 Sample    0.021276    0.021276    0.021276
-                Estimated Ne^        48.3        60.9        54.6
-            CI low Parametric        47.7        60.3        54.1
-           CI high Parametric        48.8        61.5        55.2
-             CI low JackKnife        40.3        51.6        46.4
-            CI high JackKnife        59.1        73.2        65.5
+                Estimated Ne^        48.8        61.9        54.6
+            CI low Parametric        48.2        61.2        54.1
+           CI high Parametric        49.3        62.5        55.2
+             CI low JackKnife        39.8        51.7        45.5
+            CI high JackKnife        61.4        75.8        67.1
 
-  The results are saved in: C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/sim50LD.txt 
+  The results are saved in: C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/sim50LD.txt 
 Completed: gl.LDNe </code></pre>
 </div>
 </div>
@@ -638,7 +638,7 @@ Exercise: gl.LDNe and MAF filtering
   Processing genlight object with SNP data
 Starting gl2genepop 
   Processing genlight object with SNP data
-  The genepop file is saved as:  C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/dummy.gen/
+  The genepop file is saved as:  C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/dummy.gen/
 Completed: gl2genepop 
   Processing genlight object with SNP data</code></pre>
 </div>
@@ -654,29 +654,29 @@ Completed: gl2genepop
                     Statistic Frequency 1 Frequency 2 Frequency 3
  Lowest Allele Frequency Used       0.050          0+       No S*
     Harmonic Mean Sample Size          30          30          30
-      Independent Comparisons        3000        3539        3376
-                  OverAll r^2    0.056494    0.054782    0.055724
+      Independent Comparisons        3002        3543        3386
+                  OverAll r^2    0.057593    0.055672    0.056601
           Expected r^2 Sample    0.036878    0.036878    0.036878
-                Estimated Ne^        13.8        15.3        14.4
-            CI low Parametric        11.7          13        12.3
-           CI high Parametric        16.4        18.1          17
-             CI low JackKnife         8.3         9.9         9.4
-            CI high JackKnife        24.4        25.1        23.3
+                Estimated Ne^        12.9        14.5        13.7
+            CI low Parametric          11        12.4        11.7
+           CI high Parametric        15.3          17        16.1
+             CI low JackKnife         7.9         9.5         8.9
+            CI high JackKnife        22.1        23.3        21.9
 
 $B
                     Statistic Frequency 1 Frequency 2 Frequency 3
  Lowest Allele Frequency Used       0.050          0+       No S*
     Harmonic Mean Sample Size          30          30          30
-      Independent Comparisons        4111        4466        4111
-                  OverAll r^2    0.054134    0.053006    0.054134
+      Independent Comparisons        4112        4459        4112
+                  OverAll r^2    0.054008    0.052933    0.054008
           Expected r^2 Sample    0.036878    0.036878    0.036878
-                Estimated Ne^          16        17.2          16
-            CI low Parametric        13.7        14.8        13.7
-           CI high Parametric        18.7        20.2        18.7
-             CI low JackKnife        10.9        11.6        10.9
-            CI high JackKnife        24.6        27.4        24.6
+                Estimated Ne^        16.1        17.3        16.1
+            CI low Parametric        13.8        14.9        13.8
+           CI high Parametric        18.9        20.3        18.9
+             CI low JackKnife          11        11.6          11
+            CI high JackKnife        24.8        27.5        24.8
 
-  The results are saved in: C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/popsLD_sep.txt 
+  The results are saved in: C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/popsLD_sep.txt 
 Completed: gl.LDNe </code></pre>
 </div>
 </div>
@@ -695,7 +695,7 @@ Completed: gl.LDNe </code></pre>
   Processing genlight object with SNP data
 Starting gl2genepop 
   Processing genlight object with SNP data
-  The genepop file is saved as:  C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/dummy.gen/
+  The genepop file is saved as:  C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/dummy.gen/
 Completed: gl2genepop 
   Processing genlight object with SNP data</code></pre>
 </div>
@@ -743,7 +743,7 @@ $B
    Waples' corrected CI low JackKnife        14.2        15.1        14.2
   Waples' corrected CI high JackKnife        31.9        35.6          32
 
-  The results are saved in: C:\Users\bernd\AppData\Local\Temp\RtmpqKqE7n/popsLD_corr.txt 
+  The results are saved in: C:\Users\bernd\AppData\Local\Temp\RtmpElOWBK/popsLD_corr.txt 
 Completed: gl.LDNe </code></pre>
 </div>
 </div>
@@ -1331,26 +1331,26 @@ Completed: gl.filter.callrate </code></pre>
 <span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>BothParents[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]  <span class="do">## parents of first 10 offspring</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-MaleParents     18    6   14   32   15   24   19    5   44    41
-FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
+MaleParents     46   19   24   10   22   39   49   42   47     8
+FemaleParents   54   58   54   96   62   80   97   76   56    81</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Compute Ne for each sex</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a> a1 <span class="ot">=</span> <span class="fu">table</span>(MaleParents)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a> a1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>MaleParents
- 1  2  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 23 24 26 28 29 30 
- 1  1  1  2  1  1  4  1  1  2  3  2  3  3  1  2  3  5  1  2  4  2  2  3  2  1 
-31 32 33 34 35 36 37 40 41 42 43 44 45 46 47 49 50 
- 1  2  5  7  2  1  2  3  2  1  1  5  5  2  3  1  3 </code></pre>
+ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 21 22 24 25 27 28 29 
+ 3  5  1  4  2  2  1  1  2  2  4  1  3  2  4  3  1  3  3  2  2  4  3  1  2  3 
+30 31 33 34 35 36 38 39 40 41 42 43 45 46 47 48 49 50 
+ 2  2  1  1  2  1  1  3  2  1  3  3  5  1  1  3  2  2 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">max</span>(a1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7</code></pre>
+<pre><code>[1] 5</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">which</span>(Males <span class="sc">%in%</span> MaleParents <span class="sc">==</span> <span class="cn">FALSE</span>)  <span class="do">### Null males (those with no offspring)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  3 22 25 27 38 39 48</code></pre>
+<pre><code>[1] 20 23 26 32 37 44</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a> b1 <span class="ot">=</span> <span class="fu">as.vector</span>(a1)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a> sumk <span class="ot">=</span> <span class="fu">sum</span>(b1)</span>
@@ -1364,7 +1364,7 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a> TotalNe <span class="ot">=</span> <span class="dv">4</span><span class="sc">*</span>MaleNe<span class="sc">*</span>FemaleNe<span class="sc">/</span>(MaleNe <span class="sc">+</span> FemaleNe)  <span class="do">### sex-ratio adjustment from Wright 1938</span></span>
 <span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(MaleNe,FemaleNe,TotalNe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 45.00000 55.61798 99.49749</code></pre>
+<pre><code>[1]  54.39560  51.03093 105.31915</code></pre>
 </div>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -1402,37 +1402,37 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>} <span class="do">## end for j</span></span>
 <span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>Ne</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 100.50761  88.39286  87.22467  90.82569  95.19231  91.24424 104.21053
- [8] 105.31915  96.11650  99.49749  84.25532 111.23596  86.46288 104.76190
-[15]  99.49749 102.06186 104.21053 117.15976  88.78924 103.66492  96.58537
-[22] 102.59067 110.61453  80.81633 100.00000  95.65217  90.41096  93.83886
-[29] 101.02041 111.86441 110.61453 104.21053  92.95775  90.00000  90.41096
-[36] 104.76190  90.00000  96.58537 104.21053 103.12500 104.76190  87.61062
-[43] 113.14286 100.50761  99.00000 109.39227 105.88235 105.31915 115.11628
-[50]  94.28571</code></pre>
+<pre><code> [1] 107.02703  97.05882 104.76190  98.50746 114.45087  90.00000 101.02041
+ [8] 100.50761 118.56287 105.31915 102.59067  92.09302 106.45161  97.05882
+[15]  97.05882 104.21053 103.66492 100.50761  94.28571 113.79310  92.95775
+[22]  99.49749 105.88235  83.89831 107.02703 105.88235 100.00000 105.31915
+[29] 107.02703  99.00000 100.00000  83.89831  94.73684  93.83886 113.14286
+[36]  94.28571 107.02703 107.02703 111.23596  94.28571  99.00000  87.61062
+[43] 103.66492 109.39227  96.58537  91.24424  98.50746  96.58537  93.83886
+[50]  98.50746</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(Ne)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  80.81633 117.15976</code></pre>
+<pre><code>[1]  83.89831 118.56287</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">/</span>Ne)  <span class="do">## harmonic mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 98.57612</code></pre>
+<pre><code>[1] 100.0303</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>BigVec <span class="ot">=</span> BigVec[<span class="sc">-</span><span class="dv">1</span>]</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(BigVec)  <span class="do">## distribution of offspring number across all reps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>BigVec
-   1    2    3    4    5    6    7    8 
-1324 1373  882  451  189   63   19    3 </code></pre>
+   1    2    3    4    5    6    7    8    9   10 
+1359 1381  881  470  177   54   16    2    1    1 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>TotalN<span class="sc">*</span>NReps <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">table</span>(BigVec))  <span class="do">## number of null parents</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 696</code></pre>
+<pre><code>[1] 658</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>(TotalN<span class="sc">*</span>NReps <span class="sc">-</span> <span class="fu">sum</span>(<span class="fu">table</span>(BigVec)))<span class="sc">/</span>(NReps<span class="sc">*</span>TotalN)  <span class="do">## fraction of null parents</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1392</code></pre>
+<pre><code>[1] 0.1316</code></pre>
 </div>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -1469,7 +1469,7 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a> TotalNe <span class="ot">=</span> <span class="dv">4</span><span class="sc">*</span>MaleNe<span class="sc">*</span>FemaleNe<span class="sc">/</span>(MaleNe <span class="sc">+</span> FemaleNe)</span>
 <span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(MaleNe,FemaleNe,TotalNe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 24.75000 76.15385 74.71698</code></pre>
+<pre><code>[1] 24.50495 81.14754 75.28517</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="do">## expected Ne/N for 3:1 sex ratio = 4mf</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>ENeN <span class="ot">=</span> <span class="dv">4</span><span class="sc">*</span><span class="fl">0.25</span><span class="sc">*</span><span class="fl">0.75</span></span>
@@ -1562,16 +1562,16 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Get harmonic means of realized Ne</span></span>
 <span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">/</span>ActualFemaleNe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.64457</code></pre>
+<pre><code>[1] 49.57933</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">/</span>ActualMaleNe)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 12.06082</code></pre>
+<pre><code>[1] 12.90878</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>TotalNe <span class="ot">=</span> <span class="dv">4</span><span class="sc">*</span>ActualMaleNe<span class="sc">*</span>ActualFemaleNe<span class="sc">/</span>(ActualMaleNe<span class="sc">+</span>ActualFemaleNe)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">/</span>TotalNe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 38.96411</code></pre>
+<pre><code>[1] 40.96834</code></pre>
 </div>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -1643,15 +1643,15 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb84-31"><a href="#cb84-31" aria-hidden="true" tabindex="-1"></a>Geno2[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]  <span class="do">## rows are individuals; columns are loci  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-[1,]    0    0    2    1    0    0    0    0    1     1
-[2,]    1    1    1    1    0    1    1    0    1     2
-[3,]    1    2    1    2    1    1    1    1    1     1
-[4,]    0    1    1    1    1    1    1    2    1     1
-[5,]    1    1    0    1    1    2    0    0    1     1</code></pre>
+[1,]    1    2    1    1    1    2    2    0    0     1
+[2,]    2    0    1    2    1    1    1    1    1     0
+[3,]    1    2    2    1    2    2    1    1    1     2
+[4,]    1    2    1    0    0    2    0    2    1     0
+[5,]    1    0    1    0    1    2    1    1    2     0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(Geno2[,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>])<span class="sc">/</span><span class="dv">2</span>  <span class="do">## simple way to compute allele frequencies</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.4975 0.5025 0.5200 0.5200 0.4875 0.4875 0.4925 0.5100 0.4800 0.5425</code></pre>
+<pre><code> [1] 0.5100 0.5550 0.5150 0.4775 0.5350 0.5125 0.4675 0.5200 0.4700 0.5100</code></pre>
 </div>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -1691,7 +1691,7 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb88-24"><a href="#cb88-24" aria-hidden="true" tabindex="-1"></a>HmeanNe <span class="ot">=</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">mean</span>(<span class="dv">1</span><span class="sc">/</span>ActualNe)</span>
 <span id="cb88-25"><a href="#cb88-25" aria-hidden="true" tabindex="-1"></a>HmeanNe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 199.254</code></pre>
+<pre><code>[1] 201.0253</code></pre>
 </div>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
@@ -1925,8 +1925,8 @@ FemaleParents   74   98   94   53   91   82   57   60   90    75</code></pre>
 <span id="cb94-102"><a href="#cb94-102" aria-hidden="true" tabindex="-1"></a>B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          Before After
-Actual     498.1  97.9
-Estimated  485.5  95.9</code></pre>
+Actual     503.7   100
+Estimated  532.2   107</code></pre>
 </div>
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
 </div>
