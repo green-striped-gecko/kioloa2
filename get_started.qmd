@@ -1,83 +1,82 @@
 # How to get Started {.unnumbered}
 
-## Your Adventure into RStudio Cloud Land!
+## The Jedi Temple
 
-To run our analyses in R during the workshop, we will dive into the magical world of RStudio Cloud, where the R code flows like rivers and plots and graphs grow on trees!
+For this mission, we have chosen Airmeet as our virtual Jedi Temple, your command center for training in the ways of the Force. Keep your eyes peeled for a separate holo-transmission (email) delivering your exclusive access codes. Before you embark on your quest, unlock the secrets of the Airmeet Holocron by watching the [**intro video**](https://www.youtube.com/watch?v=JCijIXQ4ZqQ&t) and complete your Jedi profile so you can connect with other participants.
 
-### Step 1: Summoning the RStudio Cloud Portal
+## Jedi Training in Posit Cloud
 
-**Embark on the Journey:** Open your trusty steed (a.k.a. your web browser) and gallop over to [**RStudio Cloud**](https://rstudio.cloud/).
+### Mission Log: Order 01 - Initiating Contact With the Rebel Base
 
-**Forge Your Credentials:** Spot the "Sign Up" beacon in the realm's upper right corner and click it with courage. Click on the "Learn more" below the "Cloud Free" plan and then in the "Sign Up" button. A scroll will appear, asking for your name, your secret code (password), and your e-mail. Please use the same e-mail you provided when you registered to the workshop.
+-   Open your web browser and go to [**Posit Cloud**](https://rstudio.cloud/).
+-   Click **Sign Up** and create your account.
+-   Use the same email address you used to register for the workshop.
+-   Confirm your account using the verification email.
 
-**Prove Your Worth:** After submitting your details, a pigeon (or was it an email?) will fly into your inbox carrying a secret message. Click the link within to prove you're not a goblin in disguise.
+### Mission Log: Order 02 - Entering the Secret Rebel Workshop Base
 
-### Step 2: Entering the Secret Workshop Chamber
+-   Return to [**Posit Cloud**](https://rstudio.cloud/) and log in.
+-   One day before the workshop, you will receive the workshop-space link by email.
 
-**Return to the Portal:** With your email now verified, make your way back to the [**RStudio Cloud**](https://rstudio.cloud/) realm and use your newly forged credentials to enter.
+### Mission Log: Order 03 - Joining the Fellowship of the Force
 
-**Finding the Secret Door:** One day before the workshop, a link leading to the workshop's chamber will be sent to your e-mail.
+-   Enter the workshop space and open the `PopGenJedi` project.
+-   The first launch may take a little time while the environment is prepared.
 
-### Step 3: Joining the Fellowship of the Project
+### Mission Log: Order 04 - Teleporting Your Data Scrolls to the Cloud Realm
 
-**Locate the Treasure Chest:** Within the grand chamber (workshop space), seek the project ***"PopGenJedi"*** and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.
+-   Open the **Files** tab in the lower-right panel.
+-   Click **Upload**.
+-   Select your file and confirm with **Open** and **OK**.
 
-### Step 4: Teleporting Your Data Scrolls into the Cloud Realms of RStudio
+### Mission Log: Order 05 - Installing R in Your Own Star Destroyer (Optional)
 
-**Spot the Files Tab:** Peek into the lower right pane of your RStudio Cloud cauldron. You'll find the "Files" tab chilling there, waiting for your click.
+Most workshop activities run directly in the cloud environment. If you prefer local setup, use:
 
-**Summon the Upload Spirits:** Give that "Upload" button a gentle tap.
+-   [**R, RStudio, and dartR installation tutorial**](https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial)
+-   [**Guide to update R and RStudio**](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)
 
-**Embark on a Quest for the File:** Hit "Choose File" and journey through the wilds of your computer to find the treasure you're looking to upload.
+Update your installed packages before the workshop:
 
-**Unlock the Portal:** Found your file? Great! Click "Open" to unlock the portal, then confirm your choice with an "OK".
+```r
+update.packages(ask = FALSE)
+```
 
-### Step 5: Conjuring RStudio in Your Own Realm
+## Required Jedi Training
 
-For most of your quest, you'll wield your magic directly in the cloud. No need to summon RStudio to your personal domain, as the cloud is equipped with all the arcane tools you'll need (input files, scripts, binaries and packages).
+### Mission Log: Order 00 - What You Must Already Know
 
-Should your quest require local spells, or should you simply prefer your own lair, here's your magic portal to get [**R, RStudio, and dartR**](https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial) all set up. If you've already been initiated and have these tools at your wand's tip, give them a zesty refresh before the workshop using this [**handy guide for R and RStudio**](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/). And hey, don't forget to renew your spell components! Just murmur 'update.packages(ask = FALSE)' into the R crystal ball (aka R console), and your packages will update as if by wizardry---no nagging prompts or anything!
+#### R Combat Training
 
-May your plots be plentiful and your code error-free. Onward, to glory and data analysis!
+Before the workshop, you should be comfortable with:
 
-## Pre-reading material (R, population genetics)
+-   RStudio interface and script editing
+-   Basic data types (vectors, matrices, data frames, lists)
+-   Basic operations and assignment
+-   Basic R functions
+-   Subsetting and indexing
 
-Before we kick off our workshop, there are a few magical basics we expect you've got tucked under your hats.
+Core pre-work resources:
 
-### R
+-   [**OneDrive Holocron (R basics)**](https://1drv.ms/f/s!AlB_j_RzSQLwgTp4aQm5p927oTxl?e=uBvUyN)
+-   [**Free Introduction to R course**](https://www.datacamp.com/courses/free-introduction-to-r)
 
--   **R Interface and Script Casting:** Know how to wave your wand in RStudio and make those scripts fly.
+### The Jedi Archives: Advanced Reading
 
--   **Understanding Basic Data Types:** Get cosy with vectors, matrices, data frames, and lists - the potions and herbs of R.
+Additional R resources:
 
--   **Basic Operations and Assignments:** Be ready to cast simple spells and assign your magical results.
-
--   **Basic R Functions:** Familiarize yourself with the incantations that make R do your bidding.
-
--   **Subsetting and Indexing:** Learn how to navigate your way through datasets like a map to hidden treasures.
-
-All these mystical preliminaries are laid out in this [**enchanted OneDrive grimoire**](https://1drv.ms/f/s!AlB_j_RzSQLwgTp4aQm5p927oTxl?e=uBvUyN). If you're feeling a tad rusty, fear not! Embark on a quest through this [**free introduction to R course**](https://www.datacamp.com/courses/free-introduction-to-r).
-
-Craving more arcane knowledge? Here is a list of great resources written by the Supreme Data Sorcerer Hadley Wickham:
-
+-   [**Hadley Wickham**](https://github.com/hadley)
 -   [**R for Data Science**](https://r4ds.had.co.nz/)
-
 -   [**ggplot2: Elegant Graphics for Data Analysis**](https://ggplot2-book.org/)
-
 -   [**Advanced R**](https://adv-r.hadley.nz/)
-
 -   [**R Packages**](https://r-pkgs.org/)
+-   [**Compendium of helpful resources**](https://www.dummies.com/article/technology/programming-web-design/r/10-valuable-online-r-resources-241655/)
 
-And remember, even the most seasoned sorcerers need a little help sometimes. If you find yourself in a bind, consult this compendium of [**helpful resources**](https://www.dummies.com/article/technology/programming-web-design/r/10-valuable-online-r-resources-241655/). It's like having a council of wise wizards just a spell away.
+### Population Genetics: Ancient Jedi Wisdom
 
-### Population genetics
+Make sure you review the foundational population genetics material:
 
-Make sure you've got the basic ***PopGen*** concepts down by checking out the four fresh scrolls in this [***OneDrive chest***](https://1drv.ms/f/s!AlB_j_RzSQLwgUBMWcrqh40A3YHs?e=gwbP2f). If you're itching to brew up some stronger magic in population genetics, here are three legendary tomes penned by the grandmasters of the craft:
-
--   Graham Coop's ***"[Population and Quantitative Genetics](https://github.com/cooplab/popgen-notes/releases/download/v1.2/minicoop.pdf)*** for that ancient wisdom.
--   Joe Felsenstein's ***"[Theoretical Evolutionary Genetics](https://felsenst.github.io/pgbook/pgbook.pdf)"*** for the arcane theories.
--   Kent Holsinger's ***"[Lecture Notes](https://figshare.com/articles/journal_contribution/Lecture_notes_in_population_genetics/100687)"*** for those secret insider tips.
-
-## Airmeet
-
-For this mission, we have chosen Airmeet as our virtual Jedi Temple---your command center for training in theways of the Force. Keep your eyes peeled for a separate holo-transmission (email) delivering your exclusiveaccess codes. Before you embark on your quest, unlock the secrets of the Airmeet Holocron by watching the [**intro video**](https://youtu.be/JCijIXQ4ZqQ?si=WmRrDlFrruqnkXYz)---it reveals powerful features that will help you wield your lightsaber of knowledge with precision.Finally, complete your "Jedi Profile" by recording your interests, so you can form alliances, find your crew, andnetwork across the galaxy with ease.
+-   [**OneDrive Chest (PopGen basics)**](https://1drv.ms/f/s!AlB_j_RzSQLwgUBMWcrqh40A3YHs?e=gwbP2f)
+-   [**Population and Quantitative Genetics (Graham Coop)**](https://github.com/cooplab/popgen-notes/releases/download/v1.2/minicoop.pdf)
+-   [**Theoretical Evolutionary Genetics (Joe Felsenstein)**](https://felsenst.github.io/pgbook/pgbook.pdf)
+-   [**Lecture Notes (Kent Holsinger)**](https://figshare.com/articles/journal_contribution/Lecture_notes_in_population_genetics/100687)

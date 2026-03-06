@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -253,20 +288,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#your-adventure-into-rstudio-cloud-land" id="toc-your-adventure-into-rstudio-cloud-land" class="nav-link active" data-scroll-target="#your-adventure-into-rstudio-cloud-land">Your Adventure into RStudio Cloud Land!</a>
+  <li><a href="#the-jedi-temple" id="toc-the-jedi-temple" class="nav-link active" data-scroll-target="#the-jedi-temple">The Jedi Temple</a></li>
+  <li><a href="#jedi-training-in-posit-cloud" id="toc-jedi-training-in-posit-cloud" class="nav-link" data-scroll-target="#jedi-training-in-posit-cloud">Jedi Training in Posit Cloud</a>
   <ul>
-  <li><a href="#step-1-summoning-the-rstudio-cloud-portal" id="toc-step-1-summoning-the-rstudio-cloud-portal" class="nav-link" data-scroll-target="#step-1-summoning-the-rstudio-cloud-portal">Step 1: Summoning the RStudio Cloud Portal</a></li>
-  <li><a href="#step-2-entering-the-secret-workshop-chamber" id="toc-step-2-entering-the-secret-workshop-chamber" class="nav-link" data-scroll-target="#step-2-entering-the-secret-workshop-chamber">Step 2: Entering the Secret Workshop Chamber</a></li>
-  <li><a href="#step-3-joining-the-fellowship-of-the-project" id="toc-step-3-joining-the-fellowship-of-the-project" class="nav-link" data-scroll-target="#step-3-joining-the-fellowship-of-the-project">Step 3: Joining the Fellowship of the Project</a></li>
-  <li><a href="#step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio" id="toc-step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio" class="nav-link" data-scroll-target="#step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio">Step 4: Teleporting Your Data Scrolls into the Cloud Realms of RStudio</a></li>
-  <li><a href="#step-5-conjuring-rstudio-in-your-own-realm" id="toc-step-5-conjuring-rstudio-in-your-own-realm" class="nav-link" data-scroll-target="#step-5-conjuring-rstudio-in-your-own-realm">Step 5: Conjuring RStudio in Your Own Realm</a></li>
+  <li><a href="#mission-log-order-01---initiating-contact-with-the-rebel-base" id="toc-mission-log-order-01---initiating-contact-with-the-rebel-base" class="nav-link" data-scroll-target="#mission-log-order-01---initiating-contact-with-the-rebel-base">Mission Log: Order 01 - Initiating Contact With the Rebel Base</a></li>
+  <li><a href="#mission-log-order-02---entering-the-secret-rebel-workshop-base" id="toc-mission-log-order-02---entering-the-secret-rebel-workshop-base" class="nav-link" data-scroll-target="#mission-log-order-02---entering-the-secret-rebel-workshop-base">Mission Log: Order 02 - Entering the Secret Rebel Workshop Base</a></li>
+  <li><a href="#mission-log-order-03---joining-the-fellowship-of-the-force" id="toc-mission-log-order-03---joining-the-fellowship-of-the-force" class="nav-link" data-scroll-target="#mission-log-order-03---joining-the-fellowship-of-the-force">Mission Log: Order 03 - Joining the Fellowship of the Force</a></li>
+  <li><a href="#mission-log-order-04---teleporting-your-data-scrolls-to-the-cloud-realm" id="toc-mission-log-order-04---teleporting-your-data-scrolls-to-the-cloud-realm" class="nav-link" data-scroll-target="#mission-log-order-04---teleporting-your-data-scrolls-to-the-cloud-realm">Mission Log: Order 04 - Teleporting Your Data Scrolls to the Cloud Realm</a></li>
+  <li><a href="#mission-log-order-05---installing-r-in-your-own-star-destroyer-optional" id="toc-mission-log-order-05---installing-r-in-your-own-star-destroyer-optional" class="nav-link" data-scroll-target="#mission-log-order-05---installing-r-in-your-own-star-destroyer-optional">Mission Log: Order 05 - Installing R in Your Own Star Destroyer (Optional)</a></li>
   </ul></li>
-  <li><a href="#pre-reading-material-r-population-genetics" id="toc-pre-reading-material-r-population-genetics" class="nav-link" data-scroll-target="#pre-reading-material-r-population-genetics">Pre-reading material (R, population genetics)</a>
+  <li><a href="#required-jedi-training" id="toc-required-jedi-training" class="nav-link" data-scroll-target="#required-jedi-training">Required Jedi Training</a>
   <ul>
-  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
-  <li><a href="#population-genetics" id="toc-population-genetics" class="nav-link" data-scroll-target="#population-genetics">Population genetics</a></li>
+  <li><a href="#mission-log-order-00---what-you-must-already-know" id="toc-mission-log-order-00---what-you-must-already-know" class="nav-link" data-scroll-target="#mission-log-order-00---what-you-must-already-know">Mission Log: Order 00 - What You Must Already Know</a>
+  <ul class="collapse">
+  <li><a href="#r-combat-training" id="toc-r-combat-training" class="nav-link" data-scroll-target="#r-combat-training">R Combat Training</a></li>
   </ul></li>
-  <li><a href="#airmeet" id="toc-airmeet" class="nav-link" data-scroll-target="#airmeet">Airmeet</a></li>
+  <li><a href="#the-jedi-archives-advanced-reading" id="toc-the-jedi-archives-advanced-reading" class="nav-link" data-scroll-target="#the-jedi-archives-advanced-reading">The Jedi Archives: Advanced Reading</a></li>
+  <li><a href="#population-genetics-ancient-jedi-wisdom" id="toc-population-genetics-ancient-jedi-wisdom" class="nav-link" data-scroll-target="#population-genetics-ancient-jedi-wisdom">Population Genetics: Ancient Jedi Wisdom</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -292,75 +331,99 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="your-adventure-into-rstudio-cloud-land" class="level2">
-<h2 class="anchored" data-anchor-id="your-adventure-into-rstudio-cloud-land">Your Adventure into RStudio Cloud Land!</h2>
-<p>To run our analyses in R during the workshop, we will dive into the magical world of RStudio Cloud, where the R code flows like rivers and plots and graphs grow on trees!</p>
-<section id="step-1-summoning-the-rstudio-cloud-portal" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-summoning-the-rstudio-cloud-portal">Step 1: Summoning the RStudio Cloud Portal</h3>
-<p><strong>Embark on the Journey:</strong> Open your trusty steed (a.k.a. your web browser) and gallop over to <a href="https://rstudio.cloud/"><strong>RStudio Cloud</strong></a>.</p>
-<p><strong>Forge Your Credentials:</strong> Spot the “Sign Up” beacon in the realm’s upper right corner and click it with courage. Click on the “Learn more” below the “Cloud Free” plan and then in the “Sign Up” button. A scroll will appear, asking for your name, your secret code (password), and your e-mail. Please use the same e-mail you provided when you registered to the workshop.</p>
-<p><strong>Prove Your Worth:</strong> After submitting your details, a pigeon (or was it an email?) will fly into your inbox carrying a secret message. Click the link within to prove you’re not a goblin in disguise.</p>
+<section id="the-jedi-temple" class="level2">
+<h2 class="anchored" data-anchor-id="the-jedi-temple">The Jedi Temple</h2>
+<p>For this mission, we have chosen Airmeet as our virtual Jedi Temple, your command center for training in the ways of the Force. Keep your eyes peeled for a separate holo-transmission (email) delivering your exclusive access codes. Before you embark on your quest, unlock the secrets of the Airmeet Holocron by watching the <a href="https://www.youtube.com/watch?v=JCijIXQ4ZqQ&amp;t"><strong>intro video</strong></a> and complete your Jedi profile so you can connect with other participants.</p>
 </section>
-<section id="step-2-entering-the-secret-workshop-chamber" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-entering-the-secret-workshop-chamber">Step 2: Entering the Secret Workshop Chamber</h3>
-<p><strong>Return to the Portal:</strong> With your email now verified, make your way back to the <a href="https://rstudio.cloud/"><strong>RStudio Cloud</strong></a> realm and use your newly forged credentials to enter.</p>
-<p><strong>Finding the Secret Door:</strong> One day before the workshop, a link leading to the workshop’s chamber will be sent to your e-mail.</p>
-</section>
-<section id="step-3-joining-the-fellowship-of-the-project" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-joining-the-fellowship-of-the-project">Step 3: Joining the Fellowship of the Project</h3>
-<p><strong>Locate the Treasure Chest:</strong> Within the grand chamber (workshop space), seek the project <strong><em>“PopGenJedi”</em></strong> and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.</p>
-</section>
-<section id="step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio">Step 4: Teleporting Your Data Scrolls into the Cloud Realms of RStudio</h3>
-<p><strong>Spot the Files Tab:</strong> Peek into the lower right pane of your RStudio Cloud cauldron. You’ll find the “Files” tab chilling there, waiting for your click.</p>
-<p><strong>Summon the Upload Spirits:</strong> Give that “Upload” button a gentle tap.</p>
-<p><strong>Embark on a Quest for the File:</strong> Hit “Choose File” and journey through the wilds of your computer to find the treasure you’re looking to upload.</p>
-<p><strong>Unlock the Portal:</strong> Found your file? Great! Click “Open” to unlock the portal, then confirm your choice with an “OK”.</p>
-</section>
-<section id="step-5-conjuring-rstudio-in-your-own-realm" class="level3">
-<h3 class="anchored" data-anchor-id="step-5-conjuring-rstudio-in-your-own-realm">Step 5: Conjuring RStudio in Your Own Realm</h3>
-<p>For most of your quest, you’ll wield your magic directly in the cloud. No need to summon RStudio to your personal domain, as the cloud is equipped with all the arcane tools you’ll need (input files, scripts, binaries and packages).</p>
-<p>Should your quest require local spells, or should you simply prefer your own lair, here’s your magic portal to get <a href="https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial"><strong>R, RStudio, and dartR</strong></a> all set up. If you’ve already been initiated and have these tools at your wand’s tip, give them a zesty refresh before the workshop using this <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/"><strong>handy guide for R and RStudio</strong></a>. And hey, don’t forget to renew your spell components! Just murmur ‘update.packages(ask = FALSE)’ into the R crystal ball (aka R console), and your packages will update as if by wizardry—no nagging prompts or anything!</p>
-<p>May your plots be plentiful and your code error-free. Onward, to glory and data analysis!</p>
-</section>
-</section>
-<section id="pre-reading-material-r-population-genetics" class="level2">
-<h2 class="anchored" data-anchor-id="pre-reading-material-r-population-genetics">Pre-reading material (R, population genetics)</h2>
-<p>Before we kick off our workshop, there are a few magical basics we expect you’ve got tucked under your hats.</p>
-<section id="r" class="level3">
-<h3 class="anchored" data-anchor-id="r">R</h3>
+<section id="jedi-training-in-posit-cloud" class="level2">
+<h2 class="anchored" data-anchor-id="jedi-training-in-posit-cloud">Jedi Training in Posit Cloud</h2>
+<section id="mission-log-order-01---initiating-contact-with-the-rebel-base" class="level3">
+<h3 class="anchored" data-anchor-id="mission-log-order-01---initiating-contact-with-the-rebel-base">Mission Log: Order 01 - Initiating Contact With the Rebel Base</h3>
 <ul>
-<li><p><strong>R Interface and Script Casting:</strong> Know how to wave your wand in RStudio and make those scripts fly.</p></li>
-<li><p><strong>Understanding Basic Data Types:</strong> Get cosy with vectors, matrices, data frames, and lists - the potions and herbs of R.</p></li>
-<li><p><strong>Basic Operations and Assignments:</strong> Be ready to cast simple spells and assign your magical results.</p></li>
-<li><p><strong>Basic R Functions:</strong> Familiarize yourself with the incantations that make R do your bidding.</p></li>
-<li><p><strong>Subsetting and Indexing:</strong> Learn how to navigate your way through datasets like a map to hidden treasures.</p></li>
-</ul>
-<p>All these mystical preliminaries are laid out in this <a href="https://1drv.ms/f/s!AlB_j_RzSQLwgTp4aQm5p927oTxl?e=uBvUyN"><strong>enchanted OneDrive grimoire</strong></a>. If you’re feeling a tad rusty, fear not! Embark on a quest through this <a href="https://www.datacamp.com/courses/free-introduction-to-r"><strong>free introduction to R course</strong></a>.</p>
-<p>Craving more arcane knowledge? Here is a list of great resources written by the Supreme Data Sorcerer Hadley Wickham:</p>
-<ul>
-<li><p><a href="https://r4ds.had.co.nz/"><strong>R for Data Science</strong></a></p></li>
-<li><p><a href="https://ggplot2-book.org/"><strong>ggplot2: Elegant Graphics for Data Analysis</strong></a></p></li>
-<li><p><a href="https://adv-r.hadley.nz/"><strong>Advanced R</strong></a></p></li>
-<li><p><a href="https://r-pkgs.org/"><strong>R Packages</strong></a></p></li>
-</ul>
-<p>And remember, even the most seasoned sorcerers need a little help sometimes. If you find yourself in a bind, consult this compendium of <a href="https://www.dummies.com/article/technology/programming-web-design/r/10-valuable-online-r-resources-241655/"><strong>helpful resources</strong></a>. It’s like having a council of wise wizards just a spell away.</p>
-</section>
-<section id="population-genetics" class="level3">
-<h3 class="anchored" data-anchor-id="population-genetics">Population genetics</h3>
-<p>Make sure you’ve got the basic <strong><em>PopGen</em></strong> concepts down by checking out the four fresh scrolls in this <a href="https://1drv.ms/f/s!AlB_j_RzSQLwgUBMWcrqh40A3YHs?e=gwbP2f"><strong><em>OneDrive chest</em></strong></a>. If you’re itching to brew up some stronger magic in population genetics, here are three legendary tomes penned by the grandmasters of the craft:</p>
-<ul>
-<li>Graham Coop’s <strong><em>“<a href="https://github.com/cooplab/popgen-notes/releases/download/v1.2/minicoop.pdf">Population and Quantitative Genetics</a></em></strong> for that ancient wisdom.</li>
-<li>Joe Felsenstein’s <strong><em>“<a href="https://felsenst.github.io/pgbook/pgbook.pdf">Theoretical Evolutionary Genetics</a>”</em></strong> for the arcane theories.</li>
-<li>Kent Holsinger’s <strong><em>“<a href="https://figshare.com/articles/journal_contribution/Lecture_notes_in_population_genetics/100687">Lecture Notes</a>”</em></strong> for those secret insider tips.</li>
+<li>Open your web browser and go to <a href="https://rstudio.cloud/"><strong>Posit Cloud</strong></a>.</li>
+<li>Click <strong>Sign Up</strong> and create your account.</li>
+<li>Use the same email address you used to register for the workshop.</li>
+<li>Confirm your account using the verification email.</li>
 </ul>
 </section>
+<section id="mission-log-order-02---entering-the-secret-rebel-workshop-base" class="level3">
+<h3 class="anchored" data-anchor-id="mission-log-order-02---entering-the-secret-rebel-workshop-base">Mission Log: Order 02 - Entering the Secret Rebel Workshop Base</h3>
+<ul>
+<li>Return to <a href="https://rstudio.cloud/"><strong>Posit Cloud</strong></a> and log in.</li>
+<li>One day before the workshop, you will receive the workshop-space link by email.</li>
+</ul>
 </section>
-<section id="airmeet" class="level2">
-<h2 class="anchored" data-anchor-id="airmeet">Airmeet</h2>
-<p>For this mission, we have chosen Airmeet as our virtual Jedi Temple—your command center for training in theways of the Force. Keep your eyes peeled for a separate holo-transmission (email) delivering your exclusiveaccess codes. Before you embark on your quest, unlock the secrets of the Airmeet Holocron by watching the <a href="https://youtu.be/JCijIXQ4ZqQ?si=WmRrDlFrruqnkXYz"><strong>intro video</strong></a>—it reveals powerful features that will help you wield your lightsaber of knowledge with precision.Finally, complete your “Jedi Profile” by recording your interests, so you can form alliances, find your crew, andnetwork across the galaxy with ease.</p>
+<section id="mission-log-order-03---joining-the-fellowship-of-the-force" class="level3">
+<h3 class="anchored" data-anchor-id="mission-log-order-03---joining-the-fellowship-of-the-force">Mission Log: Order 03 - Joining the Fellowship of the Force</h3>
+<ul>
+<li>Enter the workshop space and open the <code>PopGenJedi</code> project.</li>
+<li>The first launch may take a little time while the environment is prepared.</li>
+</ul>
+</section>
+<section id="mission-log-order-04---teleporting-your-data-scrolls-to-the-cloud-realm" class="level3">
+<h3 class="anchored" data-anchor-id="mission-log-order-04---teleporting-your-data-scrolls-to-the-cloud-realm">Mission Log: Order 04 - Teleporting Your Data Scrolls to the Cloud Realm</h3>
+<ul>
+<li>Open the <strong>Files</strong> tab in the lower-right panel.</li>
+<li>Click <strong>Upload</strong>.</li>
+<li>Select your file and confirm with <strong>Open</strong> and <strong>OK</strong>.</li>
+</ul>
+</section>
+<section id="mission-log-order-05---installing-r-in-your-own-star-destroyer-optional" class="level3">
+<h3 class="anchored" data-anchor-id="mission-log-order-05---installing-r-in-your-own-star-destroyer-optional">Mission Log: Order 05 - Installing R in Your Own Star Destroyer (Optional)</h3>
+<p>Most workshop activities run directly in the cloud environment. If you prefer local setup, use:</p>
+<ul>
+<li><a href="https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial"><strong>R, RStudio, and dartR installation tutorial</strong></a></li>
+<li><a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/"><strong>Guide to update R and RStudio</strong></a></li>
+</ul>
+<p>Update your installed packages before the workshop:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="required-jedi-training" class="level2">
+<h2 class="anchored" data-anchor-id="required-jedi-training">Required Jedi Training</h2>
+<section id="mission-log-order-00---what-you-must-already-know" class="level3">
+<h3 class="anchored" data-anchor-id="mission-log-order-00---what-you-must-already-know">Mission Log: Order 00 - What You Must Already Know</h3>
+<section id="r-combat-training" class="level4">
+<h4 class="anchored" data-anchor-id="r-combat-training">R Combat Training</h4>
+<p>Before the workshop, you should be comfortable with:</p>
+<ul>
+<li>RStudio interface and script editing</li>
+<li>Basic data types (vectors, matrices, data frames, lists)</li>
+<li>Basic operations and assignment</li>
+<li>Basic R functions</li>
+<li>Subsetting and indexing</li>
+</ul>
+<p>Core pre-work resources:</p>
+<ul>
+<li><a href="https://1drv.ms/f/s!AlB_j_RzSQLwgTp4aQm5p927oTxl?e=uBvUyN"><strong>OneDrive Holocron (R basics)</strong></a></li>
+<li><a href="https://www.datacamp.com/courses/free-introduction-to-r"><strong>Free Introduction to R course</strong></a></li>
+</ul>
+</section>
+</section>
+<section id="the-jedi-archives-advanced-reading" class="level3">
+<h3 class="anchored" data-anchor-id="the-jedi-archives-advanced-reading">The Jedi Archives: Advanced Reading</h3>
+<p>Additional R resources:</p>
+<ul>
+<li><a href="https://github.com/hadley"><strong>Hadley Wickham</strong></a></li>
+<li><a href="https://r4ds.had.co.nz/"><strong>R for Data Science</strong></a></li>
+<li><a href="https://ggplot2-book.org/"><strong>ggplot2: Elegant Graphics for Data Analysis</strong></a></li>
+<li><a href="https://adv-r.hadley.nz/"><strong>Advanced R</strong></a></li>
+<li><a href="https://r-pkgs.org/"><strong>R Packages</strong></a></li>
+<li><a href="https://www.dummies.com/article/technology/programming-web-design/r/10-valuable-online-r-resources-241655/"><strong>Compendium of helpful resources</strong></a></li>
+</ul>
+</section>
+<section id="population-genetics-ancient-jedi-wisdom" class="level3">
+<h3 class="anchored" data-anchor-id="population-genetics-ancient-jedi-wisdom">Population Genetics: Ancient Jedi Wisdom</h3>
+<p>Make sure you review the foundational population genetics material:</p>
+<ul>
+<li><a href="https://1drv.ms/f/s!AlB_j_RzSQLwgUBMWcrqh40A3YHs?e=gwbP2f"><strong>OneDrive Chest (PopGen basics)</strong></a></li>
+<li><a href="https://github.com/cooplab/popgen-notes/releases/download/v1.2/minicoop.pdf"><strong>Population and Quantitative Genetics (Graham Coop)</strong></a></li>
+<li><a href="https://felsenst.github.io/pgbook/pgbook.pdf"><strong>Theoretical Evolutionary Genetics (Joe Felsenstein)</strong></a></li>
+<li><a href="https://figshare.com/articles/journal_contribution/Lecture_notes_in_population_genetics/100687"><strong>Lecture Notes (Kent Holsinger)</strong></a></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
