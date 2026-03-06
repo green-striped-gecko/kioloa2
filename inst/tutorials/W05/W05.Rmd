@@ -115,12 +115,6 @@ Full documentation for the pipeline is available in the Stacks manual:
 
 The manual provides detailed explanations of each component of the workflow, the parameters used during locus assembly and catalogue construction, and the outputs generated at each stage.
 
-## Why is filtering so important?
-
-Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.
-
-A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.
-
 ## From VCF to genlight: a stepwise filtering pipeline for SNP quality control
 
 In this session we will learn how to take a VCF file produced by a SNP calling pipeline (e.g. from Galaxy or Stacks) and process it through a series of quality control and filtering steps to produce a clean, reliable set of SNPs stored in a genlight/dartR object. By the end of the session you should understand the rationale behind each filtering step, the order in which filters should be applied, and how to convert the final filtered dataset into a format suitable for downstream population genetic analyses.
