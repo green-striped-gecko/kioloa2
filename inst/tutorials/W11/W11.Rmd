@@ -113,7 +113,6 @@ library(ggplot2)
 library(dplyr)
 library(geosphere)
 library(rworldmap)
-source("scripts/source.R")
 ```
 
 
@@ -189,7 +188,31 @@ gl_ibd1 <- gl.ibd(
 ```
 
 ```{r, gl_ibd1_plot,echo=FALSE,warning=FALSE,message=FALSE}
-source("scripts/source.R")
+
+lm_eqn <-
+  function(df,
+           manteltest) {
+
+    r = manteltest$statistic
+    pp = manteltest$signif
+
+    m <- lm(Dgen ~ Dgeo, df)
+    eq <-
+      substitute(
+        italic(y) == a + b %.% italic(x) * "," ~ ~ italic(R) ^ 2 ~ "=" ~ r2 * "," ~ ~
+          italic(p) ~ "=" ~ pp,
+        list(
+          a = format(unname(coef(m)[1]),
+                     digits = 2),
+          b = format(unname(coef(m)[2]), digits = 2),
+          r2 = format(summary(m)$r.squared, digits = 3),
+          pp = format(pp, digits = 3)
+        )
+      )
+    as.character(as.expression(eq))
+  }
+
+
 Dgen_1 <- gl_ibd1$Dgen
 Dgeo_1 <- gl_ibd1$Dgeo
 
@@ -239,7 +262,10 @@ gl.ibd2 <- gl.ibd(
 ```
 
 ```{r, gl_ibd2_plot,echo=FALSE,warning=FALSE,message=FALSE}
-source("scripts/source.R")
+
+
+
+
 Dgen_2 <- gl.ibd2$Dgen
 Dgeo_2 <- gl.ibd2$Dgeo
 
@@ -352,7 +378,7 @@ tess_out <- tess3(
 )
 
 # Here's one we ran earlier with slightly more reps and iterations
-load("data/tess3_quolls.RData")
+tess_out <- readRDS("data/tess_out.rds")
 ```
 
 To choose K, we look at cross-validation RMSE.
