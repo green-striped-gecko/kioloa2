@@ -9,6 +9,7 @@ book:
   - index.qmd
   - schedule.qmd
   - presenters.qmd
+  - get_started.qmd
   - install.qmd
   - inst/tutorials/W01/W01.rmd
   - inst/tutorials/W02/W02.rmd

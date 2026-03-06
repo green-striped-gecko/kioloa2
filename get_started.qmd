@@ -20,7 +20,7 @@ To run our analyses in R during the workshop, we will dive into the magical worl
 
 ### Step 3: Joining the Fellowship of the Project
 
-**Locate the Treasure Chest:** Within the grand chamber (workshop space), seek the project ***"PopGenR"*** and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.
+**Locate the Treasure Chest:** Within the grand chamber (workshop space), seek the project ***"PopGenJedi"*** and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.
 
 ### Step 4: Teleporting Your Data Scrolls into the Cloud Realms of RStudio
 
@@ -36,7 +36,7 @@ To run our analyses in R during the workshop, we will dive into the magical worl
 
 For most of your quest, you'll wield your magic directly in the cloud. No need to summon RStudio to your personal domain, as the cloud is equipped with all the arcane tools you'll need (input files, scripts, binaries and packages).
 
-Should your quest require local spells, or should you simply prefer your own lair, here's your magic portal to get **[R, RStudio, and dartR](https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial)** all set up. If you've already been initiated and have these tools at your wand's tip, give them a zesty refresh before the workshop using this **[handy guide for R and RStudio](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/)**. And hey, don't forget to renew your spell components! Just murmur 'update.packages(ask = FALSE)' into the R crystal ball (aka R console), and your packages will update as if by wizardry---no nagging prompts or anything!
+Should your quest require local spells, or should you simply prefer your own lair, here's your magic portal to get [**R, RStudio, and dartR**](https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial) all set up. If you've already been initiated and have these tools at your wand's tip, give them a zesty refresh before the workshop using this [**handy guide for R and RStudio**](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/). And hey, don't forget to renew your spell components! Just murmur 'update.packages(ask = FALSE)' into the R crystal ball (aka R console), and your packages will update as if by wizardry---no nagging prompts or anything!
 
 May your plots be plentiful and your code error-free. Onward, to glory and data analysis!
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Program – Analysing Genomic Data with dartRverse</title>
+<title>How to get Started – Analysing Genomic Data with dartRverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./presenters.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./install.html" rel="next">
+<link href="./presenters.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -71,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="dartR_style.css">
 </head>
@@ -113,7 +84,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./schedule.html">Program</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./get_started.html">How to get Started</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -148,7 +119,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link active">
+  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Program</span></a>
   </div>
 </li>
@@ -160,7 +131,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./get_started.html" class="sidebar-item-text sidebar-link">
+  <a href="./get_started.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">How to get Started</span></a>
   </div>
 </li>
@@ -277,15 +248,34 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#your-adventure-into-rstudio-cloud-land" id="toc-your-adventure-into-rstudio-cloud-land" class="nav-link active" data-scroll-target="#your-adventure-into-rstudio-cloud-land">Your Adventure into RStudio Cloud Land!</a>
+  <ul>
+  <li><a href="#step-1-summoning-the-rstudio-cloud-portal" id="toc-step-1-summoning-the-rstudio-cloud-portal" class="nav-link" data-scroll-target="#step-1-summoning-the-rstudio-cloud-portal">Step 1: Summoning the RStudio Cloud Portal</a></li>
+  <li><a href="#step-2-entering-the-secret-workshop-chamber" id="toc-step-2-entering-the-secret-workshop-chamber" class="nav-link" data-scroll-target="#step-2-entering-the-secret-workshop-chamber">Step 2: Entering the Secret Workshop Chamber</a></li>
+  <li><a href="#step-3-joining-the-fellowship-of-the-project" id="toc-step-3-joining-the-fellowship-of-the-project" class="nav-link" data-scroll-target="#step-3-joining-the-fellowship-of-the-project">Step 3: Joining the Fellowship of the Project</a></li>
+  <li><a href="#step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio" id="toc-step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio" class="nav-link" data-scroll-target="#step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio">Step 4: Teleporting Your Data Scrolls into the Cloud Realms of RStudio</a></li>
+  <li><a href="#step-5-conjuring-rstudio-in-your-own-realm" id="toc-step-5-conjuring-rstudio-in-your-own-realm" class="nav-link" data-scroll-target="#step-5-conjuring-rstudio-in-your-own-realm">Step 5: Conjuring RStudio in Your Own Realm</a></li>
+  </ul></li>
+  <li><a href="#pre-reading-material-r-population-genetics" id="toc-pre-reading-material-r-population-genetics" class="nav-link" data-scroll-target="#pre-reading-material-r-population-genetics">Pre-reading material (R, population genetics)</a>
+  <ul>
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r">R</a></li>
+  <li><a href="#population-genetics" id="toc-population-genetics" class="nav-link" data-scroll-target="#population-genetics">Population genetics</a></li>
+  </ul></li>
+  <li><a href="#airmeet" id="toc-airmeet" class="nav-link" data-scroll-target="#airmeet">Airmeet</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Program</h1>
+<h1 class="title">How to get Started</h1>
 </div>
 
 
@@ -302,156 +292,76 @@ window.Quarto = {
 </header>
 
 
-<p><em>for a more detailed program see the</em> <a href="useful.qmd">More Info</a> <em>section</em></p>
-<table class="table-striped table-bordered caption-top table">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 20%">
-<col style="width: 30%">
-<col style="width: 40%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: center;">SESSION</th>
-<th style="text-align: center;">Time</th>
-<th style="text-align: center;"><strong>Topic</strong></th>
-<th style="text-align: center;">Presenters</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>EPISODE I</p>
-<p>THE DIVERSITY AWAKENS</p>
-<p>Monday</p>
-<p>09/03/26</p></td>
-<td style="text-align: center;">W1</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Harnessing genomic resources for conservation of biodiversity</strong></td>
-<td style="text-align: center;">Laura Bertola &amp; Kate Rick</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W2</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>dartR Intro, Data Manipulation &amp; Filtering</strong></td>
-<td style="text-align: center;">Arthur Georges &amp; Ching Ching Lau</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;">W3</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>Sex-Linked Markers</strong></td>
-<td style="text-align: center;">Diana Robledo &amp; Floriaan Devloo-Delva</td>
-</tr>
-<tr class="even">
-<td><p>EPISODE II</p>
-<p>THE BOTTLENECK STRIKES BACK</p>
-<p>Tuesday</p>
-<p>10/03/26</p></td>
-<td style="text-align: center;">W4</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Subdivisions, biological and administrative: their importance for management</strong></td>
-<td style="text-align: center;">Bill Sherwin, Floriaan Devloo-Delva and Laura Bertola</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;">W5</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>These are not the SNP you’re looking for: how study design impacts population genetic assessments</strong></td>
-<td style="text-align: center;">Renee Catullo</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W6</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>Management of Small Populations</strong></td>
-<td style="text-align: center;">Diana Robledo</td>
-</tr>
-<tr class="odd">
-<td><p>EPISODE III</p>
-<p>THE ATTACK OF THE CLADES</p>
-<p>Wednesday</p>
-<p>11/03/26</p></td>
-<td style="text-align: center;">W7</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Effective Population Size &amp; Historical</strong> <span class="math inline">\(N_e\)</span></td>
-<td style="text-align: center;">Robin Waples, Luis Mijangos &amp; Bernd Gruber</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W8</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>Genetic Divergence &amp; Phylogenetics</strong></td>
-<td style="text-align: center;">Craig Moritz &amp; Arthur Georges</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;">W9</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>dartR developer/new &amp; hidden features/manipulate plots/eBooks</strong></td>
-<td style="text-align: center;">Bernd Gruber, Arthur Georges, Luis Mijangos &amp; Ethan Halford</td>
-</tr>
-<tr class="even">
-<td><p>EPISODE IV</p>
-<p>A NEW FLOW</p>
-<p>Thursday</p>
-<p>12/03/26</p></td>
-<td style="text-align: center;">W10</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Natural Selection and Adaption</strong></td>
-<td style="text-align: center;">Luciano Beheregaray &amp; Chris Brauer</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;">W11</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>Landscape Genetics</strong></td>
-<td style="text-align: center;">Robyn Shaw, Cynthia Riginos &amp; Zoe Meziere</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W12</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>AI in PopGen &amp; Research</strong></td>
-<td style="text-align: center;">Jonathan Ting, Darya Vanichkina &amp; Celine Frere</td>
-</tr>
-<tr class="odd">
-<td><p>EPISODE V</p>
-<p>THE RETURN OF THE SCIENTIST</p>
-<p>Friday</p>
-<p>13/03/26</p></td>
-<td style="text-align: center;">W13</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Computer Simulations</strong></td>
-<td style="text-align: center;">Bernd Gruber &amp; Luis Mijangos</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W14</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>SNPs that Matter</strong></td>
-<td style="text-align: center;">Elise Furlan</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;">W15</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>Relatedness</strong></td>
-<td style="text-align: center;">Ethan Halford &amp; Luis Mijangos</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W16</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Sequencing Technologies</strong></td>
-<td style="text-align: center;">Andrzej Kilian</td>
-</tr>
-</tbody>
-</table>
+<section id="your-adventure-into-rstudio-cloud-land" class="level2">
+<h2 class="anchored" data-anchor-id="your-adventure-into-rstudio-cloud-land">Your Adventure into RStudio Cloud Land!</h2>
+<p>To run our analyses in R during the workshop, we will dive into the magical world of RStudio Cloud, where the R code flows like rivers and plots and graphs grow on trees!</p>
+<section id="step-1-summoning-the-rstudio-cloud-portal" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-summoning-the-rstudio-cloud-portal">Step 1: Summoning the RStudio Cloud Portal</h3>
+<p><strong>Embark on the Journey:</strong> Open your trusty steed (a.k.a. your web browser) and gallop over to <a href="https://rstudio.cloud/"><strong>RStudio Cloud</strong></a>.</p>
+<p><strong>Forge Your Credentials:</strong> Spot the “Sign Up” beacon in the realm’s upper right corner and click it with courage. Click on the “Learn more” below the “Cloud Free” plan and then in the “Sign Up” button. A scroll will appear, asking for your name, your secret code (password), and your e-mail. Please use the same e-mail you provided when you registered to the workshop.</p>
+<p><strong>Prove Your Worth:</strong> After submitting your details, a pigeon (or was it an email?) will fly into your inbox carrying a secret message. Click the link within to prove you’re not a goblin in disguise.</p>
+</section>
+<section id="step-2-entering-the-secret-workshop-chamber" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-entering-the-secret-workshop-chamber">Step 2: Entering the Secret Workshop Chamber</h3>
+<p><strong>Return to the Portal:</strong> With your email now verified, make your way back to the <a href="https://rstudio.cloud/"><strong>RStudio Cloud</strong></a> realm and use your newly forged credentials to enter.</p>
+<p><strong>Finding the Secret Door:</strong> One day before the workshop, a link leading to the workshop’s chamber will be sent to your e-mail.</p>
+</section>
+<section id="step-3-joining-the-fellowship-of-the-project" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-joining-the-fellowship-of-the-project">Step 3: Joining the Fellowship of the Project</h3>
+<p><strong>Locate the Treasure Chest:</strong> Within the grand chamber (workshop space), seek the project <strong><em>“PopGenJedi”</em></strong> and click on it to reveal its secrets. As you open it for the first time, ancient RStudio Cloud spirits will work their magic to prepare your environment.</p>
+</section>
+<section id="step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-teleporting-your-data-scrolls-into-the-cloud-realms-of-rstudio">Step 4: Teleporting Your Data Scrolls into the Cloud Realms of RStudio</h3>
+<p><strong>Spot the Files Tab:</strong> Peek into the lower right pane of your RStudio Cloud cauldron. You’ll find the “Files” tab chilling there, waiting for your click.</p>
+<p><strong>Summon the Upload Spirits:</strong> Give that “Upload” button a gentle tap.</p>
+<p><strong>Embark on a Quest for the File:</strong> Hit “Choose File” and journey through the wilds of your computer to find the treasure you’re looking to upload.</p>
+<p><strong>Unlock the Portal:</strong> Found your file? Great! Click “Open” to unlock the portal, then confirm your choice with an “OK”.</p>
+</section>
+<section id="step-5-conjuring-rstudio-in-your-own-realm" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-conjuring-rstudio-in-your-own-realm">Step 5: Conjuring RStudio in Your Own Realm</h3>
+<p>For most of your quest, you’ll wield your magic directly in the cloud. No need to summon RStudio to your personal domain, as the cloud is equipped with all the arcane tools you’ll need (input files, scripts, binaries and packages).</p>
+<p>Should your quest require local spells, or should you simply prefer your own lair, here’s your magic portal to get <a href="https://github.com/green-striped-gecko/dartR/wiki/Installation-tutorial"><strong>R, RStudio, and dartR</strong></a> all set up. If you’ve already been initiated and have these tools at your wand’s tip, give them a zesty refresh before the workshop using this <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/"><strong>handy guide for R and RStudio</strong></a>. And hey, don’t forget to renew your spell components! Just murmur ‘update.packages(ask = FALSE)’ into the R crystal ball (aka R console), and your packages will update as if by wizardry—no nagging prompts or anything!</p>
+<p>May your plots be plentiful and your code error-free. Onward, to glory and data analysis!</p>
+</section>
+</section>
+<section id="pre-reading-material-r-population-genetics" class="level2">
+<h2 class="anchored" data-anchor-id="pre-reading-material-r-population-genetics">Pre-reading material (R, population genetics)</h2>
+<p>Before we kick off our workshop, there are a few magical basics we expect you’ve got tucked under your hats.</p>
+<section id="r" class="level3">
+<h3 class="anchored" data-anchor-id="r">R</h3>
+<ul>
+<li><p><strong>R Interface and Script Casting:</strong> Know how to wave your wand in RStudio and make those scripts fly.</p></li>
+<li><p><strong>Understanding Basic Data Types:</strong> Get cosy with vectors, matrices, data frames, and lists - the potions and herbs of R.</p></li>
+<li><p><strong>Basic Operations and Assignments:</strong> Be ready to cast simple spells and assign your magical results.</p></li>
+<li><p><strong>Basic R Functions:</strong> Familiarize yourself with the incantations that make R do your bidding.</p></li>
+<li><p><strong>Subsetting and Indexing:</strong> Learn how to navigate your way through datasets like a map to hidden treasures.</p></li>
+</ul>
+<p>All these mystical preliminaries are laid out in this <a href="https://1drv.ms/f/s!AlB_j_RzSQLwgTp4aQm5p927oTxl?e=uBvUyN"><strong>enchanted OneDrive grimoire</strong></a>. If you’re feeling a tad rusty, fear not! Embark on a quest through this <a href="https://www.datacamp.com/courses/free-introduction-to-r"><strong>free introduction to R course</strong></a>.</p>
+<p>Craving more arcane knowledge? Here is a list of great resources written by the Supreme Data Sorcerer Hadley Wickham:</p>
+<ul>
+<li><p><a href="https://r4ds.had.co.nz/"><strong>R for Data Science</strong></a></p></li>
+<li><p><a href="https://ggplot2-book.org/"><strong>ggplot2: Elegant Graphics for Data Analysis</strong></a></p></li>
+<li><p><a href="https://adv-r.hadley.nz/"><strong>Advanced R</strong></a></p></li>
+<li><p><a href="https://r-pkgs.org/"><strong>R Packages</strong></a></p></li>
+</ul>
+<p>And remember, even the most seasoned sorcerers need a little help sometimes. If you find yourself in a bind, consult this compendium of <a href="https://www.dummies.com/article/technology/programming-web-design/r/10-valuable-online-r-resources-241655/"><strong>helpful resources</strong></a>. It’s like having a council of wise wizards just a spell away.</p>
+</section>
+<section id="population-genetics" class="level3">
+<h3 class="anchored" data-anchor-id="population-genetics">Population genetics</h3>
+<p>Make sure you’ve got the basic <strong><em>PopGen</em></strong> concepts down by checking out the four fresh scrolls in this <a href="https://1drv.ms/f/s!AlB_j_RzSQLwgUBMWcrqh40A3YHs?e=gwbP2f"><strong><em>OneDrive chest</em></strong></a>. If you’re itching to brew up some stronger magic in population genetics, here are three legendary tomes penned by the grandmasters of the craft:</p>
+<ul>
+<li>Graham Coop’s <strong><em>“<a href="https://github.com/cooplab/popgen-notes/releases/download/v1.2/minicoop.pdf">Population and Quantitative Genetics</a></em></strong> for that ancient wisdom.</li>
+<li>Joe Felsenstein’s <strong><em>“<a href="https://felsenst.github.io/pgbook/pgbook.pdf">Theoretical Evolutionary Genetics</a>”</em></strong> for the arcane theories.</li>
+<li>Kent Holsinger’s <strong><em>“<a href="https://figshare.com/articles/journal_contribution/Lecture_notes_in_population_genetics/100687">Lecture Notes</a>”</em></strong> for those secret insider tips.</li>
+</ul>
+</section>
+</section>
+<section id="airmeet" class="level2">
+<h2 class="anchored" data-anchor-id="airmeet">Airmeet</h2>
+<p>For this mission, we have chosen Airmeet as our virtual Jedi Temple—your command center for training in theways of the Force. Keep your eyes peeled for a separate holo-transmission (email) delivering your exclusiveaccess codes. Before you embark on your quest, unlock the secrets of the Airmeet Holocron by watching the <a href="https://youtu.be/JCijIXQ4ZqQ?si=WmRrDlFrruqnkXYz"><strong>intro video</strong></a>—it reveals powerful features that will help you wield your lightsaber of knowledge with precision.Finally, complete your “Jedi Profile” by recording your interests, so you can form alliances, find your crew, andnetwork across the galaxy with ease.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -863,13 +773,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Welcome!">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Welcome!</span>
+      <a href="./presenters.html" class="pagination-link" aria-label="Presenters">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Presenters</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./presenters.html" class="pagination-link" aria-label="Presenters">
-        <span class="nav-page-text">Presenters</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./install.html" class="pagination-link" aria-label="Install dartRverse">
+        <span class="nav-page-text">Install dartRverse</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
