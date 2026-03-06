@@ -548,7 +548,6 @@ We keep loci with trimmed sequences of length <strong>≥ 30</strong>.</p>
 <section id="exercise-2-explore-the-impact-of-qc-thresholds" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-2-explore-the-impact-of-qc-thresholds">Exercise 2 — Explore the impact of QC thresholds</h3>
 <div class="cell" data-exercise="true" data-exercise.cap="Exercise 2: QC thresholds (call rate and MAF)">
-<div class="tutorial-exercise" data-label="ex2" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0" data-pipe="|>">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Goal: Explore how QC thresholds change the number of loci you have available for panel design.</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1) Try call-rate thresholds of 0.95, 0.98, 0.99.</span></span>
@@ -563,8 +562,6 @@ We keep loci with trimmed sequences of length <strong>≥ 30</strong>.</p>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># tmp &lt;- gl.filter.callrate(rfbe20_1, threshold = cr)</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># tmp &lt;- gl.filter.maf(tmp, threshold = mac, by.pop = FALSE)</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># nLoc(tmp)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"Exercise 2: QC thresholds (call rate and MAF)"}</script>
-</div>
 </div>
 <div class="callout callout-style-simple callout-none no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
