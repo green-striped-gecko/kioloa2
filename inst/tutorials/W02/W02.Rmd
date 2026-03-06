@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ## W02 dartR Intro, Data Manipulation & Filtering {.unnumbered}
 
 
-<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
 <img src="images/arthur.png" width="200" />
 <img src="images/chingching.png" width="200" />
 <img src="images/diana.png" width="200" />

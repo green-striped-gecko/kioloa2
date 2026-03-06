@@ -30,7 +30,7 @@ klippy::klippy(position="right", color="black")
 
 ## Effective Population Size
 
-<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
 <img src="images/robin.png" width="200" />
 <img src="images/luis.png" width="200" />
 <img src="images/bernd.png" width="200" />

@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W08 Genetic Divergence & Phylogenetics  {.unnumbered}
 
-<div style="display:flex; justify-content:center; gap:100px; flex-wrap:wrap; align-items:center;">
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
 <img src="images/craig.png" width="200" />
 <img src="images/arthur.png" width="200" />
 </div>
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 What is the goal of this session? What will participants learn?
 
-### Prerquisites
+### Prerequisites
 
 What prior knowledge do they need?
 
