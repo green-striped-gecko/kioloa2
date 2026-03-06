@@ -28,101 +28,98 @@ klippy::klippy(position="right", color="black")
 
 ![](images/renee.png){.class width="200" height="200"}
 
-## Learning outcomes 
+## Learning outcomes
 
-By the end of this session you should be able to: 
+By the end of this session you should be able to:
 
-- explain how absolute sample size and sampling balance among populations influence SNP discovery and population genetic inference in ddRAD datasets 
+-   explain how absolute sample size and sampling balance among populations influence SNP discovery and population genetic inference in ddRAD datasets
 
-- describe why SNP datasets generated from reduced-representation sequencing are conditional on the samples used during locus discovery and filtering 
+-   describe why SNP datasets generated from reduced-representation sequencing are conditional on the samples used during locus discovery and filtering
 
-- recognise why it is generally inappropriate to call SNPs on a large dataset and then subset individuals for analysis 
+-   recognise why it is generally inappropriate to call SNPs on a large dataset and then subset individuals for analysis
 
-- outline the main steps of a Stacks workflow in Galaxy that produces a VCF file from ddRAD sequencing data 
+-   outline the main steps of a Stacks workflow in Galaxy that produces a VCF file from ddRAD sequencing data
 
-- apply a stepwise filtering strategy to remove unreliable loci and individuals from a VCF file 
+-   apply a stepwise filtering strategy to remove unreliable loci and individuals from a VCF file
 
-- convert a filtered SNP dataset into a genlight object for analysis with dartR and related population genetic tools 
+-   convert a filtered SNP dataset into a genlight object for analysis with dartR and related population genetic tools
 
-## From raw sequencing data to analysis-ready SNP datasets 
+## From raw sequencing data to analysis-ready SNP datasets
 
-Population genomic analyses typically begin with raw sequencing reads, not SNPs. In reduced-representation approaches such as ddRAD, these reads must first be processed through a bioinformatic pipeline that identifies loci, discovers polymorphic sites, and assigns genotypes to individuals. 
+Population genomic analyses typically begin with raw sequencing reads, not SNPs. In reduced-representation approaches such as ddRAD, these reads must first be processed through a bioinformatic pipeline that identifies loci, discovers polymorphic sites, and assigns genotypes to individuals.
 
-Pipelines such as Stacks perform several key steps: sequencing reads are filtered for quality, clustered into loci within individuals, matched across individuals to build a catalogue of homologous loci, and then scanned for polymorphic sites. The resulting variants and genotype calls are exported in Variant Call Format (VCF). 
+Pipelines such as Stacks perform several key steps: sequencing reads are filtered for quality, clustered into loci within individuals, matched across individuals to build a catalogue of homologous loci, and then scanned for polymorphic sites. The resulting variants and genotype calls are exported in Variant Call Format (VCF).
 
-Although the VCF file contains detailed information about every variant detected, this raw output is rarely suitable for direct population genetic analysis. Many called genotypes may be unreliable due to insufficient sequencing depth, low genotype quality scores, paralogous loci, or allele balance issues. Individuals may also have excessive missing data, and the dataset may contain non-biallelic sites, invariant loci, or multiple SNPs from the same RAD fragment that violate assumptions of independence used by many downstream analyses. 
+Although the VCF file contains detailed information about every variant detected, this raw output is rarely suitable for direct population genetic analysis. Many called genotypes may be unreliable due to insufficient sequencing depth, low genotype quality scores, paralogous loci, or allele balance issues. Individuals may also have excessive missing data, and the dataset may contain non-biallelic sites, invariant loci, or multiple SNPs from the same RAD fragment that violate assumptions of independence used by many downstream analyses.
 
-The goal of this session is to introduce you to a systematic pipeline that addresses each of these issues. The pipeline takes a VCF file as input, applies a series of increasingly targeted filters, and ultimately produces a genlight object ready for use with dartR and related tools. 
+The goal of this session is to introduce you to a systematic pipeline that addresses each of these issues. The pipeline takes a VCF file as input, applies a series of increasingly targeted filters, and ultimately produces a genlight object ready for use with dartR and related tools.
 
-## Why is study design so important? 
+## Why is study design so important?
 
-Study design determines the biological information that can be recovered from a genomic dataset. Decisions made before sequencing, such as how many individuals are sampled and how those individuals are distributed across populations, influence both the SNPs that are discovered and the population genetic patterns that can be detected. 
+Study design determines the biological information that can be recovered from a genomic dataset. Decisions made before sequencing, such as how many individuals are sampled and how those individuals are distributed across populations, influence both the SNPs that are discovered and the population genetic patterns that can be detected.
 
-In reduced-representation approaches such as ddRAD, loci are discovered from the sequencing reads present in the dataset. This means that the final SNP catalogue depends on the individuals included in the analysis. Increasing the number of individuals generally reveals more polymorphisms and rare alleles, while uneven sampling across populations can bias SNP discovery and allele frequency estimates toward the most heavily sampled groups. As a result, both absolute sample size and sampling balance among populations can influence estimates of diversity, allele frequencies, and population structure. 
+In reduced-representation approaches such as ddRAD, loci are discovered from the sequencing reads present in the dataset. This means that the final SNP catalogue depends on the individuals included in the analysis. Increasing the number of individuals generally reveals more polymorphisms and rare alleles, while uneven sampling across populations can bias SNP discovery and allele frequency estimates toward the most heavily sampled groups. As a result, both absolute sample size and sampling balance among populations can influence estimates of diversity, allele frequencies, and population structure.
 
-Study design also determines how well the data will support the intended analyses. Small sample sizes reduce the precision of diversity estimates, while unbalanced sampling can distort measures of genetic differentiation or clustering. Because the SNP dataset itself is shaped by the individuals included during locus discovery and filtering, changes to the sample set later in the analysis can alter the properties of the dataset. Careful planning of sampling strategy is therefore a critical first step in producing reliable and interpretable population genomic results. 
+Study design also determines how well the data will support the intended analyses. Small sample sizes reduce the precision of diversity estimates, while unbalanced sampling can distort measures of genetic differentiation or clustering. Because the SNP dataset itself is shaped by the individuals included during locus discovery and filtering, changes to the sample set later in the analysis can alter the properties of the dataset. Careful planning of sampling strategy is therefore a critical first step in producing reliable and interpretable population genomic results.
 
-## Why is filtering so important? 
+## Why is filtering so important?
 
-Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods. 
+Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.
 
-A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend. 
+A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.
 
-## Introduction to Galaxy Australia 
+## Introduction to Galaxy Australia
 
-In this first section we will briefly introduce Galaxy, a web-based platform for running In this workshop we will use Galaxy, a web-based platform that allows bioinformatic workflows to be run through a graphical interface. Galaxy provides access to many commonly used genomic analysis tools, including pipelines for RADseq data, while automatically recording parameters, software versions, and analysis steps. This makes it easier to reproduce analyses and track how datasets were generated. 
+In this first section we will briefly introduce Galaxy, a web-based platform for running In this workshop we will use Galaxy, a web-based platform that allows bioinformatic workflows to be run through a graphical interface. Galaxy provides access to many commonly used genomic analysis tools, including pipelines for RADseq data, while automatically recording parameters, software versions, and analysis steps. This makes it easier to reproduce analyses and track how datasets were generated.
 
-For the purposes of this session, Galaxy will be used as the platform that produced the VCF files we will analyse later in the workshop. We will briefly demonstrate how Galaxy histories and tool outputs are organised so that you can understand where the SNP dataset comes from and how the analysis steps are recorded. 
+For the purposes of this session, Galaxy will be used as the platform that produced the VCF files we will analyse later in the workshop. We will briefly demonstrate how Galaxy histories and tool outputs are organised so that you can understand where the SNP dataset comes from and how the analysis steps are recorded.
 
-If you are unfamiliar with Galaxy and would like a more detailed introduction to the interface, a short tutorial is available here: 
+If you are unfamiliar with Galaxy and would like a more detailed introduction to the interface, a short tutorial is available here:
 
-This tutorial explains the basic layout of Galaxy and how to upload data, run tools, and track results in your analysis history. It is provided as a reference for those who wish to explore the platform further. 
+This tutorial explains the basic layout of Galaxy and how to upload data, run tools, and track results in your analysis history. It is provided as a reference for those who wish to explore the platform further.
 
-## Introduction to STACKS 
+## Introduction to STACKS
 
-In this section we will introduce the Stacks pipeline, which is one of the most widely used software packages for assembling RADseq and ddRAD data into loci and identifying SNPs. Stacks takes short-read sequencing data and reconstructs loci across individuals, identifies polymorphic sites, and exports genotype data for downstream analyses such as population genetics or phylogeography.  
+In this section we will introduce the Stacks pipeline, which is one of the most widely used software packages for assembling RADseq and ddRAD data into loci and identifying SNPs. Stacks takes short-read sequencing data and reconstructs loci across individuals, identifies polymorphic sites, and exports genotype data for downstream analyses such as population genetics or phylogeography.
 
-We will not run the pipeline during this workshop, but it is important to understand the main stages of the workflow and how decisions made during these steps relate to study design. This pipeline is fully available in Galaxy, removing both installation and computational limitations. 
+We will not run the pipeline during this workshop, but it is important to understand the main stages of the workflow and how decisions made during these steps relate to study design. This pipeline is fully available in Galaxy, removing both installation and computational limitations.
 
-The Stacks pipeline proceeds through several major stages. First, raw reads are demultiplexed and cleaned. Next, reads within each individual are assembled into candidate loci. These loci are then compared across individuals to build a catalogue of loci shared among samples. Finally, loci from each individual are matched against this catalogue and genotypes are assigned at each polymorphic site.  
+The Stacks pipeline proceeds through several major stages. First, raw reads are demultiplexed and cleaned. Next, reads within each individual are assembled into candidate loci. These loci are then compared across individuals to build a catalogue of loci shared among samples. Finally, loci from each individual are matched against this catalogue and genotypes are assigned at each polymorphic site.
 
-Key components of the pipeline include: 
+Key components of the pipeline include:
 
-    process_radtags 
-    Demultiplexes sequencing reads, removes low-quality reads, and assigns reads to individuals. 
+```         
+process_radtags 
+Demultiplexes sequencing reads, removes low-quality reads, and assigns reads to individuals. 
 
-    ustacks 
-    Assembles reads within each individual into stacks representing candidate loci. 
+ustacks 
+Assembles reads within each individual into stacks representing candidate loci. 
 
-    cstacks 
-    Builds a catalogue of loci shared among individuals by comparing loci across samples. 
+cstacks 
+Builds a catalogue of loci shared among individuals by comparing loci across samples. 
 
-    sstacks 
-    Matches loci from each individual back to the catalogue to determine the allelic state at each locus. 
+sstacks 
+Matches loci from each individual back to the catalogue to determine the allelic state at each locus. 
 
-    populations 
-    Calculates population genetic statistics and exports data in formats such as VCF for downstream analysis.  
+populations 
+Calculates population genetic statistics and exports data in formats such as VCF for downstream analysis.  
+```
 
-Understanding these steps is important because several of them interact directly with study design. In particular, the catalogue-building stage (cstacks) determines which loci are considered homologous across individuals. The individuals included in this step therefore influence which loci enter the final dataset. Sampling decisions such as how many individuals to include from each population can affect locus sharing, SNP discovery, and downstream population genetic inference. 
+Understanding these steps is important because several of them interact directly with study design. In particular, the catalogue-building stage (cstacks) determines which loci are considered homologous across individuals. The individuals included in this step therefore influence which loci enter the final dataset. Sampling decisions such as how many individuals to include from each population can affect locus sharing, SNP discovery, and downstream population genetic inference.
 
-Students should therefore familiarise themselves with the structure of the Stacks pipeline and the purpose of each stage before working with SNP datasets generated from RADseq data. 
+Students should therefore familiarise themselves with the structure of the Stacks pipeline and the purpose of each stage before working with SNP datasets generated from RADseq data.
 
-Full documentation for the pipeline is available in the Stacks manual: 
+Full documentation for the pipeline is available in the Stacks manual:
 
-https://catchenlab.life.illinois.edu/stacks/manual/ 
+<https://catchenlab.life.illinois.edu/stacks/manual/>
 
-The manual provides detailed explanations of each component of the workflow, the parameters used during locus assembly and catalogue construction, and the outputs generated at each stage. 
+The manual provides detailed explanations of each component of the workflow, the parameters used during locus assembly and catalogue construction, and the outputs generated at each stage.
 
-## Why is filtering so important? 
+## Why is filtering so important?
 
-Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods. 
+Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.
 
-A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend. 
-
- 
-
- 
-
+A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.
 
 ## From VCF to genlight: a stepwise filtering pipeline for SNP quality control
 
@@ -138,13 +135,6 @@ The goal of this session is to walk through a systematic filtering pipeline that
 
 ------------------------------------------------------------------------
 
-#### Why is filtering so important?
-
-Poor quality SNPs can have dramatic effects on downstream analyses. Unfiltered paralogous loci inflate heterozygosity estimates, distort population structure, and bias relatedness calculations. Individuals with excessive missing data can create spurious clustering patterns in ordination analyses. Secondary SNPs on the same fragment violate the independence assumptions of many population genetic methods.
-
-A careful, stepwise filtering approach ensures that the final dataset contains only high-confidence, independent SNP loci scored across a reliable set of individuals. This is the foundation upon which all subsequent analyses depend.
-
-------------------------------------------------------------------------
 
 #### Overview of the filtering pipeline
 
