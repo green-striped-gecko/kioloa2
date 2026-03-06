@@ -1,5 +1,5 @@
 ::: {style="text-align: center;"}
-## We are grateful to the Generous Sponsors <br> Powering Our Jedi Mission
+## We are grateful to the Generous Sponsors <br> Powering Our Jedi Mission {.unnumbered}
 
 ::: {style="display: flex; justify-content: center; gap: 200px; align-items: center; padding-top: 60px;"}
 [![](images/CSIRO.png){width="100"}](https://www.csiro.au/)
