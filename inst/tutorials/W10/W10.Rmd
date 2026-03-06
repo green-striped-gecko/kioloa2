@@ -276,7 +276,7 @@ The choice of environmental variables is one of the most consequential decisions
 The table below lists some common global and Australian-specific sources for terrestrial, marine, and freshwater environmental data. Most are freely available as raster layers that can be imported directly into R.
 
 | Dataset | Domain | Key variables | Link |
-|:-----------------|:-----------------|:-----------------|:-----------------|
+|:---|:---|:---|:---|
 | **WorldClim v2** | Terrestrial | 19 bioclimatic variables (BIO1--BIO19): temperature and precipitation means, seasonality, extremes | [worldclim.org](https://www.worldclim.org/) |
 | **CHELSA v2** | Terrestrial | High-resolution (30 arc-sec) climate; bioclim variables + additional land-surface layers; also future projections | [chelsa-climate.org](https://chelsa-climate.org/) |
 | **Bio-ORACLE v2** | Marine | Sea surface and benthic layers: temperature, salinity, oxygen, pH, currents, primary production, nutrients | [bio-oracle.org](https://www.bio-oracle.org/) |
@@ -603,7 +603,7 @@ If your sampling design already limits spatial autocorrelation (e.g. a single pa
 Once you decide to control for structure, you have several options for representing it as a conditioning variable in your partial RDA:
 
 | Approach | Notes |
-|------------------------------------|------------------------------------|
+|----|----|
 | Raw XY coordinates (or polynomial/MDS thereof) | Simple; captures IBD but assumes a geographic model of structure |
 | Principal Coordinates of Neighbourhood Matrix (PCNM) | `vegan::pcnm()`; models spatial autocorrelation at multiple scales |
 | Moran's Eigenvector Maps (MEM) | `memgene` package; similar to PCNM but more flexible |
