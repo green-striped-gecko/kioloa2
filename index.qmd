@@ -1,7 +1,14 @@
-We are grateful to the Generous Sponsors Powering Our Jedi Mission
-[![](images/DArT.png)](https://www.diversityarrays.com/){width="300"}
+::: {style="text-align: center;"}
+## We are grateful to the Generous Sponsors <br> Powering Our Jedi Mission
 
-![](images/logo_Kioloa2026_2.png){width="300"}
+::: {style="display: flex; justify-content: center; gap: 200px; align-items: center; padding-top: 60px;"}
+[![](images/CSIRO.png){width="100"}](https://www.csiro.au/)
+[![](images/DArT.svg){width="340"}](https://www.diversityarrays.com/)
+[![](images/CBA.png){width="210"}](https://cba.anu.edu.au/)
+:::
+:::
+
+![](images/logo_Kioloa2026_2.png){width="300" fig-align="center"}
 
 # Welcome! {.unnumbered}
 
