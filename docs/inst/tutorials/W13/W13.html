@@ -725,7 +725,6 @@ Generation 15 Heterozygosity: 0.1101693 </code></pre>
 <p>Here is the full simulation in one code block. Change to your liking. Eg. run more generations, or how does the simulation change if you sample from less/more individuals from the source, change the source population. Monitor observerd heterozygosity instead of experced.</p>
 <div class="cell" data-exercise="true" data-exercise.setup="ex_71-setup">
 <div class="gold-panel">
-<div class="tutorial-exercise" data-label="ex71_11" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0" data-pipe="|>">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>rfbe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"./data/rfbe.rds"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>source <span class="ot">&lt;-</span> <span class="fu">gl.keep.pop</span>(rfbe, <span class="at">pop.list=</span><span class="st">"PJTub1.2.3"</span>, <span class="at">verbose=</span><span class="dv">0</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>source2 <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(source, <span class="at">method=</span><span class="st">"loc"</span>, <span class="at">threshold=</span><span class="dv">1</span>, <span class="at">verbose=</span><span class="dv">0</span>)</span>
@@ -744,7 +743,12 @@ Generation 15 Heterozygosity: 0.1101693 </code></pre>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">type=</span><span class="st">"b"</span>, <span class="at">xlab=</span><span class="st">"Generation"</span>, <span class="at">ylab=</span><span class="st">"Expected heterozygosity"</span>, </span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Simulation of expected heterozygosity over time"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="W13_files/figure-html/ex71_11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
