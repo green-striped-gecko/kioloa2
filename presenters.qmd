@@ -148,5 +148,5 @@ In the Pacific Sector of the Conservation Galaxy, **Robin Waples** stands as a r
 
 ## Claire Stephens
 
-image needed\
+![](images/presenters/claire.png){style="float: left" width="200"}
 **Claire Stephens** is a Jedi Master of collaboration at the **Australian National University**, serving as Guardian of the Centre for Biodiversity Analysis. She forges powerful alliances across ANU, CSIRO, and the University of Canberra, strengthening the Force of ecological and evolutionary science. With the strategic clarity of a Jedi Council leader, she aligns diverse research talents into a unified mission for biodiversity conservation. Where others see distant star systems of expertise, Claire charts hyperspace routes between them, ensuring knowledge flows, partnerships thrive, and the Republic of conservation science grows ever stronger.
