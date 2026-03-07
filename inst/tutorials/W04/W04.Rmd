@@ -18,29 +18,38 @@ description: "W04 Genetic Structure"
 ## W04 Genetic Structure
 
 ```{r setup, include=FALSE}
+
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval =TRUE, cache=TRUE)
+library(leaflet)
+library(leaflet.providers)
+# Override addProviderTiles BEFORE any map is created
+assignInNamespace(
+  "addProviderTiles",
+  function(map, provider, ...) leaflet::addTiles(map),
+  ns = "leaflet"
+)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ```{r klippy, echo=FALSE, include=TRUE}
-klippy::klippy(position="right", color="black")
+klippy::klippy(position = "right", color = "black")
 ```
 
 *Session Presenters*
 
 ![](images/bill.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"} ![](images/laura.png){.class width="200"}
 
-## Required packages
+## *Required packages*
 
 As always we need to have dartRverse installed and loaded. In addition you need to have dartR.popgen installed.
 
-```{r, warning=FALSE, message=FALSE,eval=TRUE}
+```{r, warning=FALSE, message=FALSE}
 # install.packages("leaflet.minicharts")
 # install.packages("iterpc")
 library(dartRverse)
 ```
 
-## W04 Genetic Structure
+## Introduction - Uncovering Genetic Structure
 
 ### Workflow
 
@@ -55,18 +64,16 @@ In this tutorial you will learn about genetic structure analyses. We will go ove
     -   PopCluster
 -   Exercises
     -   Exercise 1: Your own data
-    -   Exercise 2: Kinship bias
+    -   Exercise 2: Biased kin sampling
     -   Exercise 3: Structural variants bias
     -   Exercise 4: Uneven sampling design
 -   References
 
-## Introduction - Uncovering Population Structure
+*Why genetic structure matters*
 
-*Why population structure matters*
+![](images/pop_comp.jpg){.class width="300"}
 
-![](images/pop_comp.jpg)
-
--   What is a “population” in population genetics?
+-   What is a “population” from a genetic perspective?
 
 -   Genetic structure defined – how allele frequencies vary among groups.
 
@@ -76,14 +83,12 @@ In this tutorial you will learn about genetic structure analyses. We will go ove
 
 -   Why we care: management units, inbreeding, local adaptation, introgression.
 
-![](images/pop_spp.png)
+![](images/pop_spp.png){.class width="500"}
 
-![](images/ibd.png)
-
-#### Analytical toolkit
+### Analytical toolkit
 
 |  |  |  |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | **Approach** | **Purpose** | **dartR entry point** |
 | **PCoA / PCA** | Quick multivariate overview | `gl.pcoa()`, `gl.pcoa.plot()` |
 | **STRUCTURE** | Bayesian clustering | `gl.run.structure()`, `gl.plot.structure()`, `gl.map.structure()`,`gl.read.structure()` |
@@ -91,21 +96,25 @@ In this tutorial you will learn about genetic structure analyses. We will go ove
 | **sNMF** | Sparse non-negative matrix factorisation | `gl.run.snmf()`, `gl.plot.snmf()`, `gl.map.snmf()` |
 | **POPCLUSTER** | Ultra-fast admixture inference | `gl.run.popcluster()`, `gl.plot.popcluster()`, `gl.map.popcluster()` |
 
-### Example
+## Example
 
 To help us understand our analytical toolkit better let's start with a simple example using a simulated dataset.
 
-The dataset contains 10 populations of 30 individuals each and 1000 loci and is part of the dartRverse package.
+The dataset contains 10 sampling locations of 30 individuals each and 1000 loci and is part of the dartRverse package.
 
 To get an overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map. Please note the genlight/dartR object needs to have valid lat long coordinates for each individual to be able to do so.
 
-```{r, eval=FALSE}
-table(pop(possums.gl)) #check the individuals and the populations
+```{r}
+table(pop(possums.gl)) #check the individuals and the sampling locations
 
-gl.map.interactive(possums.gl)
+map <- gl.map.interactive(possums.gl)
+
+map
+
+# htmlwidgets::saveWidget(widget = map, file = "possum_map.html") ##to save
 ```
 
-The populations are fairly independent but are linked by some immigration, so a typical Metapopulation scenario. The populations are named A to J and follow more or less an isolation by distance. So population next to each other (e.g. B and C) are fairly well mixed and populations further apart from the rest (e.g. D) are more isolated.
+The sampling locations are fairly independent but are linked by some immigration, so a typical Meta-population scenario. The sampling locations are named A to J and follow more or less an isolation by distance. So sampling locations next to each other (e.g. B and C) are fairly well mixed and sampling locations further apart from the rest (e.g. D) are more isolated.
 
 ### PCA
 
@@ -113,9 +122,9 @@ Principal Component Analysis (PCA) is a powerful statistical technique used for 
 
 At its core, PCA identifies the directions (called principal components) along which the variation in the data is highest. These directions are orthogonal (perpendicular) to each other and are ranked by how much variance they capture from the original data. By projecting data onto the top few principal components, we can often retain the most important information while discarding noise or less useful details.
 
-![](images/pca.png)
+![](images/pca.png){width="500"}
 
-![](images/snp_plot.jpg)
+![](images/snp_plot.jpg){width="500"}
 
 **Great paper on PCA**: [Distances and their visualization in studies of spatial-temporal genetic variation using single nucleotide polymorphisms (SNPs)](https://www.biorxiv.org/content/10.1101/2023.03.22.533737v3.abstract)
 
@@ -181,12 +190,12 @@ Structure attempts to find the number of populations or sources (K ) at which po
 
 -   **Utility**: The no-admixture model is useful for identifying distinct populations and their members, especially in cases where populations are clearly separated geographically or temporally.
 
-To run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system $$e.g windows, mac or linux$$. You can download STRUCTURE for your OS from <http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html>.
+To run STRUCTURE from within R, we need to download the non-GUI executable (the version without frontend) for your operating system *e.g windows, mac or linux*. You can download STRUCTURE for your OS from <http://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/html/structure.html>.
 
 The possible arguments are listed below:
 
 | parameter | description |
-|------------------------------------|------------------------------------|
+|----|----|
 | k.range | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep | number of replicates for each value in k.range. |
 | label | label to use for input and output files |
@@ -202,12 +211,12 @@ The possible arguments are listed below:
 | maxlocprior | specifies range of locprior parameter r. Only used when pop.prior = "locprior". |
 | gensback | integer defining the number of generations back to test for immigrant ancestry. Only used when pop.prior = "usepopinfo". |
 | migrprior | numeric between 0 and 1 listing migration prior. Only used when pop.prior = "usepopinfo". |
-| popflag | a vector of integers (0, 1) or logicals identifiying whether or not to use strata information. Only used when pop.prior = "usepopinfo". |
-| pops | vector of population labels to be used in place of numbers in STRUCTURE file. |
+| popflag | a vector of integers (0, 1) or logicals identifying whether or not to use strata information. Only used when pop.prior = "usepopinfo". |
+| pops | vector of sampling location labels to be used in place of numbers in STRUCTURE file. |
 
 ### Running STRUCTURE
 
-```{r, eval=FALSE}
+```{r, eval=FALSE, echo=TRUE}
 structure_file <- if (Sys.info()[["sysname"]] == "Windows") {
   "./binaries/winbinaries/structure.exe"
 } else if (Sys.info()[["sysname"]] == "Darwin") {
@@ -220,6 +229,10 @@ srnoad <- gl.run.structure(possums.gl, k.range = 2:7, num.k.rep = 2,
                            noadmix = TRUE)
 ```
 
+```{r, echo=FALSE, eval=TRUE}
+srnoad <- readRDS("data/srnoad.rds")
+```
+
 #### Structure Results
 
 Okay now that we got that out of our way lets see how to interpret the results of the structure run. However, to really trust our results we would want to run `gl.run.structure` with larger burn in and number of reps, more like burnin=50000 and numreps=100000. But this takes a while, so we will not be doing that today.
@@ -230,7 +243,7 @@ The Evanno method is a statistical approach used to determine the most likely nu
 
 The Evanno method is a method to determine the most likely number of populations. It is based on the second order rate of change of the likelihood function with respect to K. The method is implemented in the `gl.evanno` function.
 
-```{r, eval=FALSE}
+```{r evanno, warning=FALSE, message=FALSE}
 ev <- gl.evanno(srnoad)
 ```
 
@@ -244,15 +257,17 @@ The values in the Q matrix can be interpreted as the fraction of an individual's
 
 To get a plot for a certain level you need to specify K or at least a range of K.
 
-```{r, eval=FALSE}
+```{r, warning=FALSE, message=FALSE}
 qmatnoad <- gl.plot.structure(srnoad, K = 3:5)
 head(qmatnoad[[1]])
 ```
 
 #### A "spatial" structure plot
 
-```{r structure map, eval=FALSE}
-gm <- gl.map.structure(qmat = qmatnoad, x = possums.gl, K = 5, scalex = 1, scaley = 0.5 )
+```{r structure map}
+qmatnoad <- gl.plot.structure(srnoad, K = 4)
+gm <- gl.map.structure(qmat = qmatnoad, x = possums.gl[1:150,], K = 4, scalex = 1, scaley = 0.5 )
+gm$map
 ```
 
 ### Faststructure
@@ -263,7 +278,7 @@ The method is now implemented in the `gl.run.faststructure` function. Unfortunat
 
 #### Running Faststructure with simple prior
 
-```{r, eval = FALSE, echo=T}
+```{r, eval=FALSE, echo=TRUE}
 if (Sys.info()[["sysname"]] == "Windows") {
    print("fastStructure is not built fow Windows")
 } else if (Sys.info()[["sysname"]] == "Darwin") {
@@ -273,7 +288,7 @@ if (Sys.info()[["sysname"]] == "Windows") {
   faststructure_file <- "./binaries/fastStructure"
   plink_path <- "./binaries/"
   }
-
+if (Sys.info()[["sysname"]] != "Windows") {
 my_fast <- gl.run.faststructure(possums.gl,
                                 k.range = 2:4,
                                 num.k.rep = 1,
@@ -281,6 +296,7 @@ my_fast <- gl.run.faststructure(possums.gl,
                                 exec.plink = plink_path, output = tempdir())
 
 gl.plot.faststructure(sr = my_fast,k.range = 3, border_ind = 0)
+}
 ```
 
 Here we can check the marginal likelihoods for the different K values. The recommended K is then the one with the highest marginal likelihood at the lowest K possible. So here we would decide on K=4. As before we can plot the Q matrix and the spatial structure plot.
@@ -292,27 +308,44 @@ sNMF is a fast alternative to conventional, model-based population structure ana
 ```{r, results='hide', fig.keep='all'}
 my_snmf <- gl.run.snmf(possums.gl, minK = 2, maxK = 7, rep = 2, regularization = 10)
 
-gl.plot.snmf(snmf.result = my_snmf, plot.K = 3, border.ind = 0)
+my_snmf_qmat <- gl.plot.snmf(snmf.result = my_snmf, plot.K = 3, border.ind = 0)
+
+my_snmf_map <- gl.map.snmf(possums.gl, qmat = my_snmf_qmat)
+my_snmf_map$map
 ```
 
 ### PopCluster
 
 PopCluster assumes the mixture model and adopts a simulated annealing algorithm to make a maximum likelihood clustering analysis, partitioning the sampled individuals into a predefined number of clusters.
 
-```{r, message=FALSE}
-#popcluster_path <- if (Sys.info()[["sysname"]] == "Windows") {
-#  "./binaries/winbinaries/"
-#} else if (Sys.info()[["sysname"]] == "Darwin") {
-#  "./binaries/macbinaries/"
-#} else {"./binaries/"}
+```{r, echo=TRUE, eval=FALSE}
+popcluster_path <- if (Sys.info()[["sysname"]] == "Windows") {
+  "./binaries/winbinaries/"
+} else if (Sys.info()[["sysname"]] == "Darwin") {
+  "./binaries/macbinaries/"
+} else {"./binaries/"}
 
-popcluster_path <- gl.download.binary("popcluster")
+my_popcluster <- gl.run.popcluster(x = possums.gl, minK = 2, maxK = 7, rep = 2, 
+                                   Scaling = 0, popcluster.path = popcluster_path)
+```
 
-my_popcluster <- gl.run.popcluster(x = possums.gl, minK = 2, maxK = 7, rep = 2, popcluster.path = popcluster_path)
+```{r}
+my_popcluster <- readRDS("data/my_popcluster.rds")
+```
 
+```{r}
+
+my_popcluster$plots
+
+```
+
+```{r}
 my_plot_popcluster <- gl.plot.popcluster(my_popcluster,plot.K = 3)
 
-gl.map.popcluster(x = possums.gl, qmat =  my_plot_popcluster)
+my_map_popcluster <- gl.map.popcluster(x = possums.gl, qmat =  my_plot_popcluster)
+my_map_popcluster$map
+
+# htmlwidgets::saveWidget(widget = my_map_popcluster$map, file = "possum_popcluster_map.html") ##to save
 ```
 
 ## EXERCISES
@@ -344,8 +377,9 @@ Lets take at a look at the pca.
 
 ```{r}
 # Undertake a PCA on the raw data
+# new dartRverse>=1.1.2 speed up using different memory model
 class(schoolshark.gl)<- "dartR"
-schoolshark.gl <- gl.gen2fbm(schoolshark.gl)
+if (existsFunction("gl.gen2fbm")) schoolshark.gl <- gl.gen2fbm(schoolshark.gl)
 pc <- gl.pcoa(schoolshark.gl, verbose = 3)
 ```
 
@@ -384,7 +418,7 @@ Data from @nikolic_stepping_2023.
 
 ![The Blue Shark](./images/Blue_shark.jpg)
 
-```{r, eval=FALSE}
+```{r}
 blueshark.gl <- readRDS("data/blue_shark.rds")
 
 table(pop(blueshark.gl))
@@ -394,14 +428,16 @@ table(pop(blueshark.gl))
 
 Lets take at a look at the pca
 
-```{r, eval=FALSE}
+```{r blueshark_pca}
 # Undertake a PCA on the raw data
+# new dartRverse>=1.1.2 speed up using different memory model
 class(blueshark.gl)<- "dartR"
-blueshark.gl <- gl.gen2fbm(blueshark.gl)
-pc <- gl.pcoa(blueshark.gl, verbose = 3)
+if (existsFunction("gl.gen2fbm")) bs <- gl.gen2fbm(blueshark.gl)
+
+pc <- gl.pcoa(bs, verbose = 3)
 ```
 
-```{r, message=FALSE, results='hide', , eval=FALSE}
+```{r, message=FALSE, results='hide'}
 # Plot the first two dimensions of the PCA
 pc_a1a2 <- gl.pcoa.plot(glPca = pc, x = blueshark.gl)
 
@@ -415,7 +451,28 @@ pc_a1a3 <- gl.pcoa.plot(glPca = pc, x = blueshark.gl, xaxis = 1, yaxis = 2, zaxi
 Lets have a look at which markers are contributing to the differentiation along PC1
 
 ```{r}
-plot(pc$loadings[,1])
+loadings <- gl.report.factorloadings(
+  pc, axis = 1,
+  n.display = nLoc(blueshark.gl)
+)
+# plot(loadings$pca.loadings...axis.)
+
+loadings_df <- data.frame(SNP = blueshark.gl$loc.names, 
+                          CHR = blueshark.gl$chromosome,
+                          loading = loadings$pca.loadings...axis.)
+loadings_plot <- ggplot2::ggplot(loadings_df, 
+                                 ggplot2::aes(x = SNP, 
+                                              y = loading, 
+                                              colour = CHR)) +
+  ggplot2::geom_point(size = 2) +
+  ggplot2::scale_colour_manual(values = adegenet::funky(55)) +
+  ggplot2::theme(
+    axis.text.x = ggplot2::element_blank(),
+    axis.title.x = ggplot2::element_blank(),
+    axis.title.y = ggplot2::element_text(size = 10),
+    legend.position = "none"
+  )
+print(loadings_plot)
 ```
 
 ::: callout-note
@@ -454,14 +511,15 @@ table(pop(bullshark.gl))
 
 Lets take at a look at the PCA
 
-```{r, eval=FALSE}
+```{r bullsharkpca}
+# new dartRverse>=1.1.2 speed up using different memory model
 class(bullshark.gl)<- "dartR"
-bullshark.gl <- gl.gen2fbm(bullshark.gl)
+if (existsFunction("gl.gen2fbm")) bullshark.gl <- gl.gen2fbm(bullshark.gl)
 # Undertake a PCA on the raw data
 pc <- gl.pcoa(bullshark.gl, verbose = 3)
 ```
 
-```{r, message=FALSE, results='hide', eval=FALSE}
+```{r, message=FALSE, results='hide'}
 # Plot the first two dimensions of the PCA
 pc_a1a2 <- gl.pcoa.plot(glPca = pc, x = bullshark.gl)
 
@@ -483,13 +541,15 @@ bullshark_srnoad <- gl.run.structure(bullshark.gl, k.range = 2:7, num.k.rep = 2,
                            exec = structure_file,plot.out = FALSE,
                            burnin = 500, numreps = 1000, 
                            noadmix = TRUE)
-saveRDS(bullshark_srnoad, file = "data/bull_shark_structure.rds")
+saveRDS(bullshark_srnoad, file = "data/bull_shark_structure_subset.rds")
 ```
 
 plot the STRUCTURE output
 
 ```{r}
 bullshark_srnoad <- readRDS("data/bull_shark_structure.rds")
+
+ev <- gl.evanno(bullshark_srnoad)
 
 qmatnoad <- gl.plot.structure(bullshark_srnoad, K = 3:7)
 head(qmatnoad[[1]])
@@ -510,7 +570,7 @@ gl.plot.snmf(snmf.result = my_snmf, plot.K = 7, border.ind = 0)
 
 1.  How would you remove the bias due to uneven sampling design?
 
-2.  Can you interpret a population with sample size n = 1?
+2.  Can you interpret genetic structure from a sampling location with sample size n = 1?
 
 3.  Which analytical tools are better at handling uneven sampling design?
 :::
@@ -518,11 +578,13 @@ gl.plot.snmf(snmf.result = my_snmf, plot.K = 7, border.ind = 0)
 ::: callout-tip
 ### **HINT**
 
-You might to to randomly subsample individuals from the Indo-West Pacific groups:
+You might try to randomly subsample individuals from the Indo-West Pacific groups:
 
 `id.sub <- c(bullshark.gl$ind.names[bullshark.gl$pop %in%  c("E-PAC", "W-ATL", "E-ATL", "Japan", "Fiji")], sample(bullshark.gl$ind.names[bullshark.gl$pop %in%  c("W-IO", "N-IO", "E-IO", "W-PAC")], size = 60))`
 
 `bullshark_subset.gl <- bullshark.gl[bullshark.gl$ind.names %in% id.sub,]`
+
+You could also try using PopCluster with the scaling=3 (see @wang2025popcluster)
 :::
 
 ## Winding up
