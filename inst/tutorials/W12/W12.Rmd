@@ -1,8 +1,7 @@
 ---
 title: "W12 AI in PopGen & Research "
 author: "Jonathan Ting, Darya Vanichkina, Celine Frere"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,9 +19,13 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W12 AI in PopGen & Research
+## W12 AI in PopGen & Research {.unnumbered}
 
-![](images/jonathan.png){.class width="200" height="200"} ![](images/darya.png){.class width="200" height="200"}![](images/celine.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/jonathan.png" width="200" />
+<img src="images/darya.png" width="200" />
+<img src="images/celine.png" width="200" />
+</div>
 
 ## Introduction
 
@@ -30,7 +33,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 What is the goal of this session? What will participants learn?
 
-### Prerquisites
+### Prerequisites
 
 What prior knowledge do they need?
 

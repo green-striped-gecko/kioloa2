@@ -1,8 +1,7 @@
 ---
 title: "W10 Natural Selection & Adaptation"
 author: "Luciano Beheregaray & Chris Brauer"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,9 +19,12 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W10 Natural Selection & Adaptation
+## W10 Natural Selection & Adaptation {.unnumbered}
 
-![](images/chris.png){.class width="200" height="200"} ![](images/luciano.png){.class width="200" height="200"}
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/chris.png" width="200" />
+<img src="images/luciano.png" width="200" />
+</div>
 
 ## Learning outcomes
 

@@ -1,8 +1,7 @@
 ---
 title: "W14 SNP that Matter"
 author: "Elise Furlan, Bernd Gruber & collaborators"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,13 +19,16 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ```
 
-## W14 SNP that Matter
+## W14 SNP that Matter {.unnumbered}
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
-![](images/elise.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/elise.png" width="200" />
+<img src="images/bernd.png" width="200" />
+</div>
 ---
 
 ## Learning outcomes

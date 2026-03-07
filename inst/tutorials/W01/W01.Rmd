@@ -1,8 +1,7 @@
 ---
 title: "W01 Pop Gen in Conservation and Restoration"
 author: "Laura Bertola & Kate Rick"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,9 +19,12 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W01 Pop Gen in Conservation and Restoration
+## W01 Pop Gen in Conservation and Restoration {.unnumbered}
 
-![](images/laura.png){.class width="200" height="200"} ![](images/kate.png){.class width="200" height="200"}
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/laura.png" width="200" />
+<img src="images/kate.png" width="200" />
+</div>
 
 ## Introduction
 
@@ -30,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 What is the goal of this session? What will participants learn?
 
-### Prerquisites
+### Prerequisites
 
 What prior knowledge do they need?
 

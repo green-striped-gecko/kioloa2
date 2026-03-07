@@ -1,8 +1,7 @@
 ---
 title: "W11 Landscape Genetics"
 author: "Robyn Shaw, Cynthia Riginos, Zoe Meziere"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,9 +19,13 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
-## W11 Landscape genetics
+## W11 Landscape genetics {.unnumbered}
 
-![](images/robyn.png){.class width="200" height="200"} ![](images/cynthia.png){.class width="200" height="200"} ![](images/zoe.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/robyn.png" width="200" />
+<img src="images/cynthia.png" width="200" />
+<img src="images/zoe.png" width="200" />
+</div>
 
 
 ## Introduction

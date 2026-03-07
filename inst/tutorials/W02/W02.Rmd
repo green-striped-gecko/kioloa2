@@ -1,8 +1,7 @@
 ---
 title: "W02 dartR Intro"
 author: "Arthur Georges, Ching-Ching Lau"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,10 +19,14 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ```
 
-## W02 dartR Intro, Data Manipulation & Filtering
+## W02 dartR Intro, Data Manipulation & Filtering {.unnumbered}
 
 
-![](images/arthur.png){.class width="200" height="200"} ![](images/chingching.png){.class width="200" height="200"} ![](images/diana.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/arthur.png" width="200" />
+<img src="images/chingching.png" width="200" />
+<img src="images/diana.png" width="200" />
+</div>
 
 ## Introduction
 

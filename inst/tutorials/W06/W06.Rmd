@@ -1,8 +1,7 @@
 ---
 title: "W06 Small Populations"
 author: "Diana Robledo, Peter Unmack"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,9 +19,12 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W06 Management of Small Populations
+## W06 Management of Small Populations {.unnumbered}
 
-![](images/diana.png){.class width="200" height="200"} ![](images/peter.png){.class width="200" height="200"} 
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/diana.png" width="200" />
+<img src="images/peter.png" width="200" />
+</div>
 
 ## Introduction
 
@@ -30,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 What is the goal of this session? What will participants learn?
 
-### Prerquisites
+### Prerequisites
 
 What prior knowledge do they need?
 

@@ -1,5 +1,29 @@
 # Presenters {.unnumbered}
 
+<style>
+h2 {
+  clear: both;
+}
+
+h2 + p {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h2 + p img {
+  float: none !important;
+  display: block;
+  width: min(200px, 100%);
+  height: auto;
+  margin: 0 auto;
+}
+
+p {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+</style>
+
 ## Luciano Beheregaray
 
 ![](images/presenters/luciano.png){style="float: left" width="200"}

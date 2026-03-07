@@ -1,8 +1,7 @@
 ---
 title: "W05 Calling SNPs"
 author: "Renee Catullo"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -20,13 +19,15 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
-## W05 VCF Filtering for SNP Quality Control
+## W05 VCF Filtering for SNP Quality Control {.unnumbered}
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
-![](images/renee.png){.class width="200" height="200"}
+<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
+<img src="images/renee.png" width="200" />
+</div>
 
 ## Learning outcomes
 
