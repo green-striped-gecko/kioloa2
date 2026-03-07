@@ -1,7 +1,8 @@
 ---
 title: "W01 Pop Gen in Conservation and Restoration"
 author: "Laura Bertola & Kate Rick"
-date: "9 March 2026"
+date: | 
+    ![](images/dartR7.png){width=5cm}
 output:
   learnr::tutorial:
     progressive: false
@@ -19,56 +20,61 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W01 Pop Gen in Conservation and Restoration {.unnumbered}
+## W01 Pop Gen in Conservation and Restoration
 
-<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
-<img src="images/laura.png" width="200" />
-<img src="images/kate.png" width="200" />
-</div>
+Population genetics provides essential tools for understanding biodiversity and informing conservation decisions. In this session we introduce the key concepts that underpin conservation genomics and how genetic data can help guide management and restoration efforts.
 
-## Introduction
+Topics include:
 
-### Learning outcomes
+- Why genetic diversity matters for conservation  
+- How population structure and gene flow affect species persistence  
+- The role of genomics in monitoring populations and guiding management  
+- Examples where genetic data informs conservation actions such as translocations and reintroductions  
 
-What is the goal of this session? What will participants learn?
+This session sets the conceptual foundation for the workshop and prepares participants to use **R and the dartRverse** for analysing genomic data in later sessions.
 
-### Prerequisites
 
-What prior knowledge do they need?
+![](images/laura.png){.class width="200" height="200"} ![](images/kate.png){.class width="200" height="200"}
 
-### Workflow
 
-What is the structure of the session?
+## Plenary talk 1
 
-### Additional reading
+#### Harnessing genomic resources for conservation of biodiversity
+#### Laura Bertola, NCBS, India
 
-Anything else you want to add?
 
-## Topic
 
-Brief recap of the topic, relating back to the presentation.
+![](./images/laura.png){width=300px}
 
-## Worked Ex:
 
-Worked example that everyone steps through together - simple example applying the methods
+**Laura Bertola** is a conservation genomics researcher affiliated with the **National Centre for Biological Sciences (NCBS) in Bangalore, India**, where she works on the genomic consequences of small and isolated populations and how genomic data can inform conservation management.
 
-```{r}
-# We show them the code to run
-```
+Her research focuses on applying genomic tools such as SNP panels to guide conservation planning for species such as lions and other threatened wildlife. 
 
-## Exercises
+Laura has previously worked at Leiden University, the City University of New York, and the University of Copenhagen, and collaborates widely with conservation organizations and wildlife managers.
 
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
 
--   dot points
--   for different steps
+## Plenary talk 2
+#### title
+#### Kate Rick, DBCA, Australia
 
-## Winding up
+![](./images/kate.png){width=300px}
 
-### Discussion Time
 
-Add some questions to help group discussion.
+**Kate Rick** is a conservation geneticist with the **Department of Biodiversity, Conservation and Attractions (DBCA) in Western Australia**. Her work focuses on applying population genomics to support the conservation and management of threatened Australian wildlife.
 
-### Where have we come?
+Kate completed her **PhD at The University of Western Australia**, where she worked with **Dr Kym Ottewell** in the conservation genetics group. Her doctoral research examined genomic diversity and population structure in threatened mammals to inform conservation management strategies.
 
-Summarise what they should have learnt.
+
+---
+
+## Learning Goals
+
+After this session you should:
+
+- Understand why genetic diversity is important for conservation  
+- Recognize how population genetics informs conservation management  
+- Be familiar with the types of genomic data used in conservation genomics  
+- Be ready to start analysing genomic datasets in R
+
+
