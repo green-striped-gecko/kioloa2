@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Laura Bertola &amp; Kate Rick">
+<meta name="author" content="Craig Moritz &amp; Arthur Georges">
 <meta name="dcterms.date" content="2026-03-09">
 <meta name="description" content="W08 Genetic Divergence &amp; Phylogenetics">
 
@@ -274,16 +274,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
   <ul>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading">Additional reading</a></li>
   </ul></li>
-  <li><a href="#topic" id="toc-topic" class="nav-link" data-scroll-target="#topic">Topic</a></li>
-  <li><a href="#worked-ex" id="toc-worked-ex" class="nav-link" data-scroll-target="#worked-ex">Worked Ex:</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#winding-up" id="toc-winding-up" class="nav-link" data-scroll-target="#winding-up">Winding up</a>
+  <li><a href="#seven-sins-of-classical-pca" id="toc-seven-sins-of-classical-pca" class="nav-link" data-scroll-target="#seven-sins-of-classical-pca">Seven sins of classical PCA</a>
   <ul>
-  <li><a href="#discussion-time" id="toc-discussion-time" class="nav-link" data-scroll-target="#discussion-time">Discussion Time</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values">1. Missing values</a></li>
+  <li><a href="#inappropriate-distance-metric" id="toc-inappropriate-distance-metric" class="nav-link" data-scroll-target="#inappropriate-distance-metric">2. Inappropriate distance metric</a></li>
+  <li><a href="#including-close-relatives" id="toc-including-close-relatives" class="nav-link" data-scroll-target="#including-close-relatives">3. Including close relatives</a></li>
+  <li><a href="#choosing-two-dimensions-for-convenience" id="toc-choosing-two-dimensions-for-convenience" class="nav-link" data-scroll-target="#choosing-two-dimensions-for-convenience">4. Choosing two dimensions for convenience</a></li>
+  <li><a href="#confounding-explained-with-biological-importance" id="toc-confounding-explained-with-biological-importance" class="nav-link" data-scroll-target="#confounding-explained-with-biological-importance">5. Confounding % explained with biological importance</a></li>
+  <li><a href="#structural-variants-and-gross-linkage" id="toc-structural-variants-and-gross-linkage" class="nav-link" data-scroll-target="#structural-variants-and-gross-linkage">6. Structural variants and gross linkage</a></li>
+  <li><a href="#over-interpretation" id="toc-over-interpretation" class="nav-link" data-scroll-target="#over-interpretation">7. Over-interpretation</a></li>
+  <li><a href="#bottom-line" id="toc-bottom-line" class="nav-link" data-scroll-target="#bottom-line"><em>BOTTOM LINE</em></a></li>
+  </ul></li>
+  <li><a href="#worked-example-broad-toothed-rat" id="toc-worked-example-broad-toothed-rat" class="nav-link" data-scroll-target="#worked-example-broad-toothed-rat">Worked Example: Broad Toothed Rat</a></li>
+  <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
+  <li><a href="#worked-example-western-sawshell-turtle" id="toc-worked-example-western-sawshell-turtle" class="nav-link" data-scroll-target="#worked-example-western-sawshell-turtle">Worked Example: Western Sawshell Turtle</a>
+  <ul>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#where-have-we-come" id="toc-where-have-we-come" class="nav-link" data-scroll-target="#where-have-we-come">Where have we come?</a></li>
   </ul></li>
   </ul>
@@ -304,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Laura Bertola &amp; Kate Rick </p>
+             <p>Craig Moritz &amp; Arthur Georges </p>
           </div>
   </div>
     
@@ -325,61 +333,218 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="w08-genetic-divergence-phylogenetics" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="w08-genetic-divergence-phylogenetics">W08 Genetic Divergence &amp; Phylogenetics</h2>
-<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
-<p><img src="images/craig.png" width="200"> <img src="images/arthur.png" width="200"></p>
-</div>
+<p><img src="images/craig.png" class="class" width="200" height="200"> <img src="images/arthur.png" class="class" width="200" height="200"></p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <section id="learning-outcomes" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
-<p>What is the goal of this session? What will participants learn?</p>
-</section>
-<section id="prerequisites" class="level3">
-<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
-<p>What prior knowledge do they need?</p>
+<ul>
+<li>Usage of PCA</li>
+<li>To correctly distinguish population structure</li>
+</ul>
 </section>
 <section id="workflow" class="level3">
 <h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
-<p>What is the structure of the session?</p>
+<ol type="1">
+<li><p>Phylogenetics and SNPs</p></li>
+<li><p>Seven sins of classical PCA</p></li>
+<li><p>Hands-on</p></li>
+</ol>
 </section>
-<section id="additional-reading" class="level3">
-<h3 class="anchored" data-anchor-id="additional-reading">Additional reading</h3>
-<p>Anything else you want to add?</p>
 </section>
-</section>
-<section id="topic" class="level2">
-<h2 class="anchored" data-anchor-id="topic">Topic</h2>
-<p>Brief recap of the topic, relating back to the presentation.</p>
-</section>
-<section id="worked-ex" class="level2">
-<h2 class="anchored" data-anchor-id="worked-ex">Worked Ex:</h2>
-<p>Worked example that everyone steps through together - simple example applying the methods</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We show them the code to run</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="seven-sins-of-classical-pca" class="level2">
+<h2 class="anchored" data-anchor-id="seven-sins-of-classical-pca">Seven sins of classical PCA</h2>
+<section id="missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="missing-values">1. Missing values</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/missing_data.png" class="img-fluid figure-img" width="404"></p>
+<figcaption><strong>displacement</strong></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/missing_data2.png" class="img-fluid figure-img" width="401"></p>
+<figcaption><strong>variance inflation</strong></figcaption>
+</figure>
 </div>
 </section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.</p>
+<section id="inappropriate-distance-metric" class="level3">
+<h3 class="anchored" data-anchor-id="inappropriate-distance-metric">2. Inappropriate distance metric</h3>
+<p><strong>PCA vs PCoA</strong></p>
+<p>You can substitute the standardized covariance matrix used by PCA with any standardized distance metric (Gower, 1966).</p>
+<p><strong>dartR coding</strong></p>
 <ul>
-<li>dot points</li>
-<li>for different steps</li>
+<li>0, homozygous reference allele (DArT set this as the most common allele)</li>
+<li>1, heterozygous</li>
+<li>2, homozygous alternate allele</li>
+</ul>
+<p>Relative distances between individuals must not depend on the arbitrary choice of reference and alternate allele. Prudent to check this.</p>
+</section>
+<section id="including-close-relatives" class="level3">
+<h3 class="anchored" data-anchor-id="including-close-relatives">3. Including close relatives</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/close_relatives.png" class="img-fluid figure-img" width="500"></p>
+<figcaption><strong>Create spurious cryptic aggregations. Why?</strong></figcaption>
+</figure>
+</div>
+</section>
+<section id="choosing-two-dimensions-for-convenience" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-two-dimensions-for-convenience">4. Choosing two dimensions for convenience</h3>
+<p><img src="images/convinence.png" class="img-fluid" width="539"></p>
+<ul>
+<li><p>Separation is definitive. Proximity is ambiguous.</p></li>
+<li><p>Identify informative dimensions (Broken-Stick Criterion) Explicitly choose what information willing to discard</p></li>
 </ul>
 </section>
-<section id="winding-up" class="level2">
-<h2 class="anchored" data-anchor-id="winding-up">Winding up</h2>
-<section id="discussion-time" class="level3">
-<h3 class="anchored" data-anchor-id="discussion-time">Discussion Time</h3>
-<p>Add some questions to help group discussion.</p>
+<section id="confounding-explained-with-biological-importance" class="level3">
+<h3 class="anchored" data-anchor-id="confounding-explained-with-biological-importance">5. Confounding % explained with biological importance</h3>
+<p><strong>Sin 5: “PC1 explains X% across datasets, a comparable across studies measure of”strength of structure”</strong></p>
+<p>But % variance depends on loci, scaling, LD pruning, MAF filters, sample composition. Use the Tracy-Widom framework, and by default in dartR, the broken-stick criterion to distinguish signal from noise.</p>
+<p><strong>AND</strong></p>
+<p>PCA and PCoA compute % explained in fundamentally different ways and so are not comparable.</p>
+</section>
+<section id="structural-variants-and-gross-linkage" class="level3">
+<h3 class="anchored" data-anchor-id="structural-variants-and-gross-linkage">6. Structural variants and gross linkage</h3>
+<p><img src="images/SV_linkage.png" class="img-fluid" width="500"></p>
+<p>Weird inexplicable patterns – 2 or 3 replicated sets of aggregations If two patterns – sex linkage?</p>
+<p>If 2 or 3, large structural variant?</p>
+</section>
+<section id="over-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="over-interpretation">7. Over-interpretation</h3>
+<p><em>Sin 7: Treating PCs as direct evidence for specific processes, discrete groups, or biological mechanisms when PCA is fundamentally a variance-maximizing projection showing patterns.</em></p>
+<p><span class="citation" data-cites="NovembreStephen2008">(<a href="../../../references.html#ref-NovembreStephen2008" role="doc-biblioref"><strong>NovembreStephen2008?</strong></a>)</span></p>
+<p><span class="citation" data-cites="McVean2009">(<a href="../../../references.html#ref-McVean2009" role="doc-biblioref"><strong>McVean2009?</strong></a>)</span></p>
+</section>
+<section id="bottom-line" class="level3">
+<h3 class="anchored" data-anchor-id="bottom-line"><em>BOTTOM LINE</em></h3>
+<p><em>Care to avoid the seven sins. PCA is an incredible tool that lends itself to SNP analysis. But it is a hypothesis generating tool only and must be followed by more definitive analyses.</em></p>
+</section>
+</section>
+<section id="worked-example-broad-toothed-rat" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example-broad-toothed-rat">Worked Example: Broad Toothed Rat</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mustard.png" class="img-fluid figure-img" width="617"></p>
+<figcaption>Cute as mustard - EPBC Act:Endangered. Patchy distribution – Barrington Tops, Snowy Mountains, Eastern Highlands, Victorian Alps, Otway Ranges, Wilsons Promontory and western Tasmania.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Insurance breeding colony established</p></li>
+<li><p>Sampled using cheek swabs</p></li>
+<li><p>Genotyped using DArTseq</p></li>
+<li><p>Advice on who to breed with whom to maximize genetic diversity in the offspring</p></li>
+<li><p>Opportunity for us to explore genetic diversity in the source population</p></li>
+</ul>
+</section>
+<section id="required-packages" class="level2">
+<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 1 Load in the data:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.set.verbosity</span>(<span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="at">file=</span><span class="st">"./data/Mastocomys.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 2 Interrogate:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gl</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">popNames</span>(gl)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(gl)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>latlong</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 3 Examine geography:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 4 Filtering:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl, <span class="at">threshold=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 5 Exploratory visualization:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pca,gl,<span class="at">ellipse=</span><span class="cn">TRUE</span>, <span class="at">plevel=</span><span class="fl">0.67</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.impute</span>(gl) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl) <span class="co"># 2 informative axes</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pca,gl,<span class="at">ellipse=</span><span class="cn">TRUE</span>, <span class="at">plevel=</span><span class="fl">0.67</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 6 Analysis:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F Statistics</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.fstat</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Allelic Richness</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">gl.report.allelerich</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Allelic Richness Simulation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">gl.report.allelerich</span>(gl)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">gl.report.nall</span>(  <span class="at">x =</span> gl,  <span class="at">simlevels =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nInd</span>(gl), <span class="dv">5</span>),  <span class="at">reps =</span> <span class="dv">10</span>,  <span class="at">plot.colors.pop =</span> <span class="fu">gl.colors</span>(<span class="st">"dis"</span>),  <span class="at">ncores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Private Alleles</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">gl.report.pa</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 7. Interpetation</strong></p>
+<ul>
+<li>PCA indicates a high degree of population structure</li>
+<li>This is borne out by the FST analysis</li>
+<li>Allelic diversity is a little low, not exceptionally, and not differentially</li>
+<li>Each subpopulation has a high frequency of private alleles</li>
+</ul>
+<p><strong>Working Hypothesis:</strong> The Barrington Tops populations likely represent a former widespread and connected population, subsequently fragmented with differential loss and retention of alleles under the influence of drift.</p>
+<p><strong>Future Work:</strong> Increase sample sizes to better capture allelic profiles Calculate Ne to assess likelihood of population persistence Plot Ne through time to see if there is evidence of a bottleneck</p>
+<p>Management (subject to findings of future work) Sampling from across the sites in Barrington Tops, cross-breeding to capture allelic diversity, and re-release across sites is likely to be a well-supported strategy.</p>
+<p>Establishment of captive insurance colonies that maintain the genetic structure of the current wild population is likely to simply continue the decline of genetic diversity through drift.</p>
+</section>
+<section id="worked-example-western-sawshell-turtle" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example-western-sawshell-turtle">Worked Example: Western Sawshell Turtle</h2>
+<p><img src="images/turtle.png" class="img-fluid" width="200"><img src="images/turtle_map.png" class="img-fluid" width="300"></p>
+<p>Not cute as mustard, EPBC Act:Endangered; Headwaters of the Murray-Darling Basin – Namoi, Gwydir and Border Rivers subdrainage basins</p>
+<ul>
+<li><p>Insurance breeding colony established</p></li>
+<li><p>Sampled using skin biopsy</p></li>
+<li><p>Genotyped using DArTseq</p></li>
+<li><p>Is the colony representative of the genetic diversity of wild populations</p></li>
+<li><p>Advice on who to breed with whom to maximize genetic diversity in the offspring for release</p></li>
+</ul>
+<p><strong>Hands-on:</strong></p>
+<p>Step 1. Load in the data (Myuchelys.Rdata)</p>
+<p>Step 2. Interrogate the data</p>
+<p>Step 3. Examine geographically</p>
+<p>Step 4. Filtering – craft a regime</p>
+<p>Step 5. Exploratory visualization</p>
+<p>Step 6. Analysis</p>
+<p>Step 7. Interpretation</p>
+<p><strong>Question:</strong></p>
+<ul>
+<li>Is there structure in the dataset evident in the PCA?</li>
+<li>Is this borne out by FST analysis?</li>
+<li>Are there discrete management units evident?</li>
+<li>Are any of these showing evidence of critical loss of genetic diversity/inbreeding?</li>
+<li>What are the lessons/advice for management?</li>
+</ul>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
 </section>
 <section id="where-have-we-come" class="level3">
 <h3 class="anchored" data-anchor-id="where-have-we-come">Where have we come?</h3>
-<p>Summarise what they should have learnt.</p>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
