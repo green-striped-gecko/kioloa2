@@ -88,7 +88,7 @@ In this tutorial you will learn about genetic structure analyses. We will go ove
 ### Analytical toolkit
 
 |  |  |  |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | **Approach** | **Purpose** | **dartR entry point** |
 | **PCoA / PCA** | Quick multivariate overview | `gl.pcoa()`, `gl.pcoa.plot()` |
 | **STRUCTURE** | Bayesian clustering | `gl.run.structure()`, `gl.plot.structure()`, `gl.map.structure()`,`gl.read.structure()` |
@@ -195,7 +195,7 @@ To run STRUCTURE from within R, we need to download the non-GUI executable (the 
 The possible arguments are listed below:
 
 | parameter | description |
-|----|----|
+|------------------------------------|------------------------------------|
 | k.range | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep | number of replicates for each value in k.range. |
 | label | label to use for input and output files |
@@ -450,7 +450,7 @@ pc_a1a3 <- gl.pcoa.plot(glPca = pc, x = blueshark.gl, xaxis = 1, yaxis = 2, zaxi
 
 Lets have a look at which markers are contributing to the differentiation along PC1
 
-```{r}
+```{r, message=FALSE, results='hide'}
 loadings <- gl.report.factorloadings(
   pc, axis = 1,
   n.display = nLoc(blueshark.gl)
@@ -472,9 +472,13 @@ loadings_plot <- ggplot2::ggplot(loadings_df,
     axis.title.y = ggplot2::element_text(size = 10),
     legend.position = "none"
   )
-print(loadings_plot)
+
 ```
 
+
+```{r}
+print(loadings_plot)
+```
 ::: callout-note
 ### Exercise 3
 
