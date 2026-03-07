@@ -39,6 +39,7 @@ format:
     number-depth: 1
     link-external-icon: true
     link-external-newwindow: true
+    number-sections: false
 execute:
   cache: false
   freeze: false
