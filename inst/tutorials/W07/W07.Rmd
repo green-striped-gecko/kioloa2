@@ -1,8 +1,7 @@
 ---
 title: "W07 Effective Population Size"
 author: "Robin Waples, Luis Mijangos & Bernd Gruber"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false

@@ -1,8 +1,7 @@
 ---
 title: "W01 Pop Gen in Conservation and Restoration"
 author: "Laura Bertola & Kate Rick"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false

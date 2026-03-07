@@ -1,8 +1,7 @@
 ---
 title: "W10 Natural Selection & Adaptation"
 author: "Luciano Beheregaray & Chris Brauer"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false

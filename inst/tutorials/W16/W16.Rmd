@@ -1,8 +1,7 @@
 ---
 title: "W16 Sequencing Technologies"
 author: "Andrzej Kilian"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false

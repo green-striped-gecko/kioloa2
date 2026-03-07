@@ -1,8 +1,7 @@
 ---
 title: "W15 Relatedness"
 author: "Ethan Halford & Luis Mijangos"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
