@@ -1,8 +1,7 @@
 ---
 title: "W08 Divergence & Phylogenetics"
-author: "Laura Bertola & Kate Rick"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+author: "Craig Moritz & Arthur Georges"
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -17,56 +16,237 @@ description: "W08 Genetic Divergence & Phylogenetics"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
-## W08 Genetic Divergence & Phylogenetics 
+## W08 Genetic Divergence & Phylogenetics {.unnumbered}
 
-![](images/craig.png){.class width="200" height="200"} ![](images/arthur.png){.class width="200" height="200"} 
+![](images/craig.png){.class width="200" height="200"} ![](images/arthur.png){.class width="200" height="200"}
 
 ## Introduction
 
 ### Learning outcomes
 
-What is the goal of this session? What will participants learn?
-
-### Prerquisites
-
-What prior knowledge do they need?
+-   Usage of PCA
+-   To correctly distinguish population structure
 
 ### Workflow
 
-What is the structure of the session?
+1.  Phylogenetics and SNPs
 
-### Additional reading
+2.  Seven sins of classical PCA
 
-Anything else you want to add?
+3.  Hands-on
 
-## Topic
+## Seven sins of classical PCA
 
-Brief recap of the topic, relating back to the presentation.
+### 1. Missing values
 
-## Worked Ex:
+![**displacement**](images/missing_data.png){width="404"}
 
-Worked example that everyone steps through together - simple example applying the methods
+![**variance inflation**](images/missing_data2.png){width="401"}
 
-```{r}
-# We show them the code to run
+### 2. Inappropriate distance metric
+
+**PCA vs PCoA**
+
+You can substitute the standardized covariance matrix used by PCA with any standardized distance metric (Gower, 1966).
+
+**dartR coding**
+
+-   0, homozygous reference allele (DArT set this as the most common allele)
+-   1, heterozygous
+-   2, homozygous alternate allele
+
+Relative distances between individuals must not depend on the arbitrary choice of reference and alternate allele. Prudent to check this.
+
+### 3. Including close relatives
+
+![**Create spurious cryptic aggregations. Why?**](images/close_relatives.png){width="500"}
+
+### 4. Choosing two dimensions for convenience
+
+![](images/convinence.png){width="539"}
+
+-   Separation is definitive. Proximity is ambiguous.
+
+-   Identify informative dimensions (Broken-Stick Criterion) Explicitly choose what information willing to discard
+
+### 5. Confounding % explained with biological importance
+
+**Sin 5: "PC1 explains X% across datasets, a comparable across studies measure of"strength of structure"**
+
+But % variance depends on loci, scaling, LD pruning, MAF filters, sample composition. Use the Tracy-Widom framework, and by default in dartR, the broken-stick criterion to distinguish signal from noise.
+
+**AND**
+
+PCA and PCoA compute % explained in fundamentally different ways and so are not comparable.
+
+### 6. Structural variants and gross linkage
+
+![](images/SV_linkage.png){width="500"}
+
+Weird inexplicable patterns -- 2 or 3 replicated sets of aggregations If two patterns -- sex linkage?
+
+If 2 or 3, large structural variant?
+
+### 7. Over-interpretation
+
+*Sin 7: Treating PCs as direct evidence for specific processes, discrete groups, or biological mechanisms when PCA is fundamentally a variance-maximizing projection showing patterns.*
+
+@NovembreStephen2008
+
+@McVean2009
+
+### *BOTTOM LINE*
+
+*Care to avoid the seven sins. PCA is an incredible tool that lends itself to SNP analysis. But it is a hypothesis generating tool only and must be followed by more definitive analyses.*
+
+## Worked Example: Broad Toothed Rat
+
+![Cute as mustard - EPBC Act:Endangered. Patchy distribution -- Barrington Tops, Snowy Mountains, Eastern Highlands, Victorian Alps, Otway Ranges, Wilsons Promontory and western Tasmania.](images/mustard.png){width="617"}
+
+-   Insurance breeding colony established
+
+-   Sampled using cheek swabs
+
+-   Genotyped using DArTseq
+
+-   Advice on who to breed with whom to maximize genetic diversity in the offspring
+
+-   Opportunity for us to explore genetic diversity in the source population
+
+## *Required packages*
+
+```{r, warning=FALSE, message=FALSE}
+library(dartRverse)
 ```
 
-## Exercises
+**Step 1 Load in the data:**
 
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+```{r}
+gl.set.verbosity(3)
+gl <- gl.load(file="./data/Mastocomys.Rdata")
+```
 
--   dot points
--   for different steps
+**Step 2 Interrogate:**
 
-## Winding up
+```{r}
+gl
+popNames(gl)
+indNames(gl)
+table(pop(gl))
+gl@other$latlong
+```
 
-### Discussion Time
+**Step 3 Examine geography:**
 
-Add some questions to help group discussion.
+```{r}
+gl.map.interactive(gl)
+```
+
+**Step 4 Filtering:**
+
+```{r}
+gl.report.callrate(gl)
+```
+
+```{r}
+gl.filter.callrate(gl, threshold=0.5)
+```
+
+**Step 5 Exploratory visualization:**
+
+```{r}
+pca <- gl.pcoa(gl)
+gl.pcoa.plot(pca,gl,ellipse=TRUE, plevel=0.67)
+```
+
+```{r}
+gl <- gl.impute(gl) 
+pca <- gl.pcoa(gl) # 2 informative axes
+gl.pcoa.plot(pca,gl,ellipse=TRUE, plevel=0.67)
+```
+
+**Step 6 Analysis:**
+
+```{r}
+# F Statistics
+gl.report.fstat(gl)
+```
+
+```{r}
+# Allelic Richness
+r1 <- gl.report.allelerich(gl)
+```
+
+```{r}
+# Allelic Richness Simulation
+r1 <- gl.report.allelerich(gl)
+
+r2 <- gl.report.nall(  x = gl,  simlevels = seq(1, nInd(gl), 5),  reps = 10,  plot.colors.pop = gl.colors("dis"),  ncores = 2)
+```
+
+```{r}
+# Private Alleles
+r1 <- gl.report.pa(gl)
+```
+
+**Step 7. Interpetation**
+
+-   PCA indicates a high degree of population structure
+-   This is borne out by the FST analysis
+-   Allelic diversity is a little low, not exceptionally, and not differentially
+-   Each subpopulation has a high frequency of private alleles
+
+**Working Hypothesis:** The Barrington Tops populations likely represent a former widespread and connected population, subsequently fragmented with differential loss and retention of alleles under the influence of drift.
+
+**Future Work:** Increase sample sizes to better capture allelic profiles Calculate Ne to assess likelihood of population persistence Plot Ne through time to see if there is evidence of a bottleneck
+
+Management (subject to findings of future work) Sampling from across the sites in Barrington Tops, cross-breeding to capture allelic diversity, and re-release across sites is likely to be a well-supported strategy.
+
+Establishment of captive insurance colonies that maintain the genetic structure of the current wild population is likely to simply continue the decline of genetic diversity through drift.
+
+## Worked Example: Western Sawshell Turtle
+
+![](images/turtle.png){width="200"}![](images/turtle_map.png){width="300"}
+
+Not cute as mustard, EPBC Act:Endangered; Headwaters of the Murray-Darling Basin -- Namoi, Gwydir and Border Rivers subdrainage basins
+
+-   Insurance breeding colony established
+
+-   Sampled using skin biopsy
+
+-   Genotyped using DArTseq
+
+-   Is the colony representative of the genetic diversity of wild populations
+
+-   Advice on who to breed with whom to maximize genetic diversity in the offspring for release
+
+**Hands-on:**
+
+Step 1. Load in the data (Myuchelys.Rdata)
+
+Step 2. Interrogate the data
+
+Step 3. Examine geographically
+
+Step 4. Filtering -- craft a regime
+
+Step 5. Exploratory visualization
+
+Step 6. Analysis
+
+Step 7. Interpretation
+
+**Question:**
+
+-   Is there structure in the dataset evident in the PCA?
+-   Is this borne out by FST analysis?
+-   Are there discrete management units evident?
+-   Are any of these showing evidence of critical loss of genetic diversity/inbreeding?
+-   What are the lessons/advice for management?
+
+### Conclusion
 
 ### Where have we come?
-
-Summarise what they should have learnt.
