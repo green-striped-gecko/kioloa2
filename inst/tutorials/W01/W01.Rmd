@@ -55,10 +55,19 @@ Laura has previously worked at Leiden University, the City University of New Yor
 
 
 ## Plenary talk 2
-#### title
+#### **From planning to proof**: How SNPs improve translocation outcomes and ongoing metapopulation management
 #### Kate Rick, DBCA, Australia
 
 ![](./images/kate.png){width=300px}
+
+
+In a galaxy where biodiversity is declining faster than ever and conservation resources are as scarce as kyber crystals, genomics has emerged as a powerful ally. Modern genetic and genomic tools are now fundamental to guiding conservation decision-making, helping us plan actions, monitor their outcomes, and adapt as conditions change.
+
+Genetics adds depth to traditional demographic data by revealing adaptive potential, inbreeding risks, and the overall genetic fitness of populations – key elements for ensuring long-term resilience and persistence.
+
+In this session, we will explore how genomic insights are shaping both Australian and global conservation programs, from the management of lions on the African savannah to the recovery of the humble (but heroic) golden bandicoot. Case studies will highlight the importance of maintaining intraspecific genetic variation, coordinating metapopulation management across fragmented landscapes, and using genomic evidence to design, source and monitor translocations.
+
+Join us as we show harnessing “the Force” of genomics can strengthen conservation strategies and support species survival across diverse ecosystems. 
 
 
 **Kate Rick** is a conservation geneticist with the **Department of Biodiversity, Conservation and Attractions (DBCA) in Western Australia**. Her work focuses on applying population genomics to support the conservation and management of threatened Australian wildlife.
