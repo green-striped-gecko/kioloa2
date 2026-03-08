@@ -1,8 +1,7 @@
 ---
 title: "W02 dartR Intro"
-author: "Arthur Georges, Ching-Ching Lau"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+author: "Arthur Georges, Ching-Ching Lau & Diana Robledo"
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -15,6 +14,8 @@ runtime: shiny_prerendered
 description: "dartR Intro, Data Manipulation & Filtering "
 ---
 
+![](images/dartR7.png){width="5cm"}
+
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
@@ -22,8 +23,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 
 ## W02 dartR Intro, Data Manipulation & Filtering
 
+![](images/arthur.png){.class width="200" height="200"} ![](images/chingching.png){.class width="200" height="200"} ![](images/diana.png){.class width="200" height="200"}
 
-![](images/arthur.png){.class width="200" height="200"} ![](images/chingching.png){.class width="200" height="200"} ![](images/diana.png){.class width="200" height="200"} 
 ## Introduction
 
 SNPs, or single nucleotide polymorphisms, are single base pair mutations at a nuclear locus (Figure 2). That nuclear locus is represented in the dataset by two sequence tags which, at a heterozygous locus, take on two allelic states, one referred to as the reference state, the other as the alternate or SNP state. ![Figure 2. A diagram illustrating what is meant by a SNP (single point polymorphism)](images/snp_profile.png)
@@ -43,7 +44,7 @@ SNP data when using `dartR` are held in a genlight object that is defined in R p
 
 ### Learning outcomes
 
-1.  Learn the basic usage of dartRverse
+1.  Learn the basic usage of dartR.base
 2.  Understand how genlight object stores SNPs and metadata
 3.  Learn how to filter SNP data
 
@@ -267,12 +268,12 @@ knitr::kable(head(out, n = 7))
 
 *only showing the first 7 rows*
 
-### Run `gl.drop.sexlinked`
+### Run `gl.filter.sexlinked`
 
 Remove the sex-linked loci from the LBP genlight object:
 
 ```{r output=FALSE}
-new.gl <- gl.drop.sexlinked(LBP, system = "xy")
+new.gl <- gl.filter.sexlinked(LBP, system = "xy")
 new.gl
 new.gl@n.loc
 ```
@@ -376,11 +377,9 @@ You can even try it with your own data.
 
 ## *Further Study*
 
-For more tuturials see the [ebook](http://georges.biomatix.org/storage/app/media/Tutorial_5_dartR_Basic_Filtering_1-Jun-2025.pdf).
+For more guidance see the [ebook](http://georges.biomatix.org/storage/app/media/eBook%20Introduction%20to%20dartR/eBook1_Getting_Started_with_dartR.pdf).
 
 Check out the other functions contained in package `dartR.sexlinked`. What do they do?
-
-Keep your eyes peeled for Session 8!
 
 ### Additional Readings
 

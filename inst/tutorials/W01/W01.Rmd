@@ -34,7 +34,7 @@ Topics include:
 This session sets the conceptual foundation for the workshop and prepares participants to use **R and the dartRverse** for analysing genomic data in later sessions.
 
 
-![](images/laura.png){.class width="200" height="200"} ![](images/kate.png){.class width="200" height="200"}
+![](images/laura.png){.class width="300" } ![](images/kate.png){.class width="300" }
 
 
 ## Plenary talk 1
@@ -72,7 +72,7 @@ Join us as we show harnessing “the Force” of genomics can strengthen conserv
 
 **Kate Rick** is a conservation geneticist with the **Department of Biodiversity, Conservation and Attractions (DBCA) in Western Australia**. Her work focuses on applying population genomics to support the conservation and management of threatened Australian wildlife.
 
-Kate completed her **PhD at The University of Western Australia**, where she worked with **Dr Kym Ottewell** in the conservation genetics group. Her doctoral research examined genomic diversity and population structure in threatened mammals to inform conservation management strategies.
+Kate completed her **PhD at The University of Western Australia**, where she worked with **Dr Kym Ottewell** in the conservation genetics group. Her doctoral research examined genomic diversity and population structure in threatened mammals to inform conservation management strategies, focusing on the potential for admixture among genetically diverged island populations as a tool for species recovery.
 
 
 ---
