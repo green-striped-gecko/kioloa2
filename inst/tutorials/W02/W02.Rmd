@@ -1,6 +1,6 @@
 ---
 title: "W02 dartR Intro"
-author: "Arthur Georges, Ching-Ching Lau"
+author: "Arthur Georges, Ching-Ching Lau & Diana Robledo"
 date: "9 March 2026"
 output:
   learnr::tutorial:
@@ -14,12 +14,16 @@ runtime: shiny_prerendered
 description: "dartR Intro, Data Manipulation & Filtering "
 ---
 
+![](images/dartR7.png){width="5cm"}
+
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
 ```
 
 ## W02 dartR Intro, Data Manipulation & Filtering {.unnumbered}
+
+![](images/arthur.png){.class width="200" height="200"} ![](images/chingching.png){.class width="200" height="200"} ![](images/diana.png){.class width="200" height="200"}
 
 
 <div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
@@ -47,7 +51,7 @@ SNP data when using `dartR` are held in a genlight object that is defined in R p
 
 ### Learning outcomes
 
-1.  Learn the basic usage of dartRverse
+1.  Learn the basic usage of dartR.base
 2.  Understand how genlight object stores SNPs and metadata
 3.  Learn how to filter SNP data
 
@@ -271,12 +275,12 @@ knitr::kable(head(out, n = 7))
 
 *only showing the first 7 rows*
 
-### Run `gl.drop.sexlinked`
+### Run `gl.filter.sexlinked`
 
 Remove the sex-linked loci from the LBP genlight object:
 
 ```{r output=FALSE}
-new.gl <- gl.drop.sexlinked(LBP, system = "xy")
+new.gl <- gl.filter.sexlinked(LBP, system = "xy")
 new.gl
 new.gl@n.loc
 ```
@@ -300,11 +304,7 @@ Below are two tables with a number of report and filter functions you can try.
 ### Report functions
 
 | Report functions | description |
-<<<<<<< HEAD
-|------------------------------------|------------------------------------|
-=======
 |----|----|
->>>>>>> main
 | gl.report.callrate | *summarises CallRate values* |
 | gl.report.reproducibility | *summarises repAvg (SNP) or reproducibility (SilicoDArT) values.* |
 | gl. report.monomorphs | *provides a count of polymorphic and monomorphic loci* |
@@ -320,11 +320,7 @@ Below are two tables with a number of report and filter functions you can try.
 ### Filtering functions
 
 | Filter functions | description |
-<<<<<<< HEAD
-|------------------------------------|------------------------------------|
-=======
 |----|----|
->>>>>>> main
 | gl.filter.callrate | *filter out loci or individuals for which the call rate (rate of non-missing values) is less than a specified threshold, say threshold = 0.95* |
 | gl.filter.reproducibility | *filter out loci for which the reproducibility (strictly repeatability) is less than a specified threshold, say threshold = 0.99* |
 | gl. filter.monomorphs | *provides a count of polymorphic and monomorphic loci* |
@@ -388,11 +384,9 @@ You can even try it with your own data.
 
 ## *Further Study*
 
-For more tuturials see the [ebook](http://georges.biomatix.org/storage/app/media/Tutorial_5_dartR_Basic_Filtering_1-Jun-2025.pdf).
+For more guidance see the [ebook](http://georges.biomatix.org/storage/app/media/eBook%20Introduction%20to%20dartR/eBook1_Getting_Started_with_dartR.pdf).
 
 Check out the other functions contained in package `dartR.sexlinked`. What do they do?
-
-Keep your eyes peeled for Session 8!
 
 ### Additional Readings
 

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Arthur Georges, Ching-Ching Lau">
+<meta name="author" content="Arthur Georges, Ching-Ching Lau &amp; Diana Robledo">
 <meta name="dcterms.date" content="2026-03-09">
 <meta name="description" content="dartR Intro, Data Manipulation &amp; Filtering">
 
@@ -341,7 +341,7 @@ window.Quarto = {
   <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
   <li><a href="#run-gl.report.sexlinked" id="toc-run-gl.report.sexlinked" class="nav-link" data-scroll-target="#run-gl.report.sexlinked">Run <code>gl.report.sexlinked</code></a></li>
   <li><a href="#output-dataframe" id="toc-output-dataframe" class="nav-link" data-scroll-target="#output-dataframe">Output dataframe</a></li>
-  <li><a href="#run-gl.drop.sexlinked" id="toc-run-gl.drop.sexlinked" class="nav-link" data-scroll-target="#run-gl.drop.sexlinked">Run <code>gl.drop.sexlinked</code></a></li>
+  <li><a href="#run-gl.filter.sexlinked" id="toc-run-gl.filter.sexlinked" class="nav-link" data-scroll-target="#run-gl.filter.sexlinked">Run <code>gl.filter.sexlinked</code></a></li>
   </ul></li>
   <li><a href="#more-filtering" id="toc-more-filtering" class="nav-link" data-scroll-target="#more-filtering">More filtering</a>
   <ul>
@@ -370,7 +370,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Arthur Georges, Ching-Ching Lau </p>
+             <p>Arthur Georges, Ching-Ching Lau &amp; Diana Robledo </p>
           </div>
   </div>
     
@@ -389,8 +389,10 @@ window.Quarto = {
 </header>
 
 
+<p><img src="images/dartR7.png" class="img-fluid" style="width:5cm"></p>
 <section id="w02-dartr-intro-data-manipulation-filtering" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="w02-dartr-intro-data-manipulation-filtering">W02 dartR Intro, Data Manipulation &amp; Filtering</h2>
+<p><img src="images/arthur.png" class="class" width="200" height="200"> <img src="images/chingching.png" class="class" width="200" height="200"> <img src="images/diana.png" class="class" width="200" height="200"></p>
 <div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
 <p><img src="images/arthur.png" width="200"> <img src="images/chingching.png" width="200"> <img src="images/diana.png" width="200"></p>
 </div>
@@ -413,7 +415,7 @@ window.Quarto = {
 <section id="learning-outcomes" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
 <ol type="1">
-<li>Learn the basic usage of dartRverse</li>
+<li>Learn the basic usage of dartR.base</li>
 <li>Understand how genlight object stores SNPs and metadata</li>
 <li>Learn how to filter SNP data</li>
 </ol>
@@ -680,11 +682,11 @@ Discussion time
 </div>
 <p><em>only showing the first 7 rows</em></p>
 </section>
-<section id="run-gl.drop.sexlinked" class="level3">
-<h3 class="anchored" data-anchor-id="run-gl.drop.sexlinked">Run <code>gl.drop.sexlinked</code></h3>
+<section id="run-gl.filter.sexlinked" class="level3">
+<h3 class="anchored" data-anchor-id="run-gl.filter.sexlinked">Run <code>gl.filter.sexlinked</code></h3>
 <p>Remove the sex-linked loci from the LBP genlight object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>new.gl <span class="ot">&lt;-</span> <span class="fu">gl.drop.sexlinked</span>(LBP, <span class="at">system =</span> <span class="st">"xy"</span>)</span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>new.gl <span class="ot">&lt;-</span> <span class="fu">gl.filter.sexlinked</span>(LBP, <span class="at">system =</span> <span class="st">"xy"</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>new.gl</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>new.gl<span class="sc">@</span>n.loc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -722,15 +724,113 @@ Tip
 <p>Below are two tables with a number of report and filter functions you can try.</p>
 <section id="report-functions" class="level3">
 <h3 class="anchored" data-anchor-id="report-functions">Report functions</h3>
-<div class="line-block">Report functions | description |</div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD |————————————|————————————| ======= |—-|—-| &gt;&gt;&gt;&gt;&gt;&gt;&gt; main | gl.report.callrate | <em>summarises CallRate values</em> | | gl.report.reproducibility | <em>summarises repAvg (SNP) or reproducibility (SilicoDArT) values.</em> | | gl. report.monomorphs | <em>provides a count of polymorphic and monomorphic loci</em> | | gl.report.secondaries | <em>provides a count of loci that are secondaries, that is, loci that reside on the one sequence tag.</em> | | gl.report.rdepth | <em>reports the estimate of average read depth for each locus</em> | | gl.report.hamming | <em>reports on Hamming distances between sequence tags</em> | | gl.report.overshoot | <em>reports loci for which the SNP has been trimmed along with the adaptor sequence</em> | | gl.report.taglength | <em>reports a frequency tabulation of sequence tag lengths</em> | | gl.report.sexlinked | <em>reports the number and type of loci likely to be in sex chromosomes</em> |</p>
-<p>: {.striped .bordered}</p>
+<table class="table-striped table-bordered caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Report functions</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gl.report.callrate</td>
+<td><em>summarises CallRate values</em></td>
+</tr>
+<tr class="even">
+<td>gl.report.reproducibility</td>
+<td><em>summarises repAvg (SNP) or reproducibility (SilicoDArT) values.</em></td>
+</tr>
+<tr class="odd">
+<td>gl. report.monomorphs</td>
+<td><em>provides a count of polymorphic and monomorphic loci</em></td>
+</tr>
+<tr class="even">
+<td>gl.report.secondaries</td>
+<td><em>provides a count of loci that are secondaries, that is, loci that reside on the one sequence tag.</em></td>
+</tr>
+<tr class="odd">
+<td>gl.report.rdepth</td>
+<td><em>reports the estimate of average read depth for each locus</em></td>
+</tr>
+<tr class="even">
+<td>gl.report.hamming</td>
+<td><em>reports on Hamming distances between sequence tags</em></td>
+</tr>
+<tr class="odd">
+<td>gl.report.overshoot</td>
+<td><em>reports loci for which the SNP has been trimmed along with the adaptor sequence</em></td>
+</tr>
+<tr class="even">
+<td>gl.report.taglength</td>
+<td><em>reports a frequency tabulation of sequence tag lengths</em></td>
+</tr>
+<tr class="odd">
+<td>gl.report.sexlinked</td>
+<td><em>reports the number and type of loci likely to be in sex chromosomes</em></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="filtering-functions" class="level3">
 <h3 class="anchored" data-anchor-id="filtering-functions">Filtering functions</h3>
-<div class="line-block">Filter functions | description |</div>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD |————————————|————————————| ======= |—-|—-| &gt;&gt;&gt;&gt;&gt;&gt;&gt; main | gl.filter.callrate | <em>filter out loci or individuals for which the call rate (rate of non-missing values) is less than a specified threshold, say threshold = 0.95</em> | | gl.filter.reproducibility | <em>filter out loci for which the reproducibility (strictly repeatability) is less than a specified threshold, say threshold = 0.99</em> | | gl. filter.monomorphs | <em>provides a count of polymorphic and monomorphic loci</em> | | gl.filter.allna | <em>filter out loci that are all missing values (NA)</em> | | gl.filter.secondaries | <em>filter out SNPs that share a sequence tag, except one retained at random</em> <span class="math display">\[or the best based on reproducibility (RepAvg) and information content (AvgPIC)\]</span>. | | gl.filter.rdepth | <em>filter out loci with exceptionally low or high read depth (coverage)</em> | | gl.filter.hamming | <em>filter out loci that differ from each other by less than a specified number of base pairs</em> | | gl.filter.overshoot | <em>filter out loci where the SNP location lies outside the trimmed sequence tag</em> | | gl.filter.taglength | <em>filter out loci for which the tag length is less that a threshold</em> | | gl.filter.sexlinked | <em>filter out loci that are likely to be in sex chromosomes</em> |</p>
-<p>: {.striped .bordered}</p>
+<table class="table-striped table-bordered caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Filter functions</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gl.filter.callrate</td>
+<td><em>filter out loci or individuals for which the call rate (rate of non-missing values) is less than a specified threshold, say threshold = 0.95</em></td>
+</tr>
+<tr class="even">
+<td>gl.filter.reproducibility</td>
+<td><em>filter out loci for which the reproducibility (strictly repeatability) is less than a specified threshold, say threshold = 0.99</em></td>
+</tr>
+<tr class="odd">
+<td>gl. filter.monomorphs</td>
+<td><em>provides a count of polymorphic and monomorphic loci</em></td>
+</tr>
+<tr class="even">
+<td>gl.filter.allna</td>
+<td><em>filter out loci that are all missing values (NA)</em></td>
+</tr>
+<tr class="odd">
+<td>gl.filter.secondaries</td>
+<td><em>filter out SNPs that share a sequence tag, except one retained at random</em> <span class="math display">\[or the best based on reproducibility (RepAvg) and information content (AvgPIC)\]</span>.</td>
+</tr>
+<tr class="even">
+<td>gl.filter.rdepth</td>
+<td><em>filter out loci with exceptionally low or high read depth (coverage)</em></td>
+</tr>
+<tr class="odd">
+<td>gl.filter.hamming</td>
+<td><em>filter out loci that differ from each other by less than a specified number of base pairs</em></td>
+</tr>
+<tr class="even">
+<td>gl.filter.overshoot</td>
+<td><em>filter out loci where the SNP location lies outside the trimmed sequence tag</em></td>
+</tr>
+<tr class="odd">
+<td>gl.filter.taglength</td>
+<td><em>filter out loci for which the tag length is less that a threshold</em></td>
+</tr>
+<tr class="even">
+<td>gl.filter.sexlinked</td>
+<td><em>filter out loci that are likely to be in sex chromosomes</em></td>
+</tr>
+</tbody>
+</table>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -760,9 +860,8 @@ Exercise
 </section>
 <section id="further-study" class="level2">
 <h2 class="anchored" data-anchor-id="further-study"><em>Further Study</em></h2>
-<p>For more tuturials see the <a href="http://georges.biomatix.org/storage/app/media/Tutorial_5_dartR_Basic_Filtering_1-Jun-2025.pdf">ebook</a>.</p>
+<p>For more guidance see the <a href="http://georges.biomatix.org/storage/app/media/eBook%20Introduction%20to%20dartR/eBook1_Getting_Started_with_dartR.pdf">ebook</a>.</p>
 <p>Check out the other functions contained in package <code>dartR.sexlinked</code>. What do they do?</p>
-<p>Keep your eyes peeled for Session 8!</p>
 <section id="additional-readings" class="level3">
 <h3 class="anchored" data-anchor-id="additional-readings">Additional Readings</h3>
 <p><span class="citation" data-cites="gruber2018">Gruber et al. (<a href="../../../references.html#ref-gruber2018" role="doc-biblioref">2018</a>)</span></p>
