@@ -88,7 +88,7 @@ In this tutorial you will learn about genetic structure analyses. We will go ove
 ### Analytical toolkit
 
 |  |  |  |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | **Approach** | **Purpose** | **dartR entry point** |
 | **PCoA / PCA** | Quick multivariate overview | `gl.pcoa()`, `gl.pcoa.plot()` |
 | **STRUCTURE** | Bayesian clustering | `gl.run.structure()`, `gl.plot.structure()`, `gl.map.structure()`,`gl.read.structure()` |
@@ -195,7 +195,7 @@ To run STRUCTURE from within R, we need to download the non-GUI executable (the 
 The possible arguments are listed below:
 
 | parameter | description |
-|----|----|
+|------------------------------------|------------------------------------|
 | k.range | vector of values to for maxpop in multiple runs. If set to NULL, a single STRUCTURE run is conducted with maxpops groups. If specified, do not also specify maxpops. |
 | num.k.rep | number of replicates for each value in k.range. |
 | label | label to use for input and output files |
