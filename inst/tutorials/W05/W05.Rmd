@@ -76,6 +76,10 @@ For the purposes of this session, Galaxy will be used as the platform that produ
 
 If you are unfamiliar with Galaxy and would like a more detailed introduction to the interface, a short tutorial is available here:
 
+[Intro to Galaxy](https://galaxyproject.github.io/training-material/topics/introduction/tutorials/galaxy-intro-short/tutorial.html)
+
+[SNP Calling](https://australianbiocommons.github.io/how-to-guides/stacks_workflows/stacks)
+
 This tutorial explains the basic layout of Galaxy and how to upload data, run tools, and track results in your analysis history. It is provided as a reference for those who wish to explore the platform further.
 
 ## Introduction to STACKS
@@ -128,7 +132,6 @@ SNP calling pipelines such as Stacks, GATK, or FreeBayes produce output in Varia
 The goal of this session is to walk through a systematic filtering pipeline that addresses each of these issues. The pipeline takes a VCF file as input, applies a series of increasingly targeted filters, and ultimately produces a genlight object ready for use with dartR and related tools.
 
 ------------------------------------------------------------------------
-
 
 #### Overview of the filtering pipeline
 
