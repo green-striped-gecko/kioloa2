@@ -16,24 +16,28 @@ editor_options:
     wrap: 72
 ---
 
+
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 ```
 
-## W07 Effective Population Size {.unnumbered}
-
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
+
+
+## W07 Effective Population Size {.unnumbered}
+
+
 ## Effective Population Size
 
-<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
-<img src="images/robin.png" width="200" />
-<img src="images/luis.png" width="200" />
-<img src="images/bernd.png" width="200" />
-</div>
+::: {style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;"}
+<img src="images/robin.png" width="200"/>
+<img src="images/luis.png" width="200"/>
+<img src="images/bernd.png" width="200"/>
+:::
 
 ## Learning Outcomes
 
@@ -973,14 +977,14 @@ distribution of offspring per parent, but does not identify null parents
 Equation 2 from Waples and Waples 2011 Mol Ecol Res 11 (Suppl.
 1):162–171.
 
-```{r rw_chunk1, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk1, eval=TRUE}
 ## R code written by Robin Waples  December 2025
 
 ### Chunk 1 @@@@@@@@
-## First consider Wright-Fisher reproduction; everybody has an equal opportunity to reproduce
+## First consider Wright-Fisher reproduction; everybody equal
 ## Separate sexes, equal sex ratio
 TotalN = 100
-NOffspring = TotalN  ## constant population size
+NOffspring = TotalN
 ##We give each adult a unique ID:
 Males = 1:(TotalN/2)
 Females = (TotalN/2 + 1) : TotalN
@@ -988,23 +992,23 @@ Females = (TotalN/2 + 1) : TotalN
 MaleParents <- sample(Males, NOffspring, replace = TRUE)
 FemaleParents <- sample(Females, NOffspring, replace = TRUE)
 BothParents = rbind(MaleParents,FemaleParents)
-BothParents[,1:10]  ## parents of first 10 offspring
+BothParents[,1:10]
 ## Compute Ne for each sex
- a1 = table(MaleParents)
- a1
- max(a1)
- which(Males %in% MaleParents == FALSE)  ### Null males (those with no offspring)
- 
- b1 = as.vector(a1)
- sumk = sum(b1)
- sumk2 = sum(b1^2)
- MaleNe = (sumk-1)/(sumk2/sumk - 1)  ## Equation 2 from Waples and Waples 2011 Mol Ecol Res
- a2 = table(FemaleParents)
- b2 = as.vector(a2)
- sumk = sum(b2)
- sumk2 = sum(b2^2)
- FemaleNe = (sumk-1)/(sumk2/sumk - 1)
- TotalNe = 4*MaleNe*FemaleNe/(MaleNe + FemaleNe)  ### sex-ratio adjustment from Wright 1938
+a1 = table(MaleParents)
+a1
+max(a1)
+which(Males %in% MaleParents == FALSE)  ### Null males (those with no offspring)
+
+b1 = as.vector(a1)
+sumk = sum(b1)
+sumk2 = sum(b1^2)
+MaleNe = (sumk-1)/(sumk2/sumk - 1)  ## formula from Waples and Waples 2011
+a2 = table(FemaleParents)
+b2 = as.vector(a2)
+sumk = sum(b2)
+sumk2 = sum(b2^2)
+FemaleNe = (sumk-1)/(sumk2/sumk - 1)
+TotalNe = 4*MaleNe*FemaleNe/(MaleNe + FemaleNe)  ### from Wright 1938
 c(MaleNe,FemaleNe,TotalNe)
 ```
 
@@ -1016,9 +1020,9 @@ Repeating W-F reproduction multiple times provides insight into the
 range of likely outcomes. From binomial probabilities, under WF about
 13-14% of all parents never produce any offspring.
 
-```{r rw_chunk2, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
-### Chunk 2 @@@@@@@@ Repeat multiple times to see the range of outcomes under W-F reproduction 
-NReps = 50
+```{r rw_chunk2, eval=TRUE}
+### Chunk 2 @@@@@@@@ Model reproduction multiple times to see the range of outcomes
+NReps = 20
 Ne = rep(NA,NReps)
 BigVec = 9999
 for (j in 1:NReps)  {
@@ -1047,6 +1051,7 @@ BigVec = BigVec[-1]
 table(BigVec)  ## distribution of offspring number across all reps
 TotalN*NReps - sum(table(BigVec))  ## number of null parents
 (TotalN*NReps - sum(table(BigVec)))/(NReps*TotalN)  ## fraction of null parents
+
 ```
 
 ------------------------------------------------------------------------
@@ -1056,7 +1061,7 @@ TotalN*NReps - sum(table(BigVec))  ## number of null parents
 Introduces a skewed sex ratio, so maleNe ≠ femaleNe. Wright's (1938
 Science) sex ratio formula is used to obtain overall Ne.
 
-```{r rw_chunk3, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk3, eval=TRUE}
 ### Chunk 3 @@@@@@@@  Skewed sex ratio
 Males = 1:(TotalN/4)
 Females = (TotalN/4 + 1) : TotalN
@@ -1093,7 +1098,7 @@ variation of W (Waples 2020 Evolution 74:1942-1953). Only changes
 required to code: 1) define the vector W (must be non-negative); 2) pick
 parents using "prob = W" argument to the "sample" function.
 
-```{r rw_chunk4, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk4, eval=TRUE}
 ### Chunk 4 @@@@@@@@ 
 ################## Now consider inequality in expected fitness
 MaleIDs = 1:50
@@ -1120,7 +1125,7 @@ c(EFemaleNe,EMaleNe,ENe)  ## Expected values of Ne
 Implements a simulation using the generalized WF model with parental
 weights. Uses male and female W vectors defined in Chunk 4.
 
-```{r rw_chunk5, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk5, eval=TRUE}
 ### Chunk 5 @@@@@@@@ 
 ### A simulation implementing TheWeight algorithm
 WeightGens = 50
@@ -1159,7 +1164,7 @@ TotalNe = 4*ActualMaleNe*ActualFemaleNe/(ActualMaleNe+ActualFemaleNe)
 Plots realized values of Ne in Chunk 5 compared to the theoretical
 expectation.
 
-```{r rw_chunk6, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk6, eval=TRUE}
 ### Chunk 6 @@@@@@@@ 
 ### plot Total Ne (solid red) and Predicted Ne (dashed blue) over time
 plot(1:WeightGens,TotalNe,type="l",lwd=3,col="red",xlab="Generation",ylim = c(0,1.5*ENe),ylab="Ne")
@@ -1179,7 +1184,7 @@ Initialize a NxNLoci matrix with 1s so initially all hets. One
 generation of reproduction generates H-W genotypes in offspring.
 Computing allele frequencies is simple as colMeans/2.
 
-```{r rw_chunk7, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk7, eval=TRUE}
 ### Chunk 7 @@@@@@@@  Now we track genetics
 
 ## This function vectorizes reproduction to speed things up
@@ -1220,7 +1225,7 @@ colMeans(Geno2[,1:10])/2  ## simple way to compute allele frequencies
 
 Runs a simulation for 100 generations with Ne = 200.
 
-```{r rw_chunk8, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk8, eval=TRUE}
 ### Chunk 8 @@@@@@@@   Now run a simulation
 NGens = 100
 Geno1 = matrix(1,Ne,NLoci)
@@ -1254,7 +1259,7 @@ HmeanNe
 
 Plots changes in allele frequency over time at all loci.
 
-```{r rw_chunk9, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk9, eval=TRUE}
 ### Chunk 9 @@@@@@@@             
 ## To visualize genetic drift, plot frequency of each SNP over time
 Generations = 1:NGens
@@ -1271,7 +1276,7 @@ matplot(x,y,type="l",xlab="Generation",ylab="Frequency")
 Plots decline in heterozygosity over time compared to the theoretical
 expectation.
 
-```{r rw_chunk10, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk10, eval=TRUE}
 ### Chunk 10 @@@@@@@@    
 ## track loss of heterozygosity
 ## Expected H at each generation
@@ -1293,7 +1298,7 @@ legend(0,0.46, legend=c("Actual", "Predicted"),col=c("red", "blue"), lty=3, cex=
 Introduces a function to compute mean r\^2 from the genetic data. This
 function assumes no missing genotypes (easy with simulated data).
 
-```{r rw_chunk11, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk11, eval=TRUE}
 ### Chunk 11 @@@@@@@@  Now estimate Ne using the LD method, in presence of a bottleneck
 ## This functions calculates mean r^2
 GetLD <- function(Geno)     { 
@@ -1315,7 +1320,7 @@ return(mean(rsq,na.rm=TRUE)) } # end function
 
 Defines parameters for a simulation to estimate Ne using the LD method.
 
-```{r rw_chunk12, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk12, eval=TRUE}
 ### Chunk 12 @@@@@@@@  Set up a simulation  
 Ne1 = 500  ## Initial Ne, before the bottleneck
 Males1 = 1:(Ne1/2)
@@ -1352,7 +1357,7 @@ on population demography) and estimated (LD method) Ne before and after
 the bottleneck. The code to estimate Ne uses a slightly simplified
 version of the code used in LDNe.
 
-```{r rw_chunk13, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk13, eval=TRUE}
 ### Chunk 13 @@@@@@@@  Run the simulation  
 ##Burnin with NGens1 generations of random mating and genetic drift to equilibrate LD
 for (k1 in 1:NGens1)    {
@@ -1464,7 +1469,7 @@ B
 Plots expected and actual rate of loss of heterozygosity before and
 after the bottleneck.
 
-```{r rw_chunk14, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk14, eval=TRUE}
 ### Chunk 14 @@@@@@@@ compare actual and predicted loss of H over time  
 bottom = min(BottleHets)*0.99
 plot(1:TotGens,BottleHets,type="p",lwd=3,col="red",xlab="Generation",ylim = c(bottom,0.505),ylab="Heterozygosity")
@@ -1479,7 +1484,7 @@ legend(0,0.46, legend=c("Actual", "Predicted"),col=c("red", "blue"), lty=3, cex=
 Plots estimated Ne compared to realized (demographic) Ne before and
 after the bottleneck.
 
-```{r rw_chunk15, exercise=TRUE, class.chunk="gold-panel", exercise.eval=TRUE}
+```{r rw_chunk15, eval=TRUE}
 ### Chunk 15 @@@@@@@@### check how LDNe tracks change in Ne
 plot(1:TotGens,ActualNe,type="l",lwd=3,col="red",xlab="Generation",ylim = c(0,3*Ne1),ylab="Ne",xlim = c(0,TotGens*1.1))
 lines(1:TotGens,EstNe,type="l",lty=3,lwd=3,col="blue")
