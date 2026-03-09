@@ -15,7 +15,7 @@ runtime: shiny_prerendered
 description: "W16 Relatedness"
 ---
 
-```{r setup, include=FALSE}
+```{r setupa, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ![](images/ethan.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"}
 
-```{r setup, include=FALSE}
+```{r setupb, include=FALSE, eval=FALSE}
 library(gbRd)
 library(tools)
 library(semantic.dashboard)
@@ -212,7 +212,7 @@ setup_item <- gl.diagnostics.relatedness(pigTest,
 
 ```
 
-```{r access_item, exercise=TRUE, exercise.eval=T}
+```{r access_item, exercise=TRUE, exercise.eval=F}
 setup_item 
 ```
 
