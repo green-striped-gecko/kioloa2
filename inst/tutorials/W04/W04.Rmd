@@ -221,7 +221,10 @@ structure_file <- if (Sys.info()[["sysname"]] == "Windows") {
   "./binaries/winbinaries/structure.exe"
 } else if (Sys.info()[["sysname"]] == "Darwin") {
   "./binaries/macbinaries/structure"
-} else {"./binaries/structure"}
+} else {"./binaries/structure";
+  system("chmod 777 ./binaries/structure")}
+
+
 
 srnoad <- gl.run.structure(possums.gl, k.range = 2:7, num.k.rep = 2, 
                            exec = structure_file,plot.out = FALSE,
@@ -229,7 +232,7 @@ srnoad <- gl.run.structure(possums.gl, k.range = 2:7, num.k.rep = 2,
                            noadmix = TRUE)
 ```
 
-```{r, echo=FALSE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE}
 srnoad <- readRDS("data/srnoad.rds")
 ```
 
