@@ -21,54 +21,42 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W06 Management of Small Populations {.unnumbered}
 
-<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
-<img src="images/diana.png" width="200" />
-<img src="images/peter.png" width="200" />
-</div>
 
-## Introduction
+![](images/diana.png){.class width="200" height="200"} ![](images/peter.png){.class width="200" height="200"}
 
-### Learning outcomes
 
-What is the goal of this session? What will participants learn?
+
 
 ### Prerequisites
+Small and fragmented populations are one of the most common challenges in conservation biology. Habitat loss and landscape fragmentation frequently interrupt natural gene flow, leaving species divided into small isolated populations. In such populations, evolutionary processes such as **genetic drift and inbreeding** become dominant forces, often leading to reduced genetic diversity, inbreeding depression, and ultimately increased extinction risk.
+>>>>>>> main
 
-What prior knowledge do they need?
+Modern conservation management therefore increasingly incorporates **genetic information** to diagnose population fragmentation, evaluate genetic erosion, and design interventions that restore gene flow. One important strategy is **genetic rescue**, the deliberate increase of gene flow between populations to reduce inbreeding and restore genetic diversity.
 
-### Workflow
+In this session we introduce the genetic processes affecting small populations and outline a practical framework used by conservation geneticists to assess whether populations are genetically threatened and when interventions such as assisted gene flow may be appropriate. The tutorial component will demonstrate how genomic data can be used to diagnose fragmentation, estimate genetic diversity, and support management decisions.
 
-What is the structure of the session?
 
-### Additional reading
+## Learning outcomes
 
-Anything else you want to add?
+By the end of this session you should be able to:
 
-## Topic
+- explain why **small and isolated populations** are particularly vulnerable to genetic drift and inbreeding
+- describe how **habitat fragmentation disrupts gene flow**
+- recognise the genetic consequences of small population size, including **loss of diversity and inbreeding depression**
+- outline the concept of **genetic rescue** and when it may be beneficial
+- interpret basic genetic analyses used to diagnose **genetic erosion and population structure**
+- understand how genomic data can support **evidence-based conservation management**
 
-Brief recap of the topic, relating back to the presentation.
+## Session summary
 
-## Worked Ex:
+Human-driven habitat fragmentation has created many small and isolated populations across the globe. In these populations, genetic drift increases inbreeding and reduces genetic diversity, limiting adaptive potential and increasing extinction risk.
 
-Worked example that everyone steps through together - simple example applying the methods
+Conservation genetics provides tools to diagnose these problems and guide management responses. A key approach is **genetic rescue**, which restores gene flow between populations to alleviate inbreeding depression and increase genetic diversity. Although risks such as outbreeding depression must be considered, evidence shows that genetic rescue is often highly beneficial when populations are small and isolated.
 
-```{r}
-# We show them the code to run
-```
+Effective genetic management therefore requires a structured process:  
+1. **Diagnose genetic erosion** using genetic diversity, inbreeding, and population structure.  
+2. **Evaluate potential donor populations** for increasing gene flow.  
+3. **Assess risks such as outbreeding depression.**  
+4. **Implement and monitor genetic management actions.**
 
-## Exercises
-
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
-
--   dot points
--   for different steps
-
-## Winding up
-
-### Discussion Time
-
-Add some questions to help group discussion.
-
-### Where have we come?
-
-Summarise what they should have learnt.
+Genomic data combined with clear decision frameworks allow conservation practitioners to make informed management decisions that increase the long-term viability of threatened populations.

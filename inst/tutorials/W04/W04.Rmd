@@ -14,7 +14,11 @@ runtime: shiny_prerendered
 description: "W04 Genetic Structure"
 ---
 
-## W04 Genetic Structure {.unnumbered}
+
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = "right", color = "black")
+```
+
 
 ```{r setup, include=FALSE}
 
@@ -30,9 +34,7 @@ assignInNamespace(
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
-```{r klippy, echo=FALSE, include=TRUE}
-klippy::klippy(position = "right", color = "black")
-```
+## W04 Genetic Structure
 
 *Session Presenters*
 
@@ -226,7 +228,10 @@ structure_file <- if (Sys.info()[["sysname"]] == "Windows") {
   "./binaries/winbinaries/structure.exe"
 } else if (Sys.info()[["sysname"]] == "Darwin") {
   "./binaries/macbinaries/structure"
-} else {"./binaries/structure"}
+} else {"./binaries/structure";
+  system("chmod 777 ./binaries/structure")}
+
+
 
 srnoad <- gl.run.structure(possums.gl, k.range = 2:7, num.k.rep = 2, 
                            exec = structure_file,plot.out = FALSE,
@@ -234,7 +239,7 @@ srnoad <- gl.run.structure(possums.gl, k.range = 2:7, num.k.rep = 2,
                            noadmix = TRUE)
 ```
 
-```{r, echo=FALSE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE}
 srnoad <- readRDS("data/srnoad.rds")
 ```
 
