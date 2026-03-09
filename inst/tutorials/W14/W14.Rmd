@@ -1,6 +1,6 @@
 ---
-title: "W14 SNP that Matter"
-author: "Elise Furlan, Bernd Gruber & collaborators"
+title: "W14 Simulations"
+author: "Bernd Gruber & Luis Mijangos"
 date: | 
     ![](images/dartR7.png){width=5cm}
 output:
@@ -12,456 +12,850 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W14 SNP panel selection for conservation genetics"
+description: "Kioloa2 Simulations"
 ---
-
-```{r setup, include=FALSE}
-library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
-```
-
-## W14 SNP that Matter
 
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
-![](images/elise.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"} 
----
+## W14 Simulations for Conservation Genetics
+
+![](images/luis.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"}
 
 ## Learning outcomes
 
-Throughout this session, we will discuss the utility and functionality of SNP panels and when they offer a practical alternative to genome wide SNP datasets.
-We will discuss how SNP panel selection can target SNPs based on different criteria, which will impact the utility of the SNP panel to identify various population genetic metrics and consequently, their utility to address different conservation questions.
+In this session we will learn how to run simulations within the dartRverse. We will start with very simple simulations and then add complexity to them. By the end of the session you should be able to run simple simulations of genetic drift, population divergence, and demographic processes using dartR functions, and understand how to interpret the results in a conservation context.
 
-By the end of this session you should be able to:
+## Introduction
 
-- Explain **why** we use reduced SNP panels in conservation genetics (cost, logistics, speed, monitoring)
-- Define a panel goal (e.g. **population assignment / structure**, **relatedness / parentage**, **individual ID**, **sex-linked**, **hybrid detection**, **adaptive markers**)
-- Apply a **quality-control workflow** for panel design (missingness, call rate, MAF, sequence length, alignment quality)
-- Use `gl.select.panel()` to create panels using alternative strategies (e.g. `dapc`, `random`, `pic`)
-- Use `gl.check.panel()` to evaluate how well a panel recovers a target parameter (e.g. **FST**)
-- Design and compare **replicate panels** (stability / robustness)
+### Using simulations in the dartRverse for conservation genetics
 
----
+Simulation is one of the most powerful yet underused tools in conservation genetics. While empirical SNP datasets tell us what *has happened*, simulations allow us to ask *what could happen* under alternative management scenarios—and to do so quickly, transparently, and reproducibly. Within the **dartRverse**, simulations are designed as lightweight, modular building blocks that integrate naturally with SNP-based analyses used in applied conservation genetics.
 
-## Context: Why SNP panels?
+At its core, the dartRverse simulation framework is not intended to compete with full forward-time population genetic simulators. Instead, it aims to provide **rapid, interpretable simulations** that allow conservation practitioners and researchers to explore genetic consequences of simplified demographic and management scenarios using the same data structures and summary statistics they already use for real populations.
 
-Genome-wide SNP datasets are fantastic for discovery and deep inference, but monitoring programs often need something else:
+------------------------------------------------------------------------
 
-- cheaper per sample
-- robust on low-quality DNA (sometimes)
-- repeatable across years
-- scalable (lots of samples, many timepoints)
-- quick turnaround for management decisions
+#### Why simulate in a conservation context?
 
-### Typical conservation use-cases
-- assigning individuals to management units
-- detecting illegal translocations / admixture
-- parentage and pedigree tracking (captive or reintroduction programs)
-- long-term genetic monitoring (He, FIS, FST trends)
-- hybridisation detection
-- sex-linked markers for skewed sex ratios / demographic monitoring
+Many conservation questions are fundamentally *dynamic*:
 
----
+-   How quickly will a small population lose genetic variation through drift?
+-   How many generations does it take to lose 50% of heterozygosity under a given effective population size?
+-   How effective is supplementation or translocation at preserving allelic diversity?
+-   How fast do populations diverge when connectivity is reduced?
+-   How do metapopulation dynamics influence genetic differentiation, inbreeding, or genetic rescue outcomes?
 
-## Prerequisites
+Simulations allow these questions to be explored explicitly, often with simple assumptions, before committing to costly or irreversible management actions.
 
-You should be comfortable with:
-- reading a `genlight` object
-- basic filtering in the dartRverse (`gl.filter.*`)
-- interpreting simple reports (call rate, missingness, MAF)
+------------------------------------------------------------------------
 
-No prior experience with panel design is assumed.
+#### A modular, “lego-style” simulation philosophy
 
----
+The dartRverse approaches simulations as a sequence of **simple, composable processes**. Rather than defining an entire demographic model upfront, users build scenarios by chaining together a small number of intuitive functions—much like assembling lego pieces.
+
+At a conceptual level, simulations revolve around four core processes:
+
+##### 1. Population creation
+
+Populations can be generated *de novo* or derived directly from empirical SNP datasets. This allows simulations to begin from realistic allele frequencies, levels of heterozygosity, and population structure, rather than abstract starting conditions.
+
+##### 2. Drift and mutation
+
+Allele frequencies change over generations due to genetic drift, with optional mutation. Even under extremely simple population dynamics, this immediately illustrates how small effective population sizes rapidly erode genetic diversity—often far faster than expected.
+
+##### 3. Survival and migration
+
+Individuals can survive, be removed, or migrate between populations. This enables exploration of connectivity, fragmentation, and metapopulation dynamics without invoking complex spatially explicit models.
+
+##### 4. Reproduction
+
+Reproduction can be modelled through simple cloning or sexual reproduction, allowing users to explore consequences for heterozygosity, inbreeding, and relatedness under different mating systems.
+
+Each step produces SNP data in familiar dartR objects, making it trivial to calculate standard diversity metrics at any point in the simulation.
+
+------------------------------------------------------------------------
+
+#### Building complexity incrementally
+
+A key strength of this approach is that **complex dynamics emerge from simple rules**. By combining basic processes, users can rapidly construct realistic conservation scenarios, such as:
+
+-   Periodic supplementation (e.g. adding individuals every five generations)
+-   Founder events followed by isolation
+-   Asymmetric migration between source and sink populations
+-   Temporary corridors that restore gene flow for limited time periods
+
+Because simulations are embedded in R, users can easily extend them further—for example by introducing sex- or age-dependent survival, stochastic catastrophes, or spatial structure linked to resistance surfaces and home ranges.
+
+------------------------------------------------------------------------
+
+#### Typical conservation genetics use cases
+
+Some common applications of dartRverse simulations include:
+
+-   **Genetic drift over time**\
+    Tracking loss of heterozygosity or allelic richness across generations under different effective population sizes.
+
+-   **Supplementation and genetic rescue**\
+    Evaluating how many individuals are required, and how often, to maintain genetic diversity or slow inbreeding.
+
+-   **Metapopulation dynamics**\
+    Exploring how migration rates influence differentiation, extinction–recolonisation dynamics, and long-term persistence.
+
+-   **Temporal change in population structure**\
+    Monitoring trajectories of population differentiation, relatedness, or inbreeding coefficients as populations diverge or reconnect.
+
+Because simulated datasets are analysed using the same summary statistics as empirical SNP data, results are immediately interpretable and directly comparable to real monitoring data.
+
+------------------------------------------------------------------------
+
+#### From exploration to decision support
+
+Ultimately, simulations in the dartRverse allow conservation geneticists to test assumptions, visualise outcomes, and communicate genetic risks and benefits to managers and stakeholders. Even highly simplified simulations can provide powerful insights into how quickly genetic diversity can be lost—and how strategic interventions can slow, or even reverse, that loss. In this way, simulations become not just a teaching tool, but a practical component of evidence-based conservation decision-making.
+
+Please be aware dartRverse is not a fully fledged simulation tool. It allows to do quick and easy simulations, but for a comprehensive simulation framework you should consider using `SLIM`. By the way there is a cool package called 'slimR' which allows to integrate and run simulations from within R (and it talk to the dartRverse for analysis).
+
+## Prerequisites and background knowledge
+
+Simulations in the dartRverse can range from very simple to highly complex. At the simplest level, many conservation scenarios can be explored using built-in dartRverse functions with minimal coding, making simulations accessible to users with basic R skills. More advanced applications, however, require custom workflows written directly in R, where dartRverse functions are combined with user-defined logic to represent realistic demographic, genetic, or management processes.
+
+As a result, **a working knowledge of R programming and familiarity with dartR data objects** (e.g. `genlight`, \`dartR' and related structures) is essential. Simulations often require small but important data transformations, such as subsetting populations, updating metadata, reshaping outputs, or tracking summary statistics across generations. When individual simulation runs become computationally intensive—particularly when stochasticity is important—it is common to repeat simulations hundreds or thousands of times. In these cases, **parallelisation** (using standard R tools) becomes critical for keeping runtimes practical.
+
+Finally, simulations are only as informative as the questions they are designed to address. Users therefore need a solid understanding of **population genetic concepts** and appropriate metrics for quantifying genetic change. This includes knowing when to track heterozygosity, allelic richness, inbreeding, or population differentiation, and how these measures relate to processes such as drift, migration, and supplementation. Thoughtful choice of summary statistics is key to translating simulation outputs into meaningful conservation insights.
+
+## Session overview
+
+This session introduces simulations in the dartRverse using a **step-by-step complexity approach**. We begin with very simple simulations and progressively add biological and demographic realism.
+
+-   **Sim 1: A simple simulation**
+    -   Create a population from existing SNP data
+    -   Simulate genetic drift over generations
+    -   Track simple diversity metrics (e.g. heterozygosity over time)
+-   **Sim 2: Replication and uncertainty**
+    -   Repeat simulations to capture stochasticity
+    -   Visualise variability among simulation runs
+    -   Interpret expected vs realised genetic trajectories
+-   **Sim 3: Population divergence**
+    -   Simulate multiple isolated populations
+    -   Explore how genetic differentiation (e.g. FST) increases over time
+    -   Introduce migration to illustrate connectivity effects
+-   **Sim 4: Demography and reproduction**
+    -   Add survival and reproduction processes
+    -   Explore population size limits and allele loss
+    -   Link demographic parameters to genetic outcomes
+-   **Sim 5: Applied conservation questions**
+    -   Supplementation and genetic rescue scenarios
+    -   Metapopulation dynamics
+    -   Performance of SNP panels through time
+-   **Wrap-up**
+    -   Key insights from simple vs complex simulations
+    -   When dartRverse simulations are sufficient
+    -   When to move to more detailed forward simulators
 
 ## Setup
 
-```{r start, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE}
+```{r start, include=FALSE}
 library(learnr)
 library(dartRverse)
 library(ggplot2)
-library(knitr)
-library(ggpmisc)
-
+library(tidyr)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 tutorial_options(exercise.eval = FALSE)
 
-path.data <- "./data/"
+
+#tutorial specific
+
+rfbe <- readRDS("./data/rfbe.rds")
+
 ```
 
-```{r packages, warning=FALSE, message=FALSE}
+To setup the session, we need to load the necessary libraries. The main one is `dartRverse` which contains all the functions we will use for simulations and analysis. We also load `ggplot2` and `tidyr` for data manipulation and visualization. Make sure you have these packages installed and loaded before proceeding with the tutorial and also make sure the `dartRverse` package is up to date, as the simulation functions are relatively new and may have been updated since the last release.
+
+```{r loadlibs,  warning=FALSE, message=FALSE}
 library(dartRverse)
 library(ggplot2)
-library(knitr)
-library(ggpmisc)
+library(tidyr)
 ```
 
----
-
-## Data for this tutorial
-
-We use an example SNP dataset (pre-filtered genome-wide SNPs), plus a version that already includes BLAST alignment metrics.
-
-```{r load-data, eval=FALSE}
-rfbe      <- readRDS(file.path(path.data, "rfbe.rds"))
-rfbe20_5  <- readRDS(file.path(path.data, "rfbe20_5_blast.rds"))
-```
-
-**Interpretation questions**
-- How many loci / individuals do we start with?
-- How many populations?
-- Are some populations very small? (this matters for the panel goal)
-
----
-
-## Part 1 — Decide what the panel is for
-
-### Panel goal → design choices
-
-A panel for **population structure (FST / assignment)** often benefits from:
-- loci that *differentiate* populations (high between-pop variance)
-- moderate allele frequencies (informative, not singletons)
-- broad coverage across the genome (avoid tight linkage when possible)
-
-A panel for **relatedness / parentage** often benefits from:
-- high heterozygosity loci (high information per locus)
-- more loci than structure panels (often)
-- careful QC to minimise genotyping error
-
-A panel for **sex-linked SNPs** benefits from:
-- strong sex association
-- robust genotype calls
-- validation on independent samples
-
-> In this hands-on we focus on a **structure / assignment** panel of **50 SNPs**, and evaluate it via how well it recovers **pairwise FST**.
-
----
-
-:::callout
-#### Exercise 1 (discussion)
-Pick **one** purpose for your panel. Write down:
-
-1. Purpose (choose one): structure / assignment, relatedness, individual ID, hybridisation, sex-linked, adaptive, other
-2. What is the key output you care about? (e.g. FST matrix, assignment accuracy, PID, relatedness error)
-3. What is a realistic budgeted panel size? (e.g. 50, 96, 192, 384 loci)
-:::
-
----
-
-## Part 2 — Quality filtering workflow (worked example)
-
-### Step 1 — Ensure adequate sample sizes per population
-
-Many panel methods implicitly assume you have enough individuals in each population to estimate allele frequencies reliably.
-
-We keep populations with **> 10 individuals**:
-
-```{r pop-filter, eval=FALSE}
-tt     <- table(pop(rfbe))
-pop20  <- names(tt)[tt > 10]
-
-rfbe20 <- gl.keep.pop(rfbe, pop.list = pop20)
-
-table(pop(rfbe20))
-```
-
----
-
-### Step 2 — Remove loci with population-specific all-NA
-
-```{r filter-allna, eval=FALSE}
-rfbe20_1 <- gl.filter.allna(rfbe20, by.pop = TRUE)
-```
-
----
-
-### Step 3 — Call-rate filtering
-
-```{r filter-callrate, eval=FALSE}
-rfbe20_2 <- gl.filter.callrate(rfbe20_1, threshold = 0.99)
-```
-
----
-
-### Step 4 — Minor allele count / frequency filtering
-
-For panel design, rare alleles can be:
-- uninformative for many tasks
-- more sensitive to genotyping error
-- unstable across timepoints
-
-Here we use a **minor allele count** threshold of 5:
-
-```{r filter-maf, eval=FALSE}
-rfbe20_3 <- gl.filter.maf(rfbe20_2, threshold = 5, by.pop = FALSE)
-nLoc(rfbe20_3)
-```
-
----
-
-### Step 5 (optional but recommended) — Sequence length
-
-Panel development often requires flanking sequence (primer/probe design).  
-We keep loci with trimmed sequences of length **≥ 30**.
-
-```{r filter-seq-length, eval=FALSE}
-index    <- nchar(as.character(rfbe20_3@other$loc.metrics$TrimmedSequence)) > 29
-rfbe20_4 <- rfbe20_3[, index]
-nLoc(rfbe20_4)
-```
-
----
-
-### Step 6 (optional) — Alignment quality to a reference genome
-
-If you have a reference genome, you can BLAST trimmed sequences to check for:
-- strong matches (bitscore)
-- uniqueness (avoid multi-mapping)
-- alignment length / mismatches
-
-In this tutorial we load a pre-computed BLAST-annotated dataset:
-
-```{r load-blast, eval=FALSE}
-rfbe20_5 <- readRDS(file.path(path.data, "rfbe20_5_blast.rds"))
-```
-
-Filter by a bitscore threshold (example: **≥ 100**):
-
-```{r filter-bitscore, eval=FALSE}
-index <- rfbe20_5@other$loc.metrics$bitscore >= 100
-index <- ifelse(is.na(index), FALSE, index)
-
-rfbe20_6 <- rfbe20_5[, index]
-nLoc(rfbe20_6)
-
-# Order individuals by population (some panel methods benefit from this)
-rfbe20_6 <- rfbe20_6[order(pop(rfbe20_6)), ]
-```
-
----
-
-### Exercise 2 — Explore the impact of QC thresholds
-
-```{r ex2, exercise=TRUE, exercise.cap="Exercise 2: QC thresholds (call rate and MAF)", eval=FALSE}
-# Goal: Explore how QC thresholds change the number of loci you have available for panel design.
-#
-# 1) Try call-rate thresholds of 0.95, 0.98, 0.99.
-# 2) Try minor allele count thresholds of 2, 5, 10.
-# 3) Record how many loci remain after each combination.
-#
-# Tip: Start from rfbe20_1 each time so comparisons are fair.
-
-# Example template:
-# cr <- 0.99
-# mac <- 5
-# tmp <- gl.filter.callrate(rfbe20_1, threshold = cr)
-# tmp <- gl.filter.maf(tmp, threshold = mac, by.pop = FALSE)
-# nLoc(tmp)
-```
-
-:::callout
-#### Reflection
-- When you increase call-rate or MAF thresholds, what happens to locus count?
-- Why might stricter QC improve panel robustness (even if you lose loci)?
-:::
-
----
-
-## Part 3 — Selecting informative SNPs
-
-### Panel selection strategies in `gl.select.panel()`
-
-Different methods target different signals. For example:
-
-- `dapc`: picks loci most informative for discriminating groups (good for structure / assignment)
-- `pic` / `picdart`: picks loci with high information content (often useful broadly)
-- `hafall` / `hafpop`: targets high allele frequency loci (sometimes helps genotyping stability)
-- `pahigh`: private allele patterns
-- `random`: a baseline comparison
-
-```{r list-methods, eval=FALSE}
-methods <- c(
-  "dapc", "random", "pahigh", "monopop", "stratified",
-  "hafall", "hafpop", "pic", "picdart"
-)
-methods
-```
-
----
-
-### Worked example — Select a 50 SNP panel using DAPC
-
-```{r select-dapc, eval=FALSE}
-panel_dapc <- gl.select.panel(rfbe20_6, method = "dapc", nl = 50)
-nLoc(panel_dapc)
-```
-
----
-
-### Evaluate the panel — does it recover FST?
-
-We compare the panel-derived FST to the full dataset FST.
-
-```{r check-dapc, eval=FALSE}
-out_dapc <- gl.check.panel(panel_dapc, rfbe20_6, parameter = "Fst")
-out_dapc
-```
-
-Now compare to a random panel:
-
-```{r check-random, eval=FALSE}
-panel_random <- gl.select.panel(rfbe20_6, method = "random", nl = 50)
-out_random   <- gl.check.panel(panel_random, rfbe20_6, parameter = "Fst")
-out_random
-```
-
-:::callout
-#### Interpretation
-A good structure panel should:
-- preserve the *ranking* of pairwise FST values
-- keep values close to the full dataset (small error)
-- be stable across replicate panels (not overly “lucky”)
-:::
-
----
-
-### Exercise 3 — Build *your own* SNP panel and evaluate it
-
-```{r ex3, exercise=TRUE, exercise.cap="Exercise 3: Select your own SNP panel (method + size)", eval=FALSE}
-# Your task:
-# 1) Choose a panel method (e.g. "dapc", "pic", "picdart", "hafpop", "random")
-# 2) Choose a panel size (nl), e.g. 25, 50, 100
-# 3) Create the panel
-# 4) Check how well it recovers FST relative to the full dataset
-#
-# Record:
-# - method
-# - nl
-# - your interpretation of the output (good / ok / poor)
-
-my_method <- "pic"   # change me
-my_nl     <- 50      # change me
-
-my_panel <- gl.select.panel(rfbe20_6, method = my_method, nl = my_nl)
-nLoc(my_panel)
-
-my_eval <- gl.check.panel(my_panel, rfbe20_6, parameter = "Fst")
-my_eval
-```
-
-:::callout
-#### Challenge
-Try the same method at nl = 25, 50, 100.
-How many loci do you need before the panel becomes “good enough” for your management question?
-:::
-
----
-
-## Part 4 — Replicate panels and robustness
-
-### Why replicate?
-
-Some selection methods can be sensitive to randomness and sampling variation.  
-To avoid overconfidence from a single “lucky” panel, we generate replicate panels and compare performance.
-
-#### A simple replicate loop (example)
-
-```{r replicate-panels, eval=FALSE}
-set.seed(42)
-
-B <- 20                # number of replicate panels
-nl <- 50
-method <- "dapc"
-
-evals <- vector("list", B)
-
-for (b in 1:B) {
-  p   <- gl.select.panel(rfbe20_6, method = method, nl = nl)
-  ev  <- gl.check.panel(p, rfbe20_6, parameter = "Fst")
-  evals[[b]] <- ev
+## Tutorial
+
+```{r ex_71-setup, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(dartRverse)
+
+rfbe <- readRDS("./data/rfbe.rds")
+source <- gl.keep.pop(rfbe, pop.list="PJTub1.2.3", verbose = 0)
+source2 <- gl.filter.callrate(source, method="loc", threshold=1, verbose=0)
+set.seed(7)
+newpop <- gl.subsample.ind(source2, n=10, replace = FALSE, verbose = 0)
+
+simHe <- function(x, nInd=10, ngens=20)
+{
+  #remove all missing data
+
+  
+  #create a new genlight object based on allele frequencies from source2
+  transfer <- gl.subsample.ind(x, n=nInd, replace = FALSE, verbose = 0)
+  
+  res <- mean(gl.He(transfer))   #mean heterozygosity 
+  
+  
+  for (gen in 2:ngens)
+  {
+    #cloning snails
+    transfer <- gl.sim.offspring(transfer, transfer, noffpermother = 1)
+    res[gen] <- mean(gl.He(transfer))
+    
+  }
+  
+  return(res)
 }
 
-# You can now summarise evals (depends on what gl.check.panel returns in your version)
+
+sim_alleles_lost <- function(x, ngens = 30, nind = 100, nloc = 1000,
+                            surv = 0.8, repro = 3, K = 100) {
+  # create starting population
+  pop1 <- gl.sim.ind(x, n = nind, popname = "pop1")
+  pop1 <- pop1[, 1:nloc]
+
+  # allocate sex (stored in pop labels for convenience)
+  pop(pop1) <- sample(c("M", "F"), nInd(pop1), replace = TRUE)
+
+  for (gen in 1:ngens) {
+    # offspring
+    off <- gl.sim.offspring(fathers = pop1[pop = "M"],
+                            mothers = pop1[pop = "F"],
+                            noffpermother = repro)
+    pop(off) <- sample(c("M", "F"), nInd(off), replace = TRUE)
+
+    # survival of adults
+    keep <- rbinom(nInd(pop1), size = 1, prob = surv)
+    pop1 <- pop1[keep == 1, ]
+
+    # combine adults + offspring
+    pop1 <- rbind(pop1, off)
+
+    # enforce carrying capacity
+    if (nInd(pop1) > K) {
+      remove <- sample(1:nInd(pop1), nInd(pop1) - K, replace = FALSE)
+      pop1 <- pop1[-remove, ]
+    }
+  }
+
+  # count loci where an allele has been lost (very simple proxy)
+  # (works because genotypes are coded 0/1/2; allele lost -> mean is exactly 0 or 2)
+  alleles_lost <- sum(colMeans(as.matrix(pop1)) %% 2 == 0)
+  return(alleles_lost)
+}
+
+
 ```
 
----
+## Sim 1: A simple simulation
 
-### Exercise 4 — Panel stability
+The dartRverse allows to run time forward simulations. Often you want to run some simulation based on an existing genlight object.
 
-```{r ex4, exercise=TRUE, exercise.cap="Exercise 4: Replicate panels and compare stability", eval=FALSE}
-# Goal: Compare stability of TWO methods.
-#
-# 1) Pick two methods (e.g. "dapc" vs "pic" OR "dapc" vs "random")
-# 2) Generate B replicate panels for each method
-# 3) Evaluate each with gl.check.panel(parameter="Fst")
-# 4) Decide: which method is more stable and why?
+We load some example data
 
-set.seed(1)
+```{r ex_71_1, eval=FALSE, echo=TRUE, exercise.lines=5}
+rfbe <- readRDS("./data/rfbe.rds")
 
-B  <- 10
-nl <- 50
-
-m1 <- "dapc"
-m2 <- "random"
-
-# Write your replicate code here (use the template above).
-# Tip: store results in a data.frame with columns: method, replicate, metric(s)
 ```
 
-:::callout
-#### Discussion
-In a monitoring program, robustness matters.
-A method that is *slightly* worse on average but *more stable* may be preferable.
+and then run the gl.report.basics function to check its content. Have a look at the output and feel free to explore the dataset further using other functions. You can for example check the the amount of missing data or the number of individuals in each population.
+
+```{r  ex71_2, exercise = TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+gl.report.basics(rfbe)
+```
+
+The next step is to think about a simulation scenario. Here we come up with a very simple one:
+
+::: callout
+#### Scenario
+
+A new population is founded by translocating ten individuals from one of the populations in the data set (PJTub1.2.3). The population evolves for 15 generations under a drift-only Wright–Fisher process with no sexual reproduction, no mutation, and no additional releases, allowing us to examine the loss of heterozygosity through time.
 :::
 
----
+So lets create a new population from the existing one by subsetting the dartR object and then subsample 10 individuals from it.
 
-## Part 5 — Wrap-up: practical checklist
+```{r ex71_3, eval=TRUE}
+# copy only the source population int a new dartR object
+source <- gl.keep.pop(rfbe, pop.list="PJTub1.2.3")
 
-### A pragmatic SNP panel checklist
+```
 
-1. **Define the primary purpose** (structure vs parentage vs ID vs sex-linked…)
-2. **QC hard** (missingness, call rate, MAC/MAF)
-3. **Ensure adequate sample sizes** for allele frequency estimation
-4. **Consider lab constraints** (sequence length, alignment uniqueness, flanking sequence)
-5. **Select candidate panels** (multiple methods + sizes)
-6. **Evaluate against the full dataset** (target parameter)
-7. **Test stability** (replicate panels)
-8. **Validate on independent samples** (ideally)
+Next, we inspect the source population to determine the number of individuals and the extent of missing data.
 
----
+```{r ex71_4, exercise = TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+### number of individuals in the source population
 
-## Further reading
+### missing data in the genotypes of the source population
 
+```
 
-Armstrong, E. E., Li, C., Campana, M. G., Ferrari, T., Kelley, J. L., Petrov, D. A., . . . Mooney, J. A. (2025). A Pipeline and Recommendations for Population and Individual Diagnostic SNP Selection in Non-Model Species. Molecular Ecology Resources, 25, e14048. https://doi.org/10.1111/1755-0998.14048.    
+As you can see there is missing data in the source population.
 
-Beacham T.D., Wallace C., MacConnachie C., Jonsen K., McIntosh B., Candy J.R., and Withler R.E. (2018). Population and individual identification of Chinook salmon in British Columbia through parentage-based tagging and genetic stock identification with single nucleotide polymorphisms. Canadian Journal of Fisheries and Aquatic Sciences 75: 1096–1105
+Missing genotypes are generally undesirable in simulations, as they require explicit assumptions about how missing alleles are handled during reproduction. To avoid introducing additional complexity at this stage, we remove loci with missing data by filtering (an alternative approach would be genotype imputation). In most simulation studies, it is preferable to work with complete datasets; however, there are situations where the effects of missing data are themselves of interest, in which case an explicit strategy for handling missingness is required.
 
-Bertola, L. D., Vermaat, M., Lesilau, F., Chege, M., Tumenta, P. N., Sogbohossou, E. A., . . . Vrieling, K. (2022). Whole genome sequencing and the application of a SNP panel reveal primary evolutionary lineages and genomic variation in the lion (Panthera leo). BMC Genomics, 23, 321. 10.1186/s12864-022-08510-y
+```{r ex71_5}
+#remove missing data using a strict callrate filter
+source2 <- gl.filter.callrate(source, method="loc", threshold=1)
 
-Furlan, E. M., Gruber, B., Attard, C. R. M., Wager, R. N. E., Kerezsy, A., Faulks, L. K., . . . Unmack, P. J. (2020). Assessing the benefits and risks of translocations in depauperate species: A theoretical framework with an empirical validation. Journal of Applied Ecology, 57, 831-841. https://doi.org/10.1111/1365-2664.13581
+```
 
-Jasielczuk, I., Gurgul, A., Szmatoła, T., Radko, A., Majewska, A., Sosin, E., . . . Ząbek, T. (2024). The use of SNP markers for cattle breed identification. Journal of Applied Genetics, 65, 575-589. 10.1007/s13353-024-00857-0
-
-Kerezsy, A. & Fensham, R. (2013). Conservation of the endangered red-finned blue-eye, Scaturiginichthys vermeilipinnis, and control of alien eastern gambusia, Gambusia holbrooki, in a spring wetland complex. Marine and Freshwater Research, 64, 851–863.
-
-Magliolo, M., Prost, S., Orozco-Terwengel, P., Burger, P., Kropff, A. S., Kotze, A., . . . Dalton, D. L. (2021). Unlocking the potential of a validated single nucleotide polymorphism array for genomic monitoring of trade in cheetahs (Acinonyx jubatus). Molecular Biology Reports, 48, 171-181. 10.1007/s11033-020-06030-0.
-
-Ohm, H., Åstrand, J., Ceplitis, A., Bengtsson, D., Hammenhag, C., Chawade, A. & Grimberg, Å. (2024). Novel SNP markers for flowering and seed quality traits in faba bean (Vicia faba L.): characterization and GWAS of a diversity panel. Frontiers in Plant Science, 15, 1348014.
-
-Quinto-Cortés, C. D., Woerner, A. E., Watkins, J. C. & Hammer, M. F. (2018). Modeling SNP array ascertainment with Approximate Bayesian Computation for demographic inference. Scientific Reports, 8, 10209. 10.1038/s41598-018-28539-y
-
-Stronen, A. V., Mattucci, F., Fabbri, E., Galaverni, M., Cocchiararo, B., Nowak, C., . . . Caniglia, R. (2022). A reduced SNP panel to trace gene flow across southern European wolf populations and detect hybridization with other Canis taxa. Scientific Reports, 12, 4195. 10.1038/s41598-022-08132-0
-
-Terrado-Ortuño, N. & May, P. (2025). Forensic DNA phenotyping: a review on SNP panels, genotyping techniques, and prediction models. Forensic Sciences Research, 10, owae013. 10.1093/fsr/owae013
-
-Von Thaden, A., Nowak, C., Tiesmeyer, A., Reiners, T. E., Alves, P. C., Lyons, L. A., . . . Galián, J. (2020). Applying genomic data in wildlife monitoring: Development guidelines for genotyping degraded samples with reduced single nucleotide polymorphism panels. Molecular ecology resources, 20, 662-680.
-
-Wehrenberg, G., Tokarska, M., Cocchiararo, B. & Nowak, C. (2024). A reduced SNP panel optimised for non-invasive genetic assessment of a genetically impoverished conservation icon, the European bison. Scientific Reports, 14, 1875. 10.1038/s41598-024-51495-9
-
-Zenato-Lazzari, G., Figueiró, H. V., Sartor, C. C., Donadio, E., Di Martino, S., Draheim, H. M. & Eizirik, E. (2025). Development of a SNP Panel for Geographic Assignment and Population Monitoring of Jaguars (Panthera onca). Ecology and Evolution, 15, e71465. https://doi.org/10.1002/ece3.71465
+```{r ex71_6, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+#check if there are no missing data in the genotypes of source2
 
 
----
+```
+
+The next step is to create a new population of 10 individuals using the source2 population
+
+```{r ex71_7}
+# create a new population of 10 individuals using individuals from source2  
+set.seed(7)
+newpop <- gl.subsample.ind(source2, n=10, replace = FALSE, verbose = 0)
+```
+
+```{r ex71_8, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+#check number of individuals and missing data in newpop
+
+```
+
+As we want to observe the change in heterozygosity we calculate heterozygosity for this populuation
+
+```{r ex71_9, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel" }
+#find a way to calculate the mean heterozygosity of the new population
+
+
+
+```
+
+The next step is then repeat this for 15 generations (assuming an ideal poulation for simplicity)
+
+```{r ex71_10, eval=TRUE}
+
+#we create a vector that holds heterozygosity over generation
+res <- NA
+#He of Generation 1
+res[1] <- mean(gl.He(newpop))
+
+for (gen in 2:15)
+{
+  #ideal popluation = cloning snails
+  newpop <- gl.sim.ind(newpop, n=10)
+  
+  #He of generation gen
+  res[gen] <- mean(gl.He(newpop))
+  cat("Generation", gen, "Heterozygosity:", res[gen], "\n")
+  flush.console()
+}
+#Create a plot
+plot(res, type="b", xlab="Generation", ylab="Expected heterozygosity", 
+     main="Simulation of expected heterozygosity over time")
+
+```
+
+You can now change setting and play with the simulation. For example increase the number of generations or the number of initial founding individuals. You need to run the golden chunks in order to make sure all the objects are updated.
+
+Here is the full simulation in one code block. Change to your liking. Eg. run more generations, or how does the simulation change if you sample from less/more individuals from the source, change the source population. Monitor observerd heterozygosity instead of experced.
+
+```{r ex71_11, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+
+rfbe <- readRDS("./data/rfbe.rds")
+source <- gl.keep.pop(rfbe, pop.list="PJTub1.2.3", verbose=0)
+source2 <- gl.filter.callrate(source, method="loc", threshold=1, verbose=0)
+set.seed(7)
+newpop <- gl.subsample.ind(source2, n=10, replace = FALSE, verbose = 0)
+res<-NA
+res[1] <- mean(gl.He(newpop))
+
+for (gen in 2:15)
+{
+  #ideal popluation = cloning snails
+  newpop <- gl.sim.ind(newpop, n=10)
+  #He of generation gen
+  res[gen] <- mean(gl.He(newpop))
+}
+
+plot(res, type="b", xlab="Generation", ylab="Expected heterozygosity", 
+     main="Simulation of expected heterozygosity over time")
+
+```
+
+This is a very simple simulation, but it shows the basic idea. You can also use the gl.sim.offspring function to simulate more complex scenarios, such as different mating systems and check the effect.
+
+This was only one instance so we can repeat this simulation 10 times to get a better estimate of the expected heterozygosity over time. To do so we first create a function around the whole simulation (which makes life easier for repeats), as this will allow us to run the simulation in parallel using the `parallel` package.
+
+```{r ex71_12}
+
+simHe <- function(x, nInd=10, ngens=20)
+{
+  #remove all missing data
+
+  
+  #create a new genlight object based on allele frequencies from source2
+  transfer <- gl.subsample.ind(x, n=nInd, replace = FALSE, verbose = 0)
+  
+  res <- mean(gl.He(transfer))   #mean heterozygosity 
+  
+  
+  for (gen in 2:ngens)
+  {
+    #cloning snails
+    transfer <- gl.sim.offspring(transfer, transfer, noffpermother = 1)
+    res[gen] <- mean(gl.He(transfer))
+    
+  }
+  
+  return(res)
+}
+
+
+```
+
+Now we run the simulation by a simple call to the function. You can change the number of generations and the number of individuals in the founding population to see how it affects the expected heterozygosity over time.
+
+```{r ex71_13, exercise.eval=TRUE,exercise=TRUE,exercise.setup="ex_71-setup",class.chunk="gold-panel"}
+
+#test the function
+out <- simHe(source2, nInd = 30, ngens = 20)
+plot(out, type="b", xlab="Generation", ylab="Expected heterozygosity",
+     main="Simulation of expected heterozygosity over time")
+
+```
+
+The step to parallelise them is straightforward. We can use the future package to run the simulations in parallel. This is especially useful when we want to run a large number of simulations (e.g., 100 or more) to capture the stochasticity of the process.
+
+```{r ex71_14, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel", exercise.timelimit=120}
+
+library(future.apply)
+plan(multisession, workers=3) # or plan(multicore) on Unix-like systems
+n_sims <- 9
+sim_results <- future_lapply(1:n_sims, function(i) {
+  simHe(source2, nInd = 30, ngens = 20)},  future.seed=TRUE)
+
+#create a plot
+outmat <- data.frame(do.call(cbind, sim_results))
+matplot(outmat, type="b", xlab="Generation", ylab="Expected heterozygosity",
+        main="Simulation of expected heterozygosity over time", col=1:n_sims, pch=1:n_sims)
+
+```
+
+::: callout
+#### Exercise
+
+Create a simulation of expected heterozygosity over time for the source population PJTub1.2.3, but this time transfer only 5 individuals and run the simulation for 50 generations. Repeat the simulation 5 times and plot the results using a boxplot. Or find another scenario you want to simulate. You can also change the gl.sim.offspring function to simulate more complex scenarios, such as different mating systems and check the effect.
+:::
+
+```{r ex71_15, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel" }
+
+```
+
+## Sim 2: Starting conditions for simulations
+
+So far, we simulated a very simple *drift-only* Wright–Fisher process by repeatedly calling `gl.sim.ind()`. `gl.sim.ind()` calculates for each loci allele frequencies and then creates the number of specified inviduals using those allele frequencies (stochastically). It therefore can handle missing data, but the resulting dartR-object will have no missing data.
+
+In practice, you often want to (i) **scale up** an empirical population to a larger starting population, or (ii) **generate** a starting population under a demographic model.
+
+Two useful helper functions are:
+
+-   `gl.sim.ind()`: creates individuals based on the **current allele frequencies** in a `genlight`/dartR object (good when allele frequencies are well-estimated) and you want to simulate a sampled populations' fate into the future.
+-   `gl.sim.Neconst()`: creates individuals based on a **constant Ne** and mutation rate (useful as a generic starting point; often followed by additional generations to reach realistic genotype structure). A good way to visualise the allele frequencies is a site-frequency spectrum (SFS) plot, which shows the distribution of allele frequencies across loci. This can help you understand the starting conditions of your simulation and how they might influence the outcomes.
+
+#### A) `gl.sim.ind`: scaling up a well-sampled population
+
+```{r ex72_1}
+# (speed) use only 1000 loci
+glsim_scale <- gl.sim.ind(source2[,1:1000], n = 100, popname = "scaled")
+gl.smearplot(glsim_scale)
+gl.sfs(glsim_scale)
+```
+
+```{r ex72_2, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# 1) Change n to 50, 200 and compare the smearplots.
+# 2) What happens if you use fewer loci (e.g., 200 loci)?
+```
+
+#### B) `gl.sim.Neconst`: a generic starting population
+
+This is often useful when you *don’t* have a well-sampled source population, but still want to explore “what-if” dynamics. or in the absence of an empirical dataset, or when you want to start with a simple demographic model (e.g., constant Ne and mutation) and then add complexity from there.
+
+```{r ex72_3, eval=FALSE}
+# Create a starting population under constant Ne and mutation.
+# Then generate offspring for a few generations using clones
+
+start_pop <- gl.sim.Neconst(Ne = 500, nloc = 1000, mu = 1e-8, nind = 100, popname = "Neconst")
+
+gl.smearplot(start_pop)
+gl.sfs(start_pop)
+```
+
+::: callout
+#### Exercise
+
+DISCUSSION EXERCISE (no coding required): - When would you prefer gl.sim.ind() over gl.sim.Neconst() as a starting point? - Think: allele frequencies, realism, availability of data.
+:::
+
+```{r ex72_4, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+# create starting populations using both gl.sim.ind() and gl.sim.Neconst() and compare their allele frequency spectra (SFS). How do the starting conditions differ, and how might this influence the outcomes of your simulations?
+# simulate drift over time (e.g. looking at heterozygosity)
+
+```
+
+## Sim 3: Drift-driven divergence between isolated populations (Fst)
+
+To demonstrate `gl.sim.ind()` further, we simulate a simple expectation:
+
+::: callout
+#### Scenario
+
+We create two populations from the same founding population. We expect they to be similar, so Fst (a meassure of differentiaton) should be close to zero. If the two population evolve in complete isolation, **Fst increases over time** (eventually approaching 1 at many loci= Loci are fixed at opposite alleles in each population).
+:::
+
+We create two populations of 10 individuals each, then evolve them for 20 generations under drift only, with **no exchange**.
+
+```{r ex73_1, eval=TRUE}
+g1 <- gl.sim.ind(source2[,1:1000], n = 10, popname = "pop1")
+g2 <- gl.sim.ind(source2[,1:1000], n = 10, popname = "pop2")
+fst_mig <- NA
+for (i in 1:20) {
+  g1 <- gl.sim.ind(g1, n = 10, popname = "pop1")
+  g2 <- gl.sim.ind(g2, n = 10, popname = "pop2")
+  
+### migration (exchange of individuals between populations)
+  # for example one individuals both ways
+  # gg <- rbind(g1, g2)
+  # migtable <- matrix(c(0,1,1,0), nrow=2, ncol=2) 
+  #  gg <- gl.sim.emigration(gg, emi.table=migtable)
+  #  g1 <- gg[pop="pop1",]
+  #  g2 <- gg[pop="pop2",]
+
+### calculate fst
+  gg <- rbind(g1, g2)
+  fst_mig[i] <- gl.fst.pop(gg, verbose = 0)[2, 1]
+}
+plot(fst_mig, type="b", xlab="Generation", ylab="Fst", main="Fst over time")
+```
+
+Below is the previous example with 2 populations, 10 individuals each and no exchange. Run it and check how Fst changes over time. Then modify the code to add migration (exchange of individuals between populations) and see how Fst changes. You can for example swap 1 individual both ways each generation. Then compare your plot to the no-exchange plot above. What changes and why? To do so, uncomment the code in the migration section and run the code again. You can also change the number of migrants (e.g., swap 2 individuals both ways) and see how it affects Fst. The exchange of individuals between populations is a simple way to simulate migration and its effect on genetic differentiation. The more migrants you exchange, the more gene flow there is between the populations, which tends to reduce Fst and keep the populations genetically similar. To accomplish this exchange we need a bit of r-code. There is a function `gl.sim.emigration()` which allows to simulate emigration based on a migration table. The migration table is a matrix that specifies the number of migrants moving between populations. For example, if you have two populations and you want to swap one individual both ways, your migration table would look like this:
+
+```{r ex73_1b, eval=TRUE}
+matrix(c(0,1,1,0), nrow=2, ncol=2)
+```
+
+The entries on the diagonals would swap individuals within the same population (which we don't want in this case, so they are set to 0), while the off-diagonal entries specify the number of migrants moving between populations (1 individual from pop1 to pop2 and 1 individual from pop2 to pop1).Migration goes from row to column. so the entry in the second row and first column indicates that one individual migrates from population 1 to population 2, while the entry in the first row and second column indicates that one individual migrates from population 2 to population 1. By applying this migration table to the combined dataset of both populations, you can simulate the effect of migration on genetic differentiation over time. Please note you can also specifiy stochastic migration by using a probabilistic approach, which is also implemented in the `gl.sim.emigration()` function. Just check ?gl.sim.emigration for more details.
+
+::: callout
+Exercise:
+
+-   What changes if you increase population size?
+-   What happens if you increase the number of migrants?
+-   Remember there is the "Law" of 1 migrant per generation" which states that one migrant per generation is enough to prevent populations from diverging completely (i.e. Fst approaching 1).
+-   $$F_{ST} = \frac{1}{(4Nm + 1)} $$
+
+where N is the population size and m is the migration rate. This formula gives the expected Fst at equilibrium under a simple island model of migration. You can use this formula to predict the expected Fst for different values of N and m, and compare it to your simulation results.
+:::
+
+```{r ex73_2, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel", exercise.eval=FALSE, exercise.lines=26, exercise.timelimit=120}
+g1 <- gl.sim.ind(source2[,1:1000], n = 10, popname = "pop1")
+g2 <- gl.sim.ind(source2[,1:1000], n = 10, popname = "pop2")
+fst_mig <- NA
+for (i in 1:20) {
+  g1 <- gl.sim.ind(g1, n = 10, popname = "pop1")
+  g2 <- gl.sim.ind(g2, n = 10, popname = "pop2")
+  
+### migration (exchange of individuals between populations)
+  # for example one individuals both ways
+  # gg <- rbind(g1, g2)
+  # migtable <- matrix(c(0,1,1,0), nrow=2, ncol=2) 
+  #  gg <- gl.sim.emigration(gg, emi.table=migtable)
+  #  g1 <- gg[pop="pop1",]
+  #  g2 <- gg[pop="pop2",]
+
+### calculate fst
+  gg <- rbind(g1, g2)
+  fst_mig[i] <- gl.fst.pop(gg, verbose = 0)[2, 1]
+}
+plot(fst_mig, type="b", xlab="Generation", ylab="Fst", main="Fst over time")
+
+```
+
+## Sim 4: Adding demography (birth, death, carrying capacity)
+
+Drift-only simulations are useful as a start, but conservation scenarios often need **survival**, **reproduction**, and **carrying capacity**.
+
+Below is a simple individual-based simulation (:
+
+-   start from allele frequencies (via `gl.sim.ind`)
+-   assign sex
+-   create offspring (via `gl.sim.offspring`)
+-   apply adult survival
+-   apply carrying capacity (K)
+-   quantify **alleles lost** after *ngens*
+
+We wrap this into a function so we can explore parameters efficiently.
+
+::: callout
+#### gl.sim.offspring
+
+A note to gl.sim.offspring: this function simulates sexual reproduction by randomly pairing mothers and fathers to produce offspring genotypes based on Mendelian inheritance. It takes separate sets of individuals for fathers and mothers, allowing for flexible mating systems (e.g., polygyny, monogamy). The `noffpermother` parameter specifies how many offspring each mother produces, which can be adjusted to simulate different reproductive rates. By using `gl.sim.offspring()`, we can easily model the genetic consequences of sexual reproduction in our simulations, including changes in allele frequencies and heterozygosity over time.
+
+For example if you specify `noffpermother = 3`, each mother will produce three offspring, and the function will randomly select fathers for each offspring from the pool of males.
+
+Our famous hermaphrodite implementation, would state:
+
+```{r ex73_3a, eval=FALSE}
+gl.sim.offsprings(fathers = pop1, mothers = pop1, noffpermother = 1)
+```
+
+This would allow each individual to be both a mother and a father, and each individual would produce one offspring on average. This is a simple way to simulate a Wright-Fisher simulation, because every individual can reproduce with any other individual (no sexes) and even reproduce with itself (selfing). This is a common assumption in many population genetics models, and it allows us to focus on the effects of genetic drift without the added complexity of sexual reproduction.
+
+If you have another situation of say polygyny, where one male mates with multiple females, you could specify the fathers and mothers separately. For example if you have a "seal-situation" that there is a single dominant male you would specify the fathers as a single individual and the mothers as the rest of the population. For example: the dom
+
+```{r ex73_3b, eval=FALSE}
+dommale <- gl.keep.ind(gl, ind.list = "dommmale")  #we keep track via the individual name
+mothers <- pop1[pop(gl) == "F",] #pop has information on male and females
+gl.sim.offsprings(fathers = dommale, mothers = mothers, noffpermother = 3)
+# This would simulate a polygynous mating system where one dominant male
+# we could now check how many of the offsprings will survive etc.
+
+
+```
+:::
+
+Okay back to our simulation. We wanted a realistic example of allele loss through time, so we start with a population of 100 individuals and 1000 loci. We then simulate 30 generations of survival and reproduction, with a survival rate of 80% and each mother producing 3 offspring. We also enforce a carrying capacity of 100 individuals to prevent the population from growing indefinitely. After the simulation, we count how many alleles have been lost (i.e., how many loci have become monomorphic) and return that number.
+
+```{r ex74_1}
+sim_alleles_lost <- function(x, ngens = 30, nind = 100, nloc = 1000,
+                            surv = 0.8, repro = 3, K = 100) {
+  # create starting population
+  pop1 <- gl.sim.ind(x, n = nind, popname = "pop1")
+  pop1 <- pop1[, 1:nloc]
+
+  # allocate sex (stored in pop labels for convenience)
+  pop(pop1) <- sample(c("M", "F"), nInd(pop1), replace = TRUE)
+
+  for (gen in 1:ngens) {
+    # offspring
+    off <- gl.sim.offspring(fathers = pop1[pop = "M"],
+                            mothers = pop1[pop = "F"],
+                            noffpermother = repro)
+    pop(off) <- sample(c("M", "F"), nInd(off), replace = TRUE)
+
+    # survival of adults
+    keep <- rbinom(nInd(pop1), size = 1, prob = surv)
+    pop1 <- pop1[keep == 1, ]
+
+    # combine adults + offspring
+    pop1 <- rbind(pop1, off)
+
+    # enforce carrying capacity
+    if (nInd(pop1) > K) {
+      remove <- sample(1:nInd(pop1), nInd(pop1) - K, replace = FALSE)
+      pop1 <- pop1[-remove, ]
+    }
+  }
+
+  # count loci where an allele has been lost 
+  # (works because genotypes are coded 0/1/2; allele lost -> mean is exactly 0 or 2)
+  # this is faster than gl.report.nall()
+  alleles_lost <- sum(colMeans(as.matrix(pop1)) %% 2 == 0)
+  return(alleles_lost)
+}
+```
+
+Test the function on a starting dataset with no monomorphic loci:
+
+```{r ex74_2, exercise=TRUE, exercise.eval=TRUE, class.chunk="gold-panel", exercise.setup="ex_71-setup"}
+start <- gl.filter.monomorphs(source2, verbose = 0) #get rid of fixed loci
+out <- sim_alleles_lost(start, ngens = 30, nind = 20, nloc = 1000, surv = 0.8, repro = 3, K = 100)
+out
+```
+
+```{r ex74_3, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Run the same simulation, but change ONE parameter at a time.
+# Try:
+# 1) surv = 0.5 vs 0.9
+# 2) K = 50 vs 200
+# 3) nind = 20 vs 100
+#
+# Record (roughly) how n_alleles changes and explain why.
+```
+
+Now we can run a small parameter sweep. (Note: this can take a little time.)
+
+```{r ex74_4, eval=TRUE}
+paras <- expand.grid(
+  ngens = 1:10,
+  ninds = 20,
+  nlocs = 1000,
+  surv  = c(0.5, 0.8, 0.9),
+  repro = 3,
+  K     = 50
+)
+
+res <- sapply(1:nrow(paras), function(i) {
+  sim_alleles_lost(start,
+                   ngens = paras$ngens[i],
+                   nind  = paras$ninds[i],
+                   nloc  = paras$nlocs[i],
+                   surv  = paras$surv[i],
+                   repro = paras$repro[i],
+                   K     = paras$K[i])
+})
+
+paras$alleleslost <- res
+
+ggplot(paras, aes(x = ngens, y = alleleslost, group = factor(ninds), color = factor(ninds))) +
+  geom_line() +
+  labs(x = "Generations", y = "Alleles lost", color = "Population size") +
+  facet_wrap(~surv)
+```
+
+```{r ex74_5, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Modify the parameter grid to explore a different question.
+# For example:
+# - let ninds vary (e.g., 20, 50, 100)
+# - keep surv fixed, but vary K
+# - increase ngens to 30 (warning: slower)
+#
+# Then re-run and interpret the plot.
+
+paras <- expand.grid(
+  ngens = 1:10,
+  ninds = 20,
+  nlocs = 1000,
+  surv  = c(0.5, 0.8, 0.9),
+  repro = 3,
+  K     = 50
+)
+
+res <- sapply(1:nrow(paras), function(i) {
+  sim_alleles_lost(start,
+                   ngens = paras$ngens[i],
+                   nind  = paras$ninds[i],
+                   nloc  = paras$nlocs[i],
+                   surv  = paras$surv[i],
+                   repro = paras$repro[i],
+                   K     = paras$K[i])
+})
+
+paras$alleleslost <- res
+
+ggplot(paras, aes(x = ngens, y = alleleslost, group = factor(ninds), color = factor(ninds))) +
+  geom_line() +
+  labs(x = "Generations", y = "Alleles lost", color = "Population size") +
+  facet_wrap(~surv)
+
+
+```
+
+## Sim 5: SNP panel performance through time
+
+We learned how to select SNP panels — but how well do panels behave **through time** as populations drift?
+
+Here we: 1) subset some populations from the RFBE dataset,\
+2) impute missing data,\
+3) build a SNP panel (fast example: `method="pic"`),\
+4) simulate forward and track **panel performance** over generations using the $R^2$ statistic.
+
+### 5.1 Build and evaluate a panel at time 0
+
+```{r ex75_1}
+# keep the first 9 populations (example)
+pops <- popNames(rfbe)[1:9]
+rfbe2 <- gl.keep.pop(rfbe, pop.list = pops, verbose = 0)
+
+# impute missing data
+rfbe3 <- gl.impute(rfbe2, method = "neighbour")
+
+# build panel (50 loci) and evaluate
+panel <- gl.select.panel(rfbe3, method = "pic", nl = 50, verbose = 0)
+
+res0 <- gl.check.panel(panel, rfbe3, parameter = "Fst")
+r2_0 <- summary(lm(res0[,1] ~ res0[,2]))$r.squared
+r2_0
+```
+
+```{r ex75_2, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+# EXERCISE:
+# Change panel size to nl = 25 and nl = 200.
+# Does r2_0 increase? What do you expect and why?
+```
+
+### 5.2 Simulate forward and check panel performance over time
+
+We simulate each population forward independently (panmictic within-pop, no exchange among pops), then check how well the panel still predicts genome-wide Fst.
+
+```{r ex75_3}
+xx <- rfbe3
+xx <- xx[order(pop(xx)),]
+
+out <- rep(NA, 10)
+out[1] <- r2_0
+
+for (g in 2:10) {
+  pops_list <- seppop(xx)
+
+  pops_list <- lapply(pops_list, function(yy) {
+    # simulate offspring within each population
+    dummy <- gl.sim.offspring(yy, yy, noffpermother = 3)
+
+    # keep population size constant by resampling
+    dummy <- gl.sample(dummy, nInd(yy), replace = FALSE, verbose = 0)
+    return(dummy)
+  })
+
+  pops_next <- do.call(rbind, pops_list)
+  pop(pops_next) <- pop(xx)
+
+  res <- gl.check.panel(panel, pops_next, parameter = "Fst")
+  out[g] <- summary(lm(res[,1] ~ res[,2]))$r.squared
+
+  xx <- pops_next
+
+  cat(paste("Generation", g, "R-squared:", out[g], "
+"))
+  flush.console()
+}
+
+plot(out, type="b", xlab="Generation", ylab="R-squared", 
+     main="Performance of SNP panel over time")
+```
+
+```{r ex75_4, exercise=TRUE, exercise.setup="ex_71-setup", class.chunk="gold-panel"}
+# FINAL EXERCISE (playground):
+# Change ONE of the following and re-run:
+# 1) noffpermother = 1 vs 5  (drift strength changes)
+# 2) panel selection method (e.g., method="fst" or another you used earlier)
+# 3) number of populations included (e.g., first 5 vs first 9)
+#
+# QUESTIONS:
+# - Does panel performance decay faster or slower?
+# - Why?
+```
+
+## Additional reading
+
+Anything else you want to add?
+
+## Exercises
+
+Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+
+-   dot points
+-   for different steps
+
+## Winding up
+
+###Discussion Time
+
+Add some questions to help group discussion.
+
+### Where have we come?
+
+Summarise what they should have learnt.

@@ -104,7 +104,7 @@ The dataset contains 10 sampling locations of 30 individuals each and 1000 loci 
 
 To get an overview of the dataset, we use the function: `gl.map.interactive` which plots the individuals on a map. Please note the genlight/dartR object needs to have valid lat long coordinates for each individual to be able to do so.
 
-```{r}
+```{r, eval=TRUE}
 table(pop(possums.gl)) #check the individuals and the sampling locations
 
 map <- gl.map.interactive(possums.gl)

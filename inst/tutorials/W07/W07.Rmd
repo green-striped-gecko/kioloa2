@@ -20,17 +20,21 @@ editor_options:
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
+
+
+
 ```
 
-## W07 Effective Population Size
-
+         
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
 
-## Effective Population Size
+## W07 Effective Population Size
 
-![](images/robin.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"} 
+![](images/robin.png){.class width="200" height="200"}
+![](images/luis.png){.class width="200" height="200"}
+![](images/bernd.png){.class width="200" height="200"}
 
 ## Learning Outcomes
 
@@ -146,7 +150,7 @@ thousands of generations. EPOS and Stairways2 use this approach.
 
 ------------------------------------------------------------------------
 
-\## Setup
+## Setup
 
 ```{r start, echo=FALSE, message=FALSE, warning=FALSE, eval=TRUE}
 library(learnr)

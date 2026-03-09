@@ -1,6 +1,6 @@
 ---
-title: "W13 Sequencing Technologies"
-author: "Andrzej Kilian"
+title: "W17 OneDArT"
+author: "Andrzej Kilian & Luis Mijangos"
 date: | 
     ![](images/dartR7.png){width=5cm}
 output:
@@ -12,7 +12,7 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W13 Sequencing Technologies"
+description: "W17 OneDArT"
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +20,7 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W13 Sequencing Technologies
+## W17 Sequencing Technologies
 
 ![](images/andrzej.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"}
 
