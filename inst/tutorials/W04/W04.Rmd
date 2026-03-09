@@ -480,10 +480,10 @@ loadings_plot <- ggplot2::ggplot(loadings_df,
 
 ```
 
-
 ```{r}
 print(loadings_plot)
 ```
+
 ::: callout-note
 ### Exercise 3
 
