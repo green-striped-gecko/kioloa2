@@ -27,6 +27,7 @@ book:
   - inst/tutorials/W14/W14.rmd
   - inst/tutorials/W15/W15.rmd
   - inst/tutorials/W16/W16.rmd
+  - inst/tutorials/W17/W17.rmd
   - inst/tutorials/getting-started/getting-started.Rmd
   - references.qmd
 bibliography: references.bib
