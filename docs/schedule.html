@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8da5b4427184b79ecddefad3d342027e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-18142f6db34b6af3760535ef0278c5b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="dartR_style.css">
 </head>
@@ -262,8 +233,18 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Program</h2>
+   
+  <ul class="collapse">
+  <li><a href="#episode-i-the-diversity-awakens" id="toc-episode-i-the-diversity-awakens" class="nav-link active" data-scroll-target="#episode-i-the-diversity-awakens">Episode I: The Diversity Awakens</a></li>
+  <li><a href="#episode-ii-the-bottleneck-strikes-back" id="toc-episode-ii-the-bottleneck-strikes-back" class="nav-link" data-scroll-target="#episode-ii-the-bottleneck-strikes-back">Episode II: The Bottleneck Strikes Back</a></li>
+  <li><a href="#episode-iii-the-attack-of-the-clades" id="toc-episode-iii-the-attack-of-the-clades" class="nav-link" data-scroll-target="#episode-iii-the-attack-of-the-clades">Episode III: The Attack of the Clades</a></li>
+  <li><a href="#episode-iv-a-new-flow" id="toc-episode-iv-a-new-flow" class="nav-link" data-scroll-target="#episode-iv-a-new-flow">Episode IV: A New Flow</a></li>
+  <li><a href="#episode-v-the-return-of-the-scientist" id="toc-episode-v-the-return-of-the-scientist" class="nav-link" data-scroll-target="#episode-v-the-return-of-the-scientist">Episode V: The Return of the Scientist</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -287,156 +268,224 @@ window.Quarto = {
 </header>
 
 
-<p><em>for a more detailed program see the</em> <a href="useful.qmd">More Info</a> <em>section</em></p>
-<table class="table-striped table-bordered caption-top table">
+<section id="episode-i-the-diversity-awakens" class="level2">
+<h2 class="anchored" data-anchor-id="episode-i-the-diversity-awakens">Episode I: The Diversity Awakens</h2>
+<p><strong>Date:</strong> Monday, 09/03/26</p>
+<table class="caption-top table">
 <colgroup>
-<col style="width: 5%">
-<col style="width: 5%">
-<col style="width: 20%">
-<col style="width: 30%">
-<col style="width: 40%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th style="text-align: center;">SESSION</th>
-<th style="text-align: center;">Time</th>
-<th style="text-align: center;"><strong>Topic</strong></th>
-<th style="text-align: center;">Presenters</th>
+<th style="text-align: left;">Session</th>
+<th style="text-align: left;">Time</th>
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Presenters</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p>EPISODE I</p>
-<p>THE DIVERSITY AWAKENS</p>
-<p>Monday</p>
-<p>09/03/26</p></td>
-<td style="text-align: center;">W1</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Harnessing genomic resources for conservation of biodiversity</strong></td>
-<td style="text-align: center;">Laura Bertola &amp; Kate Rick</td>
+<td style="text-align: left;"><strong>W1</strong></td>
+<td style="text-align: left;">9am-11am</td>
+<td style="text-align: left;">Harnessing Genomic Resources for Conservation of Biodiversity</td>
+<td style="text-align: left;">Laura Bertola &amp; Kate Rick</td>
 </tr>
 <tr class="even">
-<td></td>
-<td style="text-align: center;">W2</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>dartR Intro, Data Manipulation &amp; Filtering</strong></td>
-<td style="text-align: center;">Arthur Georges &amp; Ching Ching Lau</td>
+<td style="text-align: left;"><strong>W2</strong></td>
+<td style="text-align: left;">11:30am-1pm</td>
+<td style="text-align: left;">Awakening the dartR Force: Data &amp; Filters</td>
+<td style="text-align: left;">Arthur Georges, Ching-Ching Lau &amp; Diana Robledo</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td style="text-align: center;">W3</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>Sex-Linked Markers</strong></td>
-<td style="text-align: center;">Diana Robledo &amp; Floriaan Devloo-Delva</td>
+<td style="text-align: left;"><strong>W3</strong></td>
+<td style="text-align: left;">2pm-3:30pm</td>
+<td style="text-align: left;">Use the Filter, Luke: Identifying, Removing, and Using Sex-Linked SNPs</td>
+<td style="text-align: left;">Diana Robledo &amp; Floriaan Devloo-Delva</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="episode-ii-the-bottleneck-strikes-back" class="level2">
+<h2 class="anchored" data-anchor-id="episode-ii-the-bottleneck-strikes-back">Episode II: The Bottleneck Strikes Back</h2>
+<p><strong>Date:</strong> Tuesday, 10/03/26</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Session</th>
+<th style="text-align: left;">Time</th>
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Presenters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>W4</strong></td>
+<td style="text-align: left;">9am-11am</td>
+<td style="text-align: left;">Subdivisions, Biological and Administrative: Their Importance for Management</td>
+<td style="text-align: left;">Bill Sherwin, Floriaan Devloo-Delva &amp; Laura Bertola</td>
 </tr>
 <tr class="even">
-<td><p>EPISODE II</p>
-<p>THE BOTTLENECK STRIKES BACK</p>
-<p>Tuesday</p>
-<p>10/03/26</p></td>
-<td style="text-align: center;">W4</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Subdivisions, biological and administrative: their importance for management</strong></td>
-<td style="text-align: center;">Bill Sherwin, Floriaan Devloo-Delva and Laura Bertola</td>
+<td style="text-align: left;"><strong>W5</strong></td>
+<td style="text-align: left;">11:30am-1pm</td>
+<td style="text-align: left;">These Are Not The SNPs You’re Looking For: How Study Design Impacts Population Genetic Assessments</td>
+<td style="text-align: left;">Renee Catullo</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td style="text-align: center;">W5</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>These are not the SNP you’re looking for: how study design impacts population genetic assessments</strong></td>
-<td style="text-align: center;">Renee Catullo</td>
+<td style="text-align: left;"><strong>W6</strong></td>
+<td style="text-align: left;">2pm-3:30pm</td>
+<td style="text-align: left;">Extinct They Must Not Become: Managing Small Populations</td>
+<td style="text-align: left;">Peter Unmack &amp; Diana Robledo</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="episode-iii-the-attack-of-the-clades" class="level2">
+<h2 class="anchored" data-anchor-id="episode-iii-the-attack-of-the-clades">Episode III: The Attack of the Clades</h2>
+<p><strong>Date:</strong> Wednesday, 11/03/26</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Session</th>
+<th style="text-align: left;">Time</th>
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Presenters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>W7</strong></td>
+<td style="text-align: left;">9am-11am</td>
+<td style="text-align: left;">Size Matters Not… Or Does It? The Mystery of Effective Population Size</td>
+<td style="text-align: left;">Robin Waples, Luis Mijangos &amp; Bernd Gruber</td>
 </tr>
 <tr class="even">
-<td></td>
-<td style="text-align: center;">W6</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>Management of Small Populations</strong></td>
-<td style="text-align: center;">Diana Robledo</td>
+<td style="text-align: left;"><strong>W8</strong></td>
+<td style="text-align: left;">11:30am-1pm</td>
+<td style="text-align: left;">Genetic Structure of Wild Populations to Inform Management</td>
+<td style="text-align: left;">Craig Moritz, Arthur Georges &amp; Peter Unmack</td>
 </tr>
 <tr class="odd">
-<td><p>EPISODE III</p>
-<p>THE ATTACK OF THE CLADES</p>
-<p>Wednesday</p>
-<p>11/03/26</p></td>
-<td style="text-align: center;">W7</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Effective Population Size &amp; Historical</strong> <span class="math inline">\(N_e\)</span></td>
-<td style="text-align: center;">Robin Waples, Luis Mijangos &amp; Bernd Gruber</td>
+<td style="text-align: left;"><strong>W9</strong></td>
+<td style="text-align: left;">2pm-3:30pm</td>
+<td style="text-align: left;">Inside the Jedi Archives: Hidden dartR Powers</td>
+<td style="text-align: left;">Bernd Gruber, Arthur Georges, Luis Mijangos &amp; Ethan Halford</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="episode-iv-a-new-flow" class="level2">
+<h2 class="anchored" data-anchor-id="episode-iv-a-new-flow">Episode IV: A New Flow</h2>
+<p><strong>Date:</strong> Thursday, 12/03/26</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Session</th>
+<th style="text-align: left;">Time</th>
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Presenters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>W10</strong></td>
+<td style="text-align: left;">9am-11am</td>
+<td style="text-align: left;">Natural Selection: Identifying Environmental Effects on Genomic Variation</td>
+<td style="text-align: left;">Luciano Beheregaray &amp; Chris Brauer</td>
 </tr>
 <tr class="even">
-<td></td>
-<td style="text-align: center;">W8</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>Genetic Divergence &amp; Phylogenetics</strong></td>
-<td style="text-align: center;">Craig Moritz &amp; Arthur Georges</td>
+<td style="text-align: left;"><strong>W11</strong></td>
+<td style="text-align: left;">11:30am-1pm</td>
+<td style="text-align: left;">How Landscapes Shape the Genetic Force</td>
+<td style="text-align: left;">Robyn Shaw, Cynthia Riginos &amp; Zoe Meziere</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td style="text-align: center;">W9</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>dartR developer/new &amp; hidden features/manipulate plots/eBooks</strong></td>
-<td style="text-align: center;">Bernd Gruber, Arthur Georges, Luis Mijangos &amp; Ethan Halford</td>
+<td style="text-align: left;"><strong>W12</strong></td>
+<td style="text-align: left;">2pm-3:30pm</td>
+<td style="text-align: left;">The Droid You’re Looking For: AI’s Role in Population Genetics</td>
+<td style="text-align: left;">Jonathan Ting, Darya Vanichkina &amp; Celine Frere</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="episode-v-the-return-of-the-scientist" class="level2">
+<h2 class="anchored" data-anchor-id="episode-v-the-return-of-the-scientist">Episode V: The Return of the Scientist</h2>
+<p><strong>Date:</strong> Friday, 13/03/26</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Session</th>
+<th style="text-align: left;">Time</th>
+<th style="text-align: left;">Topic</th>
+<th style="text-align: left;">Presenters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>W13</strong></td>
+<td style="text-align: left;">9am-9:30am</td>
+<td style="text-align: left;">Efficient Genomics: New Tools for Genotyping &amp; Analysis</td>
+<td style="text-align: left;">Andrzej Kilian &amp; Luis Mijangos</td>
 </tr>
 <tr class="even">
-<td><p>EPISODE IV</p>
-<p>A NEW FLOW</p>
-<p>Thursday</p>
-<p>12/03/26</p></td>
-<td style="text-align: center;">W10</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Natural Selection and Adaption</strong></td>
-<td style="text-align: center;">Luciano Beheregaray &amp; Chris Brauer</td>
+<td style="text-align: left;"><strong>W14</strong></td>
+<td style="text-align: left;">9:30-11am</td>
+<td style="text-align: left;">Simulating the Galaxy: When the Force Runs on Code</td>
+<td style="text-align: left;">Bernd Gruber &amp; Luis Mijangos</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td style="text-align: center;">W11</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>Landscape Genetics</strong></td>
-<td style="text-align: center;">Robyn Shaw, Cynthia Riginos &amp; Zoe Meziere</td>
+<td style="text-align: left;"><strong>W15</strong></td>
+<td style="text-align: left;">11:30am-1pm</td>
+<td style="text-align: left;">SNPs that Matter</td>
+<td style="text-align: left;">Elise Furlan</td>
 </tr>
 <tr class="even">
-<td></td>
-<td style="text-align: center;">W12</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>AI in PopGen &amp; Research</strong></td>
-<td style="text-align: center;">Jonathan Ting, Darya Vanichkina &amp; Celine Frere</td>
+<td style="text-align: left;"><strong>W16</strong></td>
+<td style="text-align: left;">2pm-3pm</td>
+<td style="text-align: left;">I Am Your Father: Estimating Kinship and Relatedness</td>
+<td style="text-align: left;">Ethan Halford &amp; Luis Mijangos</td>
 </tr>
 <tr class="odd">
-<td><p>EPISODE V</p>
-<p>THE RETURN OF THE SCIENTIST</p>
-<p>Friday</p>
-<p>13/03/26</p></td>
-<td style="text-align: center;">W13</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Computer Simulations</strong></td>
-<td style="text-align: center;">Bernd Gruber &amp; Luis Mijangos</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W14</td>
-<td style="text-align: center;">11:30am-1pm</td>
-<td style="text-align: center;"><strong>SNPs that Matter</strong></td>
-<td style="text-align: center;">Elise Furlan</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td style="text-align: center;">W15</td>
-<td style="text-align: center;">2pm-3:30pm</td>
-<td style="text-align: center;"><strong>Relatedness</strong></td>
-<td style="text-align: center;">Ethan Halford &amp; Luis Mijangos</td>
-</tr>
-<tr class="even">
-<td></td>
-<td style="text-align: center;">W16</td>
-<td style="text-align: center;">9am -11am</td>
-<td style="text-align: center;"><strong>Sequencing Technologies</strong></td>
-<td style="text-align: center;">Andrzej Kilian</td>
+<td style="text-align: left;"><strong>W17</strong></td>
+<td style="text-align: left;">3pm-4pm</td>
+<td style="text-align: left;">OneDArT: Turning Genomic Data into Conservation Insight</td>
+<td style="text-align: left;">Reuben Durham, Taylor Politch, Jason Dobry</td>
 </tr>
 </tbody>
 </table>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

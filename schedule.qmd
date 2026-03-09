@@ -1,76 +1,70 @@
----
-format: html
-editor: visual
----
-
 # Program {.unnumbered}
 
-*for a more detailed program see the* [More Info](useful.qmd) *section*
+---
+format: 
+  html:
+    theme: litera
+    toc: true
+    toc-depth: 2
+    toc-title: "Program"
+---
 
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | SESSION | Time        | **Topic**                                                                                             | Presenters                                                  |
-+=============================+:=======:+:===========:+:=====================================================================================================:+:===========================================================:+
-| EPISODE I                   | W1      | 9am -11am   | **Harnessing genomic resources for conservation of biodiversity**                                     | Laura Bertola & Kate Rick                                   |
-|                             |         |             |                                                                                                       |                                                             |
-| THE DIVERSITY AWAKENS       |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| Monday                      |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| 09/03/26                    |         |             |                                                                                                       |                                                             |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W2      | 11:30am-1pm | **dartR Intro, Data Manipulation & Filtering**                                                        | Arthur Georges & Ching Ching Lau                            |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W3      | 2pm-3:30pm  | **Sex-Linked Markers**                                                                                | Diana Robledo & Floriaan Devloo-Delva                       |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-| EPISODE II                  | W4      | 9am -11am   | **Subdivisions, biological and administrative: their importance for management**                      | Bill Sherwin, Floriaan Devloo-Delva and Laura Bertola       |
-|                             |         |             |                                                                                                       |                                                             |
-| THE BOTTLENECK STRIKES BACK |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| Tuesday                     |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| 10/03/26                    |         |             |                                                                                                       |                                                             |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W5      | 11:30am-1pm | **These are not the SNP you're looking for: how study design impacts population genetic assessments** | Renee Catullo                                               |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W6      | 2pm-3:30pm  | **Management of Small Populations**                                                                   | Diana Robledo                                               |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-| EPISODE III                 | W7      | 9am -11am   | **Effective Population Size & Historical** $N_e$                                                      | Robin Waples, Luis Mijangos & Bernd Gruber                  |
-|                             |         |             |                                                                                                       |                                                             |
-| THE ATTACK OF THE CLADES    |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| Wednesday                   |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| 11/03/26                    |         |             |                                                                                                       |                                                             |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W8      | 11:30am-1pm | **Genetic Divergence & Phylogenetics**                                                                | Craig Moritz & Arthur Georges                               |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W9      | 2pm-3:30pm  | **dartR developer/new & hidden features/manipulate plots/eBooks**                                     | Bernd Gruber, Arthur Georges, Luis Mijangos & Ethan Halford |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-| EPISODE IV                  | W10     | 9am -11am   | **Natural Selection and Adaption**                                                                    | Luciano Beheregaray & Chris Brauer                          |
-|                             |         |             |                                                                                                       |                                                             |
-| A NEW FLOW                  |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| Thursday                    |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| 12/03/26                    |         |             |                                                                                                       |                                                             |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W11     | 11:30am-1pm | **Landscape Genetics**                                                                                | Robyn Shaw, Cynthia Riginos & Zoe Meziere                   |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W12     | 2pm-3:30pm  | **AI in PopGen & Research**                                                                           | Jonathan Ting, Darya Vanichkina & Celine Frere              |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-| EPISODE V                   | W13     | 9am -11am   | **Computer Simulations**                                                                              | Bernd Gruber & Luis Mijangos                                |
-|                             |         |             |                                                                                                       |                                                             |
-| THE RETURN OF THE SCIENTIST |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| Friday                      |         |             |                                                                                                       |                                                             |
-|                             |         |             |                                                                                                       |                                                             |
-| 13/03/26                    |         |             |                                                                                                       |                                                             |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W14     | 11:30am-1pm | **SNPs that Matter**                                                                                  | Elise Furlan                                                |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W15     | 2pm-3:30pm  | **Relatedness**                                                                                       | Ethan Halford & Luis Mijangos                               |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
-|                             | W16     | 9am -11am   | **Sequencing Technologies**                                                                           | Andrzej Kilian                                              |
-+-----------------------------+---------+-------------+-------------------------------------------------------------------------------------------------------+-------------------------------------------------------------+
+## Episode I: The Diversity Awakens
 
-: {tbl-colwidths="\[5,5,20, 30, 40\]" .striped .bordered}
+**Date:** Monday, 09/03/26
+
+| Session | Time | Topic | Presenters |
+|:---|:---|:---|:---|
+| **W1** | 9am-11am | Harnessing Genomic Resources for Conservation of Biodiversity | Laura Bertola & Kate Rick |
+| **W2** | 11:30am-1pm | Awakening the dartR Force: Data & Filters | Arthur Georges, Ching-Ching Lau & Diana Robledo |
+| **W3** | 2pm-3:30pm | Use the Filter, Luke: Identifying, Removing, and Using Sex-Linked SNPs | Diana Robledo & Floriaan Devloo-Delva |
+
+------------------------------------------------------------------------
+
+## Episode II: The Bottleneck Strikes Back
+
+**Date:** Tuesday, 10/03/26
+
+| Session | Time | Topic | Presenters |
+|:---|:---|:---|:---|
+| **W4** | 9am-11am | Subdivisions, Biological and Administrative: Their Importance for Management | Bill Sherwin, Floriaan Devloo-Delva & Laura Bertola |
+| **W5** | 11:30am-1pm | These Are Not The SNPs You're Looking For: How Study Design Impacts Population Genetic Assessments | Renee Catullo |
+| **W6** | 2pm-3:30pm | Extinct They Must Not Become: Managing Small Populations | Peter Unmack & Diana Robledo |
+
+------------------------------------------------------------------------
+
+## Episode III: The Attack of the Clades
+
+**Date:** Wednesday, 11/03/26
+
+| Session | Time | Topic | Presenters |
+|:---|:---|:---|:---|
+| **W7** | 9am-11am | Size Matters Not... Or Does It? The Mystery of Effective Population Size | Robin Waples, Luis Mijangos & Bernd Gruber |
+| **W8** | 11:30am-1pm | Genetic Structure of Wild Populations to Inform Management | Craig Moritz, Arthur Georges & Peter Unmack |
+| **W9** | 2pm-3:30pm | Inside the Jedi Archives: Hidden dartR Powers | Bernd Gruber, Arthur Georges, Luis Mijangos & Ethan Halford |
+
+------------------------------------------------------------------------
+
+## Episode IV: A New Flow
+
+**Date:** Thursday, 12/03/26
+
+| Session | Time | Topic | Presenters |
+|:---|:---|:---|:---|
+| **W10** | 9am-11am | Natural Selection: Identifying Environmental Effects on Genomic Variation | Luciano Beheregaray & Chris Brauer |
+| **W11** | 11:30am-1pm | How Landscapes Shape the Genetic Force | Robyn Shaw, Cynthia Riginos & Zoe Meziere |
+| **W12** | 2pm-3:30pm | The Droid You're Looking For: AI's Role in Population Genetics | Jonathan Ting, Darya Vanichkina & Celine Frere |
+
+------------------------------------------------------------------------
+
+## Episode V: The Return of the Scientist
+
+**Date:** Friday, 13/03/26
+
+| Session | Time | Topic | Presenters |
+|:---|:---|:---|:---|
+| **W13** | 9am-9:30am | Efficient Genomics: New Tools for Genotyping & Analysis | Andrzej Kilian & Luis Mijangos |
+| **W14** | 9:30-11am | Simulating the Galaxy: When the Force Runs on Code | Bernd Gruber & Luis Mijangos |
+| **W15** | 11:30am-1pm | SNPs that Matter | Elise Furlan |
+| **W16** | 2pm-3pm | I Am Your Father: Estimating Kinship and Relatedness | Ethan Halford & Luis Mijangos |
+| **W17** | 3pm-4pm | OneDArT: Turning Genomic Data into Conservation Insight | Reuben Durham, Taylor Politch, Jason Dobry |
