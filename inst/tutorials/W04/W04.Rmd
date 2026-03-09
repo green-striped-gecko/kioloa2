@@ -15,7 +15,9 @@ runtime: shiny_prerendered
 description: "W04 Genetic Structure"
 ---
 
-## W04 Genetic Structure
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = "right", color = "black")
+```
 
 ```{r setup, include=FALSE}
 
@@ -31,9 +33,7 @@ assignInNamespace(
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
-```{r klippy, echo=FALSE, include=TRUE}
-klippy::klippy(position = "right", color = "black")
-```
+## W04 Genetic Structure
 
 *Session Presenters*
 
