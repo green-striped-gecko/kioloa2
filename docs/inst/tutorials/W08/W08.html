@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Craig Moritz &amp; Arthur Georges">
-<meta name="dcterms.date" content="2026-03-09">
-<meta name="description" content="W08 Genetic Divergence &amp; Phylogenetics">
+<meta name="dcterms.date" content="2026-03-10">
+<meta name="description" content="08 Genetic Structure of Wild Populations to Inform Management">
 
-<title>W08 Divergence &amp; Phylogenetics – Analysing Genomic Data with dartRverse</title>
+<title>W08 Genetic Structure of Wild Populations to Inform Management – Analysing Genomic Data with dartRverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../inst/tutorials/W08/W08.html"><span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../inst/tutorials/W08/W08.html"><span class="chapter-title">W08 Genetic Structure of Wild Populations to Inform Management</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../inst/tutorials/W08/W08.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></a>
+  <a href="../../../inst/tutorials/W08/W08.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">W08 Genetic Structure of Wild Populations to Inform Management</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,10 +281,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#w08-genetic-divergence-phylogenetics" id="toc-w08-genetic-divergence-phylogenetics" class="nav-link active" data-scroll-target="#w08-genetic-divergence-phylogenetics">W08 Genetic Divergence &amp; Phylogenetics</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#session-summary" id="toc-session-summary" class="nav-link" data-scroll-target="#session-summary">Session summary</a>
   <ul>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  </ul></li>
+  <li><a href="#the-why-how-of-population-divergence-models" id="toc-the-why-how-of-population-divergence-models" class="nav-link" data-scroll-target="#the-why-how-of-population-divergence-models">The why &amp; how of population divergence models</a>
+  <ul>
+  <li><a href="#analysing-the-history-of-divergence-and-gene-flow-is-key-to-defining-conservation-units-within-species" id="toc-analysing-the-history-of-divergence-and-gene-flow-is-key-to-defining-conservation-units-within-species" class="nav-link" data-scroll-target="#analysing-the-history-of-divergence-and-gene-flow-is-key-to-defining-conservation-units-within-species">Analysing the history of divergence and gene flow is key to defining conservation units within species</a></li>
+  <li><a href="#sampling-matters-for-species-with-limited-dispersal" id="toc-sampling-matters-for-species-with-limited-dispersal" class="nav-link" data-scroll-target="#sampling-matters-for-species-with-limited-dispersal">Sampling matters for species with limited dispersal!</a></li>
+  <li><a href="#why-not-use-snp-based-phylogenies-to-estimate-divergence-times" id="toc-why-not-use-snp-based-phylogenies-to-estimate-divergence-times" class="nav-link" data-scroll-target="#why-not-use-snp-based-phylogenies-to-estimate-divergence-times">Why not use SNP-based phylogenies to estimate divergence times?</a></li>
+  <li><a href="#approaches-to-modeling-divergence-histories-population-models-and-the-multispecies-coalescent" id="toc-approaches-to-modeling-divergence-histories-population-models-and-the-multispecies-coalescent" class="nav-link" data-scroll-target="#approaches-to-modeling-divergence-histories-population-models-and-the-multispecies-coalescent">Approaches to modeling divergence histories – population models and the multispecies coalescent</a></li>
+  <li><a href="#navigating-the-morass-of-methods" id="toc-navigating-the-morass-of-methods" class="nav-link" data-scroll-target="#navigating-the-morass-of-methods">Navigating the morass of methods…</a></li>
+  <li><a href="#fitting-population-divergence-models" id="toc-fitting-population-divergence-models" class="nav-link" data-scroll-target="#fitting-population-divergence-models">Fitting population divergence models</a></li>
+  <li><a href="#example-rock-wallabies-from-northern-australia-potter-et-al.-2024-syst.-biol." id="toc-example-rock-wallabies-from-northern-australia-potter-et-al.-2024-syst.-biol." class="nav-link" data-scroll-target="#example-rock-wallabies-from-northern-australia-potter-et-al.-2024-syst.-biol.">Example: rock wallabies from northern Australia (Potter et al.&nbsp;2024 Syst. Biol.)</a></li>
+  <li><a href="#take-home-messages" id="toc-take-home-messages" class="nav-link" data-scroll-target="#take-home-messages"><em>Take home messages</em></a></li>
   </ul></li>
   <li><a href="#seven-sins-of-classical-pca" id="toc-seven-sins-of-classical-pca" class="nav-link" data-scroll-target="#seven-sins-of-classical-pca">Seven sins of classical PCA</a>
   <ul>
@@ -312,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></h1>
+<h1 class="title"><span class="chapter-title">W08 Genetic Structure of Wild Populations to Inform Management</span></h1>
 </div>
 
 
@@ -329,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 9, 2026</p>
+      <p class="date">March 10, 2026</p>
     </div>
   </div>
   
@@ -347,20 +358,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="learning-outcomes" class="level3">
-<h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
-<ul>
-<li>Usage of PCA</li>
-<li>To correctly distinguish population structure</li>
-</ul>
+<p>Population structure emerges when physical or behavioral barriers arise. If this isolation persists, genetic divergence begins, eventually leading to speciation. In this session, we will present <strong>“the why &amp; how of population divergence models”</strong> and <strong>“Seven Deadly Sins of Classical PCA”</strong>.</p>
 </section>
-<section id="workflow" class="level3">
-<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
+<section id="session-summary" class="level2">
+<h2 class="anchored" data-anchor-id="session-summary">Session summary</h2>
 <ol type="1">
-<li><p>Phylogenetics and SNPs</p></li>
+<li><p>Population divergence</p></li>
 <li><p>Seven sins of classical PCA</p></li>
 <li><p>Hands-on</p></li>
 </ol>
+<section id="learning-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
+<ul>
+<li><p>Population divergence models</p></li>
+<li><p>Usage of PCA</p></li>
+<li><p>To correctly identify population structure</p></li>
+</ul>
+</section>
+</section>
+<section id="the-why-how-of-population-divergence-models" class="level2">
+<h2 class="anchored" data-anchor-id="the-why-how-of-population-divergence-models">The why &amp; how of population divergence models</h2>
+<p><img src="images/craig/divergence_tree.png" class="img-fluid" width="1000"></p>
+<section id="analysing-the-history-of-divergence-and-gene-flow-is-key-to-defining-conservation-units-within-species" class="level3">
+<h3 class="anchored" data-anchor-id="analysing-the-history-of-divergence-and-gene-flow-is-key-to-defining-conservation-units-within-species">Analysing the history of divergence and gene flow is key to defining conservation units within species</h3>
+<p><img src="images/craig/units.png" class="img-fluid" width="600"></p>
+</section>
+<section id="sampling-matters-for-species-with-limited-dispersal" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-matters-for-species-with-limited-dispersal">Sampling matters for species with limited dispersal!</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/craig/battey.png" class="img-fluid figure-img" width="400"></p>
+<figcaption>Battey et al.&nbsp;2020. Space is the place…. Genetics.</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Restricted dispersal -&gt; isolation by distance</p></li>
+<li><p>Spatially cluster sampling yields biased estimates of population parameters, clustering etc.</p></li>
+</ul>
+</section>
+<section id="why-not-use-snp-based-phylogenies-to-estimate-divergence-times" class="level3">
+<h3 class="anchored" data-anchor-id="why-not-use-snp-based-phylogenies-to-estimate-divergence-times">Why not use SNP-based phylogenies to estimate divergence times?</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/craig/gene_tree.png" class="img-fluid figure-img" width="300"></p>
+<figcaption><a href="https://theg-cat.com/2018/10/04/lost-in-a-forest-of-gene-trees/" class="uri">https://theg-cat.com/2018/10/04/lost-in-a-forest-of-gene-trees/</a></figcaption>
+</figure>
+</div>
+<ol type="1">
+<li><p>Gene trees differ from species trees: Average divergence is &gt; split time due to deep coalescence of lineages. Difference increases with Na</p></li>
+<li><p>SNP-based analyses overestimate divergence unless # invariant sites is known</p></li>
+</ol>
+<p>See Leache et al.&nbsp;2015 Syst. Biol.</p>
+</section>
+<section id="approaches-to-modeling-divergence-histories-population-models-and-the-multispecies-coalescent" class="level3">
+<h3 class="anchored" data-anchor-id="approaches-to-modeling-divergence-histories-population-models-and-the-multispecies-coalescent">Approaches to modeling divergence histories – population models and the multispecies coalescent</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/craig/approach.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>Liu et al.&nbsp;2019 <a href="https://link.springer.com/protocol/10.1007/978-1-4939-9074-0_7" class="uri">https://link.springer.com/protocol/10.1007/978-1-4939-9074-0_7</a></figcaption>
+</figure>
+</div>
+<ol type="A">
+<li><p>2 population model at mutation-migration equilibrium (e.g MIGRATE)</p></li>
+<li><p>2 population Isolation with Migration (IM) model</p></li>
+<li><p>Multispecies coalescent models +/- migration</p></li>
+</ol>
+</section>
+<section id="navigating-the-morass-of-methods" class="level3">
+<h3 class="anchored" data-anchor-id="navigating-the-morass-of-methods">Navigating the morass of methods…</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/craig/new_method.png" class="img-fluid figure-img" width="600"></p>
+<figcaption>Example: Estimating population size over time (Beichman et al.&nbsp;2018. Ann. Rev.&nbsp;Ecol. Syst.)</figcaption>
+</figure>
+</div>
+</section>
+<section id="fitting-population-divergence-models" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-population-divergence-models">Fitting population divergence models</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/craig/fitting.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>DeJode et al.&nbsp;2022; Evol. Appl.</figcaption>
+</figure>
+</div>
+<ul>
+<li>All models are wrong…</li>
+<li>Which one(s) best fit your data?</li>
+<li>Methods: dadi, moments, DILS</li>
+<li>Example: Marine populations</li>
+</ul>
+</section>
+<section id="example-rock-wallabies-from-northern-australia-potter-et-al.-2024-syst.-biol." class="level3">
+<h3 class="anchored" data-anchor-id="example-rock-wallabies-from-northern-australia-potter-et-al.-2024-syst.-biol.">Example: rock wallabies from northern Australia (Potter et al.&nbsp;2024 Syst. Biol.)</h3>
+<p><img src="images/craig/example.png" class="img-fluid" width="900"></p>
+<ul>
+<li><p>Phylogenetic discordance suggests current or historical gene flow among species</p></li>
+<li><p>Models support migration (IM or SC) between species and populations</p></li>
+</ul>
+</section>
+<section id="take-home-messages" class="level3">
+<h3 class="anchored" data-anchor-id="take-home-messages"><em>Take home messages</em></h3>
+<ul>
+<li>Well-distributed population sampling is important! Often this is iterative.</li>
+<li>SNP based phylogenies, PCAs etc are useful as heuristics and to develop hypotheses BUT…</li>
+<li>Coalescent-based population methods should be used to estimate population divergence histories</li>
+<li>Comparing alternative models of divergence is useful BUT…</li>
+<li>Remember all models are wrong…</li>
+</ul>
 </section>
 </section>
 <section id="seven-sins-of-classical-pca" class="level2">

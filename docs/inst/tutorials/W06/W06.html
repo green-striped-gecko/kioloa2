@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../inst/tutorials/W08/W08.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">W08 Divergence &amp; Phylogenetics</span></a>
+  <a href="../../../inst/tutorials/W08/W08.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">W08 Genetic Structure of Wild Populations to Inform Management</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -511,7 +511,7 @@ Your data contains missing data, better filter stronger or use gl.impute to fill
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.61    0.01    0.62 </code></pre>
+   0.48    0.00    0.48 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(yy, <span class="at">file=</span><span class="st">"mog.test1a.csv"</span>, <span class="at">row.names=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -543,10 +543,10 @@ Your data contains missing data, better filter stronger or use gl.impute to fill
   Removing monomorphic loci and loci with all missing 
                        data
     Original No. of loci: 12908 
-    Monomorphic loci: 9928 
-    Loci scored all NA: 899 
-    No. of loci deleted: 9928 
-    No. of loci retained: 2980 
+    Monomorphic loci: 9890 
+    Loci scored all NA: 877 
+    No. of loci deleted: 9890 
+    No. of loci retained: 3018 
     No. of individuals: 70 
     No. of populations: 5 
 Completed: gl.filter.monomorphs </code></pre>
@@ -559,9 +559,9 @@ Completed: gl.filter.monomorphs </code></pre>
   Removing loci based on Call Rate, threshold = 0.95 
   Summary of filtered dataset
     Call Rate for loci &gt; 0.95 
-    Original No. of loci : 2980 
+    Original No. of loci : 3018 
     Original No. of individuals: 70 
-    No. of loci retained: 2450 
+    No. of loci retained: 2471 
     No. of individuals retained: 70 
     No. of populations:  5 </code></pre>
 </div>
@@ -583,9 +583,9 @@ Completed: gl.filter.monomorphs </code></pre>
                 and recalculating FreqHoms and FreqHets
   Summary of filtered dataset
   MAF for loci &gt; 0.02142857 
-  Initial number of loci: 2450 
-  Number of loci deleted: 1666 
-  Final number of loci: 784 </code></pre>
+  Initial number of loci: 2471 
+  Number of loci deleted: 1683 
+  Final number of loci: 788 </code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -607,7 +607,7 @@ Completed: gl.filter.monomorphs </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.43    0.02    0.47 </code></pre>
+   0.39    0.03    0.42 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(yy, <span class="at">file=</span><span class="st">"mog.test2a.csv"</span>, <span class="at">row.names=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
