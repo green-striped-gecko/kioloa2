@@ -1,7 +1,7 @@
 ---
-title: "W08 Divergence & Phylogenetics"
+title: "W08 Genetic Structure of Wild Populations to Inform Management"
 author: "Craig Moritz & Arthur Georges"
-date: "9 March 2026"
+date: "10 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -11,7 +11,7 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W08 Genetic Divergence & Phylogenetics"
+description: "08 Genetic Structure of Wild Populations to Inform Management"
 ---
 
 ```{r setup, include=FALSE}
@@ -25,18 +25,88 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 
 ## Introduction
 
-### Learning outcomes
+Population structure emerges when physical or behavioral barriers arise. If this isolation persists, genetic divergence begins, eventually leading to speciation. In this session, we will present **"the why & how of population divergence models"** and **"Seven Deadly Sins of Classical PCA"**.
 
--   Usage of PCA
--   To correctly distinguish population structure
+## Session summary
 
-### Workflow
-
-1.  Phylogenetics and SNPs
+1.  Population divergence
 
 2.  Seven sins of classical PCA
 
 3.  Hands-on
+
+### Learning outcomes
+
+-   Population divergence models
+
+-   Usage of PCA
+
+-   To correctly identify population structure
+
+## The why & how of population divergence models
+
+![](images/craig/divergence_tree.png){width="1000"}
+
+### Analysing the history of divergence and gene flow is key to defining conservation units within species
+
+![](images/craig/units.png){width="600"}
+
+### Sampling matters for species with limited dispersal!
+
+![Battey et al. 2020. Space is the place.... Genetics.](images/craig/battey.png){width="400"}
+
+-   Restricted dispersal -\> isolation by distance
+
+-   Spatially cluster sampling yields biased estimates of population parameters, clustering etc.
+
+### Why not use SNP-based phylogenies to estimate divergence times?
+
+![<https://theg-cat.com/2018/10/04/lost-in-a-forest-of-gene-trees/>](images/craig/gene_tree.png){width="300"}
+
+1.  Gene trees differ from species trees: Average divergence is \> split time due to deep coalescence of lineages. Difference increases with Na
+
+2.  SNP-based analyses overestimate divergence unless \# invariant sites is known
+
+See Leache et al. 2015 Syst. Biol.
+
+### Approaches to modeling divergence histories -- population models and the multispecies coalescent
+
+![Liu et al. 2019 <https://link.springer.com/protocol/10.1007/978-1-4939-9074-0_7>](images/craig/approach.png){width="300"}
+
+A.  2 population model at mutation-migration equilibrium (e.g MIGRATE)
+
+B.  2 population Isolation with Migration (IM) model
+
+C.  Multispecies coalescent models +/- migration
+
+### Navigating the morass of methods...
+
+![Example: Estimating population size over time (Beichman et al. 2018. Ann. Rev. Ecol. Syst.)](images/craig/new_method.png){width="600"}
+
+### Fitting population divergence models
+
+![DeJode et al. 2022; Evol. Appl.](images/craig/fitting.png){width="300"}
+
+-   All models are wrong...
+-   Which one(s) best fit your data?
+-   Methods: dadi, moments, DILS
+-   Example: Marine populations
+
+### Example: rock wallabies from northern Australia (Potter et al. 2024 Syst. Biol.)
+
+![](images/craig/example.png){width="900"}
+
+-   Phylogenetic discordance suggests current or historical gene flow among species
+
+-   Models support migration (IM or SC) between species and populations
+
+### *Take home messages*
+
+-   Well-distributed population sampling is important! Often this is iterative.
+-   SNP based phylogenies, PCAs etc are useful as heuristics and to develop hypotheses BUT...
+-   Coalescent-based population methods should be used to estimate population divergence histories
+-   Comparing alternative models of divergence is useful BUT...
+-   Remember all models are wrong...
 
 ## Seven sins of classical PCA
 
