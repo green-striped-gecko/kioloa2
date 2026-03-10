@@ -292,8 +292,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#step-1-define-populations-and-visualise-sampling-locations" id="toc-step-1-define-populations-and-visualise-sampling-locations" class="nav-link" data-scroll-target="#step-1-define-populations-and-visualise-sampling-locations">Step 1: Define populations and visualise sampling locations</a></li>
   <li><a href="#step-2-test-isolation-by-distance-ibd" id="toc-step-2-test-isolation-by-distance-ibd" class="nav-link" data-scroll-target="#step-2-test-isolation-by-distance-ibd">Step 2: Test Isolation by Distance (IBD)</a></li>
+  <li><a href="#do-the-results-suggest-that-dispersal-is-spatially-limited" id="toc-do-the-results-suggest-that-dispersal-is-spatially-limited" class="nav-link" data-scroll-target="#do-the-results-suggest-that-dispersal-is-spatially-limited">Do the results suggest that dispersal is spatially limited?</a></li>
   <li><a href="#step-3-visualise-population-genetic-structure-with-pcoa" id="toc-step-3-visualise-population-genetic-structure-with-pcoa" class="nav-link" data-scroll-target="#step-3-visualise-population-genetic-structure-with-pcoa">Step 3: Visualise population genetic structure with PCoA</a></li>
+  <li><a href="#what-do-the-pcoa-patterns-suggest" id="toc-what-do-the-pcoa-patterns-suggest" class="nav-link" data-scroll-target="#what-do-the-pcoa-patterns-suggest">What do the PCoA patterns suggest?</a></li>
   <li><a href="#step-4-test-isolation-by-barrier-ibb-with-tess3" id="toc-step-4-test-isolation-by-barrier-ibb-with-tess3" class="nav-link" data-scroll-target="#step-4-test-isolation-by-barrier-ibb-with-tess3">Step 4: Test Isolation by Barrier (IBB) with TESS3</a></li>
+  <li><a href="#what-does-the-bar-chart-of-ancestry-proportions-suggest" id="toc-what-does-the-bar-chart-of-ancestry-proportions-suggest" class="nav-link" data-scroll-target="#what-does-the-bar-chart-of-ancestry-proportions-suggest">What does the bar chart of ancestry proportions suggest?</a></li>
   <li><a href="#step-5-test-isolation-by-resistance-ibr" id="toc-step-5-test-isolation-by-resistance-ibr" class="nav-link" data-scroll-target="#step-5-test-isolation-by-resistance-ibr">Step 5: Test Isolation by Resistance (IBR)</a></li>
   </ul></li>
   <li><a href="#worked-example-2" id="toc-worked-example-2" class="nav-link" data-scroll-target="#worked-example-2">Worked example 2</a>
@@ -343,9 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="w11-landscape-genetics" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="w11-landscape-genetics">W11 Landscape genetics</h2>
-<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
-<p><img src="images/robyn.png" width="200"> <img src="images/cynthia.png" width="200"> <img src="images/zoe.png" width="200"></p>
-</div>
+<p><img src="images/robyn.png" class="class" width="200" height="200"> <img src="images/cynthia.png" class="class" width="200" height="200"> <img src="images/zoe.png" class="class" width="200" height="200"></p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -353,15 +354,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><strong>IBD</strong> – Isolation by Distance</p>
 <ul>
-<li>dispersal is spatially limited</li>
+<li>dispersal is spatially limited.</li>
 </ul></li>
 <li><p><strong>IBB</strong> – Isolation by Barrier</p>
 <ul>
-<li>dispersal is restricted by barriers</li>
+<li>dispersal is restricted by barriers.</li>
 </ul></li>
 <li><p><strong>IBR</strong> – Isolation by Resistance</p>
 <ul>
-<li>dispersal is influenced by landscape/seascape heterogeneity/permeability</li>
+<li>dispersal is influenced by landscape/seascape heterogeneity/permeability.</li>
 </ul></li>
 </ol>
 <section id="what-youll-do-in-this-tutorial" class="level3">
@@ -371,11 +372,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use PCoA to visualise structure</p></li>
 <li><p>Run TESS3 to explore IBB, and estimate ancestry coefficients with spatial information</p></li>
 <li><p>Compute commute distance from a resistance surface and test IBR using MLPE</p></li>
+<li><p>Estimate generational dispersal distances and build a dispersal kernel</p></li>
 </ul>
 </section>
 <section id="learning-outcomes" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
-<p>The goal of this turorial is to:</p>
+<p>The goal of this tutorial is to:</p>
 <ol type="1">
 <li><p>Understand each of these hypotheses</p></li>
 <li><p>Compare their explanatory power</p></li>
@@ -394,16 +396,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Test landscape resistance using MLPE (IBR)</p></li>
 <li><p>Compare hypotheses using model selection</p></li>
 <li><p>Introduce the second worked example (corals – Maldives)</p></li>
+<li><p>Estimate mean σ, the axial distance between parent and offspring</p></li>
+<li><p>Estimate effective neighborhood size</p></li>
+<li><p>Build dispersal kernel and visualise dispersal probability in space</p></li>
 </ol>
 </section>
 </section>
 <section id="worked-example-1" class="level2">
 <h2 class="anchored" data-anchor-id="worked-example-1">Worked example 1</h2>
 <p>This example is based on the Northern quoll in the Pilbara (Western Australia). The full study can be found here: Shaw et al.&nbsp;2023: <a href="https://doi.org/10.1111/cobi.13989" class="uri">https://doi.org/10.1111/cobi.13989</a></p>
-<p>Landscape genetics asks:</p>
-<p>What processes shape spatial genetic structure?</p>
-<p>In Pilbara northern quolls dispersal is relatively high, there are no obvious mountain barriers, but environmental heterogeneity may influence connectivity.</p>
-<p>We will now test this explicitly.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/quoll.png" class="img-fluid figure-img" width="800"></p>
+<figcaption><em><strong>Northern quoll life cycle and movement ecology.</strong> Each stage has different environmental requirements and dispersal behaviours, ranging from juvenile natal dispersal, to adult territory use and mate searching. These processes shape spatial genetic structure across the landscape, highlighting the importance of grounding landscape genetic hypotheses in realistic biological mechanisms.</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is landscape genetics?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Landscape genetics asks: What processes shape spatial genetic structure?</p>
+<p>In the Pilbara, northern quoll dispersal is relatively high and there are no obvious landscape barriers. However, environmental heterogeneity may influence connectivity. In this worked example, we will test this explicitly.</p>
+</div>
+</div>
 <section id="setup" class="level4">
 <h4 class="anchored" data-anchor-id="setup">Setup</h4>
 <p>Packages used in this tutorial:</p>
@@ -424,14 +445,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This data set has been subsampled to reduce computation time</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: this data set has been subsampled to reduce computation time</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Quolls.gl <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/Quolls.gl.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-1-define-populations-and-visualise-sampling-locations" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-define-populations-and-visualise-sampling-locations">Step 1: Define populations and visualise sampling locations</h3>
 <p>Before we do any modelling, it’s worth getting a feel for the sampling design. Where are the samples? Are there obvious gaps? Are some areas heavily sampled and others sparse? This matters because spatial analyses can be very sensitive to uneven sampling.</p>
-<p>In many continuous systems there aren’t obvious “populations.” However, it can still be useful to create artificial groupings for initial data exploration and visualisation. In this dataset we’re using a 20 km buffer grouping as a simple “population”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare the data for mapping</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pts_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
@@ -442,118 +462,188 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure colour pallette is stable for pops</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>pop_levels <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">as.character</span>(pts_df<span class="sc">$</span>pop)))</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>pts_df<span class="sc">$</span>pop <span class="ot">&lt;-</span> <span class="fu">factor</span>(pts_df<span class="sc">$</span>pop, <span class="at">levels =</span> pop_levels)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">viridis</span>(<span class="fu">length</span>(pop_levels))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cols) <span class="ot">&lt;-</span> pop_levels</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualise sampling distribution across the Pilbara.</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorFactor</span>(<span class="at">palette =</span> cols, <span class="at">domain =</span> pop_levels)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure colour pallette is stable so that the same population</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># always has the same colour</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>pop_levels <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">as.character</span>(pts_df<span class="sc">$</span>pop)))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>pts_df<span class="sc">$</span>pop <span class="ot">&lt;-</span> <span class="fu">factor</span>(pts_df<span class="sc">$</span>pop, <span class="at">levels =</span> pop_levels)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">viridis</span>(<span class="fu">length</span>(pop_levels))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(cols) <span class="ot">&lt;-</span> pop_levels</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualise sampling distribution across the Pilbara using the </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># leaflet package, for interactive maps</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorFactor</span>(<span class="at">palette =</span> cols, <span class="at">domain =</span> pop_levels)</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(pts_df) <span class="sc">|&gt;</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>lon, <span class="at">lat =</span> <span class="sc">~</span>lat,</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">5</span>,</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">stroke =</span> <span class="cn">TRUE</span>, <span class="at">weight =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">pal</span>(pop), <span class="at">fillOpacity =</span> <span class="fl">0.85</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste0</span>(<span class="st">"&lt;b&gt;"</span>, ind, <span class="st">"&lt;/b&gt;&lt;br&gt;Pop: "</span>, pop)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"bottomright"</span>,</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">pal =</span> pal,</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="sc">~</span>pop,</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Population (Buffer_20km)"</span>,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="dv">1</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(pts_df) <span class="sc">|&gt;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>lon, <span class="at">lat =</span> <span class="sc">~</span>lat,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">5</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">stroke =</span> <span class="cn">TRUE</span>, <span class="at">weight =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">pal</span>(pop), <span class="at">fillOpacity =</span> <span class="fl">0.85</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste0</span>(<span class="st">"&lt;b&gt;"</span>, ind, <span class="st">"&lt;/b&gt;&lt;br&gt;Pop: "</span>, pop)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"bottomright"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">pal =</span> pal,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="sc">~</span>pop,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Population (Buffer_20km)"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="dv">1</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-933fd1ec7894e8cff469" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-933fd1ec7894e8cff469">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[-20.43762213,-20.50292001,-20.45468951,-20.50227942,-20.5129243,-20.45519438,-20.50116416,-20.45524565,-21.1742,-21.1656,-21.6094,-21.2124,-21.99548,-21.1653444,-21.1544694,-21.146625,-21.1358861,-21.1127222,-21.6074722,-21.5964444,-20.6810278,-20.6813611,-20.6812778,-20.6811111,-20.6808056,-20.4729167,-20.4738611,-20.3910278,-20.39375,-20.3939722,-20.3934722,-20.3930833,-20.3926667,-20.9193333,-20.9200556,-20.9201389,-20.9194444,-20.9574444,-21.35132899,-20.45580503,-20.448503,-20.497562,-21.77477896,-21.77271802,-22.0966,-22.09745,-22.09662,-21.84405,-21.78438999,-21.75297981,-21.77173994,-21.14653,-21.14635,-21.08828,-21.15287,-21.19321,-21.14582,-21.14934,-21.19684,-21.08626,-20.734817,-20.68144,-20.68071,-20.39181,-22.013848,-21.79902,-21.786242,-21.797111,-21.797203,-21.478777,-21.481725,-21.482287,-21.69021,-21.688592,-21.690379,-21.694179,-22.011,-22.01012,-22.052558,-22.039309,-21.98904304,-21.615736,-21.33392103,-21.33058185,-20.50552,-20.5296,-20.5291,-21.3994,-20.96974,-20.7272,-20.3388,-20.9816,-20.03331,-20.9692,-20.80153,-21.16889,-21.14889,-21.19778,-21.17111,-22.5051,-22.5869,-22.09889,-22.04139,-22.04083,-22.04056,-21.93667,-21.93767,-22.47732804,-22.47574101,-22.48075599,-21.70945392,-21.68847944,-21.67344322,-21.5930556,-20.45723332,-20.48227683,-20.50821965,-20.4551211,-20.45539576,-20.45393632,-20.45497358,-21.1942,-21.1656,-21.2499,-21.2285,-21.2729,-21.2873,-21.1277083,-20.5208333,-20.5327778,-20.5497222,-20.5486111,-20.6822222,-20.6816667,-21.4877778,-21.4877778,-22.3538889,-21.78422,-21.72860742,-21.80915399,-21.80924996,-21.81292199,-21.79496099,-21.79461197,-21.76917675,-21.78337997,-21.82006597,-21.7287199,-21.74159895,-21.842698,-21.77895558,-21.809825,-21.77439792,-21.691895,-21.689725,-22.037695,-22.18236602,-22.18081403,-21.18300201,-20.935597,-20.29013604,-20.29253502,-20.29067097,-20.88284204,-20.88316499,-20.88387301,-20.88384703,-20.88535602,-20.88452102,-20.88096902,-20.87569202,-20.87521099,-20.87649602,-20.8759061,-20.88096902,-21.2504563,-21.25822331,-21.25799218,-21.24463569,-21.18800902,-20.88540397,-22.18097697,-22.18259803,-22.18082098,-21.73446816,-21.72046906,-21.18864538,-21.28712192,-21.27231872,-21.25498924],[118.8431876,118.8258183,118.8289203,118.8256632,118.826508,118.8260471,118.825765,118.8327215,119.0538,119.1061,118.8253,119.0382,118.8069,119.1096944,119.0852972,119.0947278,119.1231556,119.1127222,120.0985833,120.1111389,120.3066111,120.3073611,120.3085556,120.3066667,120.3085,120.1153056,120.1156389,120.0384444,120.0359444,120.0365278,120.0385278,120.0385833,120.0380278,118.6853056,118.6858611,118.6841944,118.6831944,118.6961111,120.475953,118.816961,118.7738377,118.8240509,117.911578,117.920635,119.2371,119.23656,119.23706,116.086406,116.1496599,116.0165271,116.1592249,116.21612,116.21632,116.25264,116.25345,116.23553,116.21691,116.21376,116.25483,116.25597,116.846368,120.30688,120.30811,120.03847,116.533176,116.159946,116.134639,116.159415,116.159628,117.914488,117.914938,117.915391,117.863437,117.868643,117.868146,117.85919,116.532,116.48648,116.553632,116.553333,115.56981,120.076817,117.240584,117.2393083,118.628566,118.649695,118.6494,118.9042,118.75231,116.98541,119.1238,118.73626,119.19054,118.75178,118.64848,118.64972,119.10806,118.655,118.65083,118.9388,119.0911,117.8775,118.74722,118.74889,118.74917,116.12767,116.13733,118.562863,118.562164,118.564248,116.4783567,116.4912503,116.4036452,120.1103056,118.9309811,118.8310139,118.8267037,118.9242276,118.8375417,118.7790742,118.841708,119.0259,119.054,119.0518,119.0376,119.054,119.0561,119.1379972,118.6891667,120.1594444,120.2408333,120.2402778,120.3105556,120.3116667,119.1338889,119.1336111,116.3277778,116.156425,115.957545,116.165388,116.1648298,116.1662879,116.0986509,116.0925219,116.0154788,116.156684,116.108757,115.9585818,116.1405129,116.084481,116.1451459,116.168154,116.1643412,117.860076,117.865248,116.509284,116.27203,116.273275,117.953743,118.463889,119.105868,119.112099,119.10634,120.118579,120.118278,120.118,120.118497,120.120658,120.118883,118.585841,118.584378,118.58141,118.587414,118.5873215,118.586539,119.0518658,119.0555477,119.0552458,119.0824378,119.1037714,120.11976,116.273209,116.275602,116.268086,116.1772623,116.1744125,119.10515,119.0574259,119.0538477,119.0537614],5,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":1,"opacity":0.5,"fill":true,"fillColor":["#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#8FD744","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#C7E020","#C7E020","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#481F70","#FDE725","#FDE725","#FDE725","#5DC863","#5DC863","#21908C","#21908C","#21908C","#35B779","#35B779","#35B779","#35B779","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#287C8E","#31688E","#31688E","#31688E","#35B779","#35B779","#35B779","#35B779","#35B779","#5DC863","#5DC863","#5DC863","#5DC863","#5DC863","#5DC863","#5DC863","#35B779","#35B779","#35B779","#35B779","#20A486","#C7E020","#443A83","#443A83","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#287C8E","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#440154","#440154","#5DC863","#8FD744","#8FD744","#8FD744","#35B779","#35B779","#440154","#440154","#440154","#35B779","#35B779","#35B779","#C7E020","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#31688E","#31688E","#31688E","#31688E","#31688E","#FDE725","#FDE725","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#5DC863","#5DC863","#35B779","#35B779","#35B779","#5DC863","#FDE725","#FDE725","#FDE725","#FDE725","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#31688E","#35B779","#35B779","#35B779","#35B779","#35B779","#FDE725","#FDE725","#FDE725","#FDE725"],"fillOpacity":0.85},null,null,["<b>Dh_11.285<\/b><br>Pop: 9","<b>Dh_11.292<\/b><br>Pop: 9","<b>Dh_11.307<\/b><br>Pop: 9","<b>Dh_11.309<\/b><br>Pop: 9","<b>Dh_11.310<\/b><br>Pop: 9","<b>Dh_11.335<\/b><br>Pop: 9","<b>Dh_11.337<\/b><br>Pop: 9","<b>Dh_11.338<\/b><br>Pop: 9","<b>Dh_11.401<\/b><br>Pop: 9","<b>Dh_11.402<\/b><br>Pop: 9","<b>Dh_11.404<\/b><br>Pop: 9","<b>Dh_11.405<\/b><br>Pop: 9","<b>Dh_12.066<\/b><br>Pop: 7","<b>Dh_12.071<\/b><br>Pop: 9","<b>Dh_12.079<\/b><br>Pop: 9","<b>Dh_12.082<\/b><br>Pop: 9","<b>Dh_12.084<\/b><br>Pop: 9","<b>Dh_12.325<\/b><br>Pop: 9","<b>Dh_12.331<\/b><br>Pop: 8","<b>Dh_12.339<\/b><br>Pop: 8","<b>Dh_12.385<\/b><br>Pop: 13","<b>Dh_12.387<\/b><br>Pop: 13","<b>Dh_12.390<\/b><br>Pop: 13","<b>Dh_12.391<\/b><br>Pop: 13","<b>Dh_12.393<\/b><br>Pop: 13","<b>Dh_12.394<\/b><br>Pop: 13","<b>Dh_12.395<\/b><br>Pop: 13","<b>Dh_12.396<\/b><br>Pop: 13","<b>Dh_12.397<\/b><br>Pop: 13","<b>Dh_12.399<\/b><br>Pop: 13","<b>Dh_12.400<\/b><br>Pop: 13","<b>Dh_12.401<\/b><br>Pop: 13","<b>Dh_12.402<\/b><br>Pop: 13","<b>Dh_12.403<\/b><br>Pop: 9","<b>Dh_12.404<\/b><br>Pop: 9","<b>Dh_12.406<\/b><br>Pop: 9","<b>Dh_12.407<\/b><br>Pop: 9","<b>Dh_12.410<\/b><br>Pop: 9","<b>Dh_16.075<\/b><br>Pop: 10","<b>Dh_16.080<\/b><br>Pop: 9","<b>Dh_16.084<\/b><br>Pop: 9","<b>Dh_16.087<\/b><br>Pop: 9","<b>Dh_16.088<\/b><br>Pop: 6","<b>Dh_16.092<\/b><br>Pop: 6","<b>Dh_16.098<\/b><br>Pop: 3","<b>Dh_16.100<\/b><br>Pop: 3","<b>Dh_16.103<\/b><br>Pop: 3","<b>Dh_16.105<\/b><br>Pop: 5","<b>Dh_16.111<\/b><br>Pop: 5","<b>Dh_16.112<\/b><br>Pop: 5","<b>Dh_16.114<\/b><br>Pop: 5","<b>Dh_16.143<\/b><br>Pop: 12","<b>Dh_16.145<\/b><br>Pop: 12","<b>Dh_16.146<\/b><br>Pop: 12","<b>Dh_16.148<\/b><br>Pop: 12","<b>Dh_16.149<\/b><br>Pop: 12","<b>Dh_16.152<\/b><br>Pop: 12","<b>Dh_16.155<\/b><br>Pop: 12","<b>Dh_16.158<\/b><br>Pop: 12","<b>Dh_16.159<\/b><br>Pop: 12","<b>Dh_16.183<\/b><br>Pop: 14","<b>Dh_16.200<\/b><br>Pop: 13","<b>Dh_16.203<\/b><br>Pop: 13","<b>Dh_16.207<\/b><br>Pop: 13","<b>Dh_16.229<\/b><br>Pop: 5","<b>Dh_16.230<\/b><br>Pop: 5","<b>Dh_16.231<\/b><br>Pop: 5","<b>Dh_16.233<\/b><br>Pop: 5","<b>Dh_16.236<\/b><br>Pop: 5","<b>Dh_16.239<\/b><br>Pop: 6","<b>Dh_16.241<\/b><br>Pop: 6","<b>Dh_16.242<\/b><br>Pop: 6","<b>Dh_16.251<\/b><br>Pop: 6","<b>Dh_16.253<\/b><br>Pop: 6","<b>Dh_16.255<\/b><br>Pop: 6","<b>Dh_16.256<\/b><br>Pop: 6","<b>Dh_16.257<\/b><br>Pop: 5","<b>Dh_16.260<\/b><br>Pop: 5","<b>Dh_16.261<\/b><br>Pop: 5","<b>Dh_16.263<\/b><br>Pop: 5","<b>Dh_16.270<\/b><br>Pop: 4","<b>Dh_16.281<\/b><br>Pop: 8","<b>Dh_16.285<\/b><br>Pop: 11","<b>Dh_16.286<\/b><br>Pop: 11","<b>Dh_16.352<\/b><br>Pop: 9","<b>Dh_16.353<\/b><br>Pop: 9","<b>Dh_16.421<\/b><br>Pop: 9","<b>Dh_16.426<\/b><br>Pop: 9","<b>Dh_16.435<\/b><br>Pop: 9","<b>Dh_16.440<\/b><br>Pop: 14","<b>Dh_16.441<\/b><br>Pop: 9","<b>Dh_16.443<\/b><br>Pop: 9","<b>Dh_16.445<\/b><br>Pop: 9","<b>Dh_16.447<\/b><br>Pop: 9","<b>Dh_16.450<\/b><br>Pop: 9","<b>Dh_16.465<\/b><br>Pop: 9","<b>Dh_16.467<\/b><br>Pop: 9","<b>Dh_16.468<\/b><br>Pop: 9","<b>Dh_16.473<\/b><br>Pop: 9","<b>Dh_16.479<\/b><br>Pop: 1","<b>Dh_16.480<\/b><br>Pop: 1","<b>Dh_16.493<\/b><br>Pop: 6","<b>Dh_16.496<\/b><br>Pop: 7","<b>Dh_16.497<\/b><br>Pop: 7","<b>Dh_16.498<\/b><br>Pop: 7","<b>Dh_16.554<\/b><br>Pop: 5","<b>Dh_16.555<\/b><br>Pop: 5","<b>Dh_16.881<\/b><br>Pop: 1","<b>Dh_16.882<\/b><br>Pop: 1","<b>Dh_16.883<\/b><br>Pop: 1","<b>Dh_17.053<\/b><br>Pop: 5","<b>Dh_17.055<\/b><br>Pop: 5","<b>Dh_17.056<\/b><br>Pop: 5","<b>Dh_2012.088<\/b><br>Pop: 8","<b>Dh_11.306<\/b><br>Pop: 9","<b>Dh_11.313<\/b><br>Pop: 9","<b>Dh_11.314<\/b><br>Pop: 9","<b>Dh_11.326<\/b><br>Pop: 9","<b>Dh_11.329<\/b><br>Pop: 9","<b>Dh_11.330<\/b><br>Pop: 9","<b>Dh_11.333<\/b><br>Pop: 9","<b>Dh_11.397<\/b><br>Pop: 9","<b>Dh_11.400<\/b><br>Pop: 9","<b>Dh_11.409<\/b><br>Pop: 9","<b>Dh_11.411<\/b><br>Pop: 9","<b>Dh_11.412<\/b><br>Pop: 9","<b>Dh_11.413<\/b><br>Pop: 9","<b>Dh_12.087<\/b><br>Pop: 9","<b>Dh_12.260<\/b><br>Pop: 9","<b>Dh_12.277<\/b><br>Pop: 13","<b>Dh_12.279<\/b><br>Pop: 13","<b>Dh_12.284<\/b><br>Pop: 13","<b>Dh_12.285<\/b><br>Pop: 13","<b>Dh_12.292<\/b><br>Pop: 13","<b>Dh_12.296<\/b><br>Pop: 9","<b>Dh_12.297<\/b><br>Pop: 9","<b>Dh_12.344<\/b><br>Pop: 5","<b>Dh_16.107<\/b><br>Pop: 5","<b>Dh_16.117<\/b><br>Pop: 5","<b>Dh_16.118<\/b><br>Pop: 5","<b>Dh_16.120<\/b><br>Pop: 5","<b>Dh_16.121<\/b><br>Pop: 5","<b>Dh_16.123<\/b><br>Pop: 5","<b>Dh_16.125<\/b><br>Pop: 5","<b>Dh_16.128<\/b><br>Pop: 5","<b>Dh_16.129<\/b><br>Pop: 5","<b>Dh_16.132<\/b><br>Pop: 5","<b>Dh_16.134<\/b><br>Pop: 5","<b>Dh_16.135<\/b><br>Pop: 5","<b>Dh_16.137<\/b><br>Pop: 5","<b>Dh_16.138<\/b><br>Pop: 5","<b>Dh_16.139<\/b><br>Pop: 5","<b>Dh_16.140<\/b><br>Pop: 5","<b>Dh_16.249<\/b><br>Pop: 6","<b>Dh_16.254<\/b><br>Pop: 6","<b>Dh_16.266<\/b><br>Pop: 5","<b>Dh_16.267<\/b><br>Pop: 5","<b>Dh_16.268<\/b><br>Pop: 5","<b>Dh_16.274<\/b><br>Pop: 6","<b>Dh_16.279<\/b><br>Pop: 9","<b>Dh_16.319<\/b><br>Pop: 9","<b>Dh_16.320<\/b><br>Pop: 9","<b>Dh_16.321<\/b><br>Pop: 9","<b>Dh_16.322<\/b><br>Pop: 13","<b>Dh_16.323<\/b><br>Pop: 13","<b>Dh_16.324<\/b><br>Pop: 13","<b>Dh_16.325<\/b><br>Pop: 13","<b>Dh_16.326<\/b><br>Pop: 13","<b>Dh_16.327<\/b><br>Pop: 13","<b>Dh_16.333<\/b><br>Pop: 9","<b>Dh_16.337<\/b><br>Pop: 9","<b>Dh_16.338<\/b><br>Pop: 9","<b>Dh_16.342<\/b><br>Pop: 9","<b>Dh_16.343<\/b><br>Pop: 9","<b>Dh_16.347<\/b><br>Pop: 9","<b>Dh_16.859<\/b><br>Pop: 9","<b>Dh_16.860<\/b><br>Pop: 9","<b>Dh_16.861<\/b><br>Pop: 9","<b>Dh_16.863<\/b><br>Pop: 9","<b>Dh_16.866<\/b><br>Pop: 9","<b>Dh_16.898<\/b><br>Pop: 13","<b>Dh_16.905<\/b><br>Pop: 5","<b>Dh_16.906<\/b><br>Pop: 5","<b>Dh_16.908<\/b><br>Pop: 5","<b>Dh_17.052<\/b><br>Pop: 5","<b>Dh_17.057<\/b><br>Pop: 5","<b>Dh_17.078<\/b><br>Pop: 9","<b>Dh_17.079<\/b><br>Pop: 9","<b>Dh_17.088_MT<\/b><br>Pop: 9","<b>Dh_17.093<\/b><br>Pop: 9"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#440154","#481F70","#443A83","#3B528B","#31688E","#287C8E","#21908C","#20A486","#35B779","#5DC863","#8FD744","#C7E020","#FDE725"],"labels":["1","10","11","12","13","14","3","4","5","6","7","8","9"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"factor","title":"Population (Buffer_20km)","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[-22.5869,-20.03331],"lng":[115.56981,120.475953]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-e391eb9fe783f4dd9349" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-e391eb9fe783f4dd9349">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[-20.43762213,-20.50292001,-20.45468951,-20.50227942,-20.5129243,-20.45519438,-20.50116416,-20.45524565,-21.1742,-21.1656,-21.6094,-21.2124,-21.99548,-21.1653444,-21.1544694,-21.146625,-21.1358861,-21.1127222,-21.6074722,-21.5964444,-20.6810278,-20.6813611,-20.6812778,-20.6811111,-20.6808056,-20.4729167,-20.4738611,-20.3910278,-20.39375,-20.3939722,-20.3934722,-20.3930833,-20.3926667,-20.9193333,-20.9200556,-20.9201389,-20.9194444,-20.9574444,-21.35132899,-20.45580503,-20.448503,-20.497562,-21.77477896,-21.77271802,-22.0966,-22.09745,-22.09662,-21.84405,-21.78438999,-21.75297981,-21.77173994,-21.14653,-21.14635,-21.08828,-21.15287,-21.19321,-21.14582,-21.14934,-21.19684,-21.08626,-20.734817,-20.68144,-20.68071,-20.39181,-22.013848,-21.79902,-21.786242,-21.797111,-21.797203,-21.478777,-21.481725,-21.482287,-21.69021,-21.688592,-21.690379,-21.694179,-22.011,-22.01012,-22.052558,-22.039309,-21.98904304,-21.615736,-21.33392103,-21.33058185,-20.50552,-20.5296,-20.5291,-21.3994,-20.96974,-20.7272,-20.3388,-20.9816,-20.03331,-20.9692,-20.80153,-21.16889,-21.14889,-21.19778,-21.17111,-22.5051,-22.5869,-22.09889,-22.04139,-22.04083,-22.04056,-21.93667,-21.93767,-22.47732804,-22.47574101,-22.48075599,-21.70945392,-21.68847944,-21.67344322,-21.5930556,-20.45723332,-20.48227683,-20.50821965,-20.4551211,-20.45539576,-20.45393632,-20.45497358,-21.1942,-21.1656,-21.2499,-21.2285,-21.2729,-21.2873,-21.1277083,-20.5208333,-20.5327778,-20.5497222,-20.5486111,-20.6822222,-20.6816667,-21.4877778,-21.4877778,-22.3538889,-21.78422,-21.72860742,-21.80915399,-21.80924996,-21.81292199,-21.79496099,-21.79461197,-21.76917675,-21.78337997,-21.82006597,-21.7287199,-21.74159895,-21.842698,-21.77895558,-21.809825,-21.77439792,-21.691895,-21.689725,-22.037695,-22.18236602,-22.18081403,-21.18300201,-20.935597,-20.29013604,-20.29253502,-20.29067097,-20.88284204,-20.88316499,-20.88387301,-20.88384703,-20.88535602,-20.88452102,-20.88096902,-20.87569202,-20.87521099,-20.87649602,-20.8759061,-20.88096902,-21.2504563,-21.25822331,-21.25799218,-21.24463569,-21.18800902,-20.88540397,-22.18097697,-22.18259803,-22.18082098,-21.73446816,-21.72046906,-21.18864538,-21.28712192,-21.27231872,-21.25498924],[118.8431876,118.8258183,118.8289203,118.8256632,118.826508,118.8260471,118.825765,118.8327215,119.0538,119.1061,118.8253,119.0382,118.8069,119.1096944,119.0852972,119.0947278,119.1231556,119.1127222,120.0985833,120.1111389,120.3066111,120.3073611,120.3085556,120.3066667,120.3085,120.1153056,120.1156389,120.0384444,120.0359444,120.0365278,120.0385278,120.0385833,120.0380278,118.6853056,118.6858611,118.6841944,118.6831944,118.6961111,120.475953,118.816961,118.7738377,118.8240509,117.911578,117.920635,119.2371,119.23656,119.23706,116.086406,116.1496599,116.0165271,116.1592249,116.21612,116.21632,116.25264,116.25345,116.23553,116.21691,116.21376,116.25483,116.25597,116.846368,120.30688,120.30811,120.03847,116.533176,116.159946,116.134639,116.159415,116.159628,117.914488,117.914938,117.915391,117.863437,117.868643,117.868146,117.85919,116.532,116.48648,116.553632,116.553333,115.56981,120.076817,117.240584,117.2393083,118.628566,118.649695,118.6494,118.9042,118.75231,116.98541,119.1238,118.73626,119.19054,118.75178,118.64848,118.64972,119.10806,118.655,118.65083,118.9388,119.0911,117.8775,118.74722,118.74889,118.74917,116.12767,116.13733,118.562863,118.562164,118.564248,116.4783567,116.4912503,116.4036452,120.1103056,118.9309811,118.8310139,118.8267037,118.9242276,118.8375417,118.7790742,118.841708,119.0259,119.054,119.0518,119.0376,119.054,119.0561,119.1379972,118.6891667,120.1594444,120.2408333,120.2402778,120.3105556,120.3116667,119.1338889,119.1336111,116.3277778,116.156425,115.957545,116.165388,116.1648298,116.1662879,116.0986509,116.0925219,116.0154788,116.156684,116.108757,115.9585818,116.1405129,116.084481,116.1451459,116.168154,116.1643412,117.860076,117.865248,116.509284,116.27203,116.273275,117.953743,118.463889,119.105868,119.112099,119.10634,120.118579,120.118278,120.118,120.118497,120.120658,120.118883,118.585841,118.584378,118.58141,118.587414,118.5873215,118.586539,119.0518658,119.0555477,119.0552458,119.0824378,119.1037714,120.11976,116.273209,116.275602,116.268086,116.1772623,116.1744125,119.10515,119.0574259,119.0538477,119.0537614],5,null,null,{"interactive":true,"className":"","stroke":true,"color":"black","weight":1,"opacity":0.5,"fill":true,"fillColor":["#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#8FD744","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#C7E020","#C7E020","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#481F70","#FDE725","#FDE725","#FDE725","#5DC863","#5DC863","#21908C","#21908C","#21908C","#35B779","#35B779","#35B779","#35B779","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#3B528B","#287C8E","#31688E","#31688E","#31688E","#35B779","#35B779","#35B779","#35B779","#35B779","#5DC863","#5DC863","#5DC863","#5DC863","#5DC863","#5DC863","#5DC863","#35B779","#35B779","#35B779","#35B779","#20A486","#C7E020","#443A83","#443A83","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#287C8E","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#440154","#440154","#5DC863","#8FD744","#8FD744","#8FD744","#35B779","#35B779","#440154","#440154","#440154","#35B779","#35B779","#35B779","#C7E020","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#31688E","#31688E","#31688E","#31688E","#31688E","#FDE725","#FDE725","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#35B779","#5DC863","#5DC863","#35B779","#35B779","#35B779","#5DC863","#FDE725","#FDE725","#FDE725","#FDE725","#31688E","#31688E","#31688E","#31688E","#31688E","#31688E","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#FDE725","#31688E","#35B779","#35B779","#35B779","#35B779","#35B779","#FDE725","#FDE725","#FDE725","#FDE725"],"fillOpacity":0.85},null,null,["<b>Dh_11.285<\/b><br>Pop: 9","<b>Dh_11.292<\/b><br>Pop: 9","<b>Dh_11.307<\/b><br>Pop: 9","<b>Dh_11.309<\/b><br>Pop: 9","<b>Dh_11.310<\/b><br>Pop: 9","<b>Dh_11.335<\/b><br>Pop: 9","<b>Dh_11.337<\/b><br>Pop: 9","<b>Dh_11.338<\/b><br>Pop: 9","<b>Dh_11.401<\/b><br>Pop: 9","<b>Dh_11.402<\/b><br>Pop: 9","<b>Dh_11.404<\/b><br>Pop: 9","<b>Dh_11.405<\/b><br>Pop: 9","<b>Dh_12.066<\/b><br>Pop: 7","<b>Dh_12.071<\/b><br>Pop: 9","<b>Dh_12.079<\/b><br>Pop: 9","<b>Dh_12.082<\/b><br>Pop: 9","<b>Dh_12.084<\/b><br>Pop: 9","<b>Dh_12.325<\/b><br>Pop: 9","<b>Dh_12.331<\/b><br>Pop: 8","<b>Dh_12.339<\/b><br>Pop: 8","<b>Dh_12.385<\/b><br>Pop: 13","<b>Dh_12.387<\/b><br>Pop: 13","<b>Dh_12.390<\/b><br>Pop: 13","<b>Dh_12.391<\/b><br>Pop: 13","<b>Dh_12.393<\/b><br>Pop: 13","<b>Dh_12.394<\/b><br>Pop: 13","<b>Dh_12.395<\/b><br>Pop: 13","<b>Dh_12.396<\/b><br>Pop: 13","<b>Dh_12.397<\/b><br>Pop: 13","<b>Dh_12.399<\/b><br>Pop: 13","<b>Dh_12.400<\/b><br>Pop: 13","<b>Dh_12.401<\/b><br>Pop: 13","<b>Dh_12.402<\/b><br>Pop: 13","<b>Dh_12.403<\/b><br>Pop: 9","<b>Dh_12.404<\/b><br>Pop: 9","<b>Dh_12.406<\/b><br>Pop: 9","<b>Dh_12.407<\/b><br>Pop: 9","<b>Dh_12.410<\/b><br>Pop: 9","<b>Dh_16.075<\/b><br>Pop: 10","<b>Dh_16.080<\/b><br>Pop: 9","<b>Dh_16.084<\/b><br>Pop: 9","<b>Dh_16.087<\/b><br>Pop: 9","<b>Dh_16.088<\/b><br>Pop: 6","<b>Dh_16.092<\/b><br>Pop: 6","<b>Dh_16.098<\/b><br>Pop: 3","<b>Dh_16.100<\/b><br>Pop: 3","<b>Dh_16.103<\/b><br>Pop: 3","<b>Dh_16.105<\/b><br>Pop: 5","<b>Dh_16.111<\/b><br>Pop: 5","<b>Dh_16.112<\/b><br>Pop: 5","<b>Dh_16.114<\/b><br>Pop: 5","<b>Dh_16.143<\/b><br>Pop: 12","<b>Dh_16.145<\/b><br>Pop: 12","<b>Dh_16.146<\/b><br>Pop: 12","<b>Dh_16.148<\/b><br>Pop: 12","<b>Dh_16.149<\/b><br>Pop: 12","<b>Dh_16.152<\/b><br>Pop: 12","<b>Dh_16.155<\/b><br>Pop: 12","<b>Dh_16.158<\/b><br>Pop: 12","<b>Dh_16.159<\/b><br>Pop: 12","<b>Dh_16.183<\/b><br>Pop: 14","<b>Dh_16.200<\/b><br>Pop: 13","<b>Dh_16.203<\/b><br>Pop: 13","<b>Dh_16.207<\/b><br>Pop: 13","<b>Dh_16.229<\/b><br>Pop: 5","<b>Dh_16.230<\/b><br>Pop: 5","<b>Dh_16.231<\/b><br>Pop: 5","<b>Dh_16.233<\/b><br>Pop: 5","<b>Dh_16.236<\/b><br>Pop: 5","<b>Dh_16.239<\/b><br>Pop: 6","<b>Dh_16.241<\/b><br>Pop: 6","<b>Dh_16.242<\/b><br>Pop: 6","<b>Dh_16.251<\/b><br>Pop: 6","<b>Dh_16.253<\/b><br>Pop: 6","<b>Dh_16.255<\/b><br>Pop: 6","<b>Dh_16.256<\/b><br>Pop: 6","<b>Dh_16.257<\/b><br>Pop: 5","<b>Dh_16.260<\/b><br>Pop: 5","<b>Dh_16.261<\/b><br>Pop: 5","<b>Dh_16.263<\/b><br>Pop: 5","<b>Dh_16.270<\/b><br>Pop: 4","<b>Dh_16.281<\/b><br>Pop: 8","<b>Dh_16.285<\/b><br>Pop: 11","<b>Dh_16.286<\/b><br>Pop: 11","<b>Dh_16.352<\/b><br>Pop: 9","<b>Dh_16.353<\/b><br>Pop: 9","<b>Dh_16.421<\/b><br>Pop: 9","<b>Dh_16.426<\/b><br>Pop: 9","<b>Dh_16.435<\/b><br>Pop: 9","<b>Dh_16.440<\/b><br>Pop: 14","<b>Dh_16.441<\/b><br>Pop: 9","<b>Dh_16.443<\/b><br>Pop: 9","<b>Dh_16.445<\/b><br>Pop: 9","<b>Dh_16.447<\/b><br>Pop: 9","<b>Dh_16.450<\/b><br>Pop: 9","<b>Dh_16.465<\/b><br>Pop: 9","<b>Dh_16.467<\/b><br>Pop: 9","<b>Dh_16.468<\/b><br>Pop: 9","<b>Dh_16.473<\/b><br>Pop: 9","<b>Dh_16.479<\/b><br>Pop: 1","<b>Dh_16.480<\/b><br>Pop: 1","<b>Dh_16.493<\/b><br>Pop: 6","<b>Dh_16.496<\/b><br>Pop: 7","<b>Dh_16.497<\/b><br>Pop: 7","<b>Dh_16.498<\/b><br>Pop: 7","<b>Dh_16.554<\/b><br>Pop: 5","<b>Dh_16.555<\/b><br>Pop: 5","<b>Dh_16.881<\/b><br>Pop: 1","<b>Dh_16.882<\/b><br>Pop: 1","<b>Dh_16.883<\/b><br>Pop: 1","<b>Dh_17.053<\/b><br>Pop: 5","<b>Dh_17.055<\/b><br>Pop: 5","<b>Dh_17.056<\/b><br>Pop: 5","<b>Dh_2012.088<\/b><br>Pop: 8","<b>Dh_11.306<\/b><br>Pop: 9","<b>Dh_11.313<\/b><br>Pop: 9","<b>Dh_11.314<\/b><br>Pop: 9","<b>Dh_11.326<\/b><br>Pop: 9","<b>Dh_11.329<\/b><br>Pop: 9","<b>Dh_11.330<\/b><br>Pop: 9","<b>Dh_11.333<\/b><br>Pop: 9","<b>Dh_11.397<\/b><br>Pop: 9","<b>Dh_11.400<\/b><br>Pop: 9","<b>Dh_11.409<\/b><br>Pop: 9","<b>Dh_11.411<\/b><br>Pop: 9","<b>Dh_11.412<\/b><br>Pop: 9","<b>Dh_11.413<\/b><br>Pop: 9","<b>Dh_12.087<\/b><br>Pop: 9","<b>Dh_12.260<\/b><br>Pop: 9","<b>Dh_12.277<\/b><br>Pop: 13","<b>Dh_12.279<\/b><br>Pop: 13","<b>Dh_12.284<\/b><br>Pop: 13","<b>Dh_12.285<\/b><br>Pop: 13","<b>Dh_12.292<\/b><br>Pop: 13","<b>Dh_12.296<\/b><br>Pop: 9","<b>Dh_12.297<\/b><br>Pop: 9","<b>Dh_12.344<\/b><br>Pop: 5","<b>Dh_16.107<\/b><br>Pop: 5","<b>Dh_16.117<\/b><br>Pop: 5","<b>Dh_16.118<\/b><br>Pop: 5","<b>Dh_16.120<\/b><br>Pop: 5","<b>Dh_16.121<\/b><br>Pop: 5","<b>Dh_16.123<\/b><br>Pop: 5","<b>Dh_16.125<\/b><br>Pop: 5","<b>Dh_16.128<\/b><br>Pop: 5","<b>Dh_16.129<\/b><br>Pop: 5","<b>Dh_16.132<\/b><br>Pop: 5","<b>Dh_16.134<\/b><br>Pop: 5","<b>Dh_16.135<\/b><br>Pop: 5","<b>Dh_16.137<\/b><br>Pop: 5","<b>Dh_16.138<\/b><br>Pop: 5","<b>Dh_16.139<\/b><br>Pop: 5","<b>Dh_16.140<\/b><br>Pop: 5","<b>Dh_16.249<\/b><br>Pop: 6","<b>Dh_16.254<\/b><br>Pop: 6","<b>Dh_16.266<\/b><br>Pop: 5","<b>Dh_16.267<\/b><br>Pop: 5","<b>Dh_16.268<\/b><br>Pop: 5","<b>Dh_16.274<\/b><br>Pop: 6","<b>Dh_16.279<\/b><br>Pop: 9","<b>Dh_16.319<\/b><br>Pop: 9","<b>Dh_16.320<\/b><br>Pop: 9","<b>Dh_16.321<\/b><br>Pop: 9","<b>Dh_16.322<\/b><br>Pop: 13","<b>Dh_16.323<\/b><br>Pop: 13","<b>Dh_16.324<\/b><br>Pop: 13","<b>Dh_16.325<\/b><br>Pop: 13","<b>Dh_16.326<\/b><br>Pop: 13","<b>Dh_16.327<\/b><br>Pop: 13","<b>Dh_16.333<\/b><br>Pop: 9","<b>Dh_16.337<\/b><br>Pop: 9","<b>Dh_16.338<\/b><br>Pop: 9","<b>Dh_16.342<\/b><br>Pop: 9","<b>Dh_16.343<\/b><br>Pop: 9","<b>Dh_16.347<\/b><br>Pop: 9","<b>Dh_16.859<\/b><br>Pop: 9","<b>Dh_16.860<\/b><br>Pop: 9","<b>Dh_16.861<\/b><br>Pop: 9","<b>Dh_16.863<\/b><br>Pop: 9","<b>Dh_16.866<\/b><br>Pop: 9","<b>Dh_16.898<\/b><br>Pop: 13","<b>Dh_16.905<\/b><br>Pop: 5","<b>Dh_16.906<\/b><br>Pop: 5","<b>Dh_16.908<\/b><br>Pop: 5","<b>Dh_17.052<\/b><br>Pop: 5","<b>Dh_17.057<\/b><br>Pop: 5","<b>Dh_17.078<\/b><br>Pop: 9","<b>Dh_17.079<\/b><br>Pop: 9","<b>Dh_17.088_MT<\/b><br>Pop: 9","<b>Dh_17.093<\/b><br>Pop: 9"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#440154","#481F70","#443A83","#3B528B","#31688E","#287C8E","#21908C","#20A486","#35B779","#5DC863","#8FD744","#C7E020","#FDE725"],"labels":["1","10","11","12","13","14","3","4","5","6","7","8","9"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomright","type":"factor","title":"Population (Buffer_20km)","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[-22.5869,-20.03331],"lng":[115.56981,120.475953]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+What is a population?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In many continuous systems there aren’t obvious “populations”. However, it can still be useful to create artificial groupings for initial data exploration and visualisation.</p>
+</div>
+</div>
+<p>In this dataset, we’re using a 20 km buffer around samples to group nearby locations as a simple “population”.</p>
 </section>
 <section id="step-2-test-isolation-by-distance-ibd" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-test-isolation-by-distance-ibd">Step 2: Test Isolation by Distance (IBD)</h3>
 <p>First, let’s test the most basic hypothesis: does genetic distance increase with geographic distance?</p>
-<p>We’ll do this two ways. The population-based test uses Fst among groups (so it’s asking whether “groups that are farther apart are more differentiated”).</p>
+<p>We’ll do this two ways. The population-based test uses Fst among groups (so it’s asking whether groups that are farther apart are more differentiated).</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gl_ibd1 <span class="ot">&lt;-</span> <span class="fu">gl.ibd</span>(Quolls.gl, <span class="at">distance=</span><span class="st">"Fst"</span>, <span class="at">coordinates=</span> <span class="st">'xy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="W11_files/figure-html/gl_ibd1_plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="W11_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Do you think this is a sensible idea when the population is likely continuous?</p>
-<p>Alternatively, we can use an individual-based test, Here, we’re using Euclidean genetic distance among individuals.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show Mantel statistics</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gl_ibd1<span class="sc">$</span>mantel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mantel statistic based on Pearson's product-moment correlation 
+
+Call:
+vegan::mantel(xdis = Dgen, ydis = Dgeo, permutations = permutations,      na.rm = TRUE) 
+
+Mantel statistic r: 0.773 
+      Significance: 0.001 
+
+Upper quantiles of permutations (null model):
+  90%   95% 97.5%   99% 
+0.137 0.184 0.242 0.284 
+Permutation: free
+Number of permutations: 999</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Populations vs.&nbsp;individuals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>IBD tests often use pairwise population metrics like FST. This is useful when there are lots of samples and populations are well defined. However, there are often situations where we don’t have multiple samples per location, populations are difficult to define and/or individuals are more continuously distributed. In this case, we can use the individual as the unit of analysis.</p>
+<p>Where FST estimates represent evolutionary averages, pairwise individual genetic distances may represent more contemporary patterns of dispersal. Therefore, the approach you take depends on the species, your sampling, and the question you want to ask.</p>
+<p>One caveat is that population-based IBD tests can exaggerate spatial patterns when populations are artificially defined in a continuous landscape. If individuals are grouped into sites that do not represent true biological populations, allele frequency differences among groups can arise simply through spatial autocorrelation. This can inflate FST and produce an apparently strong IBD signal.</p>
+</div>
+</div>
+<p>For species like northern quolls in the Pilbara, where dispersal is relatively high and populations may be continuous, it is therefore useful to also examine individual-based IBD.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gl_ibd2 <span class="ot">&lt;-</span> <span class="fu">gl.ibd</span>(Quolls.gl, <span class="at">distance=</span><span class="st">"euclidean"</span>, <span class="at">coordinates=</span> <span class="st">'xy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="W11_files/figure-html/gl_ibd2_plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="W11_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>When you interpret this, it helps to keep two ideas in mind. First, significance is not the same as “strong.” With enough data, even a weak relationship can be statistically significant. Second, outliers can be informative - they’re often your first clue that something beyond pure distance is shaping connectivity.</p>
-<p>Q: Do the results suggest that dispersal is spatially limited?</p>
-<p>A: We can see a moderate pattern of IBD. This suggests that dispersal is limited by geographic distance, but northern quolls have high capacity for dispersal. We can also see some outliers, suggesting there’s more to the story.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show Mantel statistics</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gl_ibd2<span class="sc">$</span>mantel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mantel statistic based on Pearson's product-moment correlation 
+
+Call:
+vegan::mantel(xdis = Dgen, ydis = Dgeo, permutations = permutations,      na.rm = TRUE) 
+
+Mantel statistic r: 0.4791 
+      Significance: 0.001 
+
+Upper quantiles of permutations (null model):
+   90%    95%  97.5%    99% 
+0.0317 0.0412 0.0506 0.0592 
+Permutation: free
+Number of permutations: 999</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mantel test statistics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although a regression line is useful for visualising the relationship between geographic and genetic distance, we don’t report the results of the regression. Instead, we report the Mantel test statistic (and the p-value), which is the correlation between the two distance matrices. Values that approach -1 indicate a strong negative relationship, values close to 0 suggest there is no relationship, and values approaching +1 indicate a strong positive relationship (i.e., IBD).</p>
+</div>
+</div>
+<p>When you interpret this, it helps to keep two ideas in mind. First, significance is not the same as a “strong” relationship. With enough data, even a weak relationship can be statistically significant. Second, outliers can be informative - they’re often your first clue that something beyond pure distance is shaping connectivity.</p>
 </section>
+<section id="do-the-results-suggest-that-dispersal-is-spatially-limited" class="level3 blackbox">
+<h3 class="anchored" data-anchor-id="do-the-results-suggest-that-dispersal-is-spatially-limited">Do the results suggest that dispersal is spatially limited?</h3>
+<p>Both analyses detect a significant pattern of isolation by distance. However, the strength of the relationship differs depending on the unit of analysis. The population-based test shows a stronger correlation, while the individual-based analysis is more moderate. This difference is common in continuous systems because grouping individuals into populations can amplify allele-frequency differences and inflate the apparent strength of IBD. The individual-based result therefore likely provides a more realistic picture of dispersal across the Pilbara.</p>
+</section>
+<p>Overall, the results suggest that dispersal is spatially limited, but not strongly restricted. Northern quolls appear capable of moving substantial distances, and the presence of outliers suggests that factors beyond geographic distance may also influence connectivity.</p>
 <section id="step-3-visualise-population-genetic-structure-with-pcoa" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-visualise-population-genetic-structure-with-pcoa">Step 3: Visualise population genetic structure with PCoA</h3>
 <p>IBD tells us whether genetic distance increases with geographic distance, but it doesn’t tell us whether there are <em>genetic</em> <em>clusters</em> indicative of discrete populations and/or potential barriers reducing gene flow among clusters. PCoA is a fast, visual first pass for this: strong structure usually shows up as distinct groupings, while weak or clinal structure looks more like a gradient with lots of overlap. It’s typically the first step in exploring population genetic structure.</p>
-<p><strong>Q:</strong> What do the patterns suggest? Is there population genetic structure? Do different axes tell us different things? What does this imply for our landscape genetics hypotheses?<br>
-</p>
-<p><strong>A:</strong> There is some clustering, but it overlaps and looks continuous. That suggests there may not be a hard barrier to dispersal in the Pilbara. It’s still worth testing IBB given the subtle signal, but we should do it in a way that accounts for IBD.</p>
-</section>
-<section id="step-4-test-isolation-by-barrier-ibb-with-tess3" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-test-isolation-by-barrier-ibb-with-tess3">Step 4: Test Isolation by Barrier (IBB) with TESS3</h3>
-<p>Because the structure looks subtle and spatially continuous, we use TESS3 rather than STRUCTURE. TESS3 estimates ancestry coefficients while explicitly incorporating spatial information. In practice, it applies spatial regularisation that encourages nearby individuals to have similar ancestry unless the genetic data strongly suggest otherwise. This tends to stabilise inference when structure is weak and clinal.</p>
-<p>We’ll do a quick run just so you can see how it works, and then we’ll load a pre-run object with more iterations/reps so the outputs are slightly more robust:</p>
-<p>To choose K, we look at cross-validation RMSE.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check cross validation figure to determine best value for K</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>rmse_min <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>Kmax, <span class="cf">function</span>(k) <span class="fu">min</span>(tess_out[[k]]<span class="sc">$</span>rmse, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>Kmax, rmse_min, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">19</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"K"</span>, <span class="at">ylab =</span> <span class="st">"Min CV RMSE"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"tess3r cross-validation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="W11_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run PCoA</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(Quolls.gl, <span class="at">nf =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> pc<span class="sc">$</span>eig</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>eig_pct <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> eig <span class="sc">/</span> <span class="fu">sum</span>(eig), <span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pc<span class="sc">$</span>scores[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(scores)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PC1"</span>, <span class="st">"PC2"</span>, <span class="st">"PC3"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>scores<span class="sc">$</span>ind <span class="ot">&lt;-</span> <span class="fu">indNames</span>(Quolls.gl)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>scores<span class="sc">$</span>pop <span class="ot">&lt;-</span> <span class="fu">pop</span>(Quolls.gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div>
-<p>Q: How do we determine the best value for K?</p>
-<p>A: With strong discrete structure you often see a clear minimum. With weak or continuous structure, RMSE may keep gradually decreasing as K increases. In that case there isn’t a single “true” K, you often look for the sharpest drop (an elbow), then treat larger K as increasingly descriptive. Here the sharpest drop is at K = 2, but interpret it cautiously (especially because we can’t get K = 1).</p>
-<p>Plot ancestry proportions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose K</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">qmatrix</span>(tess_out, <span class="at">K =</span> K)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Order by cluster 1 ancestry</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">order</span>(Q[,<span class="dv">1</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>Q_ord <span class="ot">&lt;-</span> Q[ord, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the ancestry proportions</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>(Q_ord),</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">hcl.colors</span>(K, <span class="st">"Dark 3"</span>),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">space =</span> <span class="dv">0</span>,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Individuals"</span>,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Ancestry proportion"</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"tess3r ancestry (K = "</span>, K, <span class="st">")"</span>),</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">axes =</span> <span class="cn">FALSE</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>); <span class="fu">box</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(scores<span class="sc">$</span>PC1, scores<span class="sc">$</span>PC2,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> cols[<span class="fu">as.character</span>(scores<span class="sc">$</span>pop)], <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">paste0</span>(<span class="st">"PC1 ("</span>, eig_pct[<span class="dv">1</span>], <span class="st">"%)"</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">paste0</span>(<span class="st">"PC2 ("</span>, eig_pct[<span class="dv">2</span>], <span class="st">"%)"</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"grey70"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(scores<span class="sc">$</span>PC1, scores<span class="sc">$</span>PC3,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> cols[<span class="fu">as.character</span>(scores<span class="sc">$</span>pop)], <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">paste0</span>(<span class="st">"PC1 ("</span>, eig_pct[<span class="dv">1</span>], <span class="st">"%)"</span>),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">paste0</span>(<span class="st">"PC3 ("</span>, eig_pct[<span class="dv">3</span>], <span class="st">"%)"</span>))</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"grey70"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(scores<span class="sc">$</span>PC2, scores<span class="sc">$</span>PC3,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> cols[<span class="fu">as.character</span>(scores<span class="sc">$</span>pop)], <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">paste0</span>(<span class="st">"PC2 ("</span>, eig_pct[<span class="dv">2</span>], <span class="st">"%)"</span>),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="fu">paste0</span>(<span class="st">"PC3 ("</span>, eig_pct[<span class="dv">3</span>], <span class="st">"%)"</span>))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"grey70"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -561,82 +651,167 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Q:</strong> What does the bar chart of ancestry proportions suggest? <strong>A:</strong> There’s substantial admixture.</p>
-<p>Next we map where the ancestry signal falls across space. The interpolation is a visual summary (not a definitive spatial model), but it’s useful for describing the pattern: if there’s a gradient or split, where is it strongest, and where is the admixture zone?</p>
+</section>
+<section id="what-do-the-pcoa-patterns-suggest" class="level3 blackbox">
+<h3 class="anchored" data-anchor-id="what-do-the-pcoa-patterns-suggest">What do the PCoA patterns suggest?</h3>
+<p><em>Is there population genetic structure? Do different axes tell us different things? What does this imply for our landscape genetics hypotheses?</em></p>
+<p>PC1 captures the main spatial genetic gradient across the Pilbara, while PC2 and PC3 reveal weaker secondary and fine-scale variation. Overall, the axes suggest subtle, continuous structure rather than clearly discrete populations.</p>
+</section>
+<p>The PCoA suggests there may not be a hard barrier to dispersal in the Pilbara. It’s still worth testing IBB given the subtle signal, but we should do it in a way that accounts for IBD.</p>
+<section id="step-4-test-isolation-by-barrier-ibb-with-tess3" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-test-isolation-by-barrier-ibb-with-tess3">Step 4: Test Isolation by Barrier (IBB) with TESS3</h3>
+<p>Because the structure looks subtle and spatially continuous, we can use TESS3 rather than STRUCTURE. TESS3 estimates ancestry coefficients while explicitly incorporating spatial information. In practice, it applies spatial regularisation that encourages nearby individuals to have similar ancestry unless the genetic data strongly suggest otherwise. This tends to stabilise inference when structure is weak and clinal.</p>
+<p>We’ll do a quick run just so you can see how it works, and then we’ll load a pre-run object with more iterations/reps so the outputs are slightly more robust:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  Q, coord_ll,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"map.max"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">interpol =</span> <span class="fu">FieldsKrigModel</span>(<span class="dv">10</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"tess3r ancestry map (K = "</span>, K, <span class="st">")"</span>),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Longitude"</span>, <span class="at">ylab =</span> <span class="st">"Latitude"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolution =</span> <span class="fu">c</span>(<span class="dv">250</span>, <span class="dv">250</span>),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="fl">0.5</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: maps</code></pre>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a genotype matrix (also used later)</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gl.matrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(Quolls.gl)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Save coordinates as an object</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>coord_ll <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(Quolls.gl<span class="sc">@</span>other<span class="sc">$</span>latlong[, <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>)])</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coord_ll) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Do a quick run to see how TESS3 works</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># We'll test k = 1-6, this is based on 3-4 clusters in the PCoA + 2 </span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Kmax <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>tess_out <span class="ot">&lt;-</span> <span class="fu">tess3</span>(</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> gl.matrix,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">coord =</span> coord_ll,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">K =</span> <span class="dv">1</span><span class="sc">:</span>Kmax,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">rep =</span> <span class="dv">1</span>, <span class="co"># increase this for real runs (often 50-100)</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"projected.ls"</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">ploidy =</span> <span class="dv">2</span>,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">max.iteration =</span> <span class="dv">10</span>, <span class="co"># increase this for real runs (often 200-500)</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">mask =</span> <span class="fl">0.1</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">keep =</span> <span class="st">"best"</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Here's one we ran earlier with slightly more reps and iterations</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>tess_out <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/tess_out.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'maps' was built under R version 4.3.2</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'maps'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from 'package:viridis':
-
-    unemp</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>This function required to attach maps namespace.</code></pre>
-</div>
+<p>To choose K, we look at cross-validation RMSE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check cross validation figure to determine best value for K</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>rmse_min <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>Kmax, <span class="cf">function</span>(k) <span class="fu">min</span>(tess_out[[k]]<span class="sc">$</span>rmse, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span>Kmax, rmse_min, <span class="at">type =</span> <span class="st">"b"</span>, <span class="at">pch =</span> <span class="dv">19</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"K"</span>, <span class="at">ylab =</span> <span class="st">"Min CV RMSE"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"tess3r cross-validation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="W11_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="W11_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How do we determine the best value for K?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With strong discrete structure you often see a clear minimum. With weak or continuous structure, RMSE may keep gradually decreasing as K increases. In that case there isn’t a single “true” K, you often look for the sharpest drop (an elbow), then treat larger K as increasingly descriptive. Here the sharpest drop is at K = 2, but interpret it cautiously (especially because we can’t get K = 1).</p>
+</div>
+</div>
+<p>Plot ancestry proportions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose K</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">qmatrix</span>(tess_out, <span class="at">K =</span> K)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Order by cluster 1 ancestry</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">order</span>(Q[,<span class="dv">1</span>], <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>Q_ord <span class="ot">&lt;-</span> Q[ord, , drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the ancestry proportions</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>(Q_ord),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="fu">hcl.colors</span>(K, <span class="st">"Dark 3"</span>),</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">space =</span> <span class="dv">0</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Individuals"</span>,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Ancestry proportion"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"tess3r ancestry (K = "</span>, K, <span class="st">")"</span>),</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">axes =</span> <span class="cn">FALSE</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">2</span>); <span class="fu">box</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="W11_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="what-does-the-bar-chart-of-ancestry-proportions-suggest" class="level3 blackbox">
+<h3 class="anchored" data-anchor-id="what-does-the-bar-chart-of-ancestry-proportions-suggest">What does the bar chart of ancestry proportions suggest?</h3>
+<p>There’s substantial admixture.</p>
+</section>
+<p>Next we map where the ancestry signal falls across space. The interpolation is a visual summary (not a definitive spatial model), but it’s useful for describing the pattern: if there’s a gradient or split, where is it strongest, and where is the admixture zone?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>interp.pal <span class="ot">&lt;-</span> <span class="fu">CreatePalette</span>(<span class="fu">hcl.colors</span>(K, <span class="st">"Dark 3"</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  Q, coord_ll,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"map.max"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">interpol =</span> <span class="fu">FieldsKrigModel</span>(<span class="dv">10</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> interp.pal,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="fu">paste0</span>(<span class="st">"tess3r ancestry map (K = "</span>, K, <span class="st">")"</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">"Longitude"</span>, <span class="at">ylab =</span> <span class="st">"Latitude"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">resolution =</span> <span class="fu">c</span>(<span class="dv">250</span>, <span class="dv">250</span>),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">cex =</span> <span class="fl">0.5</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="W11_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Here we see a broad northeast–southwest split with a wide admixture zone between two ancestral populations. This could reflect historical demography rather than a contemporary barrier. For example, major drainage divides that would have been more substantial barriers under wetter climates, a pattern also seen in geckos.</p>
-</section>
 <section id="step-5-test-isolation-by-resistance-ibr" class="level3">
 <h3 class="anchored" data-anchor-id="step-5-test-isolation-by-resistance-ibr">Step 5: Test Isolation by Resistance (IBR)</h3>
 <p>Even without an obvious barrier, landscape heterogeneity can still shape connectivity. That’s the point of IBR: we test whether a resistance-aware distance explains genetic distances better than simple Euclidean distance.</p>
-<p>In Shaw et al.&nbsp;(2023), the R package ResistanceGA was used to select and combine layers into an optimised composite resistance surface. Here, we’ll skip the optimisation (it’s slow and can be tricky to install) and instead load the final combined surface from the paper.</p>
+<p>In <a href="https://doi.org/10.1111/cobi.13989Digital%20Object%20Identifier%20(DOI)">Shaw et al.&nbsp;(2023)</a>, the R package ResistanceGA was used to select and combine layers into an optimised composite resistance surface. Here, we’ll skip the optimisation (it’s slow and can be tricky to install) and instead load the final combined surface from the paper.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimised combined Resistance surface (combined distance to water + silt)</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>comb <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">"data/Combined.DistWater.Silt.asc"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get coordinates in metres</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> Quolls.gl<span class="sc">@</span>other<span class="sc">$</span>xy  </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># It's very important that the order matches - we need these to stay linked</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>id_order <span class="ot">&lt;-</span> <span class="fu">indNames</span>(Quolls.gl)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(xy) <span class="ot">&lt;-</span> id_order</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimised combined Resistance surface (combined distance to water + silt)</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>comb <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="st">"data/Combined.DistWater.Silt.asc"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get coordinates in metres</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>xy <span class="ot">&lt;-</span> Quolls.gl<span class="sc">@</span>other<span class="sc">$</span>xy  </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># It's very important that the order matches - we need these to stay linked</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>id_order <span class="ot">&lt;-</span> <span class="fu">indNames</span>(Quolls.gl)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(xy) <span class="ot">&lt;-</span> id_order</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We then compute genetic distance (our response variable), IBD-based distance, and commute distance, a resistance-based distance metric. Conceptually, it represents expected movement difficulty across the landscape while accounting for multiple possible pathways between sites.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pairwise distances</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Genetic distance</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>G <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(gl.matrix, <span class="at">method =</span> <span class="st">"euclidean"</span>))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(G) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(G) <span class="ot">&lt;-</span> id_order</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Euclidean geographic distance (baseline IBD)</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(xy))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(E) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(E) <span class="ot">&lt;-</span> id_order</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># gdistance uses conductance (high = easy movement), while resistance rasters are usually resistance (high = hard movement). So we convert resistance to conductance:</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fl">1e-6</span> <span class="co"># add a small value to avoid divide by zero errors</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">transition</span>(<span class="dv">1</span> <span class="sc">/</span> (comb <span class="sc">+</span> eps), <span class="at">transitionFunction =</span> mean, <span class="at">directions =</span> <span class="dv">8</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">geoCorrection</span>(tr, <span class="at">type =</span> <span class="st">"c"</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can run commute distance</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>CD <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">commuteDistance</span>(tr, xy))</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(CD) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(CD) <span class="ot">&lt;-</span> id_order</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pairwise distances</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Genetic distance</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>G <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(gl.matrix, <span class="at">method =</span> <span class="st">"euclidean"</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(G) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(G) <span class="ot">&lt;-</span> id_order</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Euclidean geographic distance (baseline IBD)</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(xy))</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(E) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(E) <span class="ot">&lt;-</span> id_order</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># gdistance uses conductance (high = easy movement), while resistance rasters are usually resistance (high = hard movement). So we convert resistance to conductance:</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>eps <span class="ot">&lt;-</span> <span class="fl">1e-6</span> <span class="co"># add a small value to avoid divide by zero errors</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">transition</span>(<span class="dv">1</span> <span class="sc">/</span> (comb <span class="sc">+</span> eps), <span class="at">transitionFunction =</span> mean, <span class="at">directions =</span> <span class="dv">8</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>tr <span class="ot">&lt;-</span> <span class="fu">geoCorrection</span>(tr, <span class="at">type =</span> <span class="st">"c"</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can run commute distance</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>CD <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">commuteDistance</span>(tr, xy))</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(CD) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(CD) <span class="ot">&lt;-</span> id_order</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once we’ve got genetic distance (G), Euclidean distance (E), and commute distance (CD), we turn them into a pairwise data frame. We then fit MLPE mixed models, which is the standard way to handle the non-independence of pairwise distances. Each individual appears in many pairwise comparisons, so we include random intercepts for both members of the pair: (1|id1) + (1|id2).</p>
 <p>We’ll compare three models:</p>
@@ -646,57 +821,59 @@ Attaching package: 'maps'</code></pre>
 <li><p>and IBR + IBD (does commute distance explain something beyond straight-line distance?).</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build pairwise dataframe (helper function)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>lower_vec <span class="ot">&lt;-</span> <span class="cf">function</span>(m) m[<span class="fu">lower.tri</span>(m)]</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build pairwise data table (helper function)</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>pair_table <span class="ot">&lt;-</span> <span class="cf">function</span>(ids) {</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(ids)</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  ij <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">lower.tri</span>(<span class="fu">matrix</span>(<span class="cn">TRUE</span>, n, n)), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">id1 =</span> ids[ij[, <span class="dv">1</span>]],</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">id2 =</span> ids[ij[, <span class="dv">2</span>]],</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for modelling</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>pairs <span class="ot">&lt;-</span> <span class="fu">pair_table</span>(id_order)</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>pair_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">id1  =</span> pairs<span class="sc">$</span>id1,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">id2  =</span> pairs<span class="sc">$</span>id2,</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">GDis =</span> <span class="fu">lower_vec</span>(G),</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">Edis =</span> <span class="fu">lower_vec</span>(E),</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">CD   =</span> <span class="fu">lower_vec</span>(CD)</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale variables</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>pair_df<span class="sc">$</span>Edis_sc <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(pair_df<span class="sc">$</span>Edis))</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>pair_df<span class="sc">$</span>CD_sc   <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(pair_df<span class="sc">$</span>CD))</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline IBD</span></span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>m_ibd <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GDis <span class="sc">~</span> Edis_sc <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id1) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id2),</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pair_df, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="co"># IBR-only</span></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>m_ibr <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GDis <span class="sc">~</span> CD_sc <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id1) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id2),</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pair_df, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="co"># IBR beyond IBD</span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>m_ibd_ibr <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GDis <span class="sc">~</span> Edis_sc <span class="sc">+</span> CD_sc <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id1) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id2),</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> pair_df, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m_ibd, m_ibr, m_ibd_ibr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build pairwise dataframe (helper function)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>lower_vec <span class="ot">&lt;-</span> <span class="cf">function</span>(m) m[<span class="fu">lower.tri</span>(m)]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Build pairwise data table (helper function)</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>pair_table <span class="ot">&lt;-</span> <span class="cf">function</span>(ids) {</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(ids)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ij <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">lower.tri</span>(<span class="fu">matrix</span>(<span class="cn">TRUE</span>, n, n)), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">id1 =</span> ids[ij[, <span class="dv">1</span>]],</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">id2 =</span> ids[ij[, <span class="dv">2</span>]],</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for modelling</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>pairs <span class="ot">&lt;-</span> <span class="fu">pair_table</span>(id_order)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>pair_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">id1  =</span> pairs<span class="sc">$</span>id1,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">id2  =</span> pairs<span class="sc">$</span>id2,</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">GDis =</span> <span class="fu">lower_vec</span>(G),</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">Edis =</span> <span class="fu">lower_vec</span>(E),</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">CD   =</span> <span class="fu">lower_vec</span>(CD)</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale variables</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>pair_df<span class="sc">$</span>Edis_sc <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(pair_df<span class="sc">$</span>Edis))</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>pair_df<span class="sc">$</span>CD_sc   <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(pair_df<span class="sc">$</span>CD))</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline IBD</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>m_ibd <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GDis <span class="sc">~</span> Edis_sc <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id1) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id2),</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pair_df, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co"># IBR-only</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>m_ibr <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GDis <span class="sc">~</span> CD_sc <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id1) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id2),</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> pair_df, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="co"># IBR beyond IBD</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>m_ibd_ibr <span class="ot">&lt;-</span> <span class="fu">lmer</span>(GDis <span class="sc">~</span> Edis_sc <span class="sc">+</span> CD_sc <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id1) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id2),</span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> pair_df, <span class="at">REML =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare AIC</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m_ibd, m_ibr, m_ibd_ibr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          df      AIC
 m_ibd      5 29423.04
 m_ibr      5 29284.36
 m_ibd_ibr  6 29067.58</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test whether resistance explains genetic distance</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># beyond simple geographic distance.</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m_ibd, m_ibd_ibr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test whether resistance explains genetic distance</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># beyond simple geographic distance.</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m_ibd, m_ibd_ibr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Data: pair_df
 Models:
@@ -709,36 +886,48 @@ m_ibd_ibr    6 29068 29114 -14528    29056 357.46  1  &lt; 2.2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Q: Which hypothesis performs best in model selection? Does IBR improve fit beyond IBD?<br>
-</p>
-<p>A: The combined IBD + IBR model has the lowest AIC, and adding the IBR layer significantly improves the model.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Which hypothesis performs best in model selection? Does IBR improve fit beyond IBD?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The combined IBD + IBR model has the lowest AIC, and adding the IBR layer significantly improves the model.</p>
+</div>
+</div>
 <p>In the paper, proximity to water facilitated connectivity, likely because rocky habitat and dense vegetation along watercourses and gorges provides protection from predators during dispersal. Higher resistance was associated with areas with high silt content (including alluvial, coastal, and hardpan plains). A similar mechanism is plausible elsewhere in northern Australia: for example, divergent northern quoll populations across the Carpentaria Gap (claypans that appear to limit dispersal in multiple taxa). Some low-connectivity areas also showed reduced genetic diversity, highlighting them as candidates for future restoration efforts.</p>
 <p>In this way, even subtle patterns of genetic structure at the individual level can provide valuable insights for ecology and conservation.</p>
 </section>
 </section>
 <section id="worked-example-2" class="level2">
 <h2 class="anchored" data-anchor-id="worked-example-2">Worked example 2</h2>
-<p>This example is based on Acropora corals in the Maldives. The full study can be found here: Meziere et al.&nbsp;2025: <a href="https://doi.org/10.1126/sciadv.adt2066" class="uri">https://doi.org/10.1126/sciadv.adt2066</a></p>
-<p>In the first example (Northern quolls), we used IBD primarily as a diagnostic tool, to ask: <em>does genetic distance increase with geographic distance, and how does that compare to IBB and IBR?</em></p>
-<p>In this second example, we use the same core idea - an individual-level IBD analysis - but for a different purpose. Instead of asking <em>“Is there IBD?”</em>, we ask a more applied question:</p>
-<p><em>If we observe an IBD slope of a certain magnitude, what does that imply about typical dispersal distances?</em></p>
-<p>Here, managers restoring Acropora corals in the Maldives want to know how far offspring from restoration sites are likely to disperse. By combining:</p>
+<p>This second example is based on an Acropora coral species from the Maldives, and archipelago in the Indian Ocean. This dataset is currently unpublished, but we use it to follow the analytical framework presented in a published study which also investigated dispersal of corals, on the Great Barrier Reef: Meziere et al., 2025: <a href="https://doi.org/10.1126/sciadv.adt2066" class="uri">https://doi.org/10.1126/sciadv.adt2066</a>. This paper also outlines the importance of estimating connectivity in a conservation or restoration context.</p>
+<p>In the first example (Northern quolls), we used IBD primarily as a diagnostic tool, to ask: <em>Does genetic distance increase with geographic distance, and how does that compare to IBB and IBR?</em></p>
+<p>In this second example, we use the same core idea - an individual-level IBD analysis - but for a different purpose. Instead of asking <em>“Is there IBD?”</em>, we use the IBD signal (and the slope, specifically) to ask a more applied question:</p>
+<p><em>“What is the per-generation distance between an offspring and its parent (σ), and what is the typical dispersal distance in this species?”</em></p>
+<p>Inferring coral dispersal distances can directly be used for reef conservation and restoration. For example, Marine Protected Areas might be created in areas that are demographically well connected (i.e., within 2σ). Managers restoring Acropora corals in the Maldives might also want to know how far larvae originating from a restoration site are likely to disperse.</p>
+<p>In the lecture, we saw that why combining:</p>
 <ul>
-<li><p>the slope of the IBD relationship, and</p></li>
-<li><p>an estimate of effective population density</p></li>
+<li>the slope of the IBD relationship (b), and</li>
+<li>an estimate of effective population density (De)</li>
 </ul>
-<p>we can estimate a characteristic dispersal scale.</p>
-<p>This example shows how the same IBD framework can move beyond hypothesis testing and into quantitative inference about dispersal. We then translate that dispersal scale into:</p>
+<p>we can estimate σ, which is the axial offspring-parent distance:</p>
+<p>σ = √(1/(4 x De x b))</p>
+<p>This example shows how the same IBD framework can move beyond hypothesis testing and into quantitative inference about dispersal. To do this, we transform σ into:</p>
 <ul>
-<li><p>A dispersal kernel (probability density over distance), and</p></li>
-<li><p>Mapped dispersal zones around a hypothetical restoration site.</p></li>
+<li>A dispersal kernel (probability density over distance), and</li>
+<li>Mapped dispersal zones around a hypothetical restoration site.</li>
 </ul>
 <section id="step-1-prepare-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-prepare-the-data">Step 1: Prepare the data</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Maldives_Acropora_metadata.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co"># metadata for population information and coordinates</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Acropora_vcf <span class="ot">&lt;-</span> <span class="fu">read.vcfR</span>(<span class="st">"data/Maldives_Acropora_filtered.vcf"</span>) <span class="co"># vcf file for genomic data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Maldives_Acropora_metadata.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="co"># metadata for population information and coordinates</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Acropora_vcf <span class="ot">&lt;-</span> <span class="fu">read.vcfR</span>(<span class="st">"data/Maldives_Acropora_filtered.vcf"</span>) <span class="co"># vcf file for genomic data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Scanning file to determine attributes.
 File attributes:
@@ -782,50 +971,51 @@ Processed variant 22000
 Processed variant: 22561
 All variants processed</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>my_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/reefextent.geojson"</span>) <span class="co"># base map for the sampled region</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>my_sf <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">"data/reefextent.geojson"</span>) <span class="co"># base map for the sampled region</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert vcf to genlight</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Acropora_gl <span class="ot">&lt;-</span> <span class="fu">vcfR2genlight</span>(Acropora_vcf)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean sample names and match to metadata</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(Acropora_gl) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"-.*"</span>, <span class="st">""</span>, <span class="fu">indNames</span>(Acropora_gl))</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata[<span class="fu">match</span>(<span class="fu">indNames</span>(Acropora_gl), metadata<span class="sc">$</span>Extraction_sample_name_vcf), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert vcf to genlight</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Acropora_gl <span class="ot">&lt;-</span> <span class="fu">vcfR2genlight</span>(Acropora_vcf)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean sample names and match to metadata</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(Acropora_gl) <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"-.*"</span>, <span class="st">""</span>, <span class="fu">indNames</span>(Acropora_gl))</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> metadata[<span class="fu">match</span>(<span class="fu">indNames</span>(Acropora_gl), metadata<span class="sc">$</span>Extraction_sample_name_vcf), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-2-individual-level-isolation-by-distance" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-individual-level-isolation-by-distance">Step 2: Individual-Level Isolation by Distance</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define populations as sampling sites</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Acropora_gl<span class="sc">@</span>pop <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(metadata<span class="sc">$</span>ATOLL)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add latitude and longitude of sampling sites</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> metadata[,<span class="fu">c</span>(<span class="st">"LONG_WP"</span>, <span class="st">"LAT_WP"</span>)] <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coords) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Individuals from the same site share coordinates, so we jitter slightly to avoid zero distances</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>coords_jitter <span class="ot">&lt;-</span> coords</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (site <span class="cf">in</span> <span class="fu">unique</span>(<span class="fu">pop</span>(Acropora_gl))) {</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">pop</span>(Acropora_gl) <span class="sc">==</span> site)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(idx) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    coords_jitter[idx, ] <span class="ot">&lt;-</span> coords[idx, ] <span class="sc">+</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(idx)<span class="sc">*</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="fl">0.0001</span>), <span class="at">ncol=</span><span class="dv">2</span>)</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>Acropora_gl<span class="sc">@</span>other<span class="sc">$</span>latlon <span class="ot">&lt;-</span> coords_jitter</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>ibd_ind <span class="ot">&lt;-</span> <span class="fu">gl.ibd</span>(</span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> Acropora_gl,</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">distance =</span> <span class="st">"propShared"</span>,       <span class="co"># individual-level distance</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">coordinates =</span> <span class="st">"latlon"</span>,        <span class="co"># jittered coordinates</span></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dgeo_trans =</span> <span class="st">"log(Dgeo)"</span>,      <span class="co"># log-transform geographic distances</span></span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">permutations =</span> <span class="dv">999</span>,</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">paircols =</span> <span class="st">"pop"</span>,              <span class="co"># color pairs by population</span></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.out =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define populations as sampling sites</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Acropora_gl<span class="sc">@</span>pop <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(metadata<span class="sc">$</span>ATOLL)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add latitude and longitude of sampling sites</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> metadata[,<span class="fu">c</span>(<span class="st">"LONG_WP"</span>, <span class="st">"LAT_WP"</span>)] <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(coords) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Individuals from the same site share coordinates, so we jitter slightly to avoid zero distances</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>coords_jitter <span class="ot">&lt;-</span> coords</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (site <span class="cf">in</span> <span class="fu">unique</span>(<span class="fu">pop</span>(Acropora_gl))) {</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">pop</span>(Acropora_gl) <span class="sc">==</span> site)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(idx) <span class="sc">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    coords_jitter[idx, ] <span class="ot">&lt;-</span> coords[idx, ] <span class="sc">+</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(idx)<span class="sc">*</span><span class="dv">2</span>, <span class="dv">0</span>, <span class="fl">0.0001</span>), <span class="at">ncol=</span><span class="dv">2</span>)</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>Acropora_gl<span class="sc">@</span>other<span class="sc">$</span>latlon <span class="ot">&lt;-</span> coords_jitter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ibd_ind <span class="ot">&lt;-</span> <span class="fu">gl.ibd</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> Acropora_gl,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">distance =</span> <span class="st">"propShared"</span>,       <span class="co"># individual-level distance</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">coordinates =</span> <span class="st">"latlon"</span>,        <span class="co"># jittered coordinates</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Dgeo_trans =</span> <span class="st">"log(Dgeo)"</span>,      <span class="co"># log-transform geographic distances</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">permutations =</span> <span class="dv">999</span>,</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">paircols =</span> <span class="st">"pop"</span>,              <span class="co"># color pairs by population</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.out =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Starting gl.ibd 
 Analysis performed on the genlight object.
@@ -834,7 +1024,7 @@ Coordinates transformed to Mercator (google) projection to calculate distances i
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="W11_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="W11_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -861,105 +1051,104 @@ Number of permutations: 999
 
 Completed: gl.ibd </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.00014</span>  <span class="co"># slope of the regression</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.00014</span>  <span class="co"># slope of the regression</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>In this IBD plot, each dot is a pair of samples, and we have colored them by the two population each sample comes from.</p>
+<p>As you can see, the gl.ibd() function directly outputs the slope of the regression. In the following step we are going to use it to estiamte dispersal distances!</p>
 </section>
 <section id="step-3-from-ibd-slope-to-dispersal-distance" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-from-ibd-slope-to-dispersal-distance">Step 3: From IBD Slope to Dispersal Distance</h3>
-<p>In this example, we use median values for each estimate. For real research, we would want to use probability distribution of each estimate, and calculate confidence intervals around each median values when reported (see Meziere et al., 2025).</p>
+<p>Now that we have the regression slope (b), we need to estimate effective popualtion density (De) to calculate σ.</p>
+<p>In a previous session, you have learnt about effective popualtion size (Ne), and to to calculate it from genomic data. In interest of time, we provide you with an estimate here, which was obtained using NeEstimator.</p>
+<p>To estimate density, we devide this Ne estimate by the total surface area across which the samples were collected. To do this, we used the Coral Allen Atlas. You can play with the interactive map here: <a href="https://allencoralatlas.org/" class="uri">https://allencoralatlas.org/</a></p>
+<p>Note that in this example, we use median values for each estimate. For real research, we would want to use probability distribution of each estimate, and calculate confidence intervals around each median values when reported (see Meziere et al., 2025).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Ne <span class="ot">&lt;-</span> <span class="dv">9500</span>            <span class="co"># effective population size obtained from NeEstimator</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Reef_area <span class="ot">&lt;-</span> <span class="fl">2.3e09</span>   <span class="co"># reef area in m2 estimated from Coral Allen Atlas</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>De <span class="ot">&lt;-</span> Ne <span class="sc">/</span> Reef_area  <span class="co"># effective density</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span><span class="fl">3.14</span><span class="sc">*</span>De<span class="sc">*</span>beta))   <span class="co"># axial parent-offspring distance</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>neighborhood <span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">*</span><span class="fl">3.14</span><span class="sc">*</span>De<span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span>   <span class="co"># number of reproducing adults within a circle of radius 2*sigma</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Ne <span class="ot">&lt;-</span> <span class="dv">9500</span>            <span class="co"># effective population size obtained from NeEstimator</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>Reef_area <span class="ot">&lt;-</span> <span class="fl">2.3e09</span>   <span class="co"># reef area in m2 estimated from Coral Allen Atlas</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>De <span class="ot">&lt;-</span> Ne <span class="sc">/</span> Reef_area  <span class="co"># effective density</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>(<span class="dv">4</span><span class="sc">*</span><span class="fl">3.14</span><span class="sc">*</span>De<span class="sc">*</span>beta))   <span class="co"># axial parent-offspring distance</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>neighborhood <span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">*</span><span class="fl">3.14</span><span class="sc">*</span>De<span class="sc">*</span>sigma<span class="sc">^</span><span class="dv">2</span>   <span class="co"># number of reproducing adults within a circle of radius 2*sigma</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-4-dispersal-kernel" class="level3">
 <h3 class="anchored" data-anchor-id="step-4-dispersal-kernel">Step 4: Dispersal Kernel</h3>
+<p>σ is an axial distance, and it can be used to parametrise a dispersal kernel, which estimates dispersal probability over increasing distance. Different density distributions can be used for the dispersal kernel. For larval dispersal, different studies have found that a Laplacian distribution is accurate (see Pinsky et al., 2017; Almany et al., 2007).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set distances</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">150000</span>, <span class="dv">10</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Laplance kernel function</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Differnt density distributions can be used for the dispersal kernel. For larval dispersal,</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># different studies have found that a Laplacian distribution is accurate </span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (see Pinsky et al., 2017; Almany et al., 2007)</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>kernel <span class="ot">&lt;-</span> (distance <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>distance <span class="sc">/</span> sigma)</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>df_kernel <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(distance, kernel)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Probability thresholds</span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"salmon"</span>, <span class="st">"darkorange"</span>, <span class="st">"lightgoldenrod"</span>)</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Distances corresponding to cumulative probabilities</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="sc">-</span>sigma <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> probs)</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot kernel function</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_kernel, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> kernel)) <span class="sc">+</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> thresholds, <span class="at">color =</span> colors, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> thresholds, <span class="at">y =</span> <span class="fu">max</span>(kernel) <span class="sc">*</span> <span class="fl">0.9</span>, <span class="at">label =</span> <span class="fu">paste0</span>(probs<span class="sc">*</span><span class="dv">100</span>, <span class="st">"%"</span>)),</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label),</span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> colors, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Distance (meters)"</span>,</span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Dispersal probability density"</span>,</span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Dispersal kernel of Acropora coral species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set distances</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>distance <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">150000</span>, <span class="dv">10</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Laplace kernel function</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>kernel <span class="ot">&lt;-</span> (distance <span class="sc">/</span> sigma<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>distance <span class="sc">/</span> sigma)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>df_kernel <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(distance, kernel)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Probability thresholds</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"salmon"</span>, <span class="st">"darkorange"</span>, <span class="st">"lightgoldenrod"</span>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Distances corresponding to cumulative probabilities</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>thresholds <span class="ot">&lt;-</span> <span class="sc">-</span>sigma <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">1</span> <span class="sc">-</span> probs)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot kernel function</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_kernel, <span class="fu">aes</span>(<span class="at">x =</span> distance, <span class="at">y =</span> kernel)) <span class="sc">+</span></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> thresholds, <span class="at">color =</span> colors, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">data.frame</span>(<span class="at">x =</span> thresholds, <span class="at">y =</span> <span class="fu">max</span>(kernel) <span class="sc">*</span> <span class="fl">0.9</span>, <span class="at">label =</span> <span class="fu">paste0</span>(probs<span class="sc">*</span><span class="dv">100</span>, <span class="st">"%"</span>)),</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label),</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> colors, <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Distance (meters)"</span>,</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Dispersal probability density"</span>,</span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Dispersal kernel of Acropora coral species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="W11_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="W11_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>In this plot, we show the distances over which 50%, 75%, 95% and 99% of larval dispersal event occur. This give us a good idea of the spatial scale of contemporary connectivity!</p>
 </section>
 <section id="step-5-map-dispersal-probabilities" class="level3">
 <h3 class="anchored" data-anchor-id="step-5-map-dispersal-probabilities">Step 5: Map Dispersal Probabilities</h3>
+<p>For a more visual representation, we can take the probability of dispersal inferred in the previous step and draw them as circles, centered around a hypothetical restoration site.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get layer for sampling region</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>reef <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(<span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">73.5</span>, <span class="fl">1.75</span>)), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span> <span class="fu">st_sf</span>(<span class="at">name=</span><span class="st">"reef"</span>) <span class="co"># choose a point to be the center of the circles</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>reef_proj <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(reef, <span class="dv">32742</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create circles for dispersal probabilities of 50%, 75%, 95%, 99%</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>radii <span class="ot">&lt;-</span> <span class="fu">qgamma</span>(probs, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> sigma)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"salmon"</span>, <span class="st">"darkorange"</span>, <span class="st">"lightgoldenrod"</span>) </span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>circles <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(radii), <span class="cf">function</span>(i) {</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  buf <span class="ot">&lt;-</span> <span class="fu">st_buffer</span>(reef_proj, <span class="at">dist =</span> radii[i])</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  buf<span class="sc">$</span>fill <span class="ot">&lt;-</span> colors[i]</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  buf</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>circles <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, circles)</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>circles <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(circles, <span class="dv">4326</span>)</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot circles on a map</span></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> circles, <span class="fu">aes</span>(<span class="at">fill =</span> fill), <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> my_sf, <span class="at">color=</span><span class="st">"grey30"</span>, <span class="at">fill =</span> <span class="st">"grey60"</span>) <span class="sc">+</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_identity</span>() <span class="sc">+</span></span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">72.3</span>, <span class="dv">74</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">2.6</span>)) <span class="sc">+</span></span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"azure2"</span>, <span class="at">colour =</span> <span class="cn">NA</span>)) <span class="sc">+</span></span>
-<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mapped dispersal capacity of Acropora coral species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get layer for sampling region</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>reef <span class="ot">&lt;-</span> <span class="fu">st_sfc</span>(<span class="fu">st_point</span>(<span class="fu">c</span>(<span class="fl">73.5</span>, <span class="fl">1.75</span>)), <span class="at">crs =</span> <span class="dv">4326</span>) <span class="sc">|&gt;</span> <span class="fu">st_sf</span>(<span class="at">name=</span><span class="st">"reef"</span>) <span class="co"># choose a point to be the center of the circles</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>reef_proj <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(reef, <span class="dv">32742</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create circles for dispersal probabilities of 50%, 75%, 95%, 99%</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>probs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>radii <span class="ot">&lt;-</span> <span class="fu">qgamma</span>(probs, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> sigma)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"salmon"</span>, <span class="st">"darkorange"</span>, <span class="st">"lightgoldenrod"</span>) </span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>circles <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">seq_along</span>(radii), <span class="cf">function</span>(i) {</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  buf <span class="ot">&lt;-</span> <span class="fu">st_buffer</span>(reef_proj, <span class="at">dist =</span> radii[i])</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  buf<span class="sc">$</span>fill <span class="ot">&lt;-</span> colors[i]</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  buf</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>circles <span class="ot">&lt;-</span> <span class="fu">do.call</span>(rbind, circles)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>circles <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(circles, <span class="dv">4326</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot circles on a map</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> circles, <span class="fu">aes</span>(<span class="at">fill =</span> fill), <span class="at">color =</span> <span class="cn">NA</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> my_sf, <span class="at">color=</span><span class="st">"grey30"</span>, <span class="at">fill =</span> <span class="st">"grey60"</span>) <span class="sc">+</span></span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_identity</span>() <span class="sc">+</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">72.3</span>, <span class="dv">74</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">2.6</span>)) <span class="sc">+</span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"azure2"</span>, <span class="at">colour =</span> <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mapped dispersal capacity of Acropora coral species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="W11_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="W11_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
