@@ -19,9 +19,11 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+
 ```{r klippy, echo=FALSE, include=TRUE}
 klippy::klippy(position="right", color="black")
 ```
+
 
 ## W09 dartR developer {.unnumbered}
 
@@ -37,7 +39,11 @@ library(viridis)
 
 ## Choosing colours for discrete groups
 
+
+## Introduction
+
 When plotting discrete categories such as populations or locations, it is helpful to use palettes with clearly distinguishable colours.
+>>>>>>> main
 
 ```{r colour-palettes}
 # Explore palettes available through dartRverse
@@ -400,6 +406,251 @@ r4 <- gl.find.loci.in.genes(
   save2tmp = TRUE
 )
 ```
+
+####################
+
+## other stuff
+
+```{r setupb, include=FALSE, eval=FALSE}
+library(dartRverse)
+library(dartR.base)
+library(dartR.popgen)
+library(dartR.sim)
+library(microbenchmark)
+library(ggplot2)
+library(patchwork)
+
+
+```
+
+------------------------------------------------------------------------
+
+## Learning outcomes
+
+In this session we will explore some of the newest and most exciting functions recently added to the dartRverse ecosystem.
+
+------------------------------------------------------------------------
+
+## Session overview
+
+-   **`gl.map.interactive` — Interactive maps with gene flow**
+    -   Visualising population locations on an interactive leaflet map
+    -   Overlaying a directed gene flow graph using private allele estimates
+    -   Interpreting arrow colour and thickness as gene flow magnitude
+-   **`gl.gen2fbm`, `gl.fbm2gen`, `gl.pca` — The FBM memory model**
+    -   What is a File-Backed Matrix (FBM) and why does it matter?
+    -   Comparing the compressed dartR object vs the FBM representation
+    -   Why imputation is required before running PCA on FBM objects
+    -   Benchmarking: runtime comparison of standard vs FBM-backed PCA
+    -   Demonstrating that imputed FBM-PCA results are identical to standard PCA
+-   **`gl.print.history` — Your analysis audit trail**
+    -   Recovering the filter history applied to a genlight object
+    -   Practical use cases
+
+------------------------------------------------------------------------
+
+## `gl.map.interactive`
+
+**Package:** `dartR.base`
+
+`gl.map.interactive` creates an interactive leaflet map that plots the sampling locations of populations stored in a genlight object. Beyond a simple location map, the function can overlay a **directed gene flow network**: you supply a pairwise migration matrix and the function draws arrows between populations whose colour and line thickness scale with the estimated magnitude of gene flow, making asymmetric dispersal immediately visible.
+
+------------------------------------------------------------------------
+
+### Basic interactive map
+
+The simplest call only needs your genlight object. We use the built-in `possums.gl` dataset, which contains five possum populations across south-eastern Australia.
+
+```{r map-basic}
+# Basic interactive map — population locations only
+gl.map.interactive(possums.gl)
+```
+
+You should see a leaflet map with one marker per population. Hover or click on a marker to see the population name and sample size.
+
+------------------------------------------------------------------------
+
+### Estimating private alleles as a gene flow proxy
+
+Before drawing directional arrows we need a **directed matrix** encoding the relative strength of gene flow between every pair of populations. `gl.report.pa` returns a data frame with columns `pop1`, `pop2`, `priv1` (private alleles in pop1 not in pop2) and `priv2` (private alleles in pop2 not in pop1). We reshape this into a square populations × populations matrix where entry `[i, j]` holds the number of private alleles in population *i* that are absent in population *j* — a directional proxy for gene flow from *i* → *j*.
+
+```{r private-alleles, warning=FALSE, message=FALSE}
+# Report private alleles — returns a data frame with columns pop1, pop2, priv1, priv2
+pa_df <- gl.report.pa(possums.gl[1:120,], plot.display = FALSE, verbose = 0)
+head(pa_df)
+
+# Get sorted population names
+pops <- sort(unique(c(as.character(pa_df$pop1), as.character(pa_df$pop2))))
+
+# Initialise an empty square matrix
+pa_matrix <- matrix(0, nrow = length(pops), ncol = length(pops),
+                    dimnames = list(pops, pops))
+
+# Fill: priv1 = private alleles in pop1 absent from pop2  →  flow pop1 → pop2
+for (i in seq_len(nrow(pa_df))) {
+  p1 <- as.character(pa_df$pop1[i])
+  p2 <- as.character(pa_df$pop2[i])
+  pa_matrix[p1, p2] <- pa_df$priv1[i]   # pop1 → pop2
+  pa_matrix[p2, p1] <- pa_df$priv2[i]   # pop2 → pop1
+}
+
+pa_matrix
+```
+
+------------------------------------------------------------------------
+
+### Directed gene flow map
+
+Pass the square matrix to `gl.map.interactive`. Arrow **thickness** and **colour** scale with the private allele count, so source and sink populations are immediately apparent.
+
+```{r map-geneflow, exercise=TRUE}
+# Interactive map with directed gene flow overlay
+gl.map.interactive(
+  possums.gl[1:120],
+  matrix = pa_matrix,symmetric = FALSE)
+```
+
+------------------------------------------------------------------------
+
+## `gl.gen2fbm`, `gl.fbm2gen` & `gl.pca` — The FBM memory model
+
+**Packages:** `dartR.base` (conversion functions), `dartR.popgen` (PCA)
+
+### Background: two representations of a dartR object
+
+A standard dartR / genlight object stores the SNP matrix in a highly compressed bitwise format. This keeps the object small in memory — often only a few MB even for tens of thousands of loci — but every mathematical operation must first decompress the data, which adds overhead for computationally intensive analyses such as PCA on very large datasets.
+
+The **File-Backed Matrix (FBM)** representation, powered by the `bigstatsr` package, stores the genotype matrix in a binary flat file on disk. The file is larger than the compressed genlight object, but individual rows and columns can be accessed directly without decompression, making linear algebra operations (including PCA via randomised SVD) dramatically faster for large datasets.
+
+| Property | Compressed genlight | FBM-backed |
+|------------------------|------------------------|------------------------|
+| Object size in RAM | Very small | Small (only file handle) |
+| File on disk | None | Large flat file |
+| Can be saved with `saveRDS` | ✅ Yes | ❌ No — file path becomes invalid |
+| PCA / linear algebra speed | Slower (decompress first) | Much faster |
+| Requires imputation for PCA | Optional | **Required** |
+
+> **Important:** An FBM object **cannot be saved** across sessions with `saveRDS` / `save`. It must be recreated each time. Think of it as a fast in-session cache, not a storage format.
+
+------------------------------------------------------------------------
+
+### Converting to and from FBM
+
+```{r gen2fbm}
+# Simulate a medium-sized genlight object
+gl_sim <- glSim(n.ind = 200, n.snp.nonstruc = 5000, ploidy = 2)
+gl_sim
+
+class(gl_sim) <- "dartR"
+
+# Convert to FBM — writes the flat file and attaches it to the object
+gl_fbm <- gl.gen2fbm(gl_sim)
+
+# Inspect the FBM slot
+gl_fbm@fbm       # bigstatsr FBM object
+dim(gl_fbm@fbm)  # rows = individuals, cols = loci
+
+# Compare object sizes in RAM (the FBM data lives on disk, not in RAM)
+cat("Compressed genlight: ", object.size(gl_sim) / 1024, "KB\n")
+cat("FBM genlight object: ", object.size(gl_fbm) / 1024, "KB\n")
+```
+
+Converting back is equally straightforward:
+
+```{r fbm2gen}
+# Convert back to standard compressed genlight
+gl_back <- gl.fbm2gen(gl_fbm)
+gl_back
+```
+
+### Runtime benchmark: standard PCA vs FBM-backed PCA
+
+```{r benchmark}
+
+library(patchwork)
+# Simulate a larger dataset to make the speed difference apparent
+set.seed(1)
+gl_large <- glSim(n.ind = 200, n.snp.nonstruc = 5000, ploidy = 2)
+class(gl_large) <- "dartR"
+pop(gl_large) <- rep(paste0("Pop", 1:4), each = 50)
+indNames(gl_large) <- paste0("Ind", 1:200)
+# Prepare FBM version with imputation
+gl_large_fbm <- gl.gen2fbm(gl_large)
+
+  system.time(pc_gen <-gl.pcoa(gl_large, verbose = 0))
+  
+  system.time(pc_fbm <- gl.pcoa(gl_large_fbm, verbose = 0))
+
+  p1 <- gl.pcoa.plot(pc_gen, gl_large, verbose = 0) +
+          ggplot2::ggtitle("Standard PCA (compressed genlight)")
+  pc_fbm$scores[,1:2] <- -pc_fbm$scores[,1:2]  # flip axes for better visual comparison
+  
+  p2 <- gl.pcoa.plot(pc_fbm, gl_large_fbm, verbose = 0) +
+          ggplot2::ggtitle("FBM-backed PCA (imputed FBM)")
+  
+  p1 + p2
+```
+
+The FBM pathway is typically **5–50× faster** for datasets with \>10 000 loci, with the speedup increasing with dataset size.
+
+------------------------------------------------------------------------
+
+### Are the results identical? Side-by-side PCA plots
+
+> **Take-home message:** Use the standard compressed genlight for everyday work and storage. Switch to the FBM representation when running computationally intensive analyses on large datasets, remembering to impute first and never to save the FBM object to disk.
+
+------------------------------------------------------------------------
+
+## `gl.print.history`
+
+**Package:** `dartR.base`
+
+Every filtering function in dartR automatically appends a record of what was done — thresholds used, loci/individuals removed, timestamp — to an internal history log stored in `gl@other$history`. `gl.print.history` retrieves and displays this log in a human-readable format.
+
+This is invaluable when you return to an analysis weeks later and need to reconstruct exactly which filters were applied, or when documenting your QC pipeline for a methods section.
+
+------------------------------------------------------------------------
+
+```{r print-history}
+# Start with the built-in testset and apply a series of filters
+gl_work <- testset.gl
+
+gl_work <- gl.filter.callrate(gl_work, method = "loc", threshold = 0.95, verbose = 0)
+gl_work <- gl.filter.maf(gl_work,      threshold = 0.05, verbose = 0)
+gl_work <- gl.filter.monomorphs(gl_work,                 verbose = 0)
+gl_work <- gl.filter.secondaries(gl_work,                verbose = 0)
+
+# Recover the complete filter audit trail
+gl.print.history(gl_work)
+```
+
+The output lists each function call in chronological order together with the key parameters and the number of loci/individuals retained at each step. When you share a filtered genlight object with a collaborator via `saveRDS`, the history travels with it — they can inspect your entire filter chain without needing to read through your script.
+
+> **Tip:** If you ever wonder "wait, did I filter for HWE on this object?", `gl.print.history` will tell you immediately — no more scrolling through old scripts.
+
+------------------------------------------------------------------------
+
+## Additional reading
+
+-   **bigstatsr** — Privé F et al. (2018). *Efficient analysis of large-scale genome-wide data with two R packages: bigstatsr and bigsnpr.* Bioinformatics.
+-   **dartRverse** documentation — <https://green-striped-gecko.github.io/dartR/>
+-   `?gl.map.interactive`, `?gl.impute`, `?gl.print.history`
+
+------------------------------------------------------------------------
+
+## Wrap up
+
+In this session we covered three powerful additions to the dartRverse:
+
+-   `gl.map.interactive` lets you visualise population locations and overlay directed gene flow networks derived from private allele estimates, with arrow thickness and colour encoding migration magnitude and direction.
+
+-   `gl.gen2fbm` / `gl.fbm2gen` / `gl.pca` introduce a File-Backed Matrix memory model that trades a larger disk footprint for dramatically faster linear algebra — ideal for PCA and similar analyses on large SNP datasets. The FBM object cannot be saved across sessions and requires imputation before PCA, but the resulting ordination is identical to the standard approach.
+
+-   `gl.print.history` exposes the complete filter audit trail embedded in every dartR genlight object, making your analyses transparent, reproducible and easy to document.
+
+###################
+
+
 
 ## Getting started with development - joining the dartR team
 
