@@ -282,8 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#w09-dartr-developer" id="toc-w09-dartr-developer" class="nav-link active" data-scroll-target="#w09-dartr-developer">W09 dartR developer</a></li>
   <li><a href="#choosing-colours-for-discrete-groups" id="toc-choosing-colours-for-discrete-groups" class="nav-link" data-scroll-target="#choosing-colours-for-discrete-groups">Choosing colours for discrete groups</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">## Introduction</a>
-  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#adobe-color-wheel" id="toc-adobe-color-wheel" class="nav-link" data-scroll-target="#adobe-color-wheel">Adobe Color Wheel</a></li>
   <li><a href="#reusing-the-same-colours-across-plots" id="toc-reusing-the-same-colours-across-plots" class="nav-link" data-scroll-target="#reusing-the-same-colours-across-plots">Reusing the same colours across plots</a></li>
   <li><a href="#saving-and-customising-a-pcoa-plot" id="toc-saving-and-customising-a-pcoa-plot" class="nav-link" data-scroll-target="#saving-and-customising-a-pcoa-plot">Saving and customising a PCoA plot</a></li>
@@ -292,16 +291,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#smear-plots" id="toc-smear-plots" class="nav-link" data-scroll-target="#smear-plots">Smear plots</a></li>
   <li><a href="#using-genomic-resources" id="toc-using-genomic-resources" class="nav-link" data-scroll-target="#using-genomic-resources">Using genomic resources</a></li>
   <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">BLAST</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#common-blast-nucleotide-tasks" id="toc-common-blast-nucleotide-tasks" class="nav-link" data-scroll-target="#common-blast-nucleotide-tasks">Common BLAST nucleotide tasks</a></li>
   </ul></li>
   <li><a href="#assign-chromosome-names-and-snp-positions" id="toc-assign-chromosome-names-and-snp-positions" class="nav-link" data-scroll-target="#assign-chromosome-names-and-snp-positions">Assign chromosome names and SNP positions</a></li>
   <li><a href="#snp-density-and-linkage-disequilibrium" id="toc-snp-density-and-linkage-disequilibrium" class="nav-link" data-scroll-target="#snp-density-and-linkage-disequilibrium">SNP density and linkage disequilibrium</a></li>
   <li><a href="#haploview-style-ld-plotting" id="toc-haploview-style-ld-plotting" class="nav-link" data-scroll-target="#haploview-style-ld-plotting">Haploview-style LD plotting</a></li>
   <li><a href="#gff-files" id="toc-gff-files" class="nav-link" data-scroll-target="#gff-files">GFF files</a></li>
+  <li><a href="#other-stuff" id="toc-other-stuff" class="nav-link" data-scroll-target="#other-stuff">other stuff</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#session-overview" id="toc-session-overview" class="nav-link" data-scroll-target="#session-overview">Session overview</a></li>
+  <li><a href="#gl.map.interactive" id="toc-gl.map.interactive" class="nav-link" data-scroll-target="#gl.map.interactive"><code>gl.map.interactive</code></a>
+  <ul>
+  <li><a href="#basic-interactive-map" id="toc-basic-interactive-map" class="nav-link" data-scroll-target="#basic-interactive-map">Basic interactive map</a></li>
+  <li><a href="#estimating-private-alleles-as-a-gene-flow-proxy" id="toc-estimating-private-alleles-as-a-gene-flow-proxy" class="nav-link" data-scroll-target="#estimating-private-alleles-as-a-gene-flow-proxy">Estimating private alleles as a gene flow proxy</a></li>
+  <li><a href="#directed-gene-flow-map" id="toc-directed-gene-flow-map" class="nav-link" data-scroll-target="#directed-gene-flow-map">Directed gene flow map</a></li>
+  </ul></li>
+  <li><a href="#gl.gen2fbm-gl.fbm2gen-gl.pca-the-fbm-memory-model" id="toc-gl.gen2fbm-gl.fbm2gen-gl.pca-the-fbm-memory-model" class="nav-link" data-scroll-target="#gl.gen2fbm-gl.fbm2gen-gl.pca-the-fbm-memory-model"><code>gl.gen2fbm</code>, <code>gl.fbm2gen</code> &amp; <code>gl.pca</code> — The FBM memory model</a>
+  <ul>
+  <li><a href="#background-two-representations-of-a-dartr-object" id="toc-background-two-representations-of-a-dartr-object" class="nav-link" data-scroll-target="#background-two-representations-of-a-dartr-object">Background: two representations of a dartR object</a></li>
+  <li><a href="#converting-to-and-from-fbm" id="toc-converting-to-and-from-fbm" class="nav-link" data-scroll-target="#converting-to-and-from-fbm">Converting to and from FBM</a></li>
+  <li><a href="#runtime-benchmark-standard-pca-vs-fbm-backed-pca" id="toc-runtime-benchmark-standard-pca-vs-fbm-backed-pca" class="nav-link" data-scroll-target="#runtime-benchmark-standard-pca-vs-fbm-backed-pca">Runtime benchmark: standard PCA vs FBM-backed PCA</a></li>
+  <li><a href="#are-the-results-identical-side-by-side-pca-plots" id="toc-are-the-results-identical-side-by-side-pca-plots" class="nav-link" data-scroll-target="#are-the-results-identical-side-by-side-pca-plots">Are the results identical? Side-by-side PCA plots</a></li>
+  </ul></li>
+  <li><a href="#gl.print.history" id="toc-gl.print.history" class="nav-link" data-scroll-target="#gl.print.history"><code>gl.print.history</code></a></li>
+  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading">Additional reading</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap up</a></li>
   <li><a href="#getting-started-with-development---joining-the-dartr-team" id="toc-getting-started-with-development---joining-the-dartr-team" class="nav-link" data-scroll-target="#getting-started-with-development---joining-the-dartr-team">Getting started with development - joining the dartR team</a></li>
-  <li><a href="#session-overview" id="toc-session-overview" class="nav-link" data-scroll-target="#session-overview">Session overview</a>
-  <ul class="collapse">
+  <li><a href="#session-overview-1" id="toc-session-overview-1" class="nav-link" data-scroll-target="#session-overview-1">Session overview</a>
+  <ul>
   <li><a href="#basics-of-development-and-the-dartr-style-guide" id="toc-basics-of-development-and-the-dartr-style-guide" class="nav-link" data-scroll-target="#basics-of-development-and-the-dartr-style-guide">1. Basics of development and the dartR style guide</a>
   <ul class="collapse">
   <li><a href="#the-dartr-function-a-skeleton" id="toc-the-dartr-function-a-skeleton" class="nav-link" data-scroll-target="#the-dartr-function-a-skeleton">The dartR function: a skeleton</a></li>
@@ -322,7 +340,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gl.document" id="toc-gl.document" class="nav-link" data-scroll-target="#gl.document">gl.document</a></li>
   <li><a href="#forking" id="toc-forking" class="nav-link" data-scroll-target="#forking">Forking</a></li>
   <li><a href="#setting-up-the-r-project" id="toc-setting-up-the-r-project" class="nav-link" data-scroll-target="#setting-up-the-r-project">Setting up the R project</a></li>
-  </ul></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -370,11 +387,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="choosing-colours-for-discrete-groups" class="level2">
 <h2 class="anchored" data-anchor-id="choosing-colours-for-discrete-groups">Choosing colours for discrete groups</h2>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 </section>
-<section id="introduction" class="level1">
-<h1>## Introduction</h1>
-<p>When plotting discrete categories such as populations or locations, it is helpful to use palettes with clearly distinguishable colours. &gt;&gt;&gt;&gt;&gt;&gt;&gt; main</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>When plotting discrete categories such as populations or locations, it is helpful to use palettes with clearly distinguishable colours.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore palettes available through dartRverse</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.select.colors</span>()</span>
@@ -398,6 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"Dark 3"</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
 <section id="adobe-color-wheel" class="level2">
 <h2 class="anchored" data-anchor-id="adobe-color-wheel">Adobe Color Wheel</h2>
 <p>Adobe Color Wheel is useful for designing palettes for categorical data.<br>
@@ -719,6 +736,262 @@ It stores genomic coordinates together with metadata such as feature type, stran
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">save2tmp =</span> <span class="cn">TRUE</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="section" class="level20">
+<p class="heading"></p>
+</section>
+</section>
+<section id="other-stuff" class="level2">
+<h2 class="anchored" data-anchor-id="other-stuff">other stuff</h2>
+<hr>
+</section>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>In this session we will explore some of the newest and most exciting functions recently added to the dartRverse ecosystem.</p>
+<hr>
+</section>
+<section id="session-overview" class="level2">
+<h2 class="anchored" data-anchor-id="session-overview">Session overview</h2>
+<ul>
+<li><strong><code>gl.map.interactive</code> — Interactive maps with gene flow</strong>
+<ul>
+<li>Visualising population locations on an interactive leaflet map</li>
+<li>Overlaying a directed gene flow graph using private allele estimates</li>
+<li>Interpreting arrow colour and thickness as gene flow magnitude</li>
+</ul></li>
+<li><strong><code>gl.gen2fbm</code>, <code>gl.fbm2gen</code>, <code>gl.pca</code> — The FBM memory model</strong>
+<ul>
+<li>What is a File-Backed Matrix (FBM) and why does it matter?</li>
+<li>Comparing the compressed dartR object vs the FBM representation</li>
+<li>Why imputation is required before running PCA on FBM objects</li>
+<li>Benchmarking: runtime comparison of standard vs FBM-backed PCA</li>
+<li>Demonstrating that imputed FBM-PCA results are identical to standard PCA</li>
+</ul></li>
+<li><strong><code>gl.print.history</code> — Your analysis audit trail</strong>
+<ul>
+<li>Recovering the filter history applied to a genlight object</li>
+<li>Practical use cases</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="gl.map.interactive" class="level2">
+<h2 class="anchored" data-anchor-id="gl.map.interactive"><code>gl.map.interactive</code></h2>
+<p><strong>Package:</strong> <code>dartR.base</code></p>
+<p><code>gl.map.interactive</code> creates an interactive leaflet map that plots the sampling locations of populations stored in a genlight object. Beyond a simple location map, the function can overlay a <strong>directed gene flow network</strong>: you supply a pairwise migration matrix and the function draws arrows between populations whose colour and line thickness scale with the estimated magnitude of gene flow, making asymmetric dispersal immediately visible.</p>
+<hr>
+<section id="basic-interactive-map" class="level3">
+<h3 class="anchored" data-anchor-id="basic-interactive-map">Basic interactive map</h3>
+<p>The simplest call only needs your genlight object. We use the built-in <code>possums.gl</code> dataset, which contains five possum populations across south-eastern Australia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic interactive map — population locations only</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(possums.gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see a leaflet map with one marker per population. Hover or click on a marker to see the population name and sample size.</p>
+<hr>
+</section>
+<section id="estimating-private-alleles-as-a-gene-flow-proxy" class="level3">
+<h3 class="anchored" data-anchor-id="estimating-private-alleles-as-a-gene-flow-proxy">Estimating private alleles as a gene flow proxy</h3>
+<p>Before drawing directional arrows we need a <strong>directed matrix</strong> encoding the relative strength of gene flow between every pair of populations. <code>gl.report.pa</code> returns a data frame with columns <code>pop1</code>, <code>pop2</code>, <code>priv1</code> (private alleles in pop1 not in pop2) and <code>priv2</code> (private alleles in pop2 not in pop1). We reshape this into a square populations × populations matrix where entry <code>[i, j]</code> holds the number of private alleles in population <em>i</em> that are absent in population <em>j</em> — a directional proxy for gene flow from <em>i</em> → <em>j</em>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Report private alleles — returns a data frame with columns pop1, pop2, priv1, priv2</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pa_df <span class="ot">&lt;-</span> <span class="fu">gl.report.pa</span>(possums.gl[<span class="dv">1</span><span class="sc">:</span><span class="dv">120</span>,], <span class="at">plot.display =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="dv">0</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pa_df)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get sorted population names</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>pops <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(<span class="fu">c</span>(<span class="fu">as.character</span>(pa_df<span class="sc">$</span>pop1), <span class="fu">as.character</span>(pa_df<span class="sc">$</span>pop2))))</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialise an empty square matrix</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>pa_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="fu">length</span>(pops), <span class="at">ncol =</span> <span class="fu">length</span>(pops),</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dimnames =</span> <span class="fu">list</span>(pops, pops))</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill: priv1 = private alleles in pop1 absent from pop2  →  flow pop1 → pop2</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(pa_df))) {</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> <span class="fu">as.character</span>(pa_df<span class="sc">$</span>pop1[i])</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> <span class="fu">as.character</span>(pa_df<span class="sc">$</span>pop2[i])</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  pa_matrix[p1, p2] <span class="ot">&lt;-</span> pa_df<span class="sc">$</span>priv1[i]   <span class="co"># pop1 → pop2</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>  pa_matrix[p2, p1] <span class="ot">&lt;-</span> pa_df<span class="sc">$</span>priv2[i]   <span class="co"># pop2 → pop1</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>pa_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="directed-gene-flow-map" class="level3">
+<h3 class="anchored" data-anchor-id="directed-gene-flow-map">Directed gene flow map</h3>
+<p>Pass the square matrix to <code>gl.map.interactive</code>. Arrow <strong>thickness</strong> and <strong>colour</strong> scale with the private allele count, so source and sink populations are immediately apparent.</p>
+<div class="cell" data-exercise="true">
+<div class="tutorial-exercise" data-label="map-geneflow" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0" data-pipe="|>">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive map with directed gene flow overlay</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  possums.gl[<span class="dv">1</span><span class="sc">:</span><span class="dv">120</span>],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">matrix =</span> pa_matrix,<span class="at">symmetric =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="gl.gen2fbm-gl.fbm2gen-gl.pca-the-fbm-memory-model" class="level2">
+<h2 class="anchored" data-anchor-id="gl.gen2fbm-gl.fbm2gen-gl.pca-the-fbm-memory-model"><code>gl.gen2fbm</code>, <code>gl.fbm2gen</code> &amp; <code>gl.pca</code> — The FBM memory model</h2>
+<p><strong>Packages:</strong> <code>dartR.base</code> (conversion functions), <code>dartR.popgen</code> (PCA)</p>
+<section id="background-two-representations-of-a-dartr-object" class="level3">
+<h3 class="anchored" data-anchor-id="background-two-representations-of-a-dartr-object">Background: two representations of a dartR object</h3>
+<p>A standard dartR / genlight object stores the SNP matrix in a highly compressed bitwise format. This keeps the object small in memory — often only a few MB even for tens of thousands of loci — but every mathematical operation must first decompress the data, which adds overhead for computationally intensive analyses such as PCA on very large datasets.</p>
+<p>The <strong>File-Backed Matrix (FBM)</strong> representation, powered by the <code>bigstatsr</code> package, stores the genotype matrix in a binary flat file on disk. The file is larger than the compressed genlight object, but individual rows and columns can be accessed directly without decompression, making linear algebra operations (including PCA via randomised SVD) dramatically faster for large datasets.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Compressed genlight</th>
+<th>FBM-backed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Object size in RAM</td>
+<td>Very small</td>
+<td>Small (only file handle)</td>
+</tr>
+<tr class="even">
+<td>File on disk</td>
+<td>None</td>
+<td>Large flat file</td>
+</tr>
+<tr class="odd">
+<td>Can be saved with <code>saveRDS</code></td>
+<td>✅ Yes</td>
+<td>❌ No — file path becomes invalid</td>
+</tr>
+<tr class="even">
+<td>PCA / linear algebra speed</td>
+<td>Slower (decompress first)</td>
+<td>Much faster</td>
+</tr>
+<tr class="odd">
+<td>Requires imputation for PCA</td>
+<td>Optional</td>
+<td><strong>Required</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Important:</strong> An FBM object <strong>cannot be saved</strong> across sessions with <code>saveRDS</code> / <code>save</code>. It must be recreated each time. Think of it as a fast in-session cache, not a storage format.</p>
+</blockquote>
+<hr>
+</section>
+<section id="converting-to-and-from-fbm" class="level3">
+<h3 class="anchored" data-anchor-id="converting-to-and-from-fbm">Converting to and from FBM</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate a medium-sized genlight object</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>gl_sim <span class="ot">&lt;-</span> <span class="fu">glSim</span>(<span class="at">n.ind =</span> <span class="dv">200</span>, <span class="at">n.snp.nonstruc =</span> <span class="dv">5000</span>, <span class="at">ploidy =</span> <span class="dv">2</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>gl_sim</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gl_sim) <span class="ot">&lt;-</span> <span class="st">"dartR"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to FBM — writes the flat file and attaches it to the object</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>gl_fbm <span class="ot">&lt;-</span> <span class="fu">gl.gen2fbm</span>(gl_sim)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspect the FBM slot</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>gl_fbm<span class="sc">@</span>fbm       <span class="co"># bigstatsr FBM object</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gl_fbm<span class="sc">@</span>fbm)  <span class="co"># rows = individuals, cols = loci</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare object sizes in RAM (the FBM data lives on disk, not in RAM)</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Compressed genlight: "</span>, <span class="fu">object.size</span>(gl_sim) <span class="sc">/</span> <span class="dv">1024</span>, <span class="st">"KB</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"FBM genlight object: "</span>, <span class="fu">object.size</span>(gl_fbm) <span class="sc">/</span> <span class="dv">1024</span>, <span class="st">"KB</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Converting back is equally straightforward:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to standard compressed genlight</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>gl_back <span class="ot">&lt;-</span> <span class="fu">gl.fbm2gen</span>(gl_fbm)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>gl_back</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="runtime-benchmark-standard-pca-vs-fbm-backed-pca" class="level3">
+<h3 class="anchored" data-anchor-id="runtime-benchmark-standard-pca-vs-fbm-backed-pca">Runtime benchmark: standard PCA vs FBM-backed PCA</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate a larger dataset to make the speed difference apparent</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>gl_large <span class="ot">&lt;-</span> <span class="fu">glSim</span>(<span class="at">n.ind =</span> <span class="dv">200</span>, <span class="at">n.snp.nonstruc =</span> <span class="dv">5000</span>, <span class="at">ploidy =</span> <span class="dv">2</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gl_large) <span class="ot">&lt;-</span> <span class="st">"dartR"</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pop</span>(gl_large) <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"Pop"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="at">each =</span> <span class="dv">50</span>)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(gl_large) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Ind"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare FBM version with imputation</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>gl_large_fbm <span class="ot">&lt;-</span> <span class="fu">gl.gen2fbm</span>(gl_large)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.time</span>(pc_gen <span class="ot">&lt;-</span><span class="fu">gl.pcoa</span>(gl_large, <span class="at">verbose =</span> <span class="dv">0</span>))</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.time</span>(pc_fbm <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl_large_fbm, <span class="at">verbose =</span> <span class="dv">0</span>))</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  p1 <span class="ot">&lt;-</span> <span class="fu">gl.pcoa.plot</span>(pc_gen, gl_large, <span class="at">verbose =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>          ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">"Standard PCA (compressed genlight)"</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  pc_fbm<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="sc">-</span>pc_fbm<span class="sc">$</span>scores[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]  <span class="co"># flip axes for better visual comparison</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>  p2 <span class="ot">&lt;-</span> <span class="fu">gl.pcoa.plot</span>(pc_fbm, gl_large_fbm, <span class="at">verbose =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>          ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">"FBM-backed PCA (imputed FBM)"</span>)</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>  p1 <span class="sc">+</span> p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The FBM pathway is typically <strong>5–50× faster</strong> for datasets with &gt;10 000 loci, with the speedup increasing with dataset size.</p>
+<hr>
+</section>
+<section id="are-the-results-identical-side-by-side-pca-plots" class="level3">
+<h3 class="anchored" data-anchor-id="are-the-results-identical-side-by-side-pca-plots">Are the results identical? Side-by-side PCA plots</h3>
+<blockquote class="blockquote">
+<p><strong>Take-home message:</strong> Use the standard compressed genlight for everyday work and storage. Switch to the FBM representation when running computationally intensive analyses on large datasets, remembering to impute first and never to save the FBM object to disk.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="gl.print.history" class="level2">
+<h2 class="anchored" data-anchor-id="gl.print.history"><code>gl.print.history</code></h2>
+<p><strong>Package:</strong> <code>dartR.base</code></p>
+<p>Every filtering function in dartR automatically appends a record of what was done — thresholds used, loci/individuals removed, timestamp — to an internal history log stored in <code>gl@other$history</code>. <code>gl.print.history</code> retrieves and displays this log in a human-readable format.</p>
+<p>This is invaluable when you return to an analysis weeks later and need to reconstruct exactly which filters were applied, or when documenting your QC pipeline for a methods section.</p>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start with the built-in testset and apply a series of filters</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>gl_work <span class="ot">&lt;-</span> testset.gl</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>gl_work <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(gl_work, <span class="at">method =</span> <span class="st">"loc"</span>, <span class="at">threshold =</span> <span class="fl">0.95</span>, <span class="at">verbose =</span> <span class="dv">0</span>)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>gl_work <span class="ot">&lt;-</span> <span class="fu">gl.filter.maf</span>(gl_work,      <span class="at">threshold =</span> <span class="fl">0.05</span>, <span class="at">verbose =</span> <span class="dv">0</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>gl_work <span class="ot">&lt;-</span> <span class="fu">gl.filter.monomorphs</span>(gl_work,                 <span class="at">verbose =</span> <span class="dv">0</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>gl_work <span class="ot">&lt;-</span> <span class="fu">gl.filter.secondaries</span>(gl_work,                <span class="at">verbose =</span> <span class="dv">0</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Recover the complete filter audit trail</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.print.history</span>(gl_work)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The output lists each function call in chronological order together with the key parameters and the number of loci/individuals retained at each step. When you share a filtered genlight object with a collaborator via <code>saveRDS</code>, the history travels with it — they can inspect your entire filter chain without needing to read through your script.</p>
+<blockquote class="blockquote">
+<p><strong>Tip:</strong> If you ever wonder “wait, did I filter for HWE on this object?”, <code>gl.print.history</code> will tell you immediately — no more scrolling through old scripts.</p>
+</blockquote>
+<hr>
+</section>
+<section id="additional-reading" class="level2">
+<h2 class="anchored" data-anchor-id="additional-reading">Additional reading</h2>
+<ul>
+<li><strong>bigstatsr</strong> — Privé F et al.&nbsp;(2018). <em>Efficient analysis of large-scale genome-wide data with two R packages: bigstatsr and bigsnpr.</em> Bioinformatics.</li>
+<li><strong>dartRverse</strong> documentation — <a href="https://green-striped-gecko.github.io/dartR/" class="uri">https://green-striped-gecko.github.io/dartR/</a></li>
+<li><code>?gl.map.interactive</code>, <code>?gl.impute</code>, <code>?gl.print.history</code></li>
+</ul>
+<hr>
+</section>
+<section id="wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up">Wrap up</h2>
+<p>In this session we covered three powerful additions to the dartRverse:</p>
+<ul>
+<li><p><code>gl.map.interactive</code> lets you visualise population locations and overlay directed gene flow networks derived from private allele estimates, with arrow thickness and colour encoding migration magnitude and direction.</p></li>
+<li><p><code>gl.gen2fbm</code> / <code>gl.fbm2gen</code> / <code>gl.pca</code> introduce a File-Backed Matrix memory model that trades a larger disk footprint for dramatically faster linear algebra — ideal for PCA and similar analyses on large SNP datasets. The FBM object cannot be saved across sessions and requires imputation before PCA, but the resulting ordination is identical to the standard approach.</p></li>
+<li><p><code>gl.print.history</code> exposes the complete filter audit trail embedded in every dartR genlight object, making your analyses transparent, reproducible and easy to document.</p></li>
+</ul>
+<section id="section-1" class="level19">
+<p class="heading"></p>
+</section>
 </section>
 <section id="getting-started-with-development---joining-the-dartr-team" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started-with-development---joining-the-dartr-team">Getting started with development - joining the dartR team</h2>
@@ -726,8 +999,8 @@ It stores genomic coordinates together with metadata such as feature type, stran
 <p>That being said, open source is not a synonym for free for all! To ensure the stability and condition of the package remains high, there are a number of rules we must adhere to when developing new features.</p>
 <p>As such in this tutorial, we’ll be providing an introduction as to the means by which you can become a developer, and actively contribute to the package. We’ll introduce you to the style guide, how to use it in the development of functions, provide a brief intro to github and how to manage pushing, pulling, merging and forking!</p>
 </section>
-<section id="session-overview" class="level2">
-<h2 class="anchored" data-anchor-id="session-overview">Session overview</h2>
+<section id="session-overview-1" class="level2">
+<h2 class="anchored" data-anchor-id="session-overview-1">Session overview</h2>
 <ul>
 <li><strong>1. Introduction to basics of development</strong>
 <ul>
@@ -822,18 +1095,18 @@ It stores genomic coordinates together with metadata such as feature type, stran
 <p>Its important to flag the start of the script- to ensure the output displays when the job has commenced. We can do this with the utils.flag.start function.</p>
 <p>In addition we also flag the start of the function with a # DO THE JOB tag: such as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>thingy <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b){</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(a <span class="sc">==</span> <span class="st">"num"</span> <span class="sc">|</span> b <span class="sc">==</span> <span class="st">"num"</span>)){</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"a and b wrong format"</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># DO THE JOB</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>thingy <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b){</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(a <span class="sc">==</span> <span class="st">"num"</span> <span class="sc">|</span> b <span class="sc">==</span> <span class="st">"num"</span>)){</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"a and b wrong format"</span>)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># DO THE JOB</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -875,139 +1148,139 @@ It stores genomic coordinates together with metadata such as feature type, stran
 <section id="gl.document" class="level4">
 <h4 class="anchored" data-anchor-id="gl.document">gl.document</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @name gl.document</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Generate a roxygen2 Documentation Template for a Function</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Creates a skeleton \code{roxygen2} documentation file for a specified </span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' function. The generated file contains standard documentation fields </span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' including title, description, parameters, details, return value, examples, </span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' and references. The output is written as a new \code{.R} file in the </span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' specified directory.</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function inspects the formal arguments of the target function and </span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' automatically generates \code{@param} entries for each argument. This </span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' provides a structured starting point for developing consistent </span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation across a package.</span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param func_name Name of the function to be documented (unquoted).</span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param author_name Character string specifying the author of the function.</span></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param example_dataset Name of an example dataset to include in the </span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation examples (currently placeholder, not implemented).</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param outputDir Character string specifying the directory where the </span></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation file will be written. The file will be named </span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#' \code{&lt;func_name&gt;.R}.</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co">#' @details </span></span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function constructs a list of standard documentation fields and writes </span></span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co">#' them in roxygen2 format to a new file connection. Parameter names are </span></span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="co">#' extracted using \code{formals()} and written as placeholder entries for </span></span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co">#' subsequent manual editing.</span></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co">#' The generated template includes the following sections:</span></span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' \itemize{</span></span>
-<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@name}</span></span>
-<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@title}</span></span>
-<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@description}</span></span>
-<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@param}</span></span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@details}</span></span>
-<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@return}</span></span>
-<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@author}</span></span>
-<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@examples}</span></span>
-<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@references}</span></span>
-<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span>
-<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return </span></span>
-<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="co">#' A new \code{.R} file containing a roxygen2 documentation template is </span></span>
-<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="co">#' written to the specified directory. The function returns \code{NULL} </span></span>
-<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="co">#' invisibly.</span></span>
-<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="co">#' @author </span></span>
-<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="co">#' Author name supplied via \code{author_name}.</span></span>
-<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Example usage:</span></span>
-<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="co">#' # gl.document(</span></span>
-<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   func_name = myFunction,</span></span>
-<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   author_name = "Your Name",</span></span>
-<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   example_dataset = "gl.example",</span></span>
-<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   outputDir = "R/"</span></span>
-<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a><span class="co">#' # )</span></span>
-<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>gl.document <span class="ot">&lt;-</span> <span class="cf">function</span>(func_name, </span>
-<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a>                        author_name,</span>
-<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>                        <span class="at">example_dataset =</span> <span class="cn">NULL</span>,</span>
-<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a>                        outputDir){</span>
-<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert function to character name</span></span>
-<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a>  funcName <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">substitute</span>(func_name))</span>
-<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract parameter names</span></span>
-<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">formals</span>(func_name))</span>
-<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Construct example call ----</span></span>
-<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a>  example_call <span class="ot">&lt;-</span> <span class="fu">paste0</span>(funcName, <span class="st">"("</span>, </span>
-<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">paste</span>(parameters, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a>                         <span class="st">")"</span>)</span>
-<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build example block</span></span>
-<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' @examples"</span>,</span>
-<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' # Example usage:"</span>,</span>
-<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(example_dataset)) </span>
-<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="st">"#' data("</span>, example_dataset, <span class="st">")"</span>),</span>
-<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"#' "</span>, example_call)</span>
-<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NULL if no dataset</span></span>
-<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> example_lines[<span class="sc">!</span><span class="fu">is.na</span>(example_lines)]</span>
-<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Create file connection ----</span></span>
-<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>  fileConn <span class="ot">&lt;-</span> <span class="fu">file</span>(<span class="fu">paste0</span>(outputDir, funcName, <span class="st">".R"</span>), <span class="st">"wt"</span>)</span>
-<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write header fields ----</span></span>
-<span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @name "</span>, funcName), fileConn)</span>
-<span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @title Title for "</span>, funcName), fileConn)</span>
-<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @description "</span>, funcName, <span class="st">" does:"</span>), fileConn)</span>
-<span id="cb27-97"><a href="#cb27-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write parameters ----</span></span>
-<span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(params <span class="cf">in</span> parameters){</span>
-<span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @param "</span>, params, <span class="st">" Insert description."</span>), fileConn)</span>
-<span id="cb27-102"><a href="#cb27-102" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb27-103"><a href="#cb27-103" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-104"><a href="#cb27-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-105"><a href="#cb27-105" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-106"><a href="#cb27-106" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write details ----</span></span>
-<span id="cb27-107"><a href="#cb27-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @details"</span>), fileConn)</span>
-<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Detailed description goes here."</span>, fileConn)</span>
-<span id="cb27-109"><a href="#cb27-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-110"><a href="#cb27-110" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write return ----</span></span>
-<span id="cb27-112"><a href="#cb27-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @return "</span>, funcName, <span class="st">" returns:"</span>), fileConn)</span>
-<span id="cb27-113"><a href="#cb27-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-114"><a href="#cb27-114" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-115"><a href="#cb27-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write author ----</span></span>
-<span id="cb27-116"><a href="#cb27-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @author "</span>, author_name), fileConn)</span>
-<span id="cb27-117"><a href="#cb27-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-118"><a href="#cb27-118" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-119"><a href="#cb27-119" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write examples ----</span></span>
-<span id="cb27-120"><a href="#cb27-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(example_lines, fileConn)</span>
-<span id="cb27-121"><a href="#cb27-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-122"><a href="#cb27-122" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-123"><a href="#cb27-123" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write references ----</span></span>
-<span id="cb27-124"><a href="#cb27-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @references"</span>, fileConn)</span>
-<span id="cb27-125"><a href="#cb27-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Patterson, J. (2005). Maximum ride. New York: Little, Brown."</span>, fileConn)</span>
-<span id="cb27-126"><a href="#cb27-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb27-127"><a href="#cb27-127" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-128"><a href="#cb27-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @export"</span>, fileConn)</span>
-<span id="cb27-129"><a href="#cb27-129" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-130"><a href="#cb27-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">close</span>(fileConn)</span>
-<span id="cb27-131"><a href="#cb27-131" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-132"><a href="#cb27-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
-<span id="cb27-133"><a href="#cb27-133" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @name gl.document</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Generate a roxygen2 Documentation Template for a Function</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Creates a skeleton \code{roxygen2} documentation file for a specified </span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' function. The generated file contains standard documentation fields </span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' including title, description, parameters, details, return value, examples, </span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' and references. The output is written as a new \code{.R} file in the </span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' specified directory.</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function inspects the formal arguments of the target function and </span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' automatically generates \code{@param} entries for each argument. This </span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' provides a structured starting point for developing consistent </span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation across a package.</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param func_name Name of the function to be documented (unquoted).</span></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param author_name Character string specifying the author of the function.</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param example_dataset Name of an example dataset to include in the </span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation examples (currently placeholder, not implemented).</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param outputDir Character string specifying the directory where the </span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation file will be written. The file will be named </span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="co">#' \code{&lt;func_name&gt;.R}.</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="co">#' @details </span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function constructs a list of standard documentation fields and writes </span></span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="co">#' them in roxygen2 format to a new file connection. Parameter names are </span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="co">#' extracted using \code{formals()} and written as placeholder entries for </span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="co">#' subsequent manual editing.</span></span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="co">#' The generated template includes the following sections:</span></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' \itemize{</span></span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@name}</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@title}</span></span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@description}</span></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@param}</span></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@details}</span></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@return}</span></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@author}</span></span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@examples}</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@references}</span></span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return </span></span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="co">#' A new \code{.R} file containing a roxygen2 documentation template is </span></span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="co">#' written to the specified directory. The function returns \code{NULL} </span></span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="co">#' invisibly.</span></span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="co">#' @author </span></span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a><span class="co">#' Author name supplied via \code{author_name}.</span></span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Example usage:</span></span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a><span class="co">#' # gl.document(</span></span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   func_name = myFunction,</span></span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   author_name = "Your Name",</span></span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   example_dataset = "gl.example",</span></span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   outputDir = "R/"</span></span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a><span class="co">#' # )</span></span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a>gl.document <span class="ot">&lt;-</span> <span class="cf">function</span>(func_name, </span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a>                        author_name,</span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>                        <span class="at">example_dataset =</span> <span class="cn">NULL</span>,</span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>                        outputDir){</span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert function to character name</span></span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>  funcName <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">substitute</span>(func_name))</span>
+<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract parameter names</span></span>
+<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">formals</span>(func_name))</span>
+<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Construct example call ----</span></span>
+<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>  example_call <span class="ot">&lt;-</span> <span class="fu">paste0</span>(funcName, <span class="st">"("</span>, </span>
+<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">paste</span>(parameters, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a>                         <span class="st">")"</span>)</span>
+<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build example block</span></span>
+<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' @examples"</span>,</span>
+<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' # Example usage:"</span>,</span>
+<span id="cb34-82"><a href="#cb34-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(example_dataset)) </span>
+<span id="cb34-83"><a href="#cb34-83" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="st">"#' data("</span>, example_dataset, <span class="st">")"</span>),</span>
+<span id="cb34-84"><a href="#cb34-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"#' "</span>, example_call)</span>
+<span id="cb34-85"><a href="#cb34-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-86"><a href="#cb34-86" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-87"><a href="#cb34-87" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NULL if no dataset</span></span>
+<span id="cb34-88"><a href="#cb34-88" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> example_lines[<span class="sc">!</span><span class="fu">is.na</span>(example_lines)]</span>
+<span id="cb34-89"><a href="#cb34-89" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-90"><a href="#cb34-90" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Create file connection ----</span></span>
+<span id="cb34-91"><a href="#cb34-91" aria-hidden="true" tabindex="-1"></a>  fileConn <span class="ot">&lt;-</span> <span class="fu">file</span>(<span class="fu">paste0</span>(outputDir, funcName, <span class="st">".R"</span>), <span class="st">"wt"</span>)</span>
+<span id="cb34-92"><a href="#cb34-92" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-93"><a href="#cb34-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write header fields ----</span></span>
+<span id="cb34-94"><a href="#cb34-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @name "</span>, funcName), fileConn)</span>
+<span id="cb34-95"><a href="#cb34-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @title Title for "</span>, funcName), fileConn)</span>
+<span id="cb34-96"><a href="#cb34-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @description "</span>, funcName, <span class="st">" does:"</span>), fileConn)</span>
+<span id="cb34-97"><a href="#cb34-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-98"><a href="#cb34-98" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-99"><a href="#cb34-99" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write parameters ----</span></span>
+<span id="cb34-100"><a href="#cb34-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(params <span class="cf">in</span> parameters){</span>
+<span id="cb34-101"><a href="#cb34-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @param "</span>, params, <span class="st">" Insert description."</span>), fileConn)</span>
+<span id="cb34-102"><a href="#cb34-102" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb34-103"><a href="#cb34-103" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-104"><a href="#cb34-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-105"><a href="#cb34-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-106"><a href="#cb34-106" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write details ----</span></span>
+<span id="cb34-107"><a href="#cb34-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @details"</span>), fileConn)</span>
+<span id="cb34-108"><a href="#cb34-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Detailed description goes here."</span>, fileConn)</span>
+<span id="cb34-109"><a href="#cb34-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-110"><a href="#cb34-110" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-111"><a href="#cb34-111" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write return ----</span></span>
+<span id="cb34-112"><a href="#cb34-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @return "</span>, funcName, <span class="st">" returns:"</span>), fileConn)</span>
+<span id="cb34-113"><a href="#cb34-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-114"><a href="#cb34-114" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-115"><a href="#cb34-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write author ----</span></span>
+<span id="cb34-116"><a href="#cb34-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @author "</span>, author_name), fileConn)</span>
+<span id="cb34-117"><a href="#cb34-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-118"><a href="#cb34-118" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-119"><a href="#cb34-119" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write examples ----</span></span>
+<span id="cb34-120"><a href="#cb34-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(example_lines, fileConn)</span>
+<span id="cb34-121"><a href="#cb34-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-122"><a href="#cb34-122" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-123"><a href="#cb34-123" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write references ----</span></span>
+<span id="cb34-124"><a href="#cb34-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @references"</span>, fileConn)</span>
+<span id="cb34-125"><a href="#cb34-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Patterson, J. (2005). Maximum ride. New York: Little, Brown."</span>, fileConn)</span>
+<span id="cb34-126"><a href="#cb34-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb34-127"><a href="#cb34-127" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-128"><a href="#cb34-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @export"</span>, fileConn)</span>
+<span id="cb34-129"><a href="#cb34-129" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-130"><a href="#cb34-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">close</span>(fileConn)</span>
+<span id="cb34-131"><a href="#cb34-131" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-132"><a href="#cb34-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
+<span id="cb34-133"><a href="#cb34-133" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function gl.document writes basic document for creating new R functions such that the user can then fill in the rest with ease. We’ll be pushing our changes to a fork of the dartR.base package.</p>
 </section>
@@ -1059,6 +1332,46 @@ session$onSessionEnded(function() {
       })
 </script>
  
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-map-geneflow-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-map-geneflow-code-editor`)), session)
+output$`tutorial-exercise-map-geneflow-output` <- renderUI({
+  `tutorial-exercise-map-geneflow-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "map-geneflow", global_setup = structure(c("library(learnr)", 
+"knitr::opts_chunk$set(echo = TRUE, eval = FALSE)"), chunk_opts = list(
+    label = "setup", include = FALSE)), setup = NULL, chunks = list(
+    list(label = "map-geneflow", code = "# Interactive map with directed gene flow overlay\ngl.map.interactive(\n  possums.gl[1:120],\n  matrix = pa_matrix,symmetric = FALSE)", 
+        opts = list(label = "\"map-geneflow\"", exercise = "TRUE"), 
+        engine = "r")), code_check = NULL, error_check = NULL, 
+    check = NULL, solution = NULL, tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "W09_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "W09_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 7L, fig.height = 5L, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 672L, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        fig.asp = NULL, fenced.echo = FALSE, ft.shadow = FALSE, 
+        label = "map-geneflow", exercise = TRUE, original.params.src = "r map-geneflow, exercise=TRUE", 
+        chunk.echo = FALSE, code = c("# Interactive map with directed gene flow overlay", 
+        "gl.map.interactive(", "  possums.gl[1:120],", "  matrix = pa_matrix,symmetric = FALSE)"
+        ), out.width.px = 672L, out.height.px = 480L, params.src = "r map-geneflow, exercise=TRUE", 
+        fig.num = 0, exercise.df_print = "default", exercise.checker = "NULL"), 
+    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
+)))
+</script>
+ 
 <script type="application/shiny-prerendered" data-context="server-extras">
 ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
   quos <- rlang::enquos(...)
@@ -1088,7 +1401,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 </p>
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="dependencies">
-{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["5.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.6"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["idb-keyvalue"]},{"type":"character","attributes":{},"value":["3.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/idb-keyval"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["idb-keyval-iife-compat.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["0.11.6"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.6"]}]}]}
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["5.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.6"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["idb-keyvalue"]},{"type":"character","attributes":{},"value":["3.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/idb-keyval"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["idb-keyval-iife-compat.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["0.11.6"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.6"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.6"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.6"]}]}]}
 </script>
 <!--/html_preserve-->
 <!--html_preserve-->
@@ -1098,7 +1411,6 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 <!--/html_preserve-->
 
 
-</section>
 </section>
 </section>
 </section>

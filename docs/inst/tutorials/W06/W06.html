@@ -511,7 +511,7 @@ Your data contains missing data, better filter stronger or use gl.impute to fill
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.50    0.04    0.55 </code></pre>
+    0.5     0.0     0.5 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(yy, <span class="at">file=</span><span class="st">"mog.test1a.csv"</span>, <span class="at">row.names=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -543,10 +543,10 @@ Your data contains missing data, better filter stronger or use gl.impute to fill
   Removing monomorphic loci and loci with all missing 
                        data
     Original No. of loci: 12908 
-    Monomorphic loci: 9851 
-    Loci scored all NA: 838 
-    No. of loci deleted: 9851 
-    No. of loci retained: 3057 
+    Monomorphic loci: 9860 
+    Loci scored all NA: 843 
+    No. of loci deleted: 9860 
+    No. of loci retained: 3048 
     No. of individuals: 70 
     No. of populations: 5 
 Completed: gl.filter.monomorphs </code></pre>
@@ -559,9 +559,9 @@ Completed: gl.filter.monomorphs </code></pre>
   Removing loci based on Call Rate, threshold = 0.95 
   Summary of filtered dataset
     Call Rate for loci &gt; 0.95 
-    Original No. of loci : 3057 
+    Original No. of loci : 3048 
     Original No. of individuals: 70 
-    No. of loci retained: 2485 
+    No. of loci retained: 2483 
     No. of individuals retained: 70 
     No. of populations:  5 </code></pre>
 </div>
@@ -583,8 +583,8 @@ Completed: gl.filter.monomorphs </code></pre>
                 and recalculating FreqHoms and FreqHets
   Summary of filtered dataset
   MAF for loci &gt; 0.02142857 
-  Initial number of loci: 2485 
-  Number of loci deleted: 1703 
+  Initial number of loci: 2483 
+  Number of loci deleted: 1701 
   Final number of loci: 782 </code></pre>
 </div>
 <div class="cell-output-display">
@@ -607,7 +607,7 @@ Completed: gl.filter.monomorphs </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-   0.37    0.05    0.42 </code></pre>
+   0.42    0.00    0.41 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(yy, <span class="at">file=</span><span class="st">"mog.test2a.csv"</span>, <span class="at">row.names=</span>F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

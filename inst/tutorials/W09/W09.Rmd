@@ -39,12 +39,13 @@ library(viridis)
 
 ## Choosing colours for discrete groups
 
-<<<<<<< HEAD
+
 
 ## Introduction
-=======
+
+
 When plotting discrete categories such as populations or locations, it is helpful to use palettes with clearly distinguishable colours.
->>>>>>> main
+
 
 ```{r colour-palettes}
 # Explore palettes available through dartRverse
