@@ -1,8 +1,7 @@
 ---
-title: "W09 dartR developer"
+title: "W09 Hidden dartR Powers"
 author: "Bernd Gruber, Luis Mijangos & Arthur Georges"
-date: | 
-    ![](images/dartR7.png){width=5cm}
+date: "9 March 2026"
 output:
   learnr::tutorial:
     progressive: false
@@ -12,7 +11,7 @@ output:
     css: css/dartR_style.css
 runtime: shiny_prerendered
 
-description: "W09 dartR developer"
+description: "W09 Hidden dartR Powers"
 ---
 
 ```{r setup, include=FALSE}
@@ -20,56 +19,387 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W09 dartR developer
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position="right", color="black")
+```
 
-![](images/ethan.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"}![](images/arthur.png){.class width="200" height="200"} ![](images/bernd.png){.class width="200" height="200"}
+## W09 dartR developer {.unnumbered}
+
+::: {style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;"}
+<img src="images/ethan.png" width="200"/> <img src="images/luis.png" width="200"/> <img src="images/arthur.png" width="200"/> <img src="images/bernd.png" width="200"/>
+:::
 
 ```{r setupa, include=FALSE}
 library(tools)
 library(dartRverse)
+library(viridis)
 ```
 
+## Choosing colours for discrete groups
 
-## Introduction
+When plotting discrete categories such as populations or locations, it is helpful to use palettes with clearly distinguishable colours.
 
-1.  Introduction to basics of development
+```{r colour-palettes}
+# Explore palettes available through dartRverse
+gl.select.colors()
 
--   Starting with basics etc.
--   Writing functions
+# Explore palettes from RColorBrewer
+RColorBrewer::display.brewer.all()
+RColorBrewer::brewer.pal.info
 
-2.  DartR style guide
+# Explore built-in palettes from grDevices
+grDevices::palette.pals()
+grDevices::hcl.pals()
 
--   Roxygen2 documentation at start of functions
--   Good practice for writing functions
--   Using gl.document for writing start of functions
+# Base R also provides palettes such as:
+# rainbow(), heat.colors(), topo.colors(), terrain.colors(), and cm.colors()
+```
 
-3.  Example - writing basic function
+```{r select-colours}
+# Select a palette for populations or sampling locations
+col2 <- gl.select.colors(
+  x = possums.gl,
+  library = "gr.hcl",
+  palette = "Dark 3"
+)
+```
 
--   gl.something.basic - does ANYTHING
--   write basic function for printing or combining inputs something like that
+## Adobe Color Wheel
 
-4.  Introduction to github
+Adobe Color Wheel is useful for designing palettes for categorical data.\
+It helps create balanced colour combinations while keeping groups easy to distinguish.\
+Its accessibility tools are also useful for checking how palettes appear to people with colour-vision deficiencies.
 
--   Repo's
--   Push/pull merge etc.
--   forking directories
+<https://color.adobe.com/create/color-wheel>
 
-5.  Github specifically for dartR
+![](images/adobe_color_wheel.png){height="200px"}
 
--   fork directory
--   create local git repo on rstudio
--   create function - compile local copy - make sure package is installable - ie changes have broken the package
--   commit/push to forked repo
--   make pull/merge request from forked repo to original repo
+## Reusing the same colours across plots
 
-6.  Common errors/hangups
+To keep population colours consistent across multiple plots, use the same vector in `plot.colors.pop`.
 
--   ie errors with local variables not being defined etc.
+```{r consistent-colours}
+gl.report.diversity(possums.gl, plot.colors.pop = col2)
+gl.report.heterozygosity(possums.gl, plot.colors.pop = col2)
+```
 
-7.  Roundup/questions etc.
+## Saving and customising a PCoA plot
 
+The arguments `plot.dir` and `plot.file` can be used to save a plot object for later editing.
 
+```{r pcoa-save}
+t1 <- possums.gl
 
+pca <- gl.pcoa(t1)
+
+gl.pcoa.plot(
+  pca,
+  t1,
+  plot.dir = getwd(),
+  plot.file = "test",
+  pt.colors = col2,
+  pt.size = 2
+)
+```
+
+```{r pcoa-edit}
+# Read the saved plot object and modify it with ggplot2 syntax
+p1 <- readRDS("test.RDS")
+
+p2 <- p1 +
+  theme_bw() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none"
+  )
+
+print(p2)
+```
+
+## Alternative PCoA displays
+
+```{r pcoa-interactive}
+# Interactive 2D plot
+gl.pcoa.plot(
+  pca,
+  t1,
+  pt.colors = col2,
+  interactive = TRUE,
+  pt.size = 2
+)
+```
+
+```{r pcoa-3d}
+# 3D plot using the third axis
+gl.pcoa.plot(
+  pca,
+  t1,
+  pt.colors = col2,
+  zaxis = 3,
+  pt.size = 3
+)
+```
+
+## Clustering methods
+
+```{r snmf-run}
+# Run sparse non-negative matrix factorisation
+r1 <- gl.run.snmf(platypus.gl, maxK = 3, rep = 4)
+```
+
+```{r snmf-plot}
+# Plot ancestry coefficients and order individuals by dendrogram
+gl.plot.snmf(
+  snmf.result = r1,
+  border.ind = 0.25,
+  plot.K = 3,
+  plot.theme = NULL,
+  color.clusters = NULL,
+  ind.name = TRUE,
+  plot.out = TRUE,
+  plot.file = NULL,
+  plot.dir = NULL,
+  den = TRUE,
+  inverse.den = TRUE,
+  x = platypus.gl,
+  plot.colors.pop = c("red", "blue", "green")
+)
+```
+
+## Smear plots
+
+Smear plots help visualise locus informativeness and marker behaviour across datasets.
+
+```{r smearplot-snp}
+# SNP data: remove loci with incomplete call rate and monomorphic loci
+t1 <- gl.filter.callrate(platypus.gl, threshold = 1, mono.rm = TRUE)
+
+gl.smearplot(
+  t1,
+  den = TRUE,
+  plot.colors = gl.colors("4")
+)
+```
+
+```{r smearplot-fst}
+# Reorder loci by FST to highlight the most differentiated loci
+fst_loc <- data.frame(
+  order = 1:nLoc(t1),
+  fst = utils.basic.stats(t1)$perloc$Fstp
+)
+
+fst_loc <- fst_loc[order(fst_loc$fst, decreasing = TRUE), ]
+t1 <- t1[, fst_loc$order]
+
+gl.smearplot(
+  t1,
+  den = TRUE,
+  plot.colors = gl.colors("4")
+)
+```
+
+```{r smearplot-silicodart}
+# SilicoDArT data
+t2 <- testset.gs
+
+gl.smearplot(
+  t2,
+  den = TRUE,
+  plot.colors = gl.colors("4")
+)
+```
+
+```{r smearplot-pic}
+# Reorder SilicoDArT loci by PIC (polymorphism information content)
+pic_loc <- data.frame(
+  order = 1:nLoc(t2),
+  pic = t2$other$loc.metrics$PIC
+)
+
+pic_loc <- pic_loc[order(pic_loc$pic, decreasing = TRUE), ]
+t2 <- t2[, pic_loc$order]
+
+gl.smearplot(
+  t2,
+  den = TRUE,
+  plot.colors = gl.colors("4")
+)
+```
+
+```{r smearplot-grouped}
+# Group individuals by population
+gl.smearplot(
+  platypus.gl,
+  group.pop = TRUE,
+  plot.colors = gl.colors("4")
+)
+
+gl.smearplot(
+  bandicoot.gl,
+  den = TRUE,
+  plot.colors = gl.colors("4")
+)
+```
+
+## Using genomic resources
+
+## BLAST
+
+BLAST (Basic Local Alignment Search Tool) is a fast sequence-comparison method used to search a query sequence against a reference database and identify local matches.\
+In `dartRverse`, `gl.blast()` can create FASTA files, prepare a BLAST database, run BLAST, and retain the best hit per sequence.
+
+BLAST+ can be downloaded from:\
+<https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/>
+
+### Common BLAST nucleotide tasks
+
+-   **megablast**: fastest option for highly similar DNA sequences\
+-   **dc-megablast**: better for more divergent but still related sequences\
+-   **blastn**: general-purpose nucleotide search\
+-   **blastn-short**: optimised for short sequences such as primers or probes
+
+```{r blast}
+t1 <- platypus.gl
+
+t1 <- gl.blast(
+  x = t1,
+  ref_genome = "./data/chr_X3_mOrnAna1.pri.v4.fa.gz",
+  task = "megablast",
+  Percentage_identity = 70,
+  Percentage_overlap = 0.8,
+  bitscore = 50,
+  number_of_threads = 2
+)
+```
+
+## Assign chromosome names and SNP positions
+
+```{r positions}
+head(t1$other$loc.metrics)
+
+t1$position <- t1$other$loc.metrics$ChromPos_Platypus_Chrom_NCBIv1
+t1$chromosome <- t1$other$loc.metrics$Chrom_Platypus_Chrom_NCBIv1
+
+head(t1$chromosome)
+```
+
+## SNP density and linkage disequilibrium
+
+```{r snp-density}
+p1 <- gl.plot.snp.density(
+  x = t1,
+  bin.size = 1e6,
+  min.snps = 20,
+  min.length = 1e6,
+  color.palette = viridis::viridis,
+  chr.info = TRUE,
+  plot.title = NULL,
+  plot.theme = theme_dartR()
+)
+```
+
+```{r ld-map}
+r2 <- gl.report.ld.map(t1, ld.max.pairwise = 1e7)
+p2 <- gl.ld.distance(r2, ld.resolution = 1e6)
+```
+
+## Haploview-style LD plotting
+
+![](images/haploview.png){height="200px"}
+
+```{r haplotype-prep}
+popNames(t1)
+
+tbl_chr <- table(t1$chromosome)
+head(tbl_chr)
+
+chr <- names(tbl_chr)[2]
+
+# Reminder:
+# Individuals are stored in rows and loci are stored in columns
+pos_snp_chr <- t1[, t1$chromosome == chr]$position
+```
+
+```{r haplotype-plot}
+p2 <- gl.ld.haplotype(
+  x = t1,
+  pop_name = "TENTERFIELD",
+  chrom_name = chr,
+  ld_max_pairwise = 1e7,
+  maf = 0.05,
+  ld_stat = "R.squared",
+  ind.limit = 10,
+  min_snps = 10,
+  ld_threshold_haplo = 0.5,
+  plot_het = TRUE,
+  snp_pos = TRUE,
+  target.snp1 = pos_snp_chr[43],
+  target.snp2 = pos_snp_chr[80],
+  target.snp3 = pos_snp_chr[20],
+  col.all = "black",
+  col.target1 = "green",
+  col.target2 = "blue",
+  col.target3 = "red",
+  coordinates = NULL,
+  color_haplo = "viridis",
+  color_het = "deeppink"
+)
+```
+
+## GFF files
+
+A GFF file (General Feature Format) is a plain-text annotation file used to describe genomic features such as genes, exons, CDS regions, mRNA, and regulatory elements.\
+It stores genomic coordinates together with metadata such as feature type, strand, source, and identifiers.
+
+Useful annotation sources:
+
+-   NCBI Genome: <https://www.ncbi.nlm.nih.gov/datasets/genome/>
+-   Ensembl: <https://ensembl.org/>
+
+```{r gff-read}
+# Read the first two lines of a GFF file
+readLines(
+  "./data/chr_X3_mOrnAna1.pri.v4.gff",
+  n = 2
+)
+```
+
+```{r chromosome-format}
+# Match chromosome names to the format used in the GFF file
+# This removes everything after the second underscore
+t1$chromosome <- as.factor(
+  sub("^(([^_]*_){1}[^_]*)_.*$", "\\1", t1$chromosome)
+)
+```
+
+```{r map-loci}
+chr <- "NC_041751.1"
+loci <- locNames(t1[, t1@chromosome == chr])
+
+# Map loci to the nearest gene feature in the GFF annotation
+r3 <- gl.find.genes.for.loci(
+  t1,
+  gff.file = "./data/chr_X3_mOrnAna1.pri.v4.gff",
+  loci = loci
+)
+
+head(r3)
+```
+
+```{r find-loci-in-genes}
+# Find loci located within genes matching a name or pattern
+r4 <- gl.find.loci.in.genes(
+  t1,
+  gff.file = "./data/chr_X3_mOrnAna1.pri.v4.gff",
+  gene = "MHC",
+  save2tmp = TRUE
+)
+```
 
 ## Getting started with development - joining the dartR team
 
@@ -77,12 +407,12 @@ As an open-source project dartR encourages its users to actively contribute to t
 
 That being said, open source is not a synonym for free for all! To ensure the stability and condition of the package remains high, there are a number of rules we must adhere to when developing new features.
 
-As such in this tutorial, we'll be providing an introduction as to the means by which you can become a developer, and actively contribute to the package. We'll introduce you to the style guide, how to use it in the development of functions, provide a brief intro to github and how to manage pushing, pulling, merging and forking! By the end you'll be a development pro, etc. etc. ...... not done yet
+As such in this tutorial, we'll be providing an introduction as to the means by which you can become a developer, and actively contribute to the package. We'll introduce you to the style guide, how to use it in the development of functions, provide a brief intro to github and how to manage pushing, pulling, merging and forking!
 
 ## Session overview
 
 -   **1. Introduction to basics of development**
-    -   Starting with basics etc.
+    -   Starting with basics
     -   Writing functions
 -   **2. DartR style guide**
     -   Roxygen2 documentation at start of functions
@@ -91,11 +421,11 @@ As such in this tutorial, we'll be providing an introduction as to the means by 
 -   **3. Introduction to github**
     -   Repo's
     -   Push/pull merge etc.
-    -   forking directories
+    -   Forking directories
 -   **4. Example - writing basic function**
-    -   gl.something.basic - does ANYTHING
-    -   write basic function for printing or combining inputs something like that
--   **5. Github specifically for dartR**
+    -   gl.something.basic
+    -   write basic function for printing or combining inputs
+-   **5. GitHub specifically for dartR**
     -   fork directory
     -   create local git repo on rstudio
     -   create function - compile local copy - make sure package is installable - ie changes have broken the package
@@ -133,7 +463,7 @@ We'll step through each of these features in more detail to ensure you understan
 
 #### Roxygen2 documentation
 
-Roxygen2 is an R package used in the documentation of functions, primarily for the generation of help() queries, documentation files (.Rd) and the description blurbs etc etc.
+Roxygen2 is an R package used in the documentation of functions, primarily for the generation of help() queries, documentation files (.Rd) and the description blurbs
 
 INCLUDE PHOTO OF ROXYGEN2 DOCUMENTATION HERE
 
@@ -149,11 +479,7 @@ Setting the verbosity allows the user to edit the verbosity of the output as req
 
 **0 -- silent or fatal errors. Good for batch processing.** **1 -- notifies begin and end, and fatal errors.** **2 -- notifies warnings and progress log, in addition to above.** **3 -- reports progress and results summary, in addition to above.** **4 -- to be implemented.** **5 -- displays a full report.**
 
-This value can either be set when calling the function such as:
-
-INERT IMAGE
-
-Or one can set the global verbosity level using *verbosity \<- gl.set.verbosity(value=n)*.
+This value can either be set when calling the function using the parameter "verbose" or one can set the global verbosity level using *verbosity \<- gl.set.verbosity(value=n)*.
 
 #### Apply checks of parameters
 
@@ -164,19 +490,11 @@ We now need to apply checks to the input parameters to ensure the user supplied 
 -   fd
 -   matrix
 
-In addition you should apply your own parameter checks of user input. This ensures any errors that arise from incorrect formatting of data is explicitly mentioned as such in the function output. This avoids the outputiting of vague often verbose system errors that may arise instead and may be difficult for the user to debug. We can illustrate this with an example:
-
-INSERT EXAMPLE HERE
-
-```{r badexample}
-# random stuff insert - do later 
-```
+In addition you should apply your own parameter checks of user input. This ensures any errors that arise from incorrect formatting of data is explicitly mentioned as such in the function output. This avoids the outputting of vague often verbose system errors that may arise instead and may be difficult for the user to debug. We can illustrate this with an example:
 
 #### Basic flags
 
-Its important to flag the start of the script- to ensure the output displays when the job has commenced. We can do this with the utils.flag.start function:
-
-INSERT EXAMPLE
+Its important to flag the start of the script- to ensure the output displays when the job has commenced. We can do this with the utils.flag.start function.
 
 In addition we also flag the start of the function with a \# DO THE JOB tag: such as:
 
@@ -194,14 +512,6 @@ thingy <- function(a,b){
 
 }
 ```
-
-#### Display output
-
-Come back to it
-
-#### Finish up
-
-Come back to it
 
 ### Have some style! Programming with style
 
@@ -221,11 +531,9 @@ For more info on what constitutes good, readable, efficient code - Hadley Wickha
 -   forking directories
 ```
 
-As I'm sure many of you are aware - dartR's code is hosted on github - an opensource development platform for version management and control. This includes all of the base dependencies - such as dartR.base and dartRverse in addition to the expansion modules and experimental functions/versions being actively developed.
+As I'm sure many of you are aware - dartR's code is hosted on GitHub - an opensource development platform for version management and control. This includes all of the base dependencies - such as dartR.base and dartRverse in addition to the expansion modules and experimental functions/versions being actively developed.
 
 The manner in which this code is governed by a set of strict protocols (as mentioned above) - designed to protect the stability of the packages and ensure they're (relatively) bug free. This can be summarised as below:
-
-INSERT IMAGE OF DARTR WORKFLOW
 
 #### Repo's
 
