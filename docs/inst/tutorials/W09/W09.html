@@ -8,9 +8,9 @@
 
 <meta name="author" content="Bernd Gruber, Luis Mijangos &amp; Arthur Georges">
 <meta name="dcterms.date" content="2026-03-09">
-<meta name="description" content="W09 dartR developer">
+<meta name="description" content="W09 Hidden dartR Powers">
 
-<title>W09 dartR developer – Analysing Genomic Data with dartRverse</title>
+<title>W09 Hidden dartR Powers – Analysing Genomic Data with dartRverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../inst/tutorials/W09/W09.html"><span class="chapter-title">W09 dartR developer</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../inst/tutorials/W09/W09.html"><span class="chapter-title">W09 Hidden dartR Powers</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -216,7 +216,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../inst/tutorials/W09/W09.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">W09 dartR developer</span></a>
+  <a href="../../../inst/tutorials/W09/W09.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">W09 Hidden dartR Powers</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,10 +281,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#w09-dartr-developer" id="toc-w09-dartr-developer" class="nav-link active" data-scroll-target="#w09-dartr-developer">W09 dartR developer</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#choosing-colours-for-discrete-groups" id="toc-choosing-colours-for-discrete-groups" class="nav-link" data-scroll-target="#choosing-colours-for-discrete-groups">Choosing colours for discrete groups</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">## Introduction</a>
+  <ul>
+  <li><a href="#adobe-color-wheel" id="toc-adobe-color-wheel" class="nav-link" data-scroll-target="#adobe-color-wheel">Adobe Color Wheel</a></li>
+  <li><a href="#reusing-the-same-colours-across-plots" id="toc-reusing-the-same-colours-across-plots" class="nav-link" data-scroll-target="#reusing-the-same-colours-across-plots">Reusing the same colours across plots</a></li>
+  <li><a href="#saving-and-customising-a-pcoa-plot" id="toc-saving-and-customising-a-pcoa-plot" class="nav-link" data-scroll-target="#saving-and-customising-a-pcoa-plot">Saving and customising a PCoA plot</a></li>
+  <li><a href="#alternative-pcoa-displays" id="toc-alternative-pcoa-displays" class="nav-link" data-scroll-target="#alternative-pcoa-displays">Alternative PCoA displays</a></li>
+  <li><a href="#clustering-methods" id="toc-clustering-methods" class="nav-link" data-scroll-target="#clustering-methods">Clustering methods</a></li>
+  <li><a href="#smear-plots" id="toc-smear-plots" class="nav-link" data-scroll-target="#smear-plots">Smear plots</a></li>
+  <li><a href="#using-genomic-resources" id="toc-using-genomic-resources" class="nav-link" data-scroll-target="#using-genomic-resources">Using genomic resources</a></li>
+  <li><a href="#blast" id="toc-blast" class="nav-link" data-scroll-target="#blast">BLAST</a>
+  <ul class="collapse">
+  <li><a href="#common-blast-nucleotide-tasks" id="toc-common-blast-nucleotide-tasks" class="nav-link" data-scroll-target="#common-blast-nucleotide-tasks">Common BLAST nucleotide tasks</a></li>
+  </ul></li>
+  <li><a href="#assign-chromosome-names-and-snp-positions" id="toc-assign-chromosome-names-and-snp-positions" class="nav-link" data-scroll-target="#assign-chromosome-names-and-snp-positions">Assign chromosome names and SNP positions</a></li>
+  <li><a href="#snp-density-and-linkage-disequilibrium" id="toc-snp-density-and-linkage-disequilibrium" class="nav-link" data-scroll-target="#snp-density-and-linkage-disequilibrium">SNP density and linkage disequilibrium</a></li>
+  <li><a href="#haploview-style-ld-plotting" id="toc-haploview-style-ld-plotting" class="nav-link" data-scroll-target="#haploview-style-ld-plotting">Haploview-style LD plotting</a></li>
+  <li><a href="#gff-files" id="toc-gff-files" class="nav-link" data-scroll-target="#gff-files">GFF files</a></li>
   <li><a href="#getting-started-with-development---joining-the-dartr-team" id="toc-getting-started-with-development---joining-the-dartr-team" class="nav-link" data-scroll-target="#getting-started-with-development---joining-the-dartr-team">Getting started with development - joining the dartR team</a></li>
   <li><a href="#session-overview" id="toc-session-overview" class="nav-link" data-scroll-target="#session-overview">Session overview</a>
-  <ul>
+  <ul class="collapse">
   <li><a href="#basics-of-development-and-the-dartr-style-guide" id="toc-basics-of-development-and-the-dartr-style-guide" class="nav-link" data-scroll-target="#basics-of-development-and-the-dartr-style-guide">1. Basics of development and the dartR style guide</a>
   <ul class="collapse">
   <li><a href="#the-dartr-function-a-skeleton" id="toc-the-dartr-function-a-skeleton" class="nav-link" data-scroll-target="#the-dartr-function-a-skeleton">The dartR function: a skeleton</a></li>
@@ -293,8 +310,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#set-the-verbosity-level" id="toc-set-the-verbosity-level" class="nav-link" data-scroll-target="#set-the-verbosity-level">Set the verbosity level</a></li>
   <li><a href="#apply-checks-of-parameters" id="toc-apply-checks-of-parameters" class="nav-link" data-scroll-target="#apply-checks-of-parameters">Apply checks of parameters</a></li>
   <li><a href="#basic-flags" id="toc-basic-flags" class="nav-link" data-scroll-target="#basic-flags">Basic flags</a></li>
-  <li><a href="#display-output" id="toc-display-output" class="nav-link" data-scroll-target="#display-output">Display output</a></li>
-  <li><a href="#finish-up" id="toc-finish-up" class="nav-link" data-scroll-target="#finish-up">Finish up</a></li>
   </ul></li>
   <li><a href="#have-some-style-programming-with-style" id="toc-have-some-style-programming-with-style" class="nav-link" data-scroll-target="#have-some-style-programming-with-style">Have some style! Programming with style</a></li>
   <li><a href="#introduction-to-github" id="toc-introduction-to-github" class="nav-link" data-scroll-target="#introduction-to-github">2. Introduction to Github</a>
@@ -309,6 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#setting-up-the-r-project" id="toc-setting-up-the-r-project" class="nav-link" data-scroll-target="#setting-up-the-r-project">Setting up the R project</a></li>
   </ul></li>
   </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -317,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">W09 dartR developer</span></h1>
+<h1 class="title"><span class="chapter-title">W09 Hidden dartR Powers</span></h1>
 </div>
 
 
@@ -351,72 +367,371 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
 <p><img src="images/ethan.png" width="200"> <img src="images/luis.png" width="200"> <img src="images/arthur.png" width="200"> <img src="images/bernd.png" width="200"></p>
 </div>
-<p><img src="images/ethan.png" class="class" width="200" height="200"> <img src="images/luis.png" class="class" width="200" height="200"><img src="images/arthur.png" class="class" width="200" height="200"> <img src="images/bernd.png" class="class" width="200" height="200"></p>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<ol type="1">
-<li>Introduction to basics of development</li>
-</ol>
+<section id="choosing-colours-for-discrete-groups" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-colours-for-discrete-groups">Choosing colours for discrete groups</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+</section>
+<section id="introduction" class="level1">
+<h1>## Introduction</h1>
+<p>When plotting discrete categories such as populations or locations, it is helpful to use palettes with clearly distinguishable colours. &gt;&gt;&gt;&gt;&gt;&gt;&gt; main</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore palettes available through dartRverse</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.select.colors</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore palettes from RColorBrewer</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span>brewer.pal.info</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Explore built-in palettes from grDevices</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>grDevices<span class="sc">::</span><span class="fu">palette.pals</span>()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>grDevices<span class="sc">::</span><span class="fu">hcl.pals</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Base R also provides palettes such as:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># rainbow(), heat.colors(), topo.colors(), terrain.colors(), and cm.colors()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a palette for populations or sampling locations</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>col2 <span class="ot">&lt;-</span> <span class="fu">gl.select.colors</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> possums.gl,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">library =</span> <span class="st">"gr.hcl"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"Dark 3"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="adobe-color-wheel" class="level2">
+<h2 class="anchored" data-anchor-id="adobe-color-wheel">Adobe Color Wheel</h2>
+<p>Adobe Color Wheel is useful for designing palettes for categorical data.<br>
+It helps create balanced colour combinations while keeping groups easy to distinguish.<br>
+Its accessibility tools are also useful for checking how palettes appear to people with colour-vision deficiencies.</p>
+<p><a href="https://color.adobe.com/create/color-wheel" class="uri">https://color.adobe.com/create/color-wheel</a></p>
+<p><img src="images/adobe_color_wheel.png" height="200"></p>
+</section>
+<section id="reusing-the-same-colours-across-plots" class="level2">
+<h2 class="anchored" data-anchor-id="reusing-the-same-colours-across-plots">Reusing the same colours across plots</h2>
+<p>To keep population colours consistent across multiple plots, use the same vector in <code>plot.colors.pop</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.diversity</span>(possums.gl, <span class="at">plot.colors.pop =</span> col2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.heterozygosity</span>(possums.gl, <span class="at">plot.colors.pop =</span> col2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="saving-and-customising-a-pcoa-plot" class="level2">
+<h2 class="anchored" data-anchor-id="saving-and-customising-a-pcoa-plot">Saving and customising a PCoA plot</h2>
+<p>The arguments <code>plot.dir</code> and <code>plot.file</code> can be used to save a plot object for later editing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> possums.gl</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(t1)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  pca,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.dir =</span> <span class="fu">getwd</span>(),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.file =</span> <span class="st">"test"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt.colors =</span> col2,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt.size =</span> <span class="dv">2</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the saved plot object and modify it with ggplot2 syntax</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"test.RDS"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p1 <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="alternative-pcoa-displays" class="level2">
+<h2 class="anchored" data-anchor-id="alternative-pcoa-displays">Alternative PCoA displays</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interactive 2D plot</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  pca,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt.colors =</span> col2,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">interactive =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt.size =</span> <span class="dv">2</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3D plot using the third axis</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  pca,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt.colors =</span> col2,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">zaxis =</span> <span class="dv">3</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">pt.size =</span> <span class="dv">3</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="clustering-methods" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-methods">Clustering methods</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run sparse non-negative matrix factorisation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">gl.run.snmf</span>(platypus.gl, <span class="at">maxK =</span> <span class="dv">3</span>, <span class="at">rep =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot ancestry coefficients and order individuals by dendrogram</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.plot.snmf</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">snmf.result =</span> r1,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">border.ind =</span> <span class="fl">0.25</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.K =</span> <span class="dv">3</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.theme =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">color.clusters =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ind.name =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.out =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.file =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.dir =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">inverse.den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> platypus.gl,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors.pop =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="smear-plots" class="level2">
+<h2 class="anchored" data-anchor-id="smear-plots">Smear plots</h2>
+<p>Smear plots help visualise locus informativeness and marker behaviour across datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SNP data: remove loci with incomplete call rate and monomorphic loci</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">gl.filter.callrate</span>(platypus.gl, <span class="at">threshold =</span> <span class="dv">1</span>, <span class="at">mono.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors =</span> <span class="fu">gl.colors</span>(<span class="st">"4"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder loci by FST to highlight the most differentiated loci</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fst_loc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">order =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nLoc</span>(t1),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fst =</span> <span class="fu">utils.basic.stats</span>(t1)<span class="sc">$</span>perloc<span class="sc">$</span>Fstp</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>fst_loc <span class="ot">&lt;-</span> fst_loc[<span class="fu">order</span>(fst_loc<span class="sc">$</span>fst, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> t1[, fst_loc<span class="sc">$</span>order]</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors =</span> <span class="fu">gl.colors</span>(<span class="st">"4"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SilicoDArT data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> testset.gs</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  t2,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors =</span> <span class="fu">gl.colors</span>(<span class="st">"4"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reorder SilicoDArT loci by PIC (polymorphism information content)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>pic_loc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">order =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nLoc</span>(t2),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pic =</span> t2<span class="sc">$</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>PIC</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>pic_loc <span class="ot">&lt;-</span> pic_loc[<span class="fu">order</span>(pic_loc<span class="sc">$</span>pic, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> t2[, pic_loc<span class="sc">$</span>order]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  t2,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors =</span> <span class="fu">gl.colors</span>(<span class="st">"4"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Group individuals by population</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  platypus.gl,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">group.pop =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors =</span> <span class="fu">gl.colors</span>(<span class="st">"4"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  bandicoot.gl,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">den =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.colors =</span> <span class="fu">gl.colors</span>(<span class="st">"4"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="using-genomic-resources" class="level2">
+<h2 class="anchored" data-anchor-id="using-genomic-resources">Using genomic resources</h2>
+</section>
+<section id="blast" class="level2">
+<h2 class="anchored" data-anchor-id="blast">BLAST</h2>
+<p>BLAST (Basic Local Alignment Search Tool) is a fast sequence-comparison method used to search a query sequence against a reference database and identify local matches.<br>
+In <code>dartRverse</code>, <code>gl.blast()</code> can create FASTA files, prepare a BLAST database, run BLAST, and retain the best hit per sequence.</p>
+<p>BLAST+ can be downloaded from:<br>
+<a href="https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/" class="uri">https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/</a></p>
+<section id="common-blast-nucleotide-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="common-blast-nucleotide-tasks">Common BLAST nucleotide tasks</h3>
 <ul>
-<li>Starting with basics etc.</li>
-<li>Writing functions</li>
+<li><strong>megablast</strong>: fastest option for highly similar DNA sequences<br>
+</li>
+<li><strong>dc-megablast</strong>: better for more divergent but still related sequences<br>
+</li>
+<li><strong>blastn</strong>: general-purpose nucleotide search<br>
+</li>
+<li><strong>blastn-short</strong>: optimised for short sequences such as primers or probes</li>
 </ul>
-<ol start="2" type="1">
-<li>DartR style guide</li>
-</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> platypus.gl</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> <span class="fu">gl.blast</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> t1,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ref_genome =</span> <span class="st">"./data/chr_X3_mOrnAna1.pri.v4.fa.gz"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">task =</span> <span class="st">"megablast"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Percentage_identity =</span> <span class="dv">70</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Percentage_overlap =</span> <span class="fl">0.8</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">bitscore =</span> <span class="dv">50</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_of_threads =</span> <span class="dv">2</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="assign-chromosome-names-and-snp-positions" class="level2">
+<h2 class="anchored" data-anchor-id="assign-chromosome-names-and-snp-positions">Assign chromosome names and SNP positions</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(t1<span class="sc">$</span>other<span class="sc">$</span>loc.metrics)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>t1<span class="sc">$</span>position <span class="ot">&lt;-</span> t1<span class="sc">$</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>ChromPos_Platypus_Chrom_NCBIv1</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>t1<span class="sc">$</span>chromosome <span class="ot">&lt;-</span> t1<span class="sc">$</span>other<span class="sc">$</span>loc.metrics<span class="sc">$</span>Chrom_Platypus_Chrom_NCBIv1</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(t1<span class="sc">$</span>chromosome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="snp-density-and-linkage-disequilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="snp-density-and-linkage-disequilibrium">SNP density and linkage disequilibrium</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">gl.plot.snp.density</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> t1,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">bin.size =</span> <span class="fl">1e6</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">min.snps =</span> <span class="dv">20</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">min.length =</span> <span class="fl">1e6</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">color.palette =</span> viridis<span class="sc">::</span>viridis,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">chr.info =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.theme =</span> <span class="fu">theme_dartR</span>()</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">gl.report.ld.map</span>(t1, <span class="at">ld.max.pairwise =</span> <span class="fl">1e7</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">gl.ld.distance</span>(r2, <span class="at">ld.resolution =</span> <span class="fl">1e6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="haploview-style-ld-plotting" class="level2">
+<h2 class="anchored" data-anchor-id="haploview-style-ld-plotting">Haploview-style LD plotting</h2>
+<p><img src="images/haploview.png" height="200"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">popNames</span>(t1)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>tbl_chr <span class="ot">&lt;-</span> <span class="fu">table</span>(t1<span class="sc">$</span>chromosome)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tbl_chr)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>chr <span class="ot">&lt;-</span> <span class="fu">names</span>(tbl_chr)[<span class="dv">2</span>]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Reminder:</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Individuals are stored in rows and loci are stored in columns</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>pos_snp_chr <span class="ot">&lt;-</span> t1[, t1<span class="sc">$</span>chromosome <span class="sc">==</span> chr]<span class="sc">$</span>position</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">gl.ld.haplotype</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> t1,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pop_name =</span> <span class="st">"TENTERFIELD"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">chrom_name =</span> chr,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ld_max_pairwise =</span> <span class="fl">1e7</span>,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">maf =</span> <span class="fl">0.05</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">ld_stat =</span> <span class="st">"R.squared"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ind.limit =</span> <span class="dv">10</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">min_snps =</span> <span class="dv">10</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ld_threshold_haplo =</span> <span class="fl">0.5</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot_het =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">snp_pos =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">target.snp1 =</span> pos_snp_chr[<span class="dv">43</span>],</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">target.snp2 =</span> pos_snp_chr[<span class="dv">80</span>],</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">target.snp3 =</span> pos_snp_chr[<span class="dv">20</span>],</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.all =</span> <span class="st">"black"</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.target1 =</span> <span class="st">"green"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.target2 =</span> <span class="st">"blue"</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.target3 =</span> <span class="st">"red"</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">coordinates =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">color_haplo =</span> <span class="st">"viridis"</span>,</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">color_het =</span> <span class="st">"deeppink"</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="gff-files" class="level2">
+<h2 class="anchored" data-anchor-id="gff-files">GFF files</h2>
+<p>A GFF file (General Feature Format) is a plain-text annotation file used to describe genomic features such as genes, exons, CDS regions, mRNA, and regulatory elements.<br>
+It stores genomic coordinates together with metadata such as feature type, strand, source, and identifiers.</p>
+<p>Useful annotation sources:</p>
 <ul>
-<li>Roxygen2 documentation at start of functions</li>
-<li>Good practice for writing functions</li>
-<li>Using gl.document for writing start of functions</li>
+<li>NCBI Genome: <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/" class="uri">https://www.ncbi.nlm.nih.gov/datasets/genome/</a></li>
+<li>Ensembl: <a href="https://ensembl.org/" class="uri">https://ensembl.org/</a></li>
 </ul>
-<ol start="3" type="1">
-<li>Example - writing basic function</li>
-</ol>
-<ul>
-<li>gl.something.basic - does ANYTHING</li>
-<li>write basic function for printing or combining inputs something like that</li>
-</ul>
-<ol start="4" type="1">
-<li>Introduction to github</li>
-</ol>
-<ul>
-<li>Repo’s</li>
-<li>Push/pull merge etc.</li>
-<li>forking directories</li>
-</ul>
-<ol start="5" type="1">
-<li>Github specifically for dartR</li>
-</ol>
-<ul>
-<li>fork directory</li>
-<li>create local git repo on rstudio</li>
-<li>create function - compile local copy - make sure package is installable - ie changes have broken the package</li>
-<li>commit/push to forked repo</li>
-<li>make pull/merge request from forked repo to original repo</li>
-</ul>
-<ol start="6" type="1">
-<li>Common errors/hangups</li>
-</ol>
-<ul>
-<li>ie errors with local variables not being defined etc.</li>
-</ul>
-<ol start="7" type="1">
-<li>Roundup/questions etc.</li>
-</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the first two lines of a GFF file</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">readLines</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"./data/chr_X3_mOrnAna1.pri.v4.gff"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">2</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Match chromosome names to the format used in the GFF file</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This removes everything after the second underscore</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>t1<span class="sc">$</span>chromosome <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sub</span>(<span class="st">"^(([^_]*_){1}[^_]*)_.*$"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">1"</span>, t1<span class="sc">$</span>chromosome)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>chr <span class="ot">&lt;-</span> <span class="st">"NC_041751.1"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>loci <span class="ot">&lt;-</span> <span class="fu">locNames</span>(t1[, t1<span class="sc">@</span>chromosome <span class="sc">==</span> chr])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Map loci to the nearest gene feature in the GFF annotation</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>r3 <span class="ot">&lt;-</span> <span class="fu">gl.find.genes.for.loci</span>(</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">gff.file =</span> <span class="st">"./data/chr_X3_mOrnAna1.pri.v4.gff"</span>,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">loci =</span> loci</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(r3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find loci located within genes matching a name or pattern</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>r4 <span class="ot">&lt;-</span> <span class="fu">gl.find.loci.in.genes</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  t1,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">gff.file =</span> <span class="st">"./data/chr_X3_mOrnAna1.pri.v4.gff"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">gene =</span> <span class="st">"MHC"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">save2tmp =</span> <span class="cn">TRUE</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="getting-started-with-development---joining-the-dartr-team" class="level2">
 <h2 class="anchored" data-anchor-id="getting-started-with-development---joining-the-dartr-team">Getting started with development - joining the dartR team</h2>
 <p>As an open-source project dartR encourages its users to actively contribute to the package, as far as development goes the more the merrier! By helping with development you can improve the quality of the package, limit bugs, and help with the development of new features.</p>
 <p>That being said, open source is not a synonym for free for all! To ensure the stability and condition of the package remains high, there are a number of rules we must adhere to when developing new features.</p>
-<p>As such in this tutorial, we’ll be providing an introduction as to the means by which you can become a developer, and actively contribute to the package. We’ll introduce you to the style guide, how to use it in the development of functions, provide a brief intro to github and how to manage pushing, pulling, merging and forking! By the end you’ll be a development pro, etc. etc. …… not done yet</p>
+<p>As such in this tutorial, we’ll be providing an introduction as to the means by which you can become a developer, and actively contribute to the package. We’ll introduce you to the style guide, how to use it in the development of functions, provide a brief intro to github and how to manage pushing, pulling, merging and forking!</p>
 </section>
 <section id="session-overview" class="level2">
 <h2 class="anchored" data-anchor-id="session-overview">Session overview</h2>
 <ul>
 <li><strong>1. Introduction to basics of development</strong>
 <ul>
-<li>Starting with basics etc.</li>
+<li>Starting with basics</li>
 <li>Writing functions</li>
 </ul></li>
 <li><strong>2. DartR style guide</strong>
@@ -429,14 +744,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Repo’s</li>
 <li>Push/pull merge etc.</li>
-<li>forking directories</li>
+<li>Forking directories</li>
 </ul></li>
 <li><strong>4. Example - writing basic function</strong>
 <ul>
-<li>gl.something.basic - does ANYTHING</li>
-<li>write basic function for printing or combining inputs something like that</li>
+<li>gl.something.basic</li>
+<li>write basic function for printing or combining inputs</li>
 </ul></li>
-<li><strong>5. Github specifically for dartR</strong>
+<li><strong>5. GitHub specifically for dartR</strong>
 <ul>
 <li>fork directory</li>
 <li>create local git repo on rstudio</li>
@@ -477,7 +792,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="roxygen2-documentation" class="level4">
 <h4 class="anchored" data-anchor-id="roxygen2-documentation">Roxygen2 documentation</h4>
-<p>Roxygen2 is an R package used in the documentation of functions, primarily for the generation of help() queries, documentation files (.Rd) and the description blurbs etc etc.</p>
+<p>Roxygen2 is an R package used in the documentation of functions, primarily for the generation of help() queries, documentation files (.Rd) and the description blurbs</p>
 <p>INCLUDE PHOTO OF ROXYGEN2 DOCUMENTATION HERE</p>
 </section>
 <section id="define-the-function" class="level4">
@@ -489,9 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="set-the-verbosity-level">Set the verbosity level</h4>
 <p>Setting the verbosity allows the user to edit the verbosity of the output as required - including things such as function completion, output location, progress bars etc. There are 6 possible paramater values to choose from:</p>
 <p><strong>0 – silent or fatal errors. Good for batch processing.</strong> <strong>1 – notifies begin and end, and fatal errors.</strong> <strong>2 – notifies warnings and progress log, in addition to above.</strong> <strong>3 – reports progress and results summary, in addition to above.</strong> <strong>4 – to be implemented.</strong> <strong>5 – displays a full report.</strong></p>
-<p>This value can either be set when calling the function such as:</p>
-<p>INERT IMAGE</p>
-<p>Or one can set the global verbosity level using <em>verbosity &lt;- gl.set.verbosity(value=n)</em>.</p>
+<p>This value can either be set when calling the function using the parameter “verbose” or one can set the global verbosity level using <em>verbosity &lt;- gl.set.verbosity(value=n)</em>.</p>
 </section>
 <section id="apply-checks-of-parameters" class="level4">
 <h4 class="anchored" data-anchor-id="apply-checks-of-parameters">Apply checks of parameters</h4>
@@ -502,39 +815,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>fd</li>
 <li>matrix</li>
 </ul>
-<p>In addition you should apply your own parameter checks of user input. This ensures any errors that arise from incorrect formatting of data is explicitly mentioned as such in the function output. This avoids the outputiting of vague often verbose system errors that may arise instead and may be difficult for the user to debug. We can illustrate this with an example:</p>
-<p>INSERT EXAMPLE HERE</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># random stuff insert - do later </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>In addition you should apply your own parameter checks of user input. This ensures any errors that arise from incorrect formatting of data is explicitly mentioned as such in the function output. This avoids the outputting of vague often verbose system errors that may arise instead and may be difficult for the user to debug. We can illustrate this with an example:</p>
 </section>
 <section id="basic-flags" class="level4">
 <h4 class="anchored" data-anchor-id="basic-flags">Basic flags</h4>
-<p>Its important to flag the start of the script- to ensure the output displays when the job has commenced. We can do this with the utils.flag.start function:</p>
-<p>INSERT EXAMPLE</p>
+<p>Its important to flag the start of the script- to ensure the output displays when the job has commenced. We can do this with the utils.flag.start function.</p>
 <p>In addition we also flag the start of the function with a # DO THE JOB tag: such as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>thingy <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b){</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(a <span class="sc">==</span> <span class="st">"num"</span> <span class="sc">|</span> b <span class="sc">==</span> <span class="st">"num"</span>)){</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"a and b wrong format"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># DO THE JOB</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>thingy <span class="ot">&lt;-</span> <span class="cf">function</span>(a,b){</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>(a <span class="sc">==</span> <span class="st">"num"</span> <span class="sc">|</span> b <span class="sc">==</span> <span class="st">"num"</span>)){</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"a and b wrong format"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># DO THE JOB</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> a <span class="sc">+</span> b</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="display-output" class="level4">
-<h4 class="anchored" data-anchor-id="display-output">Display output</h4>
-<p>Come back to it</p>
-</section>
-<section id="finish-up" class="level4">
-<h4 class="anchored" data-anchor-id="finish-up">Finish up</h4>
-<p>Come back to it</p>
 </section>
 </section>
 <section id="have-some-style-programming-with-style" class="level3">
@@ -549,9 +849,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>-   Repo's
 -   Push/pull merge etc.
 -   forking directories</code></pre>
-<p>As I’m sure many of you are aware - dartR’s code is hosted on github - an opensource development platform for version management and control. This includes all of the base dependencies - such as dartR.base and dartRverse in addition to the expansion modules and experimental functions/versions being actively developed.</p>
+<p>As I’m sure many of you are aware - dartR’s code is hosted on GitHub - an opensource development platform for version management and control. This includes all of the base dependencies - such as dartR.base and dartRverse in addition to the expansion modules and experimental functions/versions being actively developed.</p>
 <p>The manner in which this code is governed by a set of strict protocols (as mentioned above) - designed to protect the stability of the packages and ensure they’re (relatively) bug free. This can be summarised as below:</p>
-<p>INSERT IMAGE OF DARTR WORKFLOW</p>
 <section id="repos" class="level4">
 <h4 class="anchored" data-anchor-id="repos">Repo’s</h4>
 <p>A repo or repository consists of the base from which all code is hosted. It contains a projects files, code and a history of the revisions done to said code. In addition is hosts branches - or copies of the original main branch - from which developers can work in isolation from the original code and edit at will.</p>
@@ -576,139 +875,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="gl.document" class="level4">
 <h4 class="anchored" data-anchor-id="gl.document">gl.document</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @name gl.document</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Generate a roxygen2 Documentation Template for a Function</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Creates a skeleton \code{roxygen2} documentation file for a specified </span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' function. The generated file contains standard documentation fields </span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' including title, description, parameters, details, return value, examples, </span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' and references. The output is written as a new \code{.R} file in the </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' specified directory.</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function inspects the formal arguments of the target function and </span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' automatically generates \code{@param} entries for each argument. This </span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' provides a structured starting point for developing consistent </span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation across a package.</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param func_name Name of the function to be documented (unquoted).</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param author_name Character string specifying the author of the function.</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param example_dataset Name of an example dataset to include in the </span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation examples (currently placeholder, not implemented).</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param outputDir Character string specifying the directory where the </span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation file will be written. The file will be named </span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#' \code{&lt;func_name&gt;.R}.</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#' @details </span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function constructs a list of standard documentation fields and writes </span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#' them in roxygen2 format to a new file connection. Parameter names are </span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#' extracted using \code{formals()} and written as placeholder entries for </span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">#' subsequent manual editing.</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">#' The generated template includes the following sections:</span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' \itemize{</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@name}</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@title}</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@description}</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@param}</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@details}</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@return}</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@author}</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@examples}</span></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@references}</span></span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return </span></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co">#' A new \code{.R} file containing a roxygen2 documentation template is </span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">#' written to the specified directory. The function returns \code{NULL} </span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">#' invisibly.</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">#' @author </span></span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="co">#' Author name supplied via \code{author_name}.</span></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Example usage:</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co">#' # gl.document(</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   func_name = myFunction,</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   author_name = "Your Name",</span></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   example_dataset = "gl.example",</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   outputDir = "R/"</span></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co">#' # )</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>gl.document <span class="ot">&lt;-</span> <span class="cf">function</span>(func_name, </span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>                        author_name,</span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>                        <span class="at">example_dataset =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>                        outputDir){</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert function to character name</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  funcName <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">substitute</span>(func_name))</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract parameter names</span></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">formals</span>(func_name))</span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Construct example call ----</span></span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>  example_call <span class="ot">&lt;-</span> <span class="fu">paste0</span>(funcName, <span class="st">"("</span>, </span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">paste</span>(parameters, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>                         <span class="st">")"</span>)</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build example block</span></span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' @examples"</span>,</span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' # Example usage:"</span>,</span>
-<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(example_dataset)) </span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="st">"#' data("</span>, example_dataset, <span class="st">")"</span>),</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"#' "</span>, example_call)</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NULL if no dataset</span></span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> example_lines[<span class="sc">!</span><span class="fu">is.na</span>(example_lines)]</span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Create file connection ----</span></span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>  fileConn <span class="ot">&lt;-</span> <span class="fu">file</span>(<span class="fu">paste0</span>(outputDir, funcName, <span class="st">".R"</span>), <span class="st">"wt"</span>)</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write header fields ----</span></span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @name "</span>, funcName), fileConn)</span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @title Title for "</span>, funcName), fileConn)</span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @description "</span>, funcName, <span class="st">" does:"</span>), fileConn)</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write parameters ----</span></span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(params <span class="cf">in</span> parameters){</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @param "</span>, params, <span class="st">" Insert description."</span>), fileConn)</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write details ----</span></span>
-<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @details"</span>), fileConn)</span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Detailed description goes here."</span>, fileConn)</span>
-<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write return ----</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @return "</span>, funcName, <span class="st">" returns:"</span>), fileConn)</span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write author ----</span></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @author "</span>, author_name), fileConn)</span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write examples ----</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(example_lines, fileConn)</span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write references ----</span></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @references"</span>, fileConn)</span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Patterson, J. (2005). Maximum ride. New York: Little, Brown."</span>, fileConn)</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @export"</span>, fileConn)</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">close</span>(fileConn)</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @name gl.document</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' @title Generate a roxygen2 Documentation Template for a Function</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' Creates a skeleton \code{roxygen2} documentation file for a specified </span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' function. The generated file contains standard documentation fields </span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' including title, description, parameters, details, return value, examples, </span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' and references. The output is written as a new \code{.R} file in the </span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' specified directory.</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function inspects the formal arguments of the target function and </span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' automatically generates \code{@param} entries for each argument. This </span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' provides a structured starting point for developing consistent </span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation across a package.</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param func_name Name of the function to be documented (unquoted).</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param author_name Character string specifying the author of the function.</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param example_dataset Name of an example dataset to include in the </span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation examples (currently placeholder, not implemented).</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param outputDir Character string specifying the directory where the </span></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a><span class="co">#' documentation file will be written. The file will be named </span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co">#' \code{&lt;func_name&gt;.R}.</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co">#' @details </span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co">#' The function constructs a list of standard documentation fields and writes </span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co">#' them in roxygen2 format to a new file connection. Parameter names are </span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="co">#' extracted using \code{formals()} and written as placeholder entries for </span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co">#' subsequent manual editing.</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co">#' The generated template includes the following sections:</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' \itemize{</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@name}</span></span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@title}</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@description}</span></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@param}</span></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@details}</span></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@return}</span></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@author}</span></span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@examples}</span></span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a><span class="co">#'   \item \code{@references}</span></span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a><span class="co">#' }</span></span>
+<span id="cb27-41"><a href="#cb27-41" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-42"><a href="#cb27-42" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return </span></span>
+<span id="cb27-43"><a href="#cb27-43" aria-hidden="true" tabindex="-1"></a><span class="co">#' A new \code{.R} file containing a roxygen2 documentation template is </span></span>
+<span id="cb27-44"><a href="#cb27-44" aria-hidden="true" tabindex="-1"></a><span class="co">#' written to the specified directory. The function returns \code{NULL} </span></span>
+<span id="cb27-45"><a href="#cb27-45" aria-hidden="true" tabindex="-1"></a><span class="co">#' invisibly.</span></span>
+<span id="cb27-46"><a href="#cb27-46" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-47"><a href="#cb27-47" aria-hidden="true" tabindex="-1"></a><span class="co">#' @author </span></span>
+<span id="cb27-48"><a href="#cb27-48" aria-hidden="true" tabindex="-1"></a><span class="co">#' Author name supplied via \code{author_name}.</span></span>
+<span id="cb27-49"><a href="#cb27-49" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-50"><a href="#cb27-50" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples</span></span>
+<span id="cb27-51"><a href="#cb27-51" aria-hidden="true" tabindex="-1"></a><span class="co">#' # Example usage:</span></span>
+<span id="cb27-52"><a href="#cb27-52" aria-hidden="true" tabindex="-1"></a><span class="co">#' # gl.document(</span></span>
+<span id="cb27-53"><a href="#cb27-53" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   func_name = myFunction,</span></span>
+<span id="cb27-54"><a href="#cb27-54" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   author_name = "Your Name",</span></span>
+<span id="cb27-55"><a href="#cb27-55" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   example_dataset = "gl.example",</span></span>
+<span id="cb27-56"><a href="#cb27-56" aria-hidden="true" tabindex="-1"></a><span class="co">#' #   outputDir = "R/"</span></span>
+<span id="cb27-57"><a href="#cb27-57" aria-hidden="true" tabindex="-1"></a><span class="co">#' # )</span></span>
+<span id="cb27-58"><a href="#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-59"><a href="#cb27-59" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb27-60"><a href="#cb27-60" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export</span></span>
+<span id="cb27-61"><a href="#cb27-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-62"><a href="#cb27-62" aria-hidden="true" tabindex="-1"></a>gl.document <span class="ot">&lt;-</span> <span class="cf">function</span>(func_name, </span>
+<span id="cb27-63"><a href="#cb27-63" aria-hidden="true" tabindex="-1"></a>                        author_name,</span>
+<span id="cb27-64"><a href="#cb27-64" aria-hidden="true" tabindex="-1"></a>                        <span class="at">example_dataset =</span> <span class="cn">NULL</span>,</span>
+<span id="cb27-65"><a href="#cb27-65" aria-hidden="true" tabindex="-1"></a>                        outputDir){</span>
+<span id="cb27-66"><a href="#cb27-66" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-67"><a href="#cb27-67" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert function to character name</span></span>
+<span id="cb27-68"><a href="#cb27-68" aria-hidden="true" tabindex="-1"></a>  funcName <span class="ot">&lt;-</span> <span class="fu">as.character</span>(<span class="fu">substitute</span>(func_name))</span>
+<span id="cb27-69"><a href="#cb27-69" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-70"><a href="#cb27-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract parameter names</span></span>
+<span id="cb27-71"><a href="#cb27-71" aria-hidden="true" tabindex="-1"></a>  parameters <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">formals</span>(func_name))</span>
+<span id="cb27-72"><a href="#cb27-72" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-73"><a href="#cb27-73" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Construct example call ----</span></span>
+<span id="cb27-74"><a href="#cb27-74" aria-hidden="true" tabindex="-1"></a>  example_call <span class="ot">&lt;-</span> <span class="fu">paste0</span>(funcName, <span class="st">"("</span>, </span>
+<span id="cb27-75"><a href="#cb27-75" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">paste</span>(parameters, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb27-76"><a href="#cb27-76" aria-hidden="true" tabindex="-1"></a>                         <span class="st">")"</span>)</span>
+<span id="cb27-77"><a href="#cb27-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-78"><a href="#cb27-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Build example block</span></span>
+<span id="cb27-79"><a href="#cb27-79" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb27-80"><a href="#cb27-80" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' @examples"</span>,</span>
+<span id="cb27-81"><a href="#cb27-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">"#' # Example usage:"</span>,</span>
+<span id="cb27-82"><a href="#cb27-82" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(example_dataset)) </span>
+<span id="cb27-83"><a href="#cb27-83" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste0</span>(<span class="st">"#' data("</span>, example_dataset, <span class="st">")"</span>),</span>
+<span id="cb27-84"><a href="#cb27-84" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"#' "</span>, example_call)</span>
+<span id="cb27-85"><a href="#cb27-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-86"><a href="#cb27-86" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-87"><a href="#cb27-87" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove NULL if no dataset</span></span>
+<span id="cb27-88"><a href="#cb27-88" aria-hidden="true" tabindex="-1"></a>  example_lines <span class="ot">&lt;-</span> example_lines[<span class="sc">!</span><span class="fu">is.na</span>(example_lines)]</span>
+<span id="cb27-89"><a href="#cb27-89" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-90"><a href="#cb27-90" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Create file connection ----</span></span>
+<span id="cb27-91"><a href="#cb27-91" aria-hidden="true" tabindex="-1"></a>  fileConn <span class="ot">&lt;-</span> <span class="fu">file</span>(<span class="fu">paste0</span>(outputDir, funcName, <span class="st">".R"</span>), <span class="st">"wt"</span>)</span>
+<span id="cb27-92"><a href="#cb27-92" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-93"><a href="#cb27-93" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write header fields ----</span></span>
+<span id="cb27-94"><a href="#cb27-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @name "</span>, funcName), fileConn)</span>
+<span id="cb27-95"><a href="#cb27-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @title Title for "</span>, funcName), fileConn)</span>
+<span id="cb27-96"><a href="#cb27-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @description "</span>, funcName, <span class="st">" does:"</span>), fileConn)</span>
+<span id="cb27-97"><a href="#cb27-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-98"><a href="#cb27-98" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-99"><a href="#cb27-99" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write parameters ----</span></span>
+<span id="cb27-100"><a href="#cb27-100" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(params <span class="cf">in</span> parameters){</span>
+<span id="cb27-101"><a href="#cb27-101" aria-hidden="true" tabindex="-1"></a>    <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @param "</span>, params, <span class="st">" Insert description."</span>), fileConn)</span>
+<span id="cb27-102"><a href="#cb27-102" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb27-103"><a href="#cb27-103" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-104"><a href="#cb27-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-105"><a href="#cb27-105" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-106"><a href="#cb27-106" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write details ----</span></span>
+<span id="cb27-107"><a href="#cb27-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @details"</span>), fileConn)</span>
+<span id="cb27-108"><a href="#cb27-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Detailed description goes here."</span>, fileConn)</span>
+<span id="cb27-109"><a href="#cb27-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-110"><a href="#cb27-110" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-111"><a href="#cb27-111" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write return ----</span></span>
+<span id="cb27-112"><a href="#cb27-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @return "</span>, funcName, <span class="st">" returns:"</span>), fileConn)</span>
+<span id="cb27-113"><a href="#cb27-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-114"><a href="#cb27-114" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-115"><a href="#cb27-115" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write author ----</span></span>
+<span id="cb27-116"><a href="#cb27-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="fu">paste0</span>(<span class="st">"#' @author "</span>, author_name), fileConn)</span>
+<span id="cb27-117"><a href="#cb27-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-118"><a href="#cb27-118" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-119"><a href="#cb27-119" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write examples ----</span></span>
+<span id="cb27-120"><a href="#cb27-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(example_lines, fileConn)</span>
+<span id="cb27-121"><a href="#cb27-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-122"><a href="#cb27-122" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-123"><a href="#cb27-123" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ---- Write references ----</span></span>
+<span id="cb27-124"><a href="#cb27-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @references"</span>, fileConn)</span>
+<span id="cb27-125"><a href="#cb27-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' Patterson, J. (2005). Maximum ride. New York: Little, Brown."</span>, fileConn)</span>
+<span id="cb27-126"><a href="#cb27-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#'"</span>, fileConn)</span>
+<span id="cb27-127"><a href="#cb27-127" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-128"><a href="#cb27-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">writeLines</span>(<span class="st">"#' @export"</span>, fileConn)</span>
+<span id="cb27-129"><a href="#cb27-129" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-130"><a href="#cb27-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">close</span>(fileConn)</span>
+<span id="cb27-131"><a href="#cb27-131" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb27-132"><a href="#cb27-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="cn">NULL</span>)</span>
+<span id="cb27-133"><a href="#cb27-133" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The function gl.document writes basic document for creating new R functions such that the user can then fill in the rest with ease. We’ll be pushing our changes to a fork of the dartR.base package.</p>
 </section>
@@ -799,6 +1098,7 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 <!--/html_preserve-->
 
 
+</section>
 </section>
 </section>
 </section>

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Craig Moritz &amp; Arthur Georges">
 <meta name="dcterms.date" content="2026-03-10">
-<meta name="description" content="08 Genetic Structure of Wild Populations to Inform Management">
+<meta name="description" content="W08 Genetic Structure of Wild Populations to Inform Management">
 
 <title>W08 Genetic Structure of Wild Populations to Inform Management – Analysing Genomic Data with dartRverse</title>
 <style>
@@ -106,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../dartR_style.css">
 </head>
@@ -216,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../inst/tutorials/W09/W09.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">W09 dartR developer</span></a>
+  <a href="../../../inst/tutorials/W09/W09.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">W09 Hidden dartR Powers</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -281,9 +310,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#w08-genetic-divergence-phylogenetics" id="toc-w08-genetic-divergence-phylogenetics" class="nav-link active" data-scroll-target="#w08-genetic-divergence-phylogenetics">W08 Genetic Divergence &amp; Phylogenetics</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#session-summary" id="toc-session-summary" class="nav-link" data-scroll-target="#session-summary">Session summary</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
   <ul>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
   </ul></li>
   <li><a href="#the-why-how-of-population-divergence-models" id="toc-the-why-how-of-population-divergence-models" class="nav-link" data-scroll-target="#the-why-how-of-population-divergence-models">The why &amp; how of population divergence models</a>
@@ -308,10 +338,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#over-interpretation" id="toc-over-interpretation" class="nav-link" data-scroll-target="#over-interpretation">7. Over-interpretation</a></li>
   <li><a href="#bottom-line" id="toc-bottom-line" class="nav-link" data-scroll-target="#bottom-line"><em>BOTTOM LINE</em></a></li>
   </ul></li>
-  <li><a href="#worked-example-broad-toothed-rat" id="toc-worked-example-broad-toothed-rat" class="nav-link" data-scroll-target="#worked-example-broad-toothed-rat">Worked Example: Broad Toothed Rat</a></li>
+  <li><a href="#worked-example-broad-toothed-rat" id="toc-worked-example-broad-toothed-rat" class="nav-link" data-scroll-target="#worked-example-broad-toothed-rat">Worked Example: Broad Toothed Rat</a>
+  <ul>
   <li><a href="#required-packages" id="toc-required-packages" class="nav-link" data-scroll-target="#required-packages"><em>Required packages</em></a></li>
+  </ul></li>
   <li><a href="#worked-example-western-sawshell-turtle" id="toc-worked-example-western-sawshell-turtle" class="nav-link" data-scroll-target="#worked-example-western-sawshell-turtle">Worked Example: Western Sawshell Turtle</a>
   <ul>
+  <li><a href="#required-packages-1" id="toc-required-packages-1" class="nav-link" data-scroll-target="#required-packages-1"><em>Required packages</em></a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#where-have-we-come" id="toc-where-have-we-come" class="nav-link" data-scroll-target="#where-have-we-come">Where have we come?</a></li>
   </ul></li>
@@ -358,15 +391,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Population structure emerges when physical or behavioral barriers arise. If this isolation persists, genetic divergence begins, eventually leading to speciation. In this session, we will present <strong>“the why &amp; how of population divergence models”</strong> and <strong>“Seven Deadly Sins of Classical PCA”</strong>.</p>
+<p>In this session we are going to cover some of the basic analyses that can be taken to inform management when faced with threatened species showing genetic structure across their natural range. The central considerations are how to draw from those populations to establish captive insurance colonies, and how to plan releases to boost declining populations.</p>
+<p>We have heard of some real-world examples on lions by Laura Pertola and small Australian mammals by Kate Rick. In this session, we will cover some of the considerations for defining management units, ESUs and other userful designations. Craig will cover the theory and practice of population divergence. We will then look a PCA in a little more detail as one of the most powerful tools for examining structure within large SNP datasets. We will run through the seven deadly sins of classical PCA that allow the technique to be used with confidence.</p>
+<p>Please refer to the article Georges, A., Mijangos, L., Patel, H., Aitkens, M. and Gruber, B. 2023. Distances and their visualization in studies of spatial-temporal genetic variation using single nucleotide polymorphisms (SNPs). BioxRiv <a href="https://doi.org/10.1101/2023.03.22.533737" class="uri">https://doi.org/10.1101/2023.03.22.533737</a>.</p>
+<p>We move on to the example of the Broad Toothed Rat in the Barrington Tops region of NSW, not so much as a definitive study, but as a sandpit to explore some of the analyses that can be applied to a structured wild population.</p>
+<p>We finish with an Exercise using data from the endangered Western Sawshell Turtle of the Murray Darling River Basin.</p>
+<p>A central question in both of these studies is when there is strong genetic structure across the landscape, does this imply separate management of the distinct genetic units, and if so, at what scale.</p>
+<section id="prerequisites" class="level3">
+<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
+<p>No prerequisites required. This is a very basic treatment</p>
 </section>
-<section id="session-summary" class="level2">
-<h2 class="anchored" data-anchor-id="session-summary">Session summary</h2>
+<section id="workflow" class="level3">
+<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
 <ol type="1">
-<li><p>Population divergence</p></li>
-<li><p>Seven sins of classical PCA</p></li>
-<li><p>Hands-on</p></li>
+<li><p>Genetic structure and SNPs, defining units relevant to management.</p></li>
+<li><p>The seven deadly sins of classical PCA</p></li>
+<li><p>Jump into the sandpit with the Broad Toothed Rat</p></li>
+<li><p>Exercise with the Western Sawshell Turtle</p></li>
+<li><p>Discussion</p></li>
 </ol>
+</section>
 <section id="learning-outcomes" class="level3">
 <h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
 <ul>
@@ -552,9 +596,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Advice on who to breed with whom to maximize genetic diversity in the offspring</p></li>
 <li><p>Opportunity for us to explore genetic diversity in the source population</p></li>
 </ul>
-</section>
-<section id="required-packages" class="level2">
-<h2 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h2>
+<section id="required-packages" class="level3">
+<h3 class="anchored" data-anchor-id="required-packages"><em>Required packages</em></h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -619,9 +662,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Each subpopulation has a high frequency of private alleles</li>
 </ul>
 <p><strong>Working Hypothesis:</strong> The Barrington Tops populations likely represent a former widespread and connected population, subsequently fragmented with differential loss and retention of alleles under the influence of drift.</p>
-<p><strong>Future Work:</strong> Increase sample sizes to better capture allelic profiles Calculate Ne to assess likelihood of population persistence Plot Ne through time to see if there is evidence of a bottleneck</p>
-<p>Management (subject to findings of future work) Sampling from across the sites in Barrington Tops, cross-breeding to capture allelic diversity, and re-release across sites is likely to be a well-supported strategy.</p>
-<p>Establishment of captive insurance colonies that maintain the genetic structure of the current wild population is likely to simply continue the decline of genetic diversity through drift.</p>
+<p><strong>Future Work:</strong> - Increase sample sizes to better capture allelic profiles - Calculate <span class="math inline">\(N_e\)</span> to assess likelihood of population persistence - Plot <span class="math inline">\(N_e\)</span> through time to see if there is evidence of a bottleneck</p>
+<p>Kate Rick: Strong structure does not necessarily mean separate management of divergent groups.</p>
+<p>Maximizing the Barrington Tops population potential to adapt and persist may require cross-breeding and distributed release.</p>
+<p><strong>Management</strong> (subject to findings of future work) Sampling should be from across the sites in Barrington Tops, cross-breeding should be undertaken to capture allelic diversity, and strategic re-release across sites is likely to be a well-supported strategy.</p>
+</section>
 </section>
 <section id="worked-example-western-sawshell-turtle" class="level2">
 <h2 class="anchored" data-anchor-id="worked-example-western-sawshell-turtle">Worked Example: Western Sawshell Turtle</h2>
@@ -634,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Is the colony representative of the genetic diversity of wild populations</p></li>
 <li><p>Advice on who to breed with whom to maximize genetic diversity in the offspring for release</p></li>
 </ul>
-<p><strong>Hands-on:</strong></p>
+<p><strong>Exercise: Western Sawshell Turtle</strong></p>
 <p>Step 1. Load in the data (Myuchelys.Rdata)</p>
 <p>Step 2. Interrogate the data</p>
 <p>Step 3. Examine geographically</p>
@@ -642,7 +687,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Step 5. Exploratory visualization</p>
 <p>Step 6. Analysis</p>
 <p>Step 7. Interpretation</p>
-<p><strong>Question:</strong></p>
+<section id="required-packages-1" class="level3">
+<h3 class="anchored" data-anchor-id="required-packages-1"><em>Required packages</em></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 1 Load in the data:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.set.verbosity</span>(<span class="dv">3</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">gl.load</span>(<span class="at">file=</span><span class="st">"./data/Myuchelys.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 2 Interrogate:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gl</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">popNames</span>(gl)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">indNames</span>(gl)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">pop</span>(gl))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>gl<span class="sc">@</span>other<span class="sc">$</span>latlon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 3 Examine geography:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.map.interactive</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 4 Craft a Filtering Regime:</strong></p>
+<p>First let us do a smear plot of individuals (vertical) against loci (horizontal)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that missing values are in grey, so they give an indication of how dense your data set is (as opposed to being littered with gaps). Then we craft a filtering regime.</p>
+<p>Unfortunately, we do not have the sexes in this dataset, so we cannot filter on sex linkage, which would be our first port of call. So lets start with call rate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The distribution of call rate values indicates a need for filtering, and based on that distribution we pick a threshold of 0.95.</p>
+<p>Any loci with less than 95% scored across individuals will be discarded.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.callrate</span>(gl, <span class="at">threshold=</span><span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next we filter on callrate by individual.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.callrate</span>(gl,<span class="at">method=</span><span class="st">"ind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No individuals have an unacceptable call rate so we do not filter any out.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.rdepth</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Filter on read depth, selecting 5x as a minimum.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.rdepth</span>(gl, <span class="at">lower=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then report on reproducibility. Recall that DArT run technical replicates to check the reliability of calls.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.reproducibility</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are quite a few loci that show poor reproducibility. So lets filter out those with a reproducibility of less than 99%</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.filter.reproducibility</span>(gl, <span class="at">threshold=</span><span class="fl">0.99</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.smearplot</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Step 5 Exploratory visualization:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">gl.pcoa</span>(gl)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pca,gl,<span class="at">ellipse=</span><span class="cn">TRUE</span>, <span class="at">plevel=</span><span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note: You might be tempted to filter out all loci that are less than 100% reliable, but this can cause an ascertainment bias. In particular, loci that are heterozygous will be called with less certainty, and so filtering that is too stringent will preferentially remove more polymophic sites.</p>
+<p>Now lets visualize the structure with PCA. Note that we do not need to impute because the missing value rate is only 0.6%, unlikely to cause appreciable distortion.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pca,gl,<span class="at">xaxis=</span><span class="dv">1</span>, <span class="at">yaxis=</span><span class="dv">3</span>, <span class="at">ellipse =</span> <span class="cn">TRUE</span>, <span class="at">plevel=</span><span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Four nice clusters in the space defined by the top two dimensions. Note however that, by the split stick criterion, there are three informative dimensions. Separation can be believed, but proximity is ambiguous. So the proximity of the two drainages within the border rivers region may not be sustained when we examine the third dimension.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pca,gl,<span class="at">xaxis=</span><span class="dv">1</span>, <span class="at">yaxis=</span><span class="dv">3</span>,<span class="at">interactive=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And indeed it is not. Why do we look at PC axis 1 and 2, then PC axis 1 and 3. Why not 3 and 4. First of all, axis 4 was not informative, and will likely be misleading if we do not scale the axes. Second, if you plot 1 vs 2 and 1 vs 3, you can flop 1 vs 3 back into the page and better visualize the 3D structure in the dataset.</p>
+<p>Better still, you can plot the data in 3D and then manually apply a rotation of the axes to better show the separation of sites.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.pcoa.plot</span>(pca,gl,<span class="at">xaxis=</span><span class="dv">1</span>, <span class="at">yaxis=</span><span class="dv">2</span>, <span class="at">zaxis=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All good. Four aggregations that can be distinguished by their allelic profiles folloing ordination and dimension reduction.</p>
+<p><strong>Step 6 Analysis:</strong></p>
+<p>F Statistics</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># F Statistics</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.fstat</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The structure in the PCA is reflected in the Fst values.</p>
+<p>0–0.05: little differentiation 0.05–0.15: low–moderate 0.15–0.25: moderate &gt; 0.25: high / very high</p>
+<p>Border Nth vs South : low-moderate Rest : Moderate</p>
+<p>What about allelic richness.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Allelic Richness</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">gl.report.allelerich</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nothing spectacular there.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.heterozygosity</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Again, not a lot in that. No strong evidence of inbreeding depression in any of the four aggregations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gl.report.diversity</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Private Alleles</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>r1 <span class="ot">&lt;-</span> <span class="fu">gl.report.pa</span>(gl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Again, not a lot to see there, though there seems to be a discrepency between q=0 and the results from gl.report.heterozygosity. Coders?</p>
+<p>Lets see where these four populations sit in relation to expectation build on the global trend in allelic richness against population size. This takes some time to run, so maybe do this at another time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Allelic Richness Simulation</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">gl.report.nall</span>(  <span class="at">x =</span> gl,  <span class="at">simlevels =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nInd</span>(gl), <span class="dv">5</span>),  <span class="at">reps =</span> <span class="dv">10</span>,  <span class="at">plot.colors.pop =</span> <span class="fu">gl.colors</span>(<span class="st">"dis"</span>),  <span class="at">ncores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Questions:</strong></p>
 <ul>
 <li>Is there structure in the dataset evident in the PCA?</li>
 <li>Is this borne out by FST analysis?</li>
@@ -650,6 +807,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Are any of these showing evidence of critical loss of genetic diversity/inbreeding?</li>
 <li>What are the lessons/advice for management?</li>
 </ul>
+</section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
 </section>
@@ -1153,8 +1311,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../inst/tutorials/W09/W09.html" class="pagination-link" aria-label="W09 dartR developer">
-        <span class="nav-page-text"><span class="chapter-title">W09 dartR developer</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../inst/tutorials/W09/W09.html" class="pagination-link" aria-label="W09 Hidden dartR Powers">
+        <span class="nav-page-text"><span class="chapter-title">W09 Hidden dartR Powers</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

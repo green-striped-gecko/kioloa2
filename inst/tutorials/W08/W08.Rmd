@@ -10,8 +10,10 @@ output:
     highlight: 'monochrome'
     css: css/dartR_style.css
 runtime: shiny_prerendered
-
-description: "08 Genetic Structure of Wild Populations to Inform Management"
+description: "W08 Genetic Structure of Wild Populations to Inform Management"
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -22,20 +24,62 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
 
 ## W08 Genetic Divergence & Phylogenetics {.unnumbered}
 
-![](images/craig.png){.class width="200" height="200"} ![](images/arthur.png){.class width="200" height="200"}
+![](images/craig.png){.class width="200" height="200"}
+![](images/arthur.png){.class width="200" height="200"}
 
 ## Introduction
 
-Population structure emerges when physical or behavioral barriers arise. If this isolation persists, genetic divergence begins, eventually leading to speciation. In this session, we will present **"the why & how of population divergence models"** and **"Seven Deadly Sins of Classical PCA"**.
+In this session we are going to cover some of the basic analyses that
+can be taken to inform management when faced with threatened species
+showing genetic structure across their natural range. The central
+considerations are how to draw from those populations to establish
+captive insurance colonies, and how to plan releases to boost declining
+populations.
 
-## Session summary
+We have heard of some real-world examples on lions by Laura Pertola and
+small Australian mammals by Kate Rick. In this session, we will cover
+some of the considerations for defining management units, ESUs and other
+userful designations. Craig will cover the theory and practice of
+population divergence. We will then look a PCA in a little more detail
+as one of the most powerful tools for examining structure within large
+SNP datasets. We will run through the seven deadly sins of classical PCA
+that allow the technique to be used with confidence.
 
 
-1.  Population divergence
+Please refer to the article Georges, A., Mijangos, L., Patel, H.,
+Aitkens, M. and Gruber, B. 2023. Distances and their visualization in
+studies of spatial-temporal genetic variation using single nucleotide
+polymorphisms (SNPs). BioxRiv
+<https://doi.org/10.1101/2023.03.22.533737>.
 
-2.  Seven sins of classical PCA
 
-3.  Hands-on
+We move on to the example of the Broad Toothed Rat in the Barrington
+Tops region of NSW, not so much as a definitive study, but as a sandpit
+to explore some of the analyses that can be applied to a structured wild
+population.
+
+We finish with an Exercise using data from the endangered Western
+Sawshell Turtle of the Murray Darling River Basin.
+
+A central question in both of these studies is when there is strong
+genetic structure across the landscape, does this imply separate
+management of the distinct genetic units, and if so, at what scale.
+
+### Prerequisites
+
+No prerequisites required. This is a very basic treatment
+
+### Workflow
+
+1.  Genetic structure and SNPs, defining units relevant to management.
+
+2.  The seven deadly sins of classical PCA
+
+3.  Jump into the sandpit with the Broad Toothed Rat
+
+4.  Exercise with the Western Sawshell Turtle
+
+5.  Discussion
 
 ### Learning outcomes
 
@@ -55,25 +99,31 @@ Population structure emerges when physical or behavioral barriers arise. If this
 
 ### Sampling matters for species with limited dispersal!
 
-![Battey et al. 2020. Space is the place.... Genetics.](images/craig/battey.png){width="400"}
+![Battey et al. 2020. Space is the place....
+Genetics.](images/craig/battey.png){width="400"}
 
 -   Restricted dispersal -\> isolation by distance
 
--   Spatially cluster sampling yields biased estimates of population parameters, clustering etc.
+-   Spatially cluster sampling yields biased estimates of population
+    parameters, clustering etc.
 
 ### Why not use SNP-based phylogenies to estimate divergence times?
 
 ![<https://theg-cat.com/2018/10/04/lost-in-a-forest-of-gene-trees/>](images/craig/gene_tree.png){width="300"}
 
-1.  Gene trees differ from species trees: Average divergence is \> split time due to deep coalescence of lineages. Difference increases with Na
+1.  Gene trees differ from species trees: Average divergence is \> split
+    time due to deep coalescence of lineages. Difference increases with
+    Na
 
-2.  SNP-based analyses overestimate divergence unless \# invariant sites is known
+2.  SNP-based analyses overestimate divergence unless \# invariant sites
+    is known
 
 See Leache et al. 2015 Syst. Biol.
 
 ### Approaches to modeling divergence histories -- population models and the multispecies coalescent
 
-![Liu et al. 2019 <https://link.springer.com/protocol/10.1007/978-1-4939-9074-0_7>](images/craig/approach.png){width="300"}
+![Liu et al. 2019
+<https://link.springer.com/protocol/10.1007/978-1-4939-9074-0_7>](images/craig/approach.png){width="300"}
 
 A.  2 population model at mutation-migration equilibrium (e.g MIGRATE)
 
@@ -83,11 +133,13 @@ C.  Multispecies coalescent models +/- migration
 
 ### Navigating the morass of methods...
 
-![Example: Estimating population size over time (Beichman et al. 2018. Ann. Rev. Ecol. Syst.)](images/craig/new_method.png){width="600"}
+![Example: Estimating population size over time (Beichman et al. 2018.
+Ann. Rev. Ecol. Syst.)](images/craig/new_method.png){width="600"}
 
 ### Fitting population divergence models
 
-![DeJode et al. 2022; Evol. Appl.](images/craig/fitting.png){width="300"}
+![DeJode et al. 2022; Evol.
+Appl.](images/craig/fitting.png){width="300"}
 
 -   All models are wrong...
 -   Which one(s) best fit your data?
@@ -98,15 +150,19 @@ C.  Multispecies coalescent models +/- migration
 
 ![](images/craig/example.png){width="900"}
 
--   Phylogenetic discordance suggests current or historical gene flow among species
+-   Phylogenetic discordance suggests current or historical gene flow
+    among species
 
 -   Models support migration (IM or SC) between species and populations
 
 ### *Take home messages*
 
--   Well-distributed population sampling is important! Often this is iterative.
--   SNP based phylogenies, PCAs etc are useful as heuristics and to develop hypotheses BUT...
--   Coalescent-based population methods should be used to estimate population divergence histories
+-   Well-distributed population sampling is important! Often this is
+    iterative.
+-   SNP based phylogenies, PCAs etc are useful as heuristics and to
+    develop hypotheses BUT...
+-   Coalescent-based population methods should be used to estimate
+    population divergence histories
 -   Comparing alternative models of divergence is useful BUT...
 -   Remember all models are wrong...
 
@@ -122,19 +178,23 @@ C.  Multispecies coalescent models +/- migration
 
 **PCA vs PCoA**
 
-You can substitute the standardized covariance matrix used by PCA with any standardized distance metric (Gower, 1966).
+You can substitute the standardized covariance matrix used by PCA with
+any standardized distance metric (Gower, 1966).
 
 **dartR coding**
 
--   0, homozygous reference allele (DArT set this as the most common allele)
+-   0, homozygous reference allele (DArT set this as the most common
+    allele)
 -   1, heterozygous
 -   2, homozygous alternate allele
 
-Relative distances between individuals must not depend on the arbitrary choice of reference and alternate allele. Prudent to check this.
+Relative distances between individuals must not depend on the arbitrary
+choice of reference and alternate allele. Prudent to check this.
 
 ### 3. Including close relatives
 
-![**Create spurious cryptic aggregations. Why?**](images/close_relatives.png){width="500"}
+![**Create spurious cryptic aggregations.
+Why?**](images/close_relatives.png){width="500"}
 
 ### 4. Choosing two dimensions for convenience
 
@@ -142,29 +202,37 @@ Relative distances between individuals must not depend on the arbitrary choice o
 
 -   Separation is definitive. Proximity is ambiguous.
 
--   Identify informative dimensions (Broken-Stick Criterion) Explicitly choose what information willing to discard
+-   Identify informative dimensions (Broken-Stick Criterion) Explicitly
+    choose what information willing to discard
 
 ### 5. Confounding % explained with biological importance
 
-**Sin 5: "PC1 explains X% across datasets, a comparable across studies measure of"strength of structure"**
+**Sin 5: "PC1 explains X% across datasets, a comparable across studies
+measure of"strength of structure"**
 
-But % variance depends on loci, scaling, LD pruning, MAF filters, sample composition. Use the Tracy-Widom framework, and by default in dartR, the broken-stick criterion to distinguish signal from noise.
+But % variance depends on loci, scaling, LD pruning, MAF filters, sample
+composition. Use the Tracy-Widom framework, and by default in dartR, the
+broken-stick criterion to distinguish signal from noise.
 
 **AND**
 
-PCA and PCoA compute % explained in fundamentally different ways and so are not comparable.
+PCA and PCoA compute % explained in fundamentally different ways and so
+are not comparable.
 
 ### 6. Structural variants and gross linkage
 
 ![](images/SV_linkage.png){width="500"}
 
-Weird inexplicable patterns -- 2 or 3 replicated sets of aggregations If two patterns -- sex linkage?
+Weird inexplicable patterns -- 2 or 3 replicated sets of aggregations If
+two patterns -- sex linkage?
 
 If 2 or 3, large structural variant?
 
 ### 7. Over-interpretation
 
-*Sin 7: Treating PCs as direct evidence for specific processes, discrete groups, or biological mechanisms when PCA is fundamentally a variance-maximizing projection showing patterns.*
+*Sin 7: Treating PCs as direct evidence for specific processes, discrete
+groups, or biological mechanisms when PCA is fundamentally a
+variance-maximizing projection showing patterns.*
 
 @NovembreStephen2008
 
@@ -172,11 +240,16 @@ If 2 or 3, large structural variant?
 
 ### *BOTTOM LINE*
 
-*Care to avoid the seven sins. PCA is an incredible tool that lends itself to SNP analysis. But it is a hypothesis generating tool only and must be followed by more definitive analyses.*
+*Care to avoid the seven sins. PCA is an incredible tool that lends
+itself to SNP analysis. But it is a hypothesis generating tool only and
+must be followed by more definitive analyses.*
 
 ## Worked Example: Broad Toothed Rat
 
-![Cute as mustard - EPBC Act:Endangered. Patchy distribution -- Barrington Tops, Snowy Mountains, Eastern Highlands, Victorian Alps, Otway Ranges, Wilsons Promontory and western Tasmania.](images/mustard.png){width="617"}
+![Cute as mustard - EPBC Act:Endangered. Patchy distribution --
+Barrington Tops, Snowy Mountains, Eastern Highlands, Victorian Alps,
+Otway Ranges, Wilsons Promontory and western
+Tasmania.](images/mustard.png){width="617"}
 
 -   Insurance breeding colony established
 
@@ -184,11 +257,13 @@ If 2 or 3, large structural variant?
 
 -   Genotyped using DArTseq
 
--   Advice on who to breed with whom to maximize genetic diversity in the offspring
+-   Advice on who to breed with whom to maximize genetic diversity in
+    the offspring
 
--   Opportunity for us to explore genetic diversity in the source population
+-   Opportunity for us to explore genetic diversity in the source
+    population
 
-## *Required packages*
+### *Required packages*
 
 ```{r, warning=FALSE, message=FALSE}
 library(dartRverse)
@@ -268,22 +343,38 @@ r1 <- gl.report.pa(gl)
 
 -   PCA indicates a high degree of population structure
 -   This is borne out by the FST analysis
--   Allelic diversity is a little low, not exceptionally, and not differentially
+-   Allelic diversity is a little low, not exceptionally, and not
+    differentially
 -   Each subpopulation has a high frequency of private alleles
 
-**Working Hypothesis:** The Barrington Tops populations likely represent a former widespread and connected population, subsequently fragmented with differential loss and retention of alleles under the influence of drift.
+**Working Hypothesis:** The Barrington Tops populations likely represent
+a former widespread and connected population, subsequently fragmented
+with differential loss and retention of alleles under the influence of
+drift.
 
-**Future Work:** Increase sample sizes to better capture allelic profiles Calculate Ne to assess likelihood of population persistence Plot Ne through time to see if there is evidence of a bottleneck
+**Future Work:** - Increase sample sizes to better capture allelic
+profiles - Calculate $N_e$ to assess likelihood of population
+persistence - Plot $N_e$ through time to see if there is evidence of a
+bottleneck
 
-Management (subject to findings of future work) Sampling from across the sites in Barrington Tops, cross-breeding to capture allelic diversity, and re-release across sites is likely to be a well-supported strategy.
+Kate Rick: Strong structure does not necessarily mean separate
+management of divergent groups.
 
-Establishment of captive insurance colonies that maintain the genetic structure of the current wild population is likely to simply continue the decline of genetic diversity through drift.
+Maximizing the Barrington Tops population potential to adapt and persist
+may require cross-breeding and distributed release.
+
+**Management** (subject to findings of future work) Sampling should be
+from across the sites in Barrington Tops, cross-breeding should be
+undertaken to capture allelic diversity, and strategic re-release across
+sites is likely to be a well-supported strategy.
 
 ## Worked Example: Western Sawshell Turtle
 
 ![](images/turtle.png){width="200"}![](images/turtle_map.png){width="300"}
 
-Not cute as mustard, EPBC Act:Endangered; Headwaters of the Murray-Darling Basin -- Namoi, Gwydir and Border Rivers subdrainage basins
+Not cute as mustard, EPBC Act:Endangered; Headwaters of the
+Murray-Darling Basin -- Namoi, Gwydir and Border Rivers subdrainage
+basins
 
 -   Insurance breeding colony established
 
@@ -291,11 +382,13 @@ Not cute as mustard, EPBC Act:Endangered; Headwaters of the Murray-Darling Basin
 
 -   Genotyped using DArTseq
 
--   Is the colony representative of the genetic diversity of wild populations
+-   Is the colony representative of the genetic diversity of wild
+    populations
 
--   Advice on who to breed with whom to maximize genetic diversity in the offspring for release
+-   Advice on who to breed with whom to maximize genetic diversity in
+    the offspring for release
 
-**Hands-on:**
+**Exercise: Western Sawshell Turtle**
 
 Step 1. Load in the data (Myuchelys.Rdata)
 
@@ -311,12 +404,209 @@ Step 6. Analysis
 
 Step 7. Interpretation
 
-**Question:**
+### *Required packages*
+
+```{r, warning=FALSE, message=FALSE}
+library(dartRverse)
+```
+
+**Step 1 Load in the data:**
+
+```{r}
+gl.set.verbosity(3)
+gl <- gl.load(file="./data/Myuchelys.Rdata")
+```
+
+**Step 2 Interrogate:**
+
+```{r}
+gl
+popNames(gl)
+indNames(gl)
+table(pop(gl))
+gl@other$latlon
+```
+
+**Step 3 Examine geography:**
+
+```{r}
+gl.map.interactive(gl)
+```
+
+**Step 4 Craft a Filtering Regime:**
+
+First let us do a smear plot of individuals (vertical) against loci
+(horizontal)
+
+```{r}
+gl.smearplot(gl)
+```
+
+Note that missing values are in grey, so they give an indication of how
+dense your data set is (as opposed to being littered with gaps). Then we
+craft a filtering regime.
+
+Unfortunately, we do not have the sexes in this dataset, so we cannot
+filter on sex linkage, which would be our first port of call. So lets
+start with call rate.
+
+```{r}
+gl.report.callrate(gl)
+```
+
+The distribution of call rate values indicates a need for filtering, and
+based on that distribution we pick a threshold of 0.95.
+
+Any loci with less than 95% scored across individuals will be discarded.
+
+```{r}
+gl.filter.callrate(gl, threshold=0.95)
+```
+
+Next we filter on callrate by individual.
+
+```{r}
+gl.report.callrate(gl,method="ind")
+```
+
+No individuals have an unacceptable call rate so we do not filter any
+out.
+
+```{r}
+gl.report.rdepth(gl)
+```
+
+Filter on read depth, selecting 5x as a minimum.
+
+```{r}
+gl.filter.rdepth(gl, lower=5)
+```
+
+Then report on reproducibility. Recall that DArT run technical
+replicates to check the reliability of calls.
+
+```{r}
+gl.report.reproducibility(gl)
+```
+
+There are quite a few loci that show poor reproducibility. So lets
+filter out those with a reproducibility of less than 99%
+
+```{r}
+gl.filter.reproducibility(gl, threshold=0.99)
+```
+
+```{r}
+gl.smearplot(gl)
+```
+
+**Step 5 Exploratory visualization:**
+
+```{r}
+pca <- gl.pcoa(gl)
+gl.pcoa.plot(pca,gl,ellipse=TRUE, plevel=0.95)
+```
+
+Note: You might be tempted to filter out all loci that are less than
+100% reliable, but this can cause an ascertainment bias. In particular,
+loci that are heterozygous will be called with less certainty, and so
+filtering that is too stringent will preferentially remove more
+polymophic sites.
+
+Now lets visualize the structure with PCA. Note that we do not need to
+impute because the missing value rate is only 0.6%, unlikely to cause
+appreciable distortion.
+
+```{r}
+gl.pcoa.plot(pca,gl,xaxis=1, yaxis=3, ellipse = TRUE, plevel=0.95)
+```
+
+Four nice clusters in the space defined by the top two dimensions. Note
+however that, by the split stick criterion, there are three informative
+dimensions. Separation can be believed, but proximity is ambiguous. So
+the proximity of the two drainages within the border rivers region may
+not be sustained when we examine the third dimension.
+
+```{r}
+gl.pcoa.plot(pca,gl,xaxis=1, yaxis=3,interactive=TRUE)
+```
+
+And indeed it is not. Why do we look at PC axis 1 and 2, then PC axis 1
+and 3. Why not 3 and 4. First of all, axis 4 was not informative, and
+will likely be misleading if we do not scale the axes. Second, if you
+plot 1 vs 2 and 1 vs 3, you can flop 1 vs 3 back into the page and
+better visualize the 3D structure in the dataset.
+
+Better still, you can plot the data in 3D and then manually apply a
+rotation of the axes to better show the separation of sites.
+
+```{r}
+gl.pcoa.plot(pca,gl,xaxis=1, yaxis=2, zaxis=3)
+```
+
+All good. Four aggregations that can be distinguished by their allelic
+profiles folloing ordination and dimension reduction.
+
+**Step 6 Analysis:**
+
+F Statistics
+
+```{r}
+# F Statistics
+gl.report.fstat(gl)
+```
+
+The structure in the PCA is reflected in the Fst values.
+
+0--0.05: little differentiation 0.05--0.15: low--moderate 0.15--0.25:
+moderate \> 0.25: high / very high
+
+Border Nth vs South : low-moderate Rest : Moderate
+
+What about allelic richness.
+
+```{r}
+# Allelic Richness
+r1 <- gl.report.allelerich(gl)
+```
+
+Nothing spectacular there.
+
+```{r}
+gl.report.heterozygosity(gl)
+```
+
+Again, not a lot in that. No strong evidence of inbreeding depression in
+any of the four aggregations.
+
+```{r}
+gl.report.diversity(gl)
+```
+
+```{r}
+# Private Alleles
+r1 <- gl.report.pa(gl)
+```
+
+Again, not a lot to see there, though there seems to be a discrepency
+between q=0 and the results from gl.report.heterozygosity. Coders?
+
+Lets see where these four populations sit in relation to expectation
+build on the global trend in allelic richness against population size.
+This takes some time to run, so maybe do this at another time.
+
+```{r}
+# Allelic Richness Simulation
+r2 <- gl.report.nall(  x = gl,  simlevels = seq(1, nInd(gl), 5),  reps = 10,  plot.colors.pop = gl.colors("dis"),  ncores = 2)
+```
+
+**Questions:**
 
 -   Is there structure in the dataset evident in the PCA?
 -   Is this borne out by FST analysis?
 -   Are there discrete management units evident?
--   Are any of these showing evidence of critical loss of genetic diversity/inbreeding?
+-   Are any of these showing evidence of critical loss of genetic
+    diversity/inbreeding?
 -   What are the lessons/advice for management?
 
 ### Conclusion
