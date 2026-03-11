@@ -24,49 +24,143 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ![](images/jonathan.png){.class width="200" height="200"} ![](images/darya.png){.class width="200" height="200"}![](images/celine.png){.class width="200" height="200"} 
 
-## Introduction
+## Introduction 
 
-### Learning outcomes
+**Know Your Forces: Statistical Modelling, Machine Learning, and Generative AI**
 
-What is the goal of this session? What will participants learn?
+Artificial intelligence is increasingly visible in the domain of population genetics. Many tools that can assist with different parts of research workflow are now available. However, they also introduce risks related to reliability, reproducibility, and research integrity. 
 
-### Prerquisites
+This session introduces how AI tools can be used responsibly in population genetics research workflows. We distinguish between statistical modelling, classical machine learning, and generative AI, and explore practical examples of how researchers can experiment with these tools while maintaining methodological rigour. 
 
-What prior knowledge do they need?
+## Learning outcomes 
 
-### Workflow
+**By the end of this session participants will be able to:**
 
-What is the structure of the session?
+-   Distinguish between statistical modelling, machine learning, and generative AI. 
 
-### Additional reading
+-   Identify appropriate use cases for AI in population genetics research. 
 
-Anything else you want to add?
+-   Recognise the limitations and risks of AI-generated outputs. 
 
-## Topic
+-   Experiment with AI coding assistants to improve productivity in R-based analyses. 
 
-Brief recap of the topic, relating back to the presentation.
+-   Understand the importance of verification and validation. 
 
-## Worked Ex:
+## Prerequisites 
 
-Worked example that everyone steps through together - simple example applying the methods
+**Participants should:**
+
+-   Have basic familiarity with R and population genetics workflows. 
+
+-   Be comfortable running scripts in RStudio or another coding environment. 
+
+-   Have general awareness of AI tools such as ChatGPT or GitHub Copilot (prior use is not required). 
+
+-   Have internet access. 
+
+-   No prior machine learning or AI expertise is required. 
+
+## Workflow 
+
+**This session will proceed in three parts:**
+
+1.    Foundations: What we mean by “AI” in research 
+
+2.    Distinguishing statistics, machine learning, and generative AI. 
+
+3.    Common misconceptions about AI. 
+
+## Opportunities and limitations for research workflows. 
+
+-   Applied machine learning examples in ecology and genomics 
+
+-   Brief overview of predictive modelling concepts. 
+
+### Examples including: 
+
+-   microbiome-based prediction of animal health, 
+
+-   behavioural or photo-ID classification, 
+
+-   early eDNA species identification approaches. 
+
+-   Using generative AI to assist coding and research workflows 
+
+-   Overview of AI coding assistants and conversational models. 
+
+## Demonstration of practical use cases: 
+
+-   analyses suggestion, 
+
+-   code suggestion, 
+
+-   debugging code errors, 
+
+-   refactoring script. 
+
+Participants will then engage in open discussion about responsible AI use in population genetics research. 
+
+Additonal Reading 
+
+https://rworks.dev/posts/claude-skills-for-r-users/ 
+
+https://www.seascapemodels.org/posts/2026-03-02-genAI-use-in-uni-assignments/ 
+
+## Exercises 
+
+**Aim: Practice using AI to understand and analyse data in R
+Try out a few different tools to see how different models responds.**
+
+Load packages and data (a subset of the genome-wide SNPs that are publicly available from the following study, Farquharson et al. (2022))
 
 ```{r}
-# We show them the code to run
+library(dartRverse)
+
+load("data/session6_gl.Rdata")
 ```
 
-## Exercises
+### Task 1: Understand the data
 
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
+What type of object is `gl`? How many loci and individuals are in the dataset? How many populations are there?
 
--   dot points
--   for different steps
+### Task 2: Come up with a study aim on this data, get some suggestions on analyses to conduct/metrics to calculate/plots to generate
 
-## Winding up
+Do you understand why the suggested analyses are relevant to the study aim? If not, ask for clarification on the rationale behind the suggested analyses.
+(e.g. Why is allelic richness an important measure of genetic diversity? How does it differ from other measures of diversity, such as heterozygosity?)
 
-### Discussion Time
+### Task 3: Write code to conduct the suggested analyses (e.g. calculate the allelic richness for each population)
 
-Add some questions to help group discussion.
+Do you understand the code you are running? If you don't, ask for help to understand it.
+Did you bump into any error in code execution? Try to get AI to help you debug it.
+If/When you come across problems, try out different prompts or switch models to test things out.
+What worked well? What didn't or were difficult to achieve? 
 
-### Where have we come?
+## Winding Up 
 
-Summarise what they should have learnt.
+**Discussion Time**
+
+The session will conclude with a moderated discussion exploring questions such as: 
+
+-   Where could AI tools reduce friction in population genetics workflows? 
+
+-   What are the risks of relying on generative AI in scientific research? 
+
+-   How should researchers validate AI-generated results or code? 
+
+-   What kinds of AI applications might benefit the population genetics community? 
+
+-   Participants are encouraged to share experiences, concerns, and ideas for future experimentation. 
+
+## Where Have We Come 
+
+**Artificial intelligence has evolved through several overlapping traditions:**
+
+-   Statistical modelling, long used in population genetics for inference. 
+
+-   Machine learning, which focuses on prediction using data-driven models. 
+
+-   Generative AI, which produces text, code, or images based on large-scale training data. 
+
+-   Recent advances in large language models have made AI tools widely accessible to researchers. These systems can assist with reading literature, drafting manuscripts, writing code, and exploring ideas. 
+
+-   However, these models are not authoritative sources of scientific truth. Their outputs must always be validated using domain expertise, reproducible analysis, and appropriate statistical reasoning.
