@@ -281,21 +281,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#w12-ai-in-popgen-research" id="toc-w12-ai-in-popgen-research" class="nav-link active" data-scroll-target="#w12-ai-in-popgen-research">W12 AI in PopGen &amp; Research</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
-  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading">Additional reading</a></li>
-  </ul></li>
-  <li><a href="#topic" id="toc-topic" class="nav-link" data-scroll-target="#topic">Topic</a></li>
-  <li><a href="#worked-ex" id="toc-worked-ex" class="nav-link" data-scroll-target="#worked-ex">Worked Ex:</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
-  <li><a href="#winding-up" id="toc-winding-up" class="nav-link" data-scroll-target="#winding-up">Winding up</a>
+  <li><a href="#opportunities-and-limitations-for-research-workflows." id="toc-opportunities-and-limitations-for-research-workflows." class="nav-link" data-scroll-target="#opportunities-and-limitations-for-research-workflows.">Opportunities and limitations for research workflows.</a>
   <ul>
-  <li><a href="#discussion-time" id="toc-discussion-time" class="nav-link" data-scroll-target="#discussion-time">Discussion Time</a></li>
-  <li><a href="#where-have-we-come" id="toc-where-have-we-come" class="nav-link" data-scroll-target="#where-have-we-come">Where have we come?</a></li>
+  <li><a href="#examples-including" id="toc-examples-including" class="nav-link" data-scroll-target="#examples-including">Examples including:</a></li>
   </ul></li>
+  <li><a href="#demonstration-of-practical-use-cases" id="toc-demonstration-of-practical-use-cases" class="nav-link" data-scroll-target="#demonstration-of-practical-use-cases">Demonstration of practical use cases:</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#task-1-understand-the-data" id="toc-task-1-understand-the-data" class="nav-link" data-scroll-target="#task-1-understand-the-data">Task 1: Understand the data</a></li>
+  <li><a href="#task-2-come-up-with-a-study-aim-on-this-data-get-some-suggestions-on-analyses-to-conductmetrics-to-calculateplots-to-generate" id="toc-task-2-come-up-with-a-study-aim-on-this-data-get-some-suggestions-on-analyses-to-conductmetrics-to-calculateplots-to-generate" class="nav-link" data-scroll-target="#task-2-come-up-with-a-study-aim-on-this-data-get-some-suggestions-on-analyses-to-conductmetrics-to-calculateplots-to-generate">Task 2: Come up with a study aim on this data, get some suggestions on analyses to conduct/metrics to calculate/plots to generate</a></li>
+  <li><a href="#task-3-write-code-to-conduct-the-suggested-analyses-e.g.-calculate-the-allelic-richness-for-each-population" id="toc-task-3-write-code-to-conduct-the-suggested-analyses-e.g.-calculate-the-allelic-richness-for-each-population" class="nav-link" data-scroll-target="#task-3-write-code-to-conduct-the-suggested-analyses-e.g.-calculate-the-allelic-richness-for-each-population">Task 3: Write code to conduct the suggested analyses (e.g.&nbsp;calculate the allelic richness for each population)</a></li>
+  </ul></li>
+  <li><a href="#winding-up" id="toc-winding-up" class="nav-link" data-scroll-target="#winding-up">Winding Up</a></li>
+  <li><a href="#where-have-we-come" id="toc-where-have-we-come" class="nav-link" data-scroll-target="#where-have-we-come">Where Have We Come</a></li>
   </ul>
 </nav>
     </div>
@@ -341,51 +343,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="learning-outcomes" class="level3">
-<h3 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h3>
-<p>What is the goal of this session? What will participants learn?</p>
+<p><strong>Know Your Forces: Statistical Modelling, Machine Learning, and Generative AI</strong></p>
+<p>Artificial intelligence is increasingly visible in the domain of population genetics. Many tools that can assist with different parts of research workflow are now available. However, they also introduce risks related to reliability, reproducibility, and research integrity.</p>
+<p>This session introduces how AI tools can be used responsibly in population genetics research workflows. We distinguish between statistical modelling, classical machine learning, and generative AI, and explore practical examples of how researchers can experiment with these tools while maintaining methodological rigour.</p>
 </section>
-<section id="prerequisites" class="level3">
-<h3 class="anchored" data-anchor-id="prerequisites">Prerequisites</h3>
-<p>What prior knowledge do they need?</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p><strong>By the end of this session participants will be able to:</strong></p>
+<ul>
+<li><p>Distinguish between statistical modelling, machine learning, and generative AI.</p></li>
+<li><p>Identify appropriate use cases for AI in population genetics research.</p></li>
+<li><p>Recognise the limitations and risks of AI-generated outputs.</p></li>
+<li><p>Experiment with AI coding assistants to improve productivity in R-based analyses.</p></li>
+<li><p>Understand the importance of verification and validation.</p></li>
+</ul>
 </section>
-<section id="workflow" class="level3">
-<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
-<p>What is the structure of the session?</p>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p><strong>Participants should:</strong></p>
+<ul>
+<li><p>Have basic familiarity with R and population genetics workflows.</p></li>
+<li><p>Be comfortable running scripts in RStudio or another coding environment.</p></li>
+<li><p>Have general awareness of AI tools such as ChatGPT or GitHub Copilot (prior use is not required).</p></li>
+<li><p>Have internet access.</p></li>
+<li><p>No prior machine learning or AI expertise is required.</p></li>
+</ul>
 </section>
-<section id="additional-reading" class="level3">
-<h3 class="anchored" data-anchor-id="additional-reading">Additional reading</h3>
-<p>Anything else you want to add?</p>
+<section id="workflow" class="level2">
+<h2 class="anchored" data-anchor-id="workflow">Workflow</h2>
+<p><strong>This session will proceed in three parts:</strong></p>
+<ol type="1">
+<li><p>Foundations: What we mean by “AI” in research</p></li>
+<li><p>Distinguishing statistics, machine learning, and generative AI.</p></li>
+<li><p>Common misconceptions about AI.</p></li>
+</ol>
+</section>
+<section id="opportunities-and-limitations-for-research-workflows." class="level2">
+<h2 class="anchored" data-anchor-id="opportunities-and-limitations-for-research-workflows.">Opportunities and limitations for research workflows.</h2>
+<ul>
+<li><p>Applied machine learning examples in ecology and genomics</p></li>
+<li><p>Brief overview of predictive modelling concepts.</p></li>
+</ul>
+<section id="examples-including" class="level3">
+<h3 class="anchored" data-anchor-id="examples-including">Examples including:</h3>
+<ul>
+<li><p>microbiome-based prediction of animal health,</p></li>
+<li><p>behavioural or photo-ID classification,</p></li>
+<li><p>early eDNA species identification approaches.</p></li>
+<li><p>Using generative AI to assist coding and research workflows</p></li>
+<li><p>Overview of AI coding assistants and conversational models.</p></li>
+</ul>
 </section>
 </section>
-<section id="topic" class="level2">
-<h2 class="anchored" data-anchor-id="topic">Topic</h2>
-<p>Brief recap of the topic, relating back to the presentation.</p>
-</section>
-<section id="worked-ex" class="level2">
-<h2 class="anchored" data-anchor-id="worked-ex">Worked Ex:</h2>
-<p>Worked example that everyone steps through together - simple example applying the methods</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We show them the code to run</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="demonstration-of-practical-use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="demonstration-of-practical-use-cases">Demonstration of practical use cases:</h2>
+<ul>
+<li><p>analyses suggestion,</p></li>
+<li><p>code suggestion,</p></li>
+<li><p>debugging code errors,</p></li>
+<li><p>refactoring script.</p></li>
+</ul>
+<p>Participants will then engage in open discussion about responsible AI use in population genetics research.</p>
+<p>Additonal Reading</p>
+<p>https://rworks.dev/posts/claude-skills-for-r-users/</p>
+<p>https://www.seascapemodels.org/posts/2026-03-02-genAI-use-in-uni-assignments/</p>
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.</p>
-<ul>
-<li>dot points</li>
-<li>for different steps</li>
-</ul>
+<p><strong>Aim: Practice using AI to understand and analyse data in R Try out a few different tools to see how different models responds.</strong></p>
+<p>Load packages and data (a subset of the genome-wide SNPs that are publicly available from the following study, Farquharson et al.&nbsp;(2022))</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dartRverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/session6_gl.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="task-1-understand-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="task-1-understand-the-data">Task 1: Understand the data</h3>
+<p>What type of object is <code>gl</code>? How many loci and individuals are in the dataset? How many populations are there?</p>
+</section>
+<section id="task-2-come-up-with-a-study-aim-on-this-data-get-some-suggestions-on-analyses-to-conductmetrics-to-calculateplots-to-generate" class="level3">
+<h3 class="anchored" data-anchor-id="task-2-come-up-with-a-study-aim-on-this-data-get-some-suggestions-on-analyses-to-conductmetrics-to-calculateplots-to-generate">Task 2: Come up with a study aim on this data, get some suggestions on analyses to conduct/metrics to calculate/plots to generate</h3>
+<p>Do you understand why the suggested analyses are relevant to the study aim? If not, ask for clarification on the rationale behind the suggested analyses. (e.g.&nbsp;Why is allelic richness an important measure of genetic diversity? How does it differ from other measures of diversity, such as heterozygosity?)</p>
+</section>
+<section id="task-3-write-code-to-conduct-the-suggested-analyses-e.g.-calculate-the-allelic-richness-for-each-population" class="level3">
+<h3 class="anchored" data-anchor-id="task-3-write-code-to-conduct-the-suggested-analyses-e.g.-calculate-the-allelic-richness-for-each-population">Task 3: Write code to conduct the suggested analyses (e.g.&nbsp;calculate the allelic richness for each population)</h3>
+<p>Do you understand the code you are running? If you don’t, ask for help to understand it. Did you bump into any error in code execution? Try to get AI to help you debug it. If/When you come across problems, try out different prompts or switch models to test things out. What worked well? What didn’t or were difficult to achieve?</p>
+</section>
 </section>
 <section id="winding-up" class="level2">
-<h2 class="anchored" data-anchor-id="winding-up">Winding up</h2>
-<section id="discussion-time" class="level3">
-<h3 class="anchored" data-anchor-id="discussion-time">Discussion Time</h3>
-<p>Add some questions to help group discussion.</p>
+<h2 class="anchored" data-anchor-id="winding-up">Winding Up</h2>
+<p><strong>Discussion Time</strong></p>
+<p>The session will conclude with a moderated discussion exploring questions such as:</p>
+<ul>
+<li><p>Where could AI tools reduce friction in population genetics workflows?</p></li>
+<li><p>What are the risks of relying on generative AI in scientific research?</p></li>
+<li><p>How should researchers validate AI-generated results or code?</p></li>
+<li><p>What kinds of AI applications might benefit the population genetics community?</p></li>
+<li><p>Participants are encouraged to share experiences, concerns, and ideas for future experimentation.</p></li>
+</ul>
 </section>
-<section id="where-have-we-come" class="level3">
-<h3 class="anchored" data-anchor-id="where-have-we-come">Where have we come?</h3>
-<p>Summarise what they should have learnt.</p>
+<section id="where-have-we-come" class="level2">
+<h2 class="anchored" data-anchor-id="where-have-we-come">Where Have We Come</h2>
+<p><strong>Artificial intelligence has evolved through several overlapping traditions:</strong></p>
+<ul>
+<li><p>Statistical modelling, long used in population genetics for inference.</p></li>
+<li><p>Machine learning, which focuses on prediction using data-driven models.</p></li>
+<li><p>Generative AI, which produces text, code, or images based on large-scale training data.</p></li>
+<li><p>Recent advances in large language models have made AI tools widely accessible to researchers. These systems can assist with reading literature, drafting manuscripts, writing code, and exploring ideas.</p></li>
+<li><p>However, these models are not authoritative sources of scientific truth. Their outputs must always be validated using domain expertise, reproducible analysis, and appropriate statistical reasoning.</p></li>
+</ul>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
@@ -444,12 +510,11 @@ ojs_define <- function(..., .session = shiny::getDefaultReactiveDomain()) {
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38]}},"value":[{"type":"character","attributes":{},"value":["base","cli","compiler","datasets","digest","evaluate","fastmap","fontawesome","graphics","grDevices","htmltools","htmlwidgets","httpuv","jquerylib","jsonlite","knitr","later","learnr","lifecycle","magrittr","methods","mime","otel","promises","R6","Rcpp","rlang","rmarkdown","rprojroot","rstudioapi","shiny","stats","tools","utils","withr","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["4.3.1","3.6.2","4.3.1","4.3.1","0.6.35","1.0.5","1.1.1","0.5.3","4.3.1","4.3.1","0.5.8.1","1.6.4","1.6.15","0.1.4","2.0.0","1.51","1.3.2","0.11.6","1.0.5","2.0.3","4.3.1","0.12","0.2.0","1.3.0","2.6.1","1.0.12","1.1.3","2.30","2.0.4","0.16.0","1.8.1.1","4.3.1","4.3.1","4.3.1","3.0.2","0.56","1.8-8","2.3.12"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38]}},"value":[{"type":"character","attributes":{},"value":["base","cli","compiler","datasets","digest","evaluate","fastmap","fontawesome","graphics","grDevices","htmltools","htmlwidgets","httpuv","jquerylib","jsonlite","knitr","later","learnr","lifecycle","magrittr","methods","mime","otel","promises","R6","Rcpp","rlang","rmarkdown","rprojroot","rstudioapi","shiny","stats","tools","utils","withr","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["4.3.1","3.6.2","4.3.1","4.3.1","0.6.35","1.0.5","1.1.1","0.5.3","4.3.1","4.3.1","0.5.8.1","1.6.4","1.6.15","0.1.4","2.0.0","1.51","1.3.2","0.11.6","1.0.5","2.0.3","4.3.1","0.12","0.2.0","1.3.0","2.6.1","1.0.12","1.1.3","2.30","2.1.1","0.16.0","1.8.1.1","4.3.1","4.3.1","4.3.1","3.0.2","0.56","1.8-8","2.3.12"]}]}]}
 </script>
 <!--/html_preserve-->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
