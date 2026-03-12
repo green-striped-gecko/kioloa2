@@ -21,102 +21,97 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ## W12 AI in PopGen & Research {.unnumbered}
 
-<div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
-<img src="images/jonathan.png" width="200" />
-<img src="images/darya.png" width="200" />
-<img src="images/celine.png" width="200" />
-</div>
 
-## Introduction 
+![](images/jonathan.png){.class width="200" height="200"} ![](images/darya.png){.class width="200" height="200"}![](images/celine.png){.class width="200" height="200"}
+
+## Introduction
 
 **Know Your Forces: Statistical Modelling, Machine Learning, and Generative AI**
 
-Artificial intelligence is increasingly visible in the domain of population genetics. Many tools that can assist with different parts of research workflow are now available. However, they also introduce risks related to reliability, reproducibility, and research integrity. 
+Artificial intelligence is increasingly visible in the domain of population genetics. Many tools that can assist with different parts of research workflow are now available. However, they also introduce risks related to reliability, reproducibility, and research integrity.
 
 
-This session introduces how AI tools can be used responsibly in population genetics research workflows. We distinguish between statistical modelling, classical machine learning, and generative AI, and explore practical examples of how researchers can experiment with these tools while maintaining methodological rigour. 
+This session introduces how AI tools can be used responsibly in population genetics research workflows. We distinguish between statistical modelling, classical machine learning, and generative AI, and explore practical examples of how researchers can experiment with these tools while maintaining methodological rigour.
 
-
-## Learning outcomes 
+## Learning outcomes
 
 **By the end of this session participants will be able to:**
 
--   Distinguish between statistical modelling, machine learning, and generative AI. 
+-   Distinguish between statistical modelling, machine learning, and generative AI.
 
--   Identify appropriate use cases for AI in population genetics research. 
+-   Identify appropriate use cases for AI in population genetics research.
 
--   Recognise the limitations and risks of AI-generated outputs. 
+-   Recognise the limitations and risks of AI-generated outputs.
 
--   Experiment with AI coding assistants to improve productivity in R-based analyses. 
+-   Experiment with AI coding assistants to improve productivity in R-based analyses.
 
--   Understand the importance of verification and validation. 
+-   Understand the importance of verification and validation.
 
-## Prerequisites 
+## Prerequisites
 
 **Participants should:**
 
--   Have basic familiarity with R and population genetics workflows. 
+-   Have basic familiarity with R and population genetics workflows.
 
--   Be comfortable running scripts in RStudio or another coding environment. 
+-   Be comfortable running scripts in RStudio or another coding environment.
 
--   Have general awareness of AI tools such as ChatGPT or GitHub Copilot (prior use is not required). 
+-   Have general awareness of AI tools such as ChatGPT or GitHub Copilot (prior use is not required).
 
--   Have internet access. 
+-   Have internet access.
 
--   No prior machine learning or AI expertise is required. 
+-   No prior machine learning or AI expertise is required.
 
-## Workflow 
+## Workflow
 
 **This session will proceed in three parts:**
 
-1.    Foundations: What we mean by “AI” in research 
+1.  Foundations: What we mean by "AI" in research.
 
-2.    Distinguishing statistics, machine learning, and generative AI. 
+2.  Distinguishing statistics, machine learning, and generative AI.
 
-3.    Common misconceptions about AI. 
+3.  Common misconceptions about AI.
 
-## Opportunities and limitations for research workflows. 
+## Opportunities and limitations for research workflows
 
--   Applied machine learning examples in ecology and genomics 
+-   Applied machine learning examples in ecology and genomics
 
--   Brief overview of predictive modelling concepts. 
+-   Brief overview of predictive modelling concepts
 
-### Examples including: 
+### Examples including:
 
--   microbiome-based prediction of animal health, 
+-   Microbiome-based prediction of animal health
 
--   behavioural or photo-ID classification, 
+-   Behavioural or photo-ID classification
 
--   early eDNA species identification approaches. 
+-   Early eDNA species identification approaches
 
--   Using generative AI to assist coding and research workflows 
+-   Using generative AI to assist coding and research workflows
 
--   Overview of AI coding assistants and conversational models. 
+-   Overview of AI coding assistants and conversational models
 
-## Demonstration of practical use cases: 
+## Demonstration of practical use cases:
 
--   analyses suggestion, 
+-   Analyses suggestion
 
--   code suggestion, 
+-   Code suggestion
 
--   debugging code errors, 
+-   Debugging code errors
 
--   refactoring script. 
+-   Refactoring script
 
-Participants will then engage in open discussion about responsible AI use in population genetics research. 
+Participants will then engage in open discussion about responsible AI use in population genetics research.
 
-Additonal Reading 
+Additonal Reading
 
-https://rworks.dev/posts/claude-skills-for-r-users/ 
+<https://rworks.dev/posts/claude-skills-for-r-users/>
 
-https://www.seascapemodels.org/posts/2026-03-02-genAI-use-in-uni-assignments/ 
+<https://www.seascapemodels.org/posts/2026-03-02-genAI-use-in-uni-assignments/>
 
-## Exercises 
+## Exercises
 
-**Aim: Practice using AI to understand and analyse data in R
-Try out a few different tools to see how different models responds.**
+**Aim: Practice using AI to understand and analyse data in R Try out a few different tools to see how different models responds.**
 
-Load packages and data (a subset of the genome-wide SNPs that are publicly available from the following study, Farquharson et al. (2022))
+Load packages and data (a subset of the genome-wide SNPs that are publicly available from the following study, Farquharson et al. (2022)
 
 ```{r}
 library(dartRverse)
@@ -130,42 +125,38 @@ What type of object is `gl`? How many loci and individuals are in the dataset? H
 
 ### Task 2: Come up with a study aim on this data, get some suggestions on analyses to conduct/metrics to calculate/plots to generate
 
-Do you understand why the suggested analyses are relevant to the study aim? If not, ask for clarification on the rationale behind the suggested analyses.
-(e.g. Why is allelic richness an important measure of genetic diversity? How does it differ from other measures of diversity, such as heterozygosity?)
+Do you understand why the suggested analyses are relevant to the study aim? If not, ask for clarification on the rationale behind the suggested analyses. (e.g. Why is allelic richness an important measure of genetic diversity? How does it differ from other measures of diversity, such as heterozygosity?)
 
 ### Task 3: Write code to conduct the suggested analyses (e.g. calculate the allelic richness for each population)
 
-Do you understand the code you are running? If you don't, ask for help to understand it.
-Did you bump into any error in code execution? Try to get AI to help you debug it.
-If/When you come across problems, try out different prompts or switch models to test things out.
-What worked well? What didn't or were difficult to achieve? 
+Do you understand the code you are running? If you don't, ask for help to understand it. Did you bump into any error in code execution? Try to get AI to help you debug it. If/When you come across problems, try out different prompts or switch models to test things out. What worked well? What didn't or were difficult to achieve?
 
-## Winding Up 
+## Winding Up
 
 **Discussion Time**
 
-The session will conclude with a moderated discussion exploring questions such as: 
+The session will conclude with a moderated discussion exploring questions such as:
 
--   Where could AI tools reduce friction in population genetics workflows? 
+-   Where could AI tools reduce friction in population genetics workflows?
 
--   What are the risks of relying on generative AI in scientific research? 
+-   What are the risks of relying on generative AI in scientific research?
 
--   How should researchers validate AI-generated results or code? 
+-   How should researchers validate AI-generated results or code?
 
--   What kinds of AI applications might benefit the population genetics community? 
+-   What kinds of AI applications might benefit the population genetics community?
 
--   Participants are encouraged to share experiences, concerns, and ideas for future experimentation. 
+-   Participants are encouraged to share experiences, concerns, and ideas for future experimentation.
 
-## Where Have We Come 
+## Where Have We Come
 
 **Artificial intelligence has evolved through several overlapping traditions:**
 
--   Statistical modelling, long used in population genetics for inference. 
+-   Statistical modelling, long used in population genetics for inference.
 
--   Machine learning, which focuses on prediction using data-driven models. 
+-   Machine learning, which focuses on prediction using data-driven models.
 
--   Generative AI, which produces text, code, or images based on large-scale training data. 
+-   Generative AI, which produces text, code, or images based on large-scale training data.
 
--   Recent advances in large language models have made AI tools widely accessible to researchers. These systems can assist with reading literature, drafting manuscripts, writing code, and exploring ideas. 
+-   Recent advances in large language models have made AI tools widely accessible to researchers. These systems can assist with reading literature, drafting manuscripts, writing code, and exploring ideas.
 
 -   However, these models are not authoritative sources of scientific truth. Their outputs must always be validated using domain expertise, reproducible analysis, and appropriate statistical reasoning.

@@ -24,49 +24,8 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ![](images/andrzej.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"}
 
-## Introduction
+### Presentation by Dr Andrzej Kilian
 
-### Learning outcomes
+#### Founder & Managing Director, DArT (Diversity Arrays Technology)
 
-What is the goal of this session? What will participants learn?
-
-### Prerquisites
-
-What prior knowledge do they need?
-
-### Workflow
-
-What is the structure of the session?
-
-### Additional reading
-
-Anything else you want to add?
-
-## Topic
-
-Brief recap of the topic, relating back to the presentation.
-
-## Worked Ex:
-
-Worked example that everyone steps through together - simple example applying the methods
-
-```{r}
-# We show them the code to run
-```
-
-## Exercises
-
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
-
--   dot points
--   for different steps
-
-## Winding up
-
-### Discussion Time
-
-Add some questions to help group discussion.
-
-### Where have we come?
-
-Summarise what they should have learnt.
+![](images/dart.png)
