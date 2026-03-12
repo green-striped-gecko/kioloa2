@@ -486,7 +486,7 @@ This is often useful when you *don’t* have a well-sampled source population, b
 # Create a starting population under constant Ne and mutation.
 # Then generate offspring for a few generations using clones
 
-start_pop <- gl.sim.Neconst(Ne = 500, nloc = 1000, mu = 1e-8, nind = 100, popname = "Neconst")
+start_pop <- gl.sim.Neconst(ninds = 500, nlocs = 1000,mutation_rate = 1e-8)
 
 gl.smearplot(start_pop)
 gl.sfs(start_pop)
@@ -607,7 +607,7 @@ For example if you specify `noffpermother = 3`, each mother will produce three o
 Our famous hermaphrodite implementation, would state:
 
 ```{r ex73_3a, eval=FALSE}
-gl.sim.offsprings(fathers = pop1, mothers = pop1, noffpermother = 1)
+gl.sim.offspring(fathers = pop1, mothers = pop1, noffpermother = 1)
 ```
 
 This would allow each individual to be both a mother and a father, and each individual would produce one offspring on average. This is a simple way to simulate a Wright-Fisher simulation, because every individual can reproduce with any other individual (no sexes) and even reproduce with itself (selfing). This is a common assumption in many population genetics models, and it allows us to focus on the effects of genetic drift without the added complexity of sexual reproduction.
