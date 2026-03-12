@@ -20,53 +20,20 @@ library(learnr)
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-## W17 Sequencing Technologies
+![](images/luis.png){.class width="200" height="200"}
 
-![](images/andrzej.png){.class width="200" height="200"} ![](images/luis.png){.class width="200" height="200"}
+## W17 OneDArT
 
-## Introduction
 
-### Learning outcomes
+### Presentation by Dr Luis Mijangos
 
-What is the goal of this session? What will participants learn?
 
-### Prerquisites
+<iframe width="800" height="533" src="https://www.youtube.com/embed/qzK2EV80leI" title="OneDArT - dartR Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 
-What prior knowledge do they need?
+</iframe>
 
-### Workflow
 
-What is the structure of the session?
+![](images/onedart1.png){.class width=800}
+![](images/onedart2.png){.class width=800}
 
-### Additional reading
 
-Anything else you want to add?
-
-## Topic
-
-Brief recap of the topic, relating back to the presentation.
-
-## Worked Ex:
-
-Worked example that everyone steps through together - simple example applying the methods
-
-```{r}
-# We show them the code to run
-```
-
-## Exercises
-
-Exercises where they can use their own data or supplied data to try out what they have learnt in a new context.
-
--   dot points
--   for different steps
-
-## Winding up
-
-### Discussion Time
-
-Add some questions to help group discussion.
-
-### Where have we come?
-
-Summarise what they should have learnt.
