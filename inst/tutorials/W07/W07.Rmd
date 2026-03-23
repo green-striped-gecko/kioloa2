@@ -530,7 +530,7 @@ library(ggplot2)
 # - What does the SFS look like? Does it suggest recent expansion or contraction?
 # - How does changing minbinsize affect the number of SNPs in the spectrum?
 # - When would you use a higher minbinsize in real data?
-
+path.data="./data"
 glex    <- readRDS(file.path(path.data, "slim_ex.rds"))
 
 
@@ -543,7 +543,7 @@ glex    <- readRDS(file.path(path.data, "slim_ex.rds"))
 Let us compare four simulated datasets to build intuition about SFS
 shapes under different demographic histories.
 
-```{r sfs-comparison}
+```{r sfs-comparison, eval=TRUE}
 # Load four simulated datasets with known demographic histories
 gl100    <- readRDS(file.path(path.data, "slim_100.rds"))
 gldec    <- readRDS(file.path(path.data, "slim_100_50_50yago.rds"))
@@ -627,13 +627,13 @@ available; a vertebrate default is often `mu = 1e-8`.
 
 First, download EPOS:
 
-```{r epos-download}
+```{r epos-download, eval=TRUE}
 dir_epos <- gl.download.binary("epos", out.dir = tempdir())
 ```
 
 Run EPOS on the constant *Ne* = 100 simulation:
 
-```{r epos-constant}
+```{r epos-constant, eval=TRUE}
 L  <- 5e8   # total genome length from simulation (known)
 mu <- 1e-8  # mutation rate from simulation (known)
 
@@ -642,7 +642,7 @@ Ne_epos <- gl.run.epos(gl100,
                    L          = L,
                    u          = mu,
                    boot       = 10,
-                   minbinsize = 1)
+                   minbinsize = 5)
 
 
 
@@ -723,7 +723,7 @@ brush-tailed possums (*Trichosurus vulpecula*, Tympo North population).
 The main difference from simulated data is that *L* must be
 approximated.
 
-```{r epos-real}
+```{r epos-real, eval=TRUE}
 # Load and filter real data
 north  <- readRDS(file.path(path.data, "TympoNorth.rds"))
 north2 <- gl.filter.callrate(north,  method = "loc", threshold = 0.95)
@@ -737,6 +737,8 @@ nLoc(north5)
 # For DArT data: L ~ nLoc * 75 bp * 200
 L_real  <- nLoc(north5) * 75 * 200
 mu_real <- 16.17e-9     # pogona-specific estimate
+
+dir_epos <- gl.download.binary("epos", out.dir = tempdir())
 
 # Run EPOS
 Ne_north <- gl.run.epos(north5,
@@ -770,7 +772,7 @@ Both methods use the **same inputs** (*L*, *mu*, `minbinsize`), so the
 discussion above applies equally to both, and results are directly
 comparable.
 
-```{r stairways-run}
+```{r stairways-run, eval=TRUE}
 # Stairways2 is slow (5+ minutes) — run and save, then load results
 # Un-comment to actually run:
 # Ne_sw <- gl.run.stairway2(gl100,

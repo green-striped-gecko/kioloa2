@@ -17,7 +17,7 @@ description: "W03 SexLinked Markers"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ## W03 Sex-Linked Markers
@@ -28,7 +28,7 @@ klippy::klippy(position="right", color="black")
 
 *Session Presenters*
 
-![](images/diana.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"} 
+![](images/diana.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"}
 
 ## Required packages
 

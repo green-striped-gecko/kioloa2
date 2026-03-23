@@ -16,7 +16,15 @@ description: "W09 Hidden dartR Powers"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(leaflet)
+library(leaflet.providers)
+# Override addProviderTiles BEFORE any map is created
+assignInNamespace(
+  "addProviderTiles",
+  function(map, provider, ...) leaflet::addTiles(map),
+  ns = "leaflet"
+)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 
@@ -129,7 +137,7 @@ print(p2)
 
 ## Alternative PCoA displays
 
-```{r pcoa-interactive}
+```{r pcoa-interactive, eval=FALSE}
 # Interactive 2D plot
 gl.pcoa.plot(
   pca,

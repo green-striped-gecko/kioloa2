@@ -17,7 +17,7 @@ description: "Natural Selection & Adaptation"
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 ```
 
 ## W10 Natural Selection & Adaptation
@@ -183,6 +183,9 @@ library(RColorBrewer)
 library(terra)
 library(rnaturalearth)
 library(rnaturalearthdata)
+library(melfuR)
+
+
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 tutorial_options(exercise.eval = FALSE)
 
@@ -212,6 +215,9 @@ library(RColorBrewer)       # colour palettes
 library(terra)              # raster handling (environmental maps)
 library(rnaturalearth)      # coastline data (environmental maps)
 library(rnaturalearthdata)  # medium-resolution map data
+library(ggmanh)             # Manhattan plots
+
+library(melfuR)  #install via github: devtools::install_github("pygmyperch/melfuR")
 ```
 
 We also load the pre-processed tutorial dataset. This `.rds` file contains a list with all the data objects needed for the session. To keep computation times manageable, `allele_freq` and `ind_snps` contain a **subset of \~2,000 SNPs** rather than the full 14,699 used in the paper. See the box below for a description of each data component.
@@ -295,7 +301,7 @@ The table below lists some common global and Australian-specific sources for ter
 
 Bio-ORACLE layers can be downloaded and extracted directly using the `sdmpredictors` package. The environmental data for this session has already been downloaded and formatted, but the workflow below shows the full pipeline from downloading layers to extracting values at your sampling sites.
 
-```{r biooracle_demo, eval=FALSE}
+```{r biooracle_demo, eval=TRUE, warning=FALSE, message=FALSE}
 library(sdmpredictors)
 library(raster)
 
@@ -303,14 +309,14 @@ library(raster)
 # Choose a relatively permanent location as layers are large and you don't want to re-download 
 # them every session.
 # Mac/Linux example:
-options(sdmpredictors_datadir = "~/spatial_data/sdmpredictors")
+options(sdmpredictors_datadir = "./data/sdmpredictors")
 # Windows example:
 # options(sdmpredictors_datadir = "C:/Users/yourname/spatial_data/sdmpredictors")
 
 # Step 2: Browse available layers.
 # This returns a data frame — open it in the RStudio viewer to explore.
 all_layers <- list_layers(c("Bio-ORACLE"))
-View(all_layers)  # columns include layer_code, name, description, units
+# View(all_layers)  # columns include layer_code, name, description, units
 
 # Step 3: Download the layers you want.
 # Files are saved to sdmpredictors_datadir and re-used on subsequent calls.
@@ -319,6 +325,8 @@ env_stack <- load_layers(c("BO22_tempmin_ss",    # minimum sea surface temperatu
                            "BO22_ph",              # sea surface pH
                            "BO22_calcite",         # calcite concentration
                            "BO22_ppmin_ss"))        # minimum primary production
+
+
 
 # Step 4: (Optional but recommended) Crop to your study region.
 # This speeds up extraction and reduces memory use.
@@ -343,13 +351,13 @@ head(env_dat)
 
 For **terrestrial or freshwater** studies, the `geodata` package works similarly with WorldClim and CHELSA:
 
-```{r geodata_demo, eval=FALSE}
+```{r geodata_demo, eval=TRUE}
 library(geodata)
 
 # Download WorldClim bioclimatic variables at 2.5 arc-minute resolution
 # (saved to a local directory of your choice)
 wc <- worldclim_global(var = "bio", res = 2.5,
-path = "~/spatial_data/worldclim")
+path = "./data/worldclim")
 
 # wc is a SpatRaster (terra), you can extract with terra::extract()
 library(terra)
@@ -1070,7 +1078,7 @@ The partial RDA in Step 3 used **population allele frequencies** as the response
 
 ### Extracting candidate loci and running the individual RDA
 
-```{r cand_rda, eval=FALSE}
+```{r cand_rda, eval=TRUE}
 # Identify candidate SNPs at q < 0.01 using rdadapt q-values.
 candidates <- genome_info$genericNames[
   genome_info$qvalue < 0.01 & genome_info$genericNames %in% colnames(snapper.AF)
