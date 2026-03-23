@@ -16,7 +16,11 @@ description: "W03 SexLinked Markers"
 
 ```{r setup, include=FALSE}
 library(learnr)
+<<<<<<< HEAD
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
+=======
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+>>>>>>> main
 ```
 
 ## W03 Sex-Linked Markers {.unnumbered}
@@ -27,10 +31,14 @@ klippy::klippy(position="right", color="black")
 
 *Session Presenters*
 
+<<<<<<< HEAD
 <div style="display:flex; justify-content:space-evenly; flex-wrap:wrap; align-items:center; width:100%;">
 <img src="images/diana.png" width="200" />
 <img src="images/flo.png" width="200" />
 </div>
+=======
+![](images/diana.png){.class width="200" height="200"} ![](images/flo.png){.class width="200" height="200"}
+>>>>>>> main
 
 ## Required packages
 

@@ -1,4 +1,5 @@
 "order","id","pop","nall","nallperc"
+<<<<<<< HEAD
 29,"MOGrambilal2024.7","MDB_Macintrye",932,0.599
 66,"MODubboZoo2024.1","MDB_Macquarie",1139,0.732
 8,"MAToow.3","MDB_Condamine",1243,0.799
@@ -29,3 +30,34 @@
 10,"MO9741.7","MDB_Condamine",1554,0.999
 37,"MOMoletrib2021.11","MDB_Macintrye",1555,0.999
 13,"MO2129.5","MDB_Condamine",1556,1
+=======
+39,"MOGrambilal2024.7","MDB_Macintrye",947,0.602
+57,"MODubboZoo2024.9","MDB_Macquarie",1163,0.74
+3,"MAToow.3","MDB_Condamine",1265,0.805
+26,"MO1661.5","MDB_Gwydir",1336,0.85
+31,"MOMoletrib2021.2","MDB_Macintrye",1385,0.881
+34,"MOGrambilal2024.10","MDB_Macintrye",1412,0.898
+49,"MOTenterfield.2002.14","MDB_Macintrye2",1435,0.913
+24,"MO1661.7","MDB_Gwydir",1453,0.924
+68,"MODubboZoo2024.3","MDB_Macquarie",1470,0.935
+8,"MO1735.8","MDB_Condamine",1484,0.944
+70,"MODubboZoo2024.4","MDB_Macquarie",1496,0.952
+41,"MOMoletrib2021.1","MDB_Macintrye",1507,0.959
+35,"MOGrambilal2024.5","MDB_Macintrye",1516,0.964
+19,"MO1661.9","MDB_Gwydir",1525,0.97
+36,"MOGrambilal2024.6","MDB_Macintrye",1532,0.975
+6,"MO2129.5","MDB_Condamine",1537,0.978
+43,"MOTenterfield.nodate.4","MDB_Macintrye2",1542,0.981
+33,"MOMoletrib2021.8","MDB_Macintrye",1546,0.983
+10,"MO9741.7","MDB_Condamine",1550,0.986
+13,"MO1735.6","MDB_Condamine",1554,0.989
+27,"MO1658.2","MDB_Gwydir",1557,0.99
+44,"MOTenterfield.nodate.8","MDB_Macintrye2",1560,0.992
+53,"MOTenterfield.2002.15","MDB_Macintrye2",1563,0.994
+52,"MOTenterfield.nodate.10","MDB_Macintrye2",1565,0.996
+59,"MODubboZoo2024.13","MDB_Macquarie",1567,0.997
+51,"MOTenterfield.nodate.2","MDB_Macintrye2",1569,0.998
+9,"MO1735.10","MDB_Condamine",1570,0.999
+40,"MOGrambilal2024.3","MDB_Macintrye",1571,0.999
+63,"MODubboZoo2024.45","MDB_Macquarie",1572,1
+>>>>>>> main

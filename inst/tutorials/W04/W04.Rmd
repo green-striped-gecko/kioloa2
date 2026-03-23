@@ -345,6 +345,7 @@ my_popcluster <- readRDS("data/my_popcluster.rds")
 
 ```{r}
 
+
 my_popcluster$plots
 
 ```

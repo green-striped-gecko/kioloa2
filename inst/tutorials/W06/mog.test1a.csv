@@ -5,6 +5,7 @@
 28,"MO1661.6","MDB_Gwydir",1505,0.809
 63,"MOMoletrib2021.2","MDB_Macintrye",1564,0.841
 59,"MOGrambilal2024.7","MDB_Macintrye",1609,0.865
+<<<<<<< HEAD
 66,"MODubboZoo2024.6","MDB_Macquarie",1632,0.877
 33,"MO1735.7","MDB_Condamine",1655,0.89
 78,"MOGrambilal2024.10","MDB_Macintrye",1676,0.901
@@ -41,3 +42,38 @@
 87,"MODubboZoo2024.49","MDB_Macquarie",1858,0.999
 11,"MAFarm.8","MDB_Condamine",1859,0.999
 17,"MO9741.3","MDB_Condamine",1860,1
+=======
+55,"MOTenterfield.nodate.2","MDB_Macintrye2",1632,0.877
+67,"MODubboZoo2024.15","MDB_Macquarie",1655,0.89
+71,"MOGrambilal2024.9","MDB_Macintrye",1674,0.9
+78,"MOGrambilal2024.10","MDB_Macintrye",1691,0.909
+36,"MO1735.1","MDB_Condamine",1708,0.918
+31,"MO1661.9","MDB_Gwydir",1722,0.926
+85,"MODubboZoo2024.1","MDB_Macquarie",1735,0.933
+73,"MODubboZoo2024.17","MDB_Macquarie",1747,0.939
+95,"MOMoletrib2021.7","MDB_Macintrye",1758,0.945
+34,"MO1736.5","MDB_Condamine",1768,0.951
+89,"MOTenterfield.2002.15","MDB_Macintrye2",1778,0.956
+35,"MO1735.8","MDB_Condamine",1786,0.96
+69,"MOMoletrib2021.3","MDB_Macintrye",1794,0.965
+96,"MOGrambilal2024.4","MDB_Macintrye",1801,0.968
+52,"MOGrambilal2024.6","MDB_Macintrye",1807,0.972
+41,"MO1735.4","MDB_Condamine",1812,0.974
+93,"MOTenterfield.nodate.8","MDB_Macintrye2",1817,0.977
+33,"MO1735.7","MDB_Condamine",1822,0.98
+24,"MO1658.1","MDB_Gwydir",1827,0.982
+79,"MODubboZoo2024.8","MDB_Macquarie",1831,0.984
+92,"MODubboZoo2024.10","MDB_Macquarie",1835,0.987
+54,"MODubboZoo2024.13","MDB_Macquarie",1838,0.988
+87,"MODubboZoo2024.49","MDB_Macquarie",1841,0.99
+43,"MO1735.5","MDB_Condamine",1844,0.991
+27,"MO1661.7","MDB_Gwydir",1847,0.993
+10,"MAToow.3","MDB_Condamine",1850,0.995
+46,"MO1736.4","MDB_Condamine",1852,0.996
+37,"MO1735.9","MDB_Condamine",1854,0.997
+68,"MOTenterfield.nodate.4","MDB_Macintrye2",1856,0.998
+66,"MODubboZoo2024.6","MDB_Macquarie",1857,0.998
+100,"MOTenterfield.nodate.9","MDB_Macintrye2",1858,0.999
+99,"MOTenterfield.nodate.1","MDB_Macintrye2",1859,0.999
+29,"MO1661.8","MDB_Gwydir",1860,1
+>>>>>>> main

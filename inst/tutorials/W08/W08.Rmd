@@ -18,7 +18,7 @@ editor_options:
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache=TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, cache=TRUE)
 ```
 
 
@@ -527,7 +527,7 @@ dimensions. Separation can be believed, but proximity is ambiguous. So
 the proximity of the two drainages within the border rivers region may
 not be sustained when we examine the third dimension.
 
-```{r}
+```{r, eval=FALSE}
 gl.pcoa.plot(pca,gl,xaxis=1, yaxis=3,interactive=TRUE)
 ```
 
@@ -609,6 +609,4 @@ r2 <- gl.report.nall(  x = gl,  simlevels = seq(1, nInd(gl), 5),  reps = 10,  pl
     diversity/inbreeding?
 -   What are the lessons/advice for management?
 
-### Conclusion
 
-### Where have we come?
