@@ -16,11 +16,7 @@ description: "W03 SexLinked Markers"
 
 ```{r setup, include=FALSE}
 library(learnr)
-<<<<<<< HEAD
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE, cache = TRUE)
-=======
-knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
->>>>>>> main
 ```
 
 ## W03 Sex-Linked Markers {.unnumbered}
