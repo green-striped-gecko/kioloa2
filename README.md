@@ -15,6 +15,10 @@ Interactive teaching materials for the **dartRverse** conservation-genomics work
   4. Commit the README edit.
 -->
 
+
+https://github.com/user-attachments/assets/d0be8724-9ef9-40ee-9312-22d77c76b8da
+
+
 > 📹 _Workshop demo video — drop `crawl_3.mp4` here in the GitHub web editor (see the HTML comment above)._
 
 ## Getting started
